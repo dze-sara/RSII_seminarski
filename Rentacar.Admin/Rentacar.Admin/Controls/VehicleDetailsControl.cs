@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Rentacar.Admin
+namespace Rentacar.Admin.Controls
 {
-    public partial class Form1 : Form
+    public partial class VehicleDetailsControl : UserControl
     {
-        public Form1()
+        public VehicleDetailsControl()
         {
             InitializeComponent();
         }
+
     }
 }
