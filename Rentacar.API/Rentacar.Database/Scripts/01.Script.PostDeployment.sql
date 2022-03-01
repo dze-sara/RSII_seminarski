@@ -13,10 +13,10 @@ Post-Deployment Script Template
 :r .\VehicleTypeSeed.sql	
 GO
 
-:r .\BrandSeed.sql	
+:r .\MakeSeed.sql	
 GO
 
-:r .\MakeSeed.sql	
+:r .\ModelSeed.sql	
 GO
 
 :r .\RoleSeed.sql	

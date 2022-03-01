@@ -5,9 +5,9 @@ create table
 	[VehicleId] int identity(1,1) not null
 	, [RatePerDay] decimal(18,0) not null
 	, [IsActive] bit not null
-	, [VehicleTypeId] int not null
 	, [TransmissionType] smallint not null
-	, [MakeId] int not null
+	, [ModelId] int not null
+	, [LocationId] int not null
 ,
 constraint [Pk_Vehicle_VehicleId] primary key clustered
 (
@@ -15,10 +15,10 @@ constraint [Pk_Vehicle_VehicleId] primary key clustered
 )
 );
 GO
--- Relationship Fk_VehicleType_Vehicle_VehicleTypeId
+-- Relationship Fk_Model_Vehicle_ModelId
 alter table [dbo].[Vehicle]
-add constraint [Fk_VehicleType_Vehicle_VehicleTypeId] foreign key ([VehicleTypeId]) references [dbo].[VehicleType] ([VehicleTypeId]);
+add constraint [Fk_Model_Vehicle_ModelId] foreign key ([ModelId]) references [dbo].[Model] ([ModelId]);
 GO
--- Relationship Fk_Make_Vehicle_MakeId
+-- Relationship Fk_Location_Vehicle_LocationId
 alter table [dbo].[Vehicle]
-add constraint [Fk_Make_Vehicle_MakeId] foreign key ([MakeId]) references [dbo].[Make] ([MakeId]);
+add constraint [Fk_Location_Vehicle_LocationId] foreign key ([LocationId]) references [dbo].[Location] ([LocationId]);

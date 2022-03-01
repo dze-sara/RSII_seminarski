@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
@@ -17,10 +16,11 @@ namespace Rentacar.Entities
         public bool IsActive { get; set; }
         public int VehicleTypeId { get; set; }
         public short TransmissionType { get; set; }
-        public int MakeId { get; set; }
+        public int ModelId { get; set; }
 
-        public virtual Make Make { get; set; }
+        public virtual Model Model { get; set; }
         public virtual VehicleType VehicleType { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

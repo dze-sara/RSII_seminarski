@@ -5,26 +5,20 @@ END
  
 CREATE TABLE [tempMake](
 	[MakeId] int not null
-	, [MakeName] nvarchar(50) not null
-	, [MakeDescription] text not null
-	, [Year] nvarchar(5) not null
-	, [NoOfSeats] smallint not null
-	, [BrandId] int not null
+   ,[MakeName] nvarchar(30) not null
+   ,[MakeDescription] nvarchar(250)
 	);
 GO
 
 INSERT INTO tempMake([MakeId]
 					 ,[MakeName]
-					 ,[MakeDescription]
-					 ,[Year]
-					 ,[NoOfSeats]
-					 ,[BrandId])
+					 ,[MakeDescription])
 VALUES 
-	(1,'V40', 'A classic hatch.', '2019', 5, 3)
-	,(2,'Up', 'A tiny city car.', '2020', 5, 4)
-	,(3,'Polo', 'A small city car.', '2020', 5, 4)
-	,(4,'Clio', 'A German car Make.', '2020', 5, 5)
-	,(5,'M1', 'A fun sports car.', '2015', 5, 1)
+	(1,'BMW', 'A German sports-car Make.')
+	,(2,'Mercedes', 'A German luxury-car Make.')
+	,(3,'Volvo', 'A Sweedish car Make.')
+	,(4,'VW', 'A German car Make.')
+	,(5,'Renault', 'A French car Make.')
 
 GO
  
@@ -37,16 +31,10 @@ BEGIN TRAN
 	THEN 
 		INSERT ([MakeId]
 			   ,[MakeName]
-			   ,[MakeDescription]
-			   ,[Year]
-			   ,[NoOfSeats]
-			   ,[BrandId])
+			   ,[MakeDescription])
 		VALUES (Src.[MakeId],
 				Src.[MakeName],
-				Src.[MakeDescription],
-				Src.[Year],
-				Src.[NoOfSeats],
-				Src.[BrandId]);
+				Src.[MakeDescription]);
 
 	SET IDENTITY_INSERT dbo.Make OFF;
 				

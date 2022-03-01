@@ -1,6 +1,6 @@
 ﻿-- Model New Model
--- Updated 1/7/2022 10:02:20 PM
--- DDL Generated 1/7/2022 10:03:10 PM
+-- Updated 3/1/2022 4:02:01 PM
+-- DDL Generated 3/1/2022 4:02:04 PM
 
 --**********************************************************************
 --	Tables
@@ -18,9 +18,7 @@ create table
 	, [UserId] int not null
 	, [VehicleId] int not null
 ,
-[IsCancelled] BIT NOT NULL DEFAULT 0, 
-    [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    constraint [Pk_Booking_BookingId] primary key clustered
+constraint [Pk_Booking_BookingId] primary key clustered
 (
 	[BookingId] asc
 )

@@ -9,17 +9,13 @@ namespace Rentacar.Entities
     {
         public Make()
         {
-            Vehicles = new HashSet<Vehicle>();
+            Models = new HashSet<Model>();
         }
 
         public int MakeId { get; set; }
         public string MakeName { get; set; }
         public string MakeDescription { get; set; }
-        public string Year { get; set; }
-        public short NoOfSeats { get; set; }
-        public int BrandId { get; set; }
 
-        public virtual Brand Brand { get; set; }
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Model> Models { get; set; }
     }
 }

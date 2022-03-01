@@ -17,12 +17,14 @@ namespace Rentacar.DataAccess
         }
 
         public virtual DbSet<Booking> Bookings { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Make> Makes { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Review> Review { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,28 +47,28 @@ namespace Rentacar.DataAccess
                     .HasConstraintName("Fk_Vehicle_Booking_VehicleId");
             });
 
-            modelBuilder.Entity<Brand>(entity =>
-            {
-                entity.ToTable("Brand");
-
-                entity.Property(e => e.BrandDescription)
-                    .IsRequired()
-                    .HasMaxLength(250);
-
-                entity.Property(e => e.BrandName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
-
             modelBuilder.Entity<Make>(entity =>
             {
                 entity.ToTable("Make");
 
                 entity.Property(e => e.MakeDescription)
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasMaxLength(250);
 
                 entity.Property(e => e.MakeName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Model>(entity =>
+            {
+                entity.ToTable("Model");
+
+                entity.Property(e => e.ModelDescription)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.ModelName)
                     .IsRequired()
                     .HasMaxLength(50);
 
@@ -74,11 +76,11 @@ namespace Rentacar.DataAccess
                     .IsRequired()
                     .HasMaxLength(5);
 
-                entity.HasOne(d => d.Brand)
-                    .WithMany(p => p.Makes)
-                    .HasForeignKey(d => d.BrandId)
+                entity.HasOne(d => d.Make)
+                    .WithMany(p => p.Models)
+                    .HasForeignKey(d => d.MakeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_Brand_Make_BrandId");
+                    .HasConstraintName("Fk_Make_Model_MakeId");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -123,11 +125,11 @@ namespace Rentacar.DataAccess
 
                 entity.Property(e => e.RatePerDay).HasColumnType("decimal(18, 0)");
 
-                entity.HasOne(d => d.Make)
+                entity.HasOne(d => d.Model)
                     .WithMany(p => p.Vehicles)
-                    .HasForeignKey(d => d.MakeId)
+                    .HasForeignKey(d => d.ModelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_Make_Vehicle_MakeId");
+                    .HasConstraintName("Fk_Model_Vehicle_ModelId");
 
                 entity.HasOne(d => d.VehicleType)
                     .WithMany(p => p.Vehicles)

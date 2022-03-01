@@ -10,11 +10,13 @@ namespace Rentacar.API.Helpers
         {
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Booking, BookingDto>().ReverseMap();
-            CreateMap<Make, MakeDto>().ReverseMap();
+            CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
-            CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Make, MakeDto>().ReverseMap();
+            CreateMap<Location, LocationDto>().ReverseMap();
+            CreateMap<Review, ReviewDto>().ReverseMap();
         }
     }
 }
