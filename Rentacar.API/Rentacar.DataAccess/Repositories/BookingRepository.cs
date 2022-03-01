@@ -2,6 +2,7 @@
 using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
 using Rentacar.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,17 +33,28 @@ namespace Rentacar.DataAccess.Repositories
 
         public async Task<bool> CancelBooking(int bookingId)
         {
-            AssertionHelper.AssertInt(bookingId);
+            //AssertionHelper.AssertInt(bookingId);
 
-            Booking booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingId == bookingId);
+            //Booking booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingId == bookingId);
 
-            if(booking.IsNotNull())
-            {
-                booking.IsCancelled = true;
-                return true;
-            }
+            //if(booking.IsNotNull())
+            //{
+            //    booking.IsCancelled = true;
+            //    return true;
+            //}
 
             return false;
+        }
+
+        public async Task<List<Booking>> GetBookingHistory()
+        {
+            return await _context.Bookings
+                                 .Include(x => x.Vehicle)
+                                 .ThenInclude(y => y.Model)
+                                 .Include(x => x.User)
+                                 .Where(x => x.StartDate < DateTime.UtcNow && x.EndDate < DateTime.UtcNow)
+                                 .OrderByDescending(x => x.EndDate)
+                                 .ToListAsync();
         }
 
         public async Task<ICollection<Booking>> GetBookingsByUser(int userId)
@@ -54,6 +66,17 @@ namespace Rentacar.DataAccess.Repositories
                                                    .ToListAsync();
 
             return bookings;
+        }
+
+        public async Task<List<Booking>> GetLatestActiveBookings()
+        {
+            return await _context.Bookings
+                                 .Include(x => x.Vehicle)
+                                 .ThenInclude(y => y.Model)
+                                 .Include(x => x.User)
+                                 .Where(x => x.StartDate < DateTime.UtcNow && x.EndDate > DateTime.UtcNow)
+                                 .OrderByDescending(x => x.EndDate)
+                                 .ToListAsync();
         }
     }
 }

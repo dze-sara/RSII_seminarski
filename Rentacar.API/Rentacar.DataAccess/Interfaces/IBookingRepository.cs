@@ -9,5 +9,7 @@ namespace Rentacar.DataAccess.Interfaces
         Task<ICollection<Booking>> GetBookingsByUser(int userId);
         Task<bool> CancelBooking(int bookingId);
         Task<Booking> AddBooking(Booking booking);
+        Task<List<Booking>> GetLatestActiveBookings();
+        Task<List<Booking>> GetBookingHistory();
     }
 }

@@ -29,7 +29,7 @@ namespace Rentacar.DataAccess.Repositories
 
             if (vehicleType.HasValue)
             {
-                query.Where(x => x.VehicleTypeId == vehicleType.Value);
+                query.Where(x => x.Model.VehicleTypeId == vehicleType.Value);
             }
 
             if (bookingStartDate.HasValue && bookingEndDate.HasValue)
@@ -57,7 +57,8 @@ namespace Rentacar.DataAccess.Repositories
             AssertionHelper.AssertInt(vehicleId);
 
             return await _context.Vehicles
-                                 .Include(x => x.VehicleType)
+                                 .Include(x => x.Model)
+                                 .ThenInclude(x => x.VehicleType)
                                  .FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
         }
 

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
-#nullable disable
-
-namespace Rentacar.Entities
+namespace Rentacar.Dto
 {
-    public partial class Booking
+    public class BaseBookingDto
     {
         public int BookingId { get; set; }
         public DateTime StartDate { get; set; }
@@ -13,9 +10,8 @@ namespace Rentacar.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int UserId { get; set; }
+        public string BookedBy { get; set; }
         public int VehicleId { get; set; }
-        
-        public virtual User User { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
+        public string VehicleModel { get; set; }
     }
 }

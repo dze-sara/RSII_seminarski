@@ -37,5 +37,19 @@ namespace Rentacar.API.Controllers
             BookingDto result = await _bookingService.CreateBooking(bookingRequest);
             return Ok(result);
         }
+
+        [HttpGet("active")]
+        public async Task<IActionResult> GetLatestActiveBookings()
+        {
+            List<BaseBookingDto> result = await _bookingService.GetLatestActiveBookings();
+            return Ok(result);
+        }
+
+        [HttpGet("history")]
+        public async Task<IActionResult> GetBookingHistory()
+        {
+            List<BaseBookingDto> result = await _bookingService.GetBookingHistory();
+            return Ok(result);
+        }
     }
 }

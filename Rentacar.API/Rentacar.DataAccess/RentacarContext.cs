@@ -131,11 +131,11 @@ namespace Rentacar.DataAccess
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Fk_Model_Vehicle_ModelId");
 
-                entity.HasOne(d => d.VehicleType)
-                    .WithMany(p => p.Vehicles)
-                    .HasForeignKey(d => d.VehicleTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_VehicleType_Vehicle_VehicleTypeId");
+                //entity.HasOne(d => d.VehicleType)
+                //    .WithMany(p => p.Vehicles)
+                //    .HasForeignKey(d => d.VehicleTypeId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("Fk_VehicleType_Vehicle_VehicleTypeId");
             });
 
             modelBuilder.Entity<VehicleType>(entity =>

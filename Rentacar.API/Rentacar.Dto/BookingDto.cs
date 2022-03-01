@@ -14,8 +14,6 @@ namespace Rentacar.Dto
         public DateTime? UpdatedDate { get; set; }
         public int UserId { get; set; }
         public int VehicleId { get; set; }
-        public bool IsCancelled { get; set; }
-        public bool IsDeleted { get; set; }
 
         public UserDto User { get; set; }
         public VehicleDto Vehicle { get; set; }

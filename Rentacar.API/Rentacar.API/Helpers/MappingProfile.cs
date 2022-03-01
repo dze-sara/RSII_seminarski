@@ -9,6 +9,10 @@ namespace Rentacar.API.Helpers
         public MappingProfile()
         {
             CreateMap<Booking, BookingDto>().ReverseMap();
+            CreateMap<Booking, BaseBookingDto>()
+                .ForMember(x => x.BookedBy, y => y.MapFrom(z => $"{z.User.FirstName} {z.User.LastName}"))
+                .ForMember(x => x.VehicleModel, y => y.MapFrom(z => z.Vehicle.Model.ModelName));
+
             CreateMap<Review, ReviewDto>().ReverseMap();
 
             CreateMap<Location, LocationDto>().ReverseMap();

@@ -31,11 +31,23 @@ namespace Rentacar.Services.Services
             return _mapper.Map<BookingDto>(createdBooking);
         }
 
+        public async Task<List<BaseBookingDto>> GetBookingHistory()
+        {
+            List<Booking> result = await _bookingRepository.GetBookingHistory();
+            return _mapper.Map<List<BaseBookingDto>>(result);
+        }
+
         public async Task<ICollection<BookingDto>> GetBookingsByUser(int userId)
         {
             var bookings = await _bookingRepository.GetBookingsByUser(userId);
 
             return _mapper.Map<List<BookingDto>>(bookings);
+        }
+
+        public async Task<List<BaseBookingDto>> GetLatestActiveBookings()
+        {
+            List<Booking> result = await _bookingRepository.GetBookingHistory();
+            return _mapper.Map<List<BaseBookingDto>>(result);
         }
     }
 }

@@ -14,12 +14,10 @@ namespace Rentacar.Entities
         public int VehicleId { get; set; }
         public decimal RatePerDay { get; set; }
         public bool IsActive { get; set; }
-        public int VehicleTypeId { get; set; }
         public short TransmissionType { get; set; }
         public int ModelId { get; set; }
 
         public virtual Model Model { get; set; }
-        public virtual VehicleType VehicleType { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Location Location { get; set; }
     }

@@ -9,12 +9,12 @@ namespace Rentacar.Entities
     {
         public VehicleType()
         {
-            Vehicles = new HashSet<Vehicle>();
+            Models = new HashSet<Model>();
         }
 
         public int VehicleTypeId { get; set; }
         public string VehicleTypeName { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ICollection<Model> Models { get; set; }
     }
 }

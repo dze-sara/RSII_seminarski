@@ -9,6 +9,6 @@ namespace Rentacar.Dto
         public int VehicleTypeId { get; set; }
         public string VehicleTypeName { get; set; }
 
-        public ICollection<VehicleDto> Vehicles { get; set; }
+        public ICollection<ModelDto> Models { get; set; }
     }
 }

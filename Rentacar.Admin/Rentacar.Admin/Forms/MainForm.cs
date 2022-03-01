@@ -20,13 +20,35 @@ namespace Rentacar.Admin
             Form loginForm = new LoginForm();
             loginForm.ShowDialog();
 
-            InitializeData();
+            Task.Run(() => InitializeData());
         }
 
         private async void InitializeData()
         {
+            dataGridViewActiveBookings.Invoke(new Action(async () =>
+            {
+                dataGridViewActiveBookings.DataSource = await BookingService.GetActiveBookings();
+                dataGridViewActiveBookings.Refresh();
+            }));
+
+            dataGridViewHistory.Invoke(new Action(async () =>
+            {
+                dataGridViewHistory.DataSource = await BookingService.GetBookingHistory();
+                dataGridViewHistory.Refresh();
+            }));
+
             dataGridViewUsers.DataSource = await UserService.FilterUsers(null, null, null, null);
             dataGridViewUsers.Refresh();
+        }
+
+        private async Task InitializeHomePage()
+        {
+            
+        }
+
+        private async Task InitializeUsers()
+        {
+            
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
