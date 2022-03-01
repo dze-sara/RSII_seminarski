@@ -1,11 +1,5 @@
-﻿using Newtonsoft.Json;
-using Rentacar.Dto;
+﻿using Rentacar.Dto;
 using Rentacar.Dto.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Rentacar.Admin.Services

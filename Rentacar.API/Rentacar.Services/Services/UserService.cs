@@ -5,6 +5,8 @@ using Rentacar.Dto.Request;
 using Rentacar.Entities;
 using Rentacar.Resources.Exceptions;
 using Rentacar.Services.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Rentacar.Services.Services
@@ -17,6 +19,18 @@ namespace Rentacar.Services.Services
         {
             _userRepository = userRepository;
             _mapper = mapper;
+        }
+
+        public async Task<List<BaseUserDto>> FilterUsers(FilterUsersDto filterUsersDto)
+        {
+            if(filterUsersDto == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            List<User> filteredUsers = await _userRepository.FilterUsers(filterUsersDto.UserId, filterUsersDto.FirstName, filterUsersDto.LastName, filterUsersDto.Email);
+
+            return _mapper.Map<List<BaseUserDto>>(filteredUsers);
         }
 
         public async Task<UserDto> LoginUser(LoginRequestDto loginRequestDto)

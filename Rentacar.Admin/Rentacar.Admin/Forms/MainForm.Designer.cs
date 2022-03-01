@@ -33,8 +33,8 @@ namespace Rentacar.Admin
             this.tabPageHome = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewHistory = new System.Windows.Forms.DataGridView();
+            this.dataGridViewActiveBookings = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageBookings = new System.Windows.Forms.TabPage();
             this.labelTotalPrice = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@ namespace Rentacar.Admin
             this.buttonExport = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewBookings = new System.Windows.Forms.DataGridView();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxBuyerId = new System.Windows.Forms.TextBox();
             this.comboBoxBookingState = new System.Windows.Forms.ComboBox();
@@ -73,7 +73,7 @@ namespace Rentacar.Admin
             this.buttonExportVehicles = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewVehicles = new System.Windows.Forms.DataGridView();
             this.buttonSearchVehicles = new System.Windows.Forms.Button();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -95,13 +95,13 @@ namespace Rentacar.Admin
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
+            this.numericUpDownUserId = new System.Windows.Forms.NumericUpDown();
             this.buttonUsers = new System.Windows.Forms.Button();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.textBoxUserEmail = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxUserLastName = new System.Windows.Forms.TextBox();
+            this.textBoxUserFirstName = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -109,14 +109,15 @@ namespace Rentacar.Admin
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActiveBookings)).BeginInit();
             this.tabPageBookings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).BeginInit();
             this.tabPageVehicles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicles)).BeginInit();
             this.tabPageUsers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -135,8 +136,8 @@ namespace Rentacar.Admin
             // 
             this.tabPageHome.Controls.Add(this.label4);
             this.tabPageHome.Controls.Add(this.label3);
-            this.tabPageHome.Controls.Add(this.dataGridView2);
-            this.tabPageHome.Controls.Add(this.dataGridView1);
+            this.tabPageHome.Controls.Add(this.dataGridViewHistory);
+            this.tabPageHome.Controls.Add(this.dataGridViewActiveBookings);
             this.tabPageHome.Controls.Add(this.label1);
             this.tabPageHome.Location = new System.Drawing.Point(4, 22);
             this.tabPageHome.Name = "tabPageHome";
@@ -166,21 +167,21 @@ namespace Rentacar.Admin
             this.label3.TabIndex = 3;
             this.label3.Text = "Currently active bookings";
             // 
-            // dataGridView2
+            // dataGridViewHistory
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 315);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(747, 150);
-            this.dataGridView2.TabIndex = 2;
+            this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHistory.Location = new System.Drawing.Point(15, 315);
+            this.dataGridViewHistory.Name = "dataGridViewHistory";
+            this.dataGridViewHistory.Size = new System.Drawing.Size(747, 150);
+            this.dataGridViewHistory.TabIndex = 2;
             // 
-            // dataGridView1
+            // dataGridViewActiveBookings
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 69);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(747, 195);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridViewActiveBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewActiveBookings.Location = new System.Drawing.Point(15, 69);
+            this.dataGridViewActiveBookings.Name = "dataGridViewActiveBookings";
+            this.dataGridViewActiveBookings.Size = new System.Drawing.Size(747, 195);
+            this.dataGridViewActiveBookings.TabIndex = 1;
             // 
             // label1
             // 
@@ -199,7 +200,7 @@ namespace Rentacar.Admin
             this.tabPageBookings.Controls.Add(this.buttonExport);
             this.tabPageBookings.Controls.Add(this.label16);
             this.tabPageBookings.Controls.Add(this.label15);
-            this.tabPageBookings.Controls.Add(this.dataGridView3);
+            this.tabPageBookings.Controls.Add(this.dataGridViewBookings);
             this.tabPageBookings.Controls.Add(this.buttonSearch);
             this.tabPageBookings.Controls.Add(this.textBoxBuyerId);
             this.tabPageBookings.Controls.Add(this.comboBoxBookingState);
@@ -281,13 +282,13 @@ namespace Rentacar.Admin
             this.label15.TabIndex = 31;
             this.label15.Text = "Total results:";
             // 
-            // dataGridView3
+            // dataGridViewBookings
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(20, 230);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(738, 150);
-            this.dataGridView3.TabIndex = 30;
+            this.dataGridViewBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBookings.Location = new System.Drawing.Point(20, 230);
+            this.dataGridViewBookings.Name = "dataGridViewBookings";
+            this.dataGridViewBookings.Size = new System.Drawing.Size(738, 150);
+            this.dataGridViewBookings.TabIndex = 30;
             // 
             // buttonSearch
             // 
@@ -512,7 +513,7 @@ namespace Rentacar.Admin
             this.tabPageVehicles.Controls.Add(this.buttonExportVehicles);
             this.tabPageVehicles.Controls.Add(this.label30);
             this.tabPageVehicles.Controls.Add(this.label31);
-            this.tabPageVehicles.Controls.Add(this.dataGridView4);
+            this.tabPageVehicles.Controls.Add(this.dataGridViewVehicles);
             this.tabPageVehicles.Controls.Add(this.buttonSearchVehicles);
             this.tabPageVehicles.Controls.Add(this.comboBox6);
             this.tabPageVehicles.Controls.Add(this.label29);
@@ -568,13 +569,13 @@ namespace Rentacar.Admin
             this.label31.TabIndex = 46;
             this.label31.Text = "Total results:";
             // 
-            // dataGridView4
+            // dataGridViewVehicles
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(19, 183);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(740, 204);
-            this.dataGridView4.TabIndex = 45;
+            this.dataGridViewVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewVehicles.Location = new System.Drawing.Point(19, 183);
+            this.dataGridViewVehicles.Name = "dataGridViewVehicles";
+            this.dataGridViewVehicles.Size = new System.Drawing.Size(740, 204);
+            this.dataGridViewVehicles.TabIndex = 45;
             // 
             // buttonSearchVehicles
             // 
@@ -757,13 +758,13 @@ namespace Rentacar.Admin
             // 
             // tabPageUsers
             // 
+            this.tabPageUsers.Controls.Add(this.numericUpDownUserId);
             this.tabPageUsers.Controls.Add(this.buttonUsers);
-            this.tabPageUsers.Controls.Add(this.dataGridView5);
-            this.tabPageUsers.Controls.Add(this.textBox7);
+            this.tabPageUsers.Controls.Add(this.dataGridViewUsers);
+            this.tabPageUsers.Controls.Add(this.textBoxUserEmail);
             this.tabPageUsers.Controls.Add(this.label36);
-            this.tabPageUsers.Controls.Add(this.textBox6);
-            this.tabPageUsers.Controls.Add(this.textBox4);
-            this.tabPageUsers.Controls.Add(this.textBox5);
+            this.tabPageUsers.Controls.Add(this.textBoxUserLastName);
+            this.tabPageUsers.Controls.Add(this.textBoxUserFirstName);
             this.tabPageUsers.Controls.Add(this.label33);
             this.tabPageUsers.Controls.Add(this.label34);
             this.tabPageUsers.Controls.Add(this.label35);
@@ -774,6 +775,13 @@ namespace Rentacar.Admin
             this.tabPageUsers.TabIndex = 3;
             this.tabPageUsers.Text = "USERS";
             this.tabPageUsers.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownUserId
+            // 
+            this.numericUpDownUserId.Location = new System.Drawing.Point(21, 75);
+            this.numericUpDownUserId.Name = "numericUpDownUserId";
+            this.numericUpDownUserId.Size = new System.Drawing.Size(177, 20);
+            this.numericUpDownUserId.TabIndex = 46;
             // 
             // buttonUsers
             // 
@@ -786,20 +794,20 @@ namespace Rentacar.Admin
             this.buttonUsers.UseVisualStyleBackColor = true;
             this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
-            // dataGridView5
+            // dataGridViewUsers
             // 
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(21, 156);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(735, 314);
-            this.dataGridView5.TabIndex = 38;
+            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(21, 156);
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.Size = new System.Drawing.Size(735, 314);
+            this.dataGridViewUsers.TabIndex = 38;
             // 
-            // textBox7
+            // textBoxUserEmail
             // 
-            this.textBox7.Location = new System.Drawing.Point(576, 74);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(180, 20);
-            this.textBox7.TabIndex = 37;
+            this.textBoxUserEmail.Location = new System.Drawing.Point(576, 74);
+            this.textBoxUserEmail.Name = "textBoxUserEmail";
+            this.textBoxUserEmail.Size = new System.Drawing.Size(180, 20);
+            this.textBoxUserEmail.TabIndex = 37;
             // 
             // label36
             // 
@@ -810,26 +818,19 @@ namespace Rentacar.Admin
             this.label36.TabIndex = 36;
             this.label36.Text = "Email";
             // 
-            // textBox6
+            // textBoxUserLastName
             // 
-            this.textBox6.Location = new System.Drawing.Point(390, 74);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(180, 20);
-            this.textBox6.TabIndex = 35;
+            this.textBoxUserLastName.Location = new System.Drawing.Point(390, 74);
+            this.textBoxUserLastName.Name = "textBoxUserLastName";
+            this.textBoxUserLastName.Size = new System.Drawing.Size(180, 20);
+            this.textBoxUserLastName.TabIndex = 35;
             // 
-            // textBox4
+            // textBoxUserFirstName
             // 
-            this.textBox4.Location = new System.Drawing.Point(204, 74);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(180, 20);
-            this.textBox4.TabIndex = 34;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(18, 74);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(180, 20);
-            this.textBox5.TabIndex = 32;
+            this.textBoxUserFirstName.Location = new System.Drawing.Point(204, 74);
+            this.textBoxUserFirstName.Name = "textBoxUserFirstName";
+            this.textBoxUserFirstName.Size = new System.Drawing.Size(180, 20);
+            this.textBoxUserFirstName.TabIndex = 34;
             // 
             // label33
             // 
@@ -891,17 +892,18 @@ namespace Rentacar.Admin
             this.tabControl.ResumeLayout(false);
             this.tabPageHome.ResumeLayout(false);
             this.tabPageHome.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActiveBookings)).EndInit();
             this.tabPageBookings.ResumeLayout(false);
             this.tabPageBookings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).EndInit();
             this.tabPageVehicles.ResumeLayout(false);
             this.tabPageVehicles.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVehicles)).EndInit();
             this.tabPageUsers.ResumeLayout(false);
             this.tabPageUsers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -915,15 +917,15 @@ namespace Rentacar.Admin
         private System.Windows.Forms.TabPage tabPageVehicles;
         private System.Windows.Forms.TabPage tabPageUsers;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewActiveBookings;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewHistory;
         private System.Windows.Forms.TabPage tabPageBookings;
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridViewBookings;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TextBox textBoxBuyerId;
         private System.Windows.Forms.ComboBox comboBoxBookingState;
@@ -975,18 +977,18 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Button buttonExportVehicles;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridViewVehicles;
         private System.Windows.Forms.Button buttonUsers;
-        private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.TextBox textBoxUserEmail;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxUserLastName;
+        private System.Windows.Forms.TextBox textBoxUserFirstName;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown numericUpDownUserId;
     }
 }
 

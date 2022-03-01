@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseUserDto.cs" />
     <Compile Include="BookingDto.cs" />
     <Compile Include="BrandDto.cs" />
     <Compile Include="Enums\TransmissionTypeEnum.cs" />

@@ -2,6 +2,9 @@
 using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
 using Rentacar.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Rentacar.DataAccess.Repositories
@@ -12,6 +15,37 @@ namespace Rentacar.DataAccess.Repositories
         public UserRepository(RentacarContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<User>> FilterUsers(int? userId, string firstName, string lastName, string email)
+        {
+            // Query
+            var usersQuery = _context.Users
+                                     .Include(x => x.Role)
+                                     .AsQueryable();
+
+            if(userId > 0)
+            {
+                usersQuery = usersQuery.Where(x => x.UserId == userId);
+            }
+
+            if(!string.IsNullOrWhiteSpace(firstName))
+            {
+                usersQuery = usersQuery.Where(x => x.FirstName.Contains(firstName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastName))
+            {
+                usersQuery = usersQuery.Where(x => x.LastName.Contains(lastName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                usersQuery = usersQuery.Where(x => x.Email.Contains(email));
+            }
+
+            // Execute
+            return await usersQuery.ToListAsync();
         }
 
         public async Task<User> GetUserForLogin(string userEmail, string password)

@@ -2,6 +2,7 @@
 using Rentacar.Dto;
 using Rentacar.Dto.Request;
 using Rentacar.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Rentacar.API.Controllers
@@ -29,6 +30,13 @@ namespace Rentacar.API.Controllers
         {
             UserDto loggedUser = await _userService.LoginUser(loginRequestDto);
             return Ok(loggedUser);
+        }
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> FilterUsers([FromQuery] FilterUsersDto filterUsersDto)
+        {
+            List<BaseUserDto> filteredUsers = await _userService.FilterUsers(filterUsersDto);
+            return Ok(filteredUsers);
         }
     }
 }

@@ -71,6 +71,7 @@ namespace Rentacar.Admin.Forms
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(227, 20);
             this.textBoxUsername.TabIndex = 3;
+            this.textBoxUsername.Text = "sara";
             // 
             // maskedTextBoxPassword
             // 
@@ -79,6 +80,7 @@ namespace Rentacar.Admin.Forms
             this.maskedTextBoxPassword.PasswordChar = '*';
             this.maskedTextBoxPassword.Size = new System.Drawing.Size(227, 20);
             this.maskedTextBoxPassword.TabIndex = 4;
+            this.maskedTextBoxPassword.Text = "password";
             // 
             // buttonLogin
             // 

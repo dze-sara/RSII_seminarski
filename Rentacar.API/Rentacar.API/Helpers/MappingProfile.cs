@@ -8,15 +8,20 @@ namespace Rentacar.API.Helpers
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Booking, BookingDto>().ReverseMap();
+            CreateMap<Review, ReviewDto>().ReverseMap();
+
+            CreateMap<Location, LocationDto>().ReverseMap();
+
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<User, BaseUserDto>()
+                .ForMember(x => x.Role, y => y.MapFrom(z => z.Role.RoleName));
+
             CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeDto>().ReverseMap();
-            CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<Make, MakeDto>().ReverseMap();
-            CreateMap<Location, LocationDto>().ReverseMap();
-            CreateMap<Review, ReviewDto>().ReverseMap();
         }
     }
 }

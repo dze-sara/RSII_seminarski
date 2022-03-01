@@ -11,7 +11,7 @@ namespace Rentacar.Admin.Services
         private static string _baseUrl = System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + "api/users";
         private static HttpClient _httpClient = new HttpClient();
 
-        public static async Task<List<UserDto>> FilterUsers(string userId, string firstName, string lastName, string email)
+        public static async Task<List<BaseUserDto>> FilterUsers(string userId, string firstName, string lastName, string email)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["userId"] = userId;
@@ -19,7 +19,7 @@ namespace Rentacar.Admin.Services
             parameters["lastName"] = lastName;
             parameters["email"] = email;
 
-            List<UserDto> listOfUsers = await HttpHelper.GetAsync<List<UserDto>>(_baseUrl + "/filter", parameters);
+            List<BaseUserDto> listOfUsers = await HttpHelper.GetAsync<List<BaseUserDto>>(_baseUrl + "/filter", parameters);
 
             return listOfUsers;
         }

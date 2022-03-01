@@ -1,4 +1,5 @@
 ﻿using Rentacar.Admin.Forms;
+using Rentacar.Admin.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,14 @@ namespace Rentacar.Admin
             InitializeComponent();
             Form loginForm = new LoginForm();
             loginForm.ShowDialog();
+
+            InitializeData();
+        }
+
+        private async void InitializeData()
+        {
+            dataGridViewUsers.DataSource = await UserService.FilterUsers(null, null, null, null);
+            dataGridViewUsers.Refresh();
         }
 
         private void buttonExport_Click(object sender, EventArgs e)
@@ -35,10 +44,16 @@ namespace Rentacar.Admin
 
         }
 
-        private void buttonUsers_Click(object sender, EventArgs e)
+        private async void buttonUsers_Click(object sender, EventArgs e)
         {
-            Form userDetailsform = new UserDetails();
-            userDetailsform.ShowDialog();
+            string userId = numericUpDownUserId.Value.ToString();
+            string firstName = textBoxUserFirstName.Text;
+            string lastName = textBoxUserLastName.Text;
+            string email = textBoxUserEmail.Text;
+
+            
+            dataGridViewUsers.DataSource = await UserService.FilterUsers(userId, firstName, lastName, email);
+            dataGridViewUsers.Refresh();
         }
     }
 }

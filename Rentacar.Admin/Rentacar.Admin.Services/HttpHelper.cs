@@ -46,15 +46,15 @@ namespace Rentacar.Admin.Services
 
         private static string BuildQueryParams(string baseUrl, Dictionary<string, string> parameters)
         {
-            var builder = new UriBuilder(baseUrl)
-            {
-                Port = -1
-            };
+            var builder = new UriBuilder(baseUrl);
             var query = HttpUtility.ParseQueryString(builder.Query);
 
             foreach (var parameter in parameters)
             {
-                query[parameter.Key] = parameter.Value;
+                if(parameter.Value != null)
+                {
+                    query[parameter.Key] = parameter.Value;
+                }
             }
 
             builder.Query = query.ToString();
