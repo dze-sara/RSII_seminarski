@@ -1,5 +1,6 @@
 ﻿using Rentacar.Admin.Forms;
 using Rentacar.Admin.Services;
+using Rentacar.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace Rentacar.Admin
 {
     public partial class MainForm : Form
     {
+        private FilterLookupsDto _filterLookupsDto;
+
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +27,41 @@ namespace Rentacar.Admin
         }
 
         private async void InitializeData()
+        {
+            await InitializeHomePage();
+            await InitializeBookingFilters();
+            await InitializeUsers();
+        }
+
+        private async Task InitializeBookingFilters()
+        {
+            _filterLookupsDto = await FilterService.GetFilterLookups();
+
+            comboBoxBookingMake.DataSource = _filterLookupsDto.Makes;
+            comboBoxBookingMake.SelectedItem = null;
+            comboBoxBookingModel.DataSource = _filterLookupsDto.Models;
+            comboBoxBookingModel.SelectedItem = null;
+            comboBoxBookingVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
+            comboBoxBookingVehicleType.SelectedItem = null;
+
+            comboBoxVehicleNoSeats.DataSource = new List<string>() { "3", "4", "5", "6" };
+            comboBoxVehicleNoSeats.SelectedItem = null;
+            comboBoxVehiclesVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
+            comboBoxVehiclesVehicleType.SelectedItem = null;
+            comboBoxVehiclesMake.DataSource = _filterLookupsDto.Makes;
+            comboBoxVehiclesMake.SelectedItem = null;
+            comboBoxVehiclesModel.DataSource = _filterLookupsDto.Models;
+            comboBoxVehiclesModel.SelectedItem = null;
+            comboBoxVehicleTransmission.DataSource = new List<ComboBoxItem>() {
+                new ComboBoxItem() { Value = 1, Text = "Manual"},
+                new ComboBoxItem() { Value = 2, Text = "Automatic"},
+            };
+            comboBoxVehicleTransmission.SelectedItem = null;
+            comboBoxVehiclesLocation.DataSource = _filterLookupsDto.Locations;
+            comboBoxVehiclesLocation.SelectedItem = null;
+        }
+
+        private async Task InitializeHomePage()
         {
             dataGridViewActiveBookings.Invoke(new Action(async () =>
             {
@@ -36,19 +74,12 @@ namespace Rentacar.Admin
                 dataGridViewHistory.DataSource = await BookingService.GetBookingHistory();
                 dataGridViewHistory.Refresh();
             }));
-
-            dataGridViewUsers.DataSource = await UserService.FilterUsers(null, null, null, null);
-            dataGridViewUsers.Refresh();
-        }
-
-        private async Task InitializeHomePage()
-        {
-            
         }
 
         private async Task InitializeUsers()
         {
-            
+            dataGridViewUsers.DataSource = await UserService.FilterUsers(null, null, null, null);
+            dataGridViewUsers.Refresh();
         }
 
         private void buttonExport_Click(object sender, EventArgs e)

@@ -8,12 +8,11 @@ namespace Rentacar.Dto
         public int VehicleId { get; set; }
         public decimal RatePerDay { get; set; }
         public bool IsActive { get; set; }
-        public int VehicleTypeId { get; set; }
         public TransmissionTypeEnum TransmissionType { get; set; }
-        public int MakeId { get; set; }
+        public int ModelId { get; set; }
 
-        public MakeDto Make { get; set; }
-        public VehicleTypeDto VehicleType { get; set; }
+        public ModelDto Model { get; set; }
+        public LocationDto Location { get; set; }
         public ICollection<BookingDto> Bookings { get; set; }
     }
 }

@@ -45,16 +45,14 @@ namespace Rentacar.Admin
             this.dataGridViewBookings = new System.Windows.Forms.DataGridView();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxBuyerId = new System.Windows.Forms.TextBox();
-            this.comboBoxBookingState = new System.Windows.Forms.ComboBox();
+            this.comboBoxBookingVehicleType = new System.Windows.Forms.ComboBox();
             this.textBoxVehicleId = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBoxMaxPrice = new System.Windows.Forms.TextBox();
-            this.textBoxMinPrice = new System.Windows.Forms.TextBox();
-            this.comboBoxModel = new System.Windows.Forms.ComboBox();
-            this.comboBoxMake = new System.Windows.Forms.ComboBox();
+            this.comboBoxBookingModel = new System.Windows.Forms.ComboBox();
+            this.comboBoxBookingMake = new System.Windows.Forms.ComboBox();
             this.textBoxBookingId = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -75,18 +73,15 @@ namespace Rentacar.Admin
             this.label31 = new System.Windows.Forms.Label();
             this.dataGridViewVehicles = new System.Windows.Forms.DataGridView();
             this.buttonSearchVehicles = new System.Windows.Forms.Button();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBoxVehicleNoSeats = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBoxVehicleTransmission = new System.Windows.Forms.ComboBox();
+            this.comboBoxVehiclesVehicleType = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxVehiclesModel = new System.Windows.Forms.ComboBox();
+            this.comboBoxVehiclesMake = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -107,6 +102,11 @@ namespace Rentacar.Admin
             this.label35 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.numericBookingMinPrice = new System.Windows.Forms.NumericUpDown();
+            this.numericBookingMaxPrice = new System.Windows.Forms.NumericUpDown();
+            this.numericVehiclesMaxPrice = new System.Windows.Forms.NumericUpDown();
+            this.numericBookingsMaxPrice = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxVehiclesLocation = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
@@ -118,6 +118,10 @@ namespace Rentacar.Admin
             this.tabPageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingMinPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingMaxPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericVehiclesMaxPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingsMaxPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -195,6 +199,8 @@ namespace Rentacar.Admin
             // 
             // tabPageBookings
             // 
+            this.tabPageBookings.Controls.Add(this.numericBookingMaxPrice);
+            this.tabPageBookings.Controls.Add(this.numericBookingMinPrice);
             this.tabPageBookings.Controls.Add(this.labelTotalPrice);
             this.tabPageBookings.Controls.Add(this.labelTotalResults);
             this.tabPageBookings.Controls.Add(this.buttonExport);
@@ -203,16 +209,14 @@ namespace Rentacar.Admin
             this.tabPageBookings.Controls.Add(this.dataGridViewBookings);
             this.tabPageBookings.Controls.Add(this.buttonSearch);
             this.tabPageBookings.Controls.Add(this.textBoxBuyerId);
-            this.tabPageBookings.Controls.Add(this.comboBoxBookingState);
+            this.tabPageBookings.Controls.Add(this.comboBoxBookingVehicleType);
             this.tabPageBookings.Controls.Add(this.textBoxVehicleId);
             this.tabPageBookings.Controls.Add(this.label17);
             this.tabPageBookings.Controls.Add(this.label18);
             this.tabPageBookings.Controls.Add(this.label19);
             this.tabPageBookings.Controls.Add(this.label14);
-            this.tabPageBookings.Controls.Add(this.textBoxMaxPrice);
-            this.tabPageBookings.Controls.Add(this.textBoxMinPrice);
-            this.tabPageBookings.Controls.Add(this.comboBoxModel);
-            this.tabPageBookings.Controls.Add(this.comboBoxMake);
+            this.tabPageBookings.Controls.Add(this.comboBoxBookingModel);
+            this.tabPageBookings.Controls.Add(this.comboBoxBookingMake);
             this.tabPageBookings.Controls.Add(this.textBoxBookingId);
             this.tabPageBookings.Controls.Add(this.label13);
             this.tabPageBookings.Controls.Add(this.label12);
@@ -308,13 +312,13 @@ namespace Rentacar.Admin
             this.textBoxBuyerId.Size = new System.Drawing.Size(156, 20);
             this.textBoxBuyerId.TabIndex = 28;
             // 
-            // comboBoxBookingState
+            // comboBoxBookingVehicleType
             // 
-            this.comboBoxBookingState.FormattingEnabled = true;
-            this.comboBoxBookingState.Location = new System.Drawing.Point(388, 186);
-            this.comboBoxBookingState.Name = "comboBoxBookingState";
-            this.comboBoxBookingState.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxBookingState.TabIndex = 27;
+            this.comboBoxBookingVehicleType.FormattingEnabled = true;
+            this.comboBoxBookingVehicleType.Location = new System.Drawing.Point(388, 186);
+            this.comboBoxBookingVehicleType.Name = "comboBoxBookingVehicleType";
+            this.comboBoxBookingVehicleType.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxBookingVehicleType.TabIndex = 27;
             // 
             // textBoxVehicleId
             // 
@@ -328,9 +332,9 @@ namespace Rentacar.Admin
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(388, 169);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(72, 13);
+            this.label17.Size = new System.Drawing.Size(69, 13);
             this.label17.TabIndex = 22;
-            this.label17.Text = "Booking state";
+            this.label17.Text = "Vehicle Type";
             // 
             // label18
             // 
@@ -360,35 +364,21 @@ namespace Rentacar.Admin
             this.label14.TabIndex = 18;
             this.label14.Text = "Bookings advanced search";
             // 
-            // textBoxMaxPrice
+            // comboBoxBookingModel
             // 
-            this.textBoxMaxPrice.Location = new System.Drawing.Point(648, 125);
-            this.textBoxMaxPrice.Name = "textBoxMaxPrice";
-            this.textBoxMaxPrice.Size = new System.Drawing.Size(110, 20);
-            this.textBoxMaxPrice.TabIndex = 17;
+            this.comboBoxBookingModel.FormattingEnabled = true;
+            this.comboBoxBookingModel.Location = new System.Drawing.Point(388, 125);
+            this.comboBoxBookingModel.Name = "comboBoxBookingModel";
+            this.comboBoxBookingModel.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxBookingModel.TabIndex = 15;
             // 
-            // textBoxMinPrice
+            // comboBoxBookingMake
             // 
-            this.textBoxMinPrice.Location = new System.Drawing.Point(544, 125);
-            this.textBoxMinPrice.Name = "textBoxMinPrice";
-            this.textBoxMinPrice.Size = new System.Drawing.Size(98, 20);
-            this.textBoxMinPrice.TabIndex = 16;
-            // 
-            // comboBoxModel
-            // 
-            this.comboBoxModel.FormattingEnabled = true;
-            this.comboBoxModel.Location = new System.Drawing.Point(388, 125);
-            this.comboBoxModel.Name = "comboBoxModel";
-            this.comboBoxModel.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxModel.TabIndex = 15;
-            // 
-            // comboBoxMake
-            // 
-            this.comboBoxMake.FormattingEnabled = true;
-            this.comboBoxMake.Location = new System.Drawing.Point(226, 124);
-            this.comboBoxMake.Name = "comboBoxMake";
-            this.comboBoxMake.Size = new System.Drawing.Size(156, 21);
-            this.comboBoxMake.TabIndex = 14;
+            this.comboBoxBookingMake.FormattingEnabled = true;
+            this.comboBoxBookingMake.Location = new System.Drawing.Point(226, 124);
+            this.comboBoxBookingMake.Name = "comboBoxBookingMake";
+            this.comboBoxBookingMake.Size = new System.Drawing.Size(156, 21);
+            this.comboBoxBookingMake.TabIndex = 14;
             // 
             // textBoxBookingId
             // 
@@ -510,23 +500,23 @@ namespace Rentacar.Admin
             // 
             // tabPageVehicles
             // 
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesLocation);
+            this.tabPageVehicles.Controls.Add(this.numericBookingsMaxPrice);
+            this.tabPageVehicles.Controls.Add(this.numericVehiclesMaxPrice);
             this.tabPageVehicles.Controls.Add(this.buttonExportVehicles);
             this.tabPageVehicles.Controls.Add(this.label30);
             this.tabPageVehicles.Controls.Add(this.label31);
             this.tabPageVehicles.Controls.Add(this.dataGridViewVehicles);
             this.tabPageVehicles.Controls.Add(this.buttonSearchVehicles);
-            this.tabPageVehicles.Controls.Add(this.comboBox6);
             this.tabPageVehicles.Controls.Add(this.label29);
-            this.tabPageVehicles.Controls.Add(this.comboBox5);
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehicleNoSeats);
             this.tabPageVehicles.Controls.Add(this.label28);
-            this.tabPageVehicles.Controls.Add(this.comboBox3);
-            this.tabPageVehicles.Controls.Add(this.comboBox4);
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehicleTransmission);
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesVehicleType);
             this.tabPageVehicles.Controls.Add(this.label26);
             this.tabPageVehicles.Controls.Add(this.label27);
-            this.tabPageVehicles.Controls.Add(this.textBox2);
-            this.tabPageVehicles.Controls.Add(this.textBox3);
-            this.tabPageVehicles.Controls.Add(this.comboBox1);
-            this.tabPageVehicles.Controls.Add(this.comboBox2);
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesModel);
+            this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesMake);
             this.tabPageVehicles.Controls.Add(this.label22);
             this.tabPageVehicles.Controls.Add(this.label23);
             this.tabPageVehicles.Controls.Add(this.label24);
@@ -588,27 +578,19 @@ namespace Rentacar.Admin
             this.buttonSearchVehicles.UseVisualStyleBackColor = true;
             this.buttonSearchVehicles.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox6
-            // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(432, 132);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(125, 21);
-            this.comboBox6.TabIndex = 43;
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(429, 116);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(68, 13);
+            this.label29.Size = new System.Drawing.Size(48, 13);
             this.label29.TabIndex = 42;
-            this.label29.Text = "Vehicle state";
+            this.label29.Text = "Location";
             // 
-            // comboBox5
+            // comboBoxVehicleNoSeats
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.comboBoxVehicleNoSeats.FormattingEnabled = true;
+            this.comboBoxVehicleNoSeats.Items.AddRange(new object[] {
             "3",
             "4",
             "5",
@@ -616,10 +598,10 @@ namespace Rentacar.Admin
             "7",
             "8",
             "9"});
-            this.comboBox5.Location = new System.Drawing.Point(321, 132);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(105, 21);
-            this.comboBox5.TabIndex = 41;
+            this.comboBoxVehicleNoSeats.Location = new System.Drawing.Point(321, 132);
+            this.comboBoxVehicleNoSeats.Name = "comboBoxVehicleNoSeats";
+            this.comboBoxVehicleNoSeats.Size = new System.Drawing.Size(105, 21);
+            this.comboBoxVehicleNoSeats.TabIndex = 41;
             // 
             // label28
             // 
@@ -630,21 +612,21 @@ namespace Rentacar.Admin
             this.label28.TabIndex = 40;
             this.label28.Text = "Number of seats";
             // 
-            // comboBox3
+            // comboBoxVehicleTransmission
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(178, 132);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(132, 21);
-            this.comboBox3.TabIndex = 39;
+            this.comboBoxVehicleTransmission.FormattingEnabled = true;
+            this.comboBoxVehicleTransmission.Location = new System.Drawing.Point(178, 132);
+            this.comboBoxVehicleTransmission.Name = "comboBoxVehicleTransmission";
+            this.comboBoxVehicleTransmission.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxVehicleTransmission.TabIndex = 39;
             // 
-            // comboBox4
+            // comboBoxVehiclesVehicleType
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(16, 132);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(156, 21);
-            this.comboBox4.TabIndex = 38;
+            this.comboBoxVehiclesVehicleType.FormattingEnabled = true;
+            this.comboBoxVehiclesVehicleType.Location = new System.Drawing.Point(16, 132);
+            this.comboBoxVehiclesVehicleType.Name = "comboBoxVehiclesVehicleType";
+            this.comboBoxVehiclesVehicleType.Size = new System.Drawing.Size(156, 21);
+            this.comboBoxVehiclesVehicleType.TabIndex = 38;
             // 
             // label26
             // 
@@ -664,35 +646,21 @@ namespace Rentacar.Admin
             this.label27.TabIndex = 36;
             this.label27.Text = "Vehicle type";
             // 
-            // textBox2
+            // comboBoxVehiclesModel
             // 
-            this.textBox2.Location = new System.Drawing.Point(654, 85);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(105, 20);
-            this.textBox2.TabIndex = 35;
+            this.comboBoxVehiclesModel.FormattingEnabled = true;
+            this.comboBoxVehiclesModel.Location = new System.Drawing.Point(384, 84);
+            this.comboBoxVehiclesModel.Name = "comboBoxVehiclesModel";
+            this.comboBoxVehiclesModel.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxVehiclesModel.TabIndex = 33;
             // 
-            // textBox3
+            // comboBoxVehiclesMake
             // 
-            this.textBox3.Location = new System.Drawing.Point(540, 85);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(105, 20);
-            this.textBox3.TabIndex = 34;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(384, 84);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 33;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(222, 84);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(156, 21);
-            this.comboBox2.TabIndex = 32;
+            this.comboBoxVehiclesMake.FormattingEnabled = true;
+            this.comboBoxVehiclesMake.Location = new System.Drawing.Point(222, 84);
+            this.comboBoxVehiclesMake.Name = "comboBoxVehiclesMake";
+            this.comboBoxVehiclesMake.Size = new System.Drawing.Size(156, 21);
+            this.comboBoxVehiclesMake.TabIndex = 32;
             // 
             // label22
             // 
@@ -879,6 +847,42 @@ namespace Rentacar.Admin
             this.label2.TabIndex = 3;
             this.label2.Text = "CarRental.com";
             // 
+            // numericBookingMinPrice
+            // 
+            this.numericBookingMinPrice.Location = new System.Drawing.Point(545, 124);
+            this.numericBookingMinPrice.Name = "numericBookingMinPrice";
+            this.numericBookingMinPrice.Size = new System.Drawing.Size(97, 20);
+            this.numericBookingMinPrice.TabIndex = 37;
+            // 
+            // numericBookingMaxPrice
+            // 
+            this.numericBookingMaxPrice.Location = new System.Drawing.Point(651, 124);
+            this.numericBookingMaxPrice.Name = "numericBookingMaxPrice";
+            this.numericBookingMaxPrice.Size = new System.Drawing.Size(107, 20);
+            this.numericBookingMaxPrice.TabIndex = 38;
+            // 
+            // numericVehiclesMaxPrice
+            // 
+            this.numericVehiclesMaxPrice.Location = new System.Drawing.Point(541, 84);
+            this.numericVehiclesMaxPrice.Name = "numericVehiclesMaxPrice";
+            this.numericVehiclesMaxPrice.Size = new System.Drawing.Size(100, 20);
+            this.numericVehiclesMaxPrice.TabIndex = 50;
+            // 
+            // numericBookingsMaxPrice
+            // 
+            this.numericBookingsMaxPrice.Location = new System.Drawing.Point(648, 84);
+            this.numericBookingsMaxPrice.Name = "numericBookingsMaxPrice";
+            this.numericBookingsMaxPrice.Size = new System.Drawing.Size(111, 20);
+            this.numericBookingsMaxPrice.TabIndex = 51;
+            // 
+            // comboBoxVehiclesLocation
+            // 
+            this.comboBoxVehiclesLocation.FormattingEnabled = true;
+            this.comboBoxVehiclesLocation.Location = new System.Drawing.Point(432, 132);
+            this.comboBoxVehiclesLocation.Name = "comboBoxVehiclesLocation";
+            this.comboBoxVehiclesLocation.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxVehiclesLocation.TabIndex = 52;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -904,6 +908,10 @@ namespace Rentacar.Admin
             this.tabPageUsers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingMinPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingMaxPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericVehiclesMaxPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericBookingsMaxPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -928,16 +936,14 @@ namespace Rentacar.Admin
         private System.Windows.Forms.DataGridView dataGridViewBookings;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TextBox textBoxBuyerId;
-        private System.Windows.Forms.ComboBox comboBoxBookingState;
+        private System.Windows.Forms.ComboBox comboBoxBookingVehicleType;
         private System.Windows.Forms.TextBox textBoxVehicleId;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBoxMaxPrice;
-        private System.Windows.Forms.TextBox textBoxMinPrice;
-        private System.Windows.Forms.ComboBox comboBoxModel;
-        private System.Windows.Forms.ComboBox comboBoxMake;
+        private System.Windows.Forms.ComboBox comboBoxBookingModel;
+        private System.Windows.Forms.ComboBox comboBoxBookingMake;
         private System.Windows.Forms.TextBox textBoxBookingId;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -954,10 +960,8 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelTotalPrice;
         private System.Windows.Forms.Label labelTotalResults;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxVehiclesModel;
+        private System.Windows.Forms.ComboBox comboBoxVehiclesMake;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
@@ -966,12 +970,11 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button buttonSearchVehicles;
-        private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboBoxVehicleNoSeats;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBoxVehicleTransmission;
+        private System.Windows.Forms.ComboBox comboBoxVehiclesVehicleType;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button buttonExportVehicles;
@@ -989,6 +992,11 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown numericUpDownUserId;
+        private System.Windows.Forms.NumericUpDown numericBookingMaxPrice;
+        private System.Windows.Forms.NumericUpDown numericBookingMinPrice;
+        private System.Windows.Forms.NumericUpDown numericBookingsMaxPrice;
+        private System.Windows.Forms.NumericUpDown numericVehiclesMaxPrice;
+        private System.Windows.Forms.ComboBox comboBoxVehiclesLocation;
     }
 }
 

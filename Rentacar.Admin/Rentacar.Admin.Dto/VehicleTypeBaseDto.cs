@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Rentacar.Dto
+﻿namespace Rentacar.Dto
 {
-    public partial class VehicleTypeDto
+    public class VehicleTypeBaseDto
     {
         public int VehicleTypeId { get; set; }
         public string VehicleTypeName { get; set; }
-
-        public ICollection<ModelDto> Models { get; set; }
 
         public override string ToString()
         {

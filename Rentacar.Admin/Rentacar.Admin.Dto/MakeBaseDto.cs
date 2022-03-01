@@ -1,14 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace Rentacar.Dto
+﻿namespace Rentacar.Dto
 {
-    public partial class MakeDto
+    public class MakeBaseDto
     {
         public int MakeId { get; set; }
         public string MakeName { get; set; }
         public string MakeDescription { get; set; }
-
-        public ICollection<ModelDto> Models { get; set; }
 
         public override string ToString()
         {

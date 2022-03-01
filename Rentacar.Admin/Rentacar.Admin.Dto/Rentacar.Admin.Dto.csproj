@@ -44,14 +44,20 @@
     <Compile Include="BaseBookingDto.cs" />
     <Compile Include="BaseUserDto.cs" />
     <Compile Include="BookingDto.cs" />
-    <Compile Include="BrandDto.cs" />
-    <Compile Include="Enums\TransmissionTypeEnum.cs" />
+    <Compile Include="ComboBoxItem.cs" />
+    <Compile Include="LocationDto.cs" />
+    <Compile Include="MakeBaseDto.cs" />
     <Compile Include="MakeDto.cs" />
+    <Compile Include="Enums\TransmissionTypeEnum.cs" />
+    <Compile Include="FilterLookupsDto.cs" />
+    <Compile Include="ModelBaseDto.cs" />
+    <Compile Include="ModelDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\LoginRequestDto.cs" />
     <Compile Include="RoleDto.cs" />
     <Compile Include="UserDto.cs" />
     <Compile Include="VehicleDto.cs" />
+    <Compile Include="VehicleTypeBaseDto.cs" />
     <Compile Include="VehicleTypeDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
