@@ -70,6 +70,19 @@ namespace Rentacar.Admin
             this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageVehicles = new System.Windows.Forms.TabPage();
+            this.buttonExportVehicles = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.buttonSearchVehicles = new System.Windows.Forms.Button();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -82,31 +95,18 @@ namespace Rentacar.Admin
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.buttonSearchVehicles = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.buttonExportVehicles = new System.Windows.Forms.Button();
-            this.label32 = new System.Windows.Forms.Label();
+            this.buttonUsers = new System.Windows.Forms.Button();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.buttonUsers = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -114,8 +114,8 @@ namespace Rentacar.Admin
             this.tabPageBookings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPageVehicles.SuspendLayout();
-            this.tabPageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -540,6 +540,129 @@ namespace Rentacar.Admin
             this.tabPageVehicles.Text = "VEHICLES";
             this.tabPageVehicles.UseVisualStyleBackColor = true;
             // 
+            // buttonExportVehicles
+            // 
+            this.buttonExportVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonExportVehicles.Location = new System.Drawing.Point(568, 412);
+            this.buttonExportVehicles.Name = "buttonExportVehicles";
+            this.buttonExportVehicles.Size = new System.Drawing.Size(191, 38);
+            this.buttonExportVehicles.TabIndex = 48;
+            this.buttonExportVehicles.Text = "Export to PDF";
+            this.buttonExportVehicles.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(89, 412);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(42, 13);
+            this.label30.TabIndex = 47;
+            this.label30.Text = "TOTAL";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(16, 412);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(67, 13);
+            this.label31.TabIndex = 46;
+            this.label31.Text = "Total results:";
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(19, 183);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(740, 204);
+            this.dataGridView4.TabIndex = 45;
+            // 
+            // buttonSearchVehicles
+            // 
+            this.buttonSearchVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearchVehicles.Location = new System.Drawing.Point(568, 122);
+            this.buttonSearchVehicles.Name = "buttonSearchVehicles";
+            this.buttonSearchVehicles.Size = new System.Drawing.Size(191, 38);
+            this.buttonSearchVehicles.TabIndex = 44;
+            this.buttonSearchVehicles.Text = "SEARCH";
+            this.buttonSearchVehicles.UseVisualStyleBackColor = true;
+            this.buttonSearchVehicles.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Location = new System.Drawing.Point(432, 132);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(125, 21);
+            this.comboBox6.TabIndex = 43;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(429, 116);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(68, 13);
+            this.label29.TabIndex = 42;
+            this.label29.Text = "Vehicle state";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.comboBox5.Location = new System.Drawing.Point(321, 132);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(105, 21);
+            this.comboBox5.TabIndex = 41;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(318, 116);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(84, 13);
+            this.label28.TabIndex = 40;
+            this.label28.Text = "Number of seats";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(178, 132);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(132, 21);
+            this.comboBox3.TabIndex = 39;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(16, 132);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(156, 21);
+            this.comboBox4.TabIndex = 38;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(175, 116);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(68, 13);
+            this.label26.TabIndex = 37;
+            this.label26.Text = "Transmission";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(16, 116);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(65, 13);
+            this.label27.TabIndex = 36;
+            this.label27.Text = "Vehicle type";
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(654, 85);
@@ -652,148 +775,47 @@ namespace Rentacar.Admin
             this.tabPageUsers.Text = "USERS";
             this.tabPageUsers.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // buttonUsers
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(656, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "CarRental.com";
+            this.buttonUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUsers.Location = new System.Drawing.Point(296, 112);
+            this.buttonUsers.Name = "buttonUsers";
+            this.buttonUsers.Size = new System.Drawing.Size(191, 38);
+            this.buttonUsers.TabIndex = 45;
+            this.buttonUsers.Text = "SEARCH";
+            this.buttonUsers.UseVisualStyleBackColor = true;
+            this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
-            // comboBox3
+            // dataGridView5
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(178, 132);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(132, 21);
-            this.comboBox3.TabIndex = 39;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(21, 156);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.Size = new System.Drawing.Size(735, 314);
+            this.dataGridView5.TabIndex = 38;
             // 
-            // comboBox4
+            // textBox7
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(16, 132);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(156, 21);
-            this.comboBox4.TabIndex = 38;
+            this.textBox7.Location = new System.Drawing.Point(576, 74);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(180, 20);
+            this.textBox7.TabIndex = 37;
             // 
-            // label26
+            // label36
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(175, 116);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(68, 13);
-            this.label26.TabIndex = 37;
-            this.label26.Text = "Transmission";
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(576, 57);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(32, 13);
+            this.label36.TabIndex = 36;
+            this.label36.Text = "Email";
             // 
-            // label27
+            // textBox6
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(16, 116);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(65, 13);
-            this.label27.TabIndex = 36;
-            this.label27.Text = "Vehicle type";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"});
-            this.comboBox5.Location = new System.Drawing.Point(321, 132);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(105, 21);
-            this.comboBox5.TabIndex = 41;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(318, 116);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(84, 13);
-            this.label28.TabIndex = 40;
-            this.label28.Text = "Number of seats";
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(432, 132);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(125, 21);
-            this.comboBox6.TabIndex = 43;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(429, 116);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(68, 13);
-            this.label29.TabIndex = 42;
-            this.label29.Text = "Vehicle state";
-            // 
-            // buttonSearchVehicles
-            // 
-            this.buttonSearchVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearchVehicles.Location = new System.Drawing.Point(568, 122);
-            this.buttonSearchVehicles.Name = "buttonSearchVehicles";
-            this.buttonSearchVehicles.Size = new System.Drawing.Size(191, 38);
-            this.buttonSearchVehicles.TabIndex = 44;
-            this.buttonSearchVehicles.Text = "SEARCH";
-            this.buttonSearchVehicles.UseVisualStyleBackColor = true;
-            this.buttonSearchVehicles.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(19, 183);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(740, 204);
-            this.dataGridView4.TabIndex = 45;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(89, 412);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(42, 13);
-            this.label30.TabIndex = 47;
-            this.label30.Text = "TOTAL";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(16, 412);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(67, 13);
-            this.label31.TabIndex = 46;
-            this.label31.Text = "Total results:";
-            // 
-            // buttonExportVehicles
-            // 
-            this.buttonExportVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExportVehicles.Location = new System.Drawing.Point(568, 412);
-            this.buttonExportVehicles.Name = "buttonExportVehicles";
-            this.buttonExportVehicles.Size = new System.Drawing.Size(191, 38);
-            this.buttonExportVehicles.TabIndex = 48;
-            this.buttonExportVehicles.Text = "Export to PDF";
-            this.buttonExportVehicles.UseVisualStyleBackColor = true;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(315, 20);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(115, 20);
-            this.label32.TabIndex = 1;
-            this.label32.Text = "Search users";
+            this.textBox6.Location = new System.Drawing.Point(390, 74);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(180, 20);
+            this.textBox6.TabIndex = 35;
             // 
             // textBox4
             // 
@@ -836,47 +858,25 @@ namespace Rentacar.Admin
             this.label35.TabIndex = 29;
             this.label35.Text = "User id";
             // 
-            // textBox6
+            // label32
             // 
-            this.textBox6.Location = new System.Drawing.Point(390, 74);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(180, 20);
-            this.textBox6.TabIndex = 35;
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(315, 20);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(115, 20);
+            this.label32.TabIndex = 1;
+            this.label32.Text = "Search users";
             // 
-            // textBox7
+            // label2
             // 
-            this.textBox7.Location = new System.Drawing.Point(576, 74);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(180, 20);
-            this.textBox7.TabIndex = 37;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(576, 57);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(32, 13);
-            this.label36.TabIndex = 36;
-            this.label36.Text = "Email";
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(21, 156);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(735, 314);
-            this.dataGridView5.TabIndex = 38;
-            // 
-            // buttonUsers
-            // 
-            this.buttonUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUsers.Location = new System.Drawing.Point(296, 112);
-            this.buttonUsers.Name = "buttonUsers";
-            this.buttonUsers.Size = new System.Drawing.Size(191, 38);
-            this.buttonUsers.TabIndex = 45;
-            this.buttonUsers.Text = "SEARCH";
-            this.buttonUsers.UseVisualStyleBackColor = true;
-            this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(656, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 20);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "CarRental.com";
             // 
             // MainForm
             // 
@@ -886,6 +886,7 @@ namespace Rentacar.Admin
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.label2);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CarRental";
             this.tabControl.ResumeLayout(false);
             this.tabPageHome.ResumeLayout(false);
@@ -897,9 +898,9 @@ namespace Rentacar.Admin
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPageVehicles.ResumeLayout(false);
             this.tabPageVehicles.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPageUsers.ResumeLayout(false);
             this.tabPageUsers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

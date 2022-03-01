@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rentacar.Admin.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace Rentacar.Admin
         public MainForm()
         {
             InitializeComponent();
+            Form loginForm = new LoginForm();
+            loginForm.ShowDialog();
         }
 
         private void buttonExport_Click(object sender, EventArgs e)

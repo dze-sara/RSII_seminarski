@@ -8,10 +8,8 @@ namespace Rentacar.Admin.Services
 {
     public static class UserService
     {
-        private static string _baseUrl = System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + "/api/users";
-
+        private static string _baseUrl = System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + "api/users";
         private static HttpClient _httpClient = new HttpClient();
-
 
         public static async Task<List<UserDto>> FilterUsers(string userId, string firstName, string lastName, string email)
         {
@@ -21,11 +19,7 @@ namespace Rentacar.Admin.Services
             parameters["lastName"] = lastName;
             parameters["email"] = email;
 
-            var filterUsersUrl = HttpHelper.BuildQueryParams(_baseUrl + "/filter", parameters);
-
-            HttpResponseMessage response = await _httpClient.GetAsync(filterUsersUrl);
-            var jsonObject = await response.Content.ReadAsStringAsync();
-            var listOfUsers = JsonConvert.DeserializeObject<List<UserDto>>(jsonObject);
+            List<UserDto> listOfUsers = await HttpHelper.GetAsync<List<UserDto>>(_baseUrl + "/filter", parameters);
 
             return listOfUsers;
         }

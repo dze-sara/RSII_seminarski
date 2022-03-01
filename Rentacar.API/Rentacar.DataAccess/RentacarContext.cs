@@ -112,11 +112,11 @@ namespace Rentacar.DataAccess
                     .IsRequired()
                     .HasMaxLength(10);
 
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_Role_User_RoleId");
+                //entity.HasOne(d => d.Role)
+                //    .WithMany(p => p.Users)
+                //    .HasForeignKey(d => d.RoleId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("Fk_Role_User_RoleId");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
