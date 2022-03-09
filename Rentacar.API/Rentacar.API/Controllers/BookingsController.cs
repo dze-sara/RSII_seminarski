@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rentacar.Dto;
+using Rentacar.Dto.Request;
 using Rentacar.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -49,6 +50,13 @@ namespace Rentacar.API.Controllers
         public async Task<IActionResult> GetBookingHistory()
         {
             List<BaseBookingDto> result = await _bookingService.GetBookingHistory();
+            return Ok(result);
+        }
+
+        [HttpPost("filter")]
+        public async Task<IActionResult> FilterBookings([FromBody] BookingRequestDto request)
+        {
+            List<BaseBookingDto> result = await _bookingService.FilterBooking(request);
             return Ok(result);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
+using Rentacar.Dto;
+using Rentacar.Dto.Request;
 using Rentacar.Entities;
 using System;
 using System.Collections.Generic;
@@ -44,6 +46,62 @@ namespace Rentacar.DataAccess.Repositories
             //}
 
             return false;
+        }
+
+        public async Task<List<Booking>> FilterBooking(BookingRequestDto bookingRequest)
+        {
+            var bookingsQuery = _context.Bookings
+                                 .Include(x => x.Vehicle)
+                                 .ThenInclude(y => y.Model)
+                                 .Include(x => x.User)
+                                 .AsQueryable();
+
+            if (bookingRequest.StartDate != null)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.StartDate >= bookingRequest.StartDate);
+            }
+
+            if (bookingRequest.EndDate != null)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.EndDate <= bookingRequest.EndDate);
+            }
+
+            if (bookingRequest.BookingId > 0)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.BookingId == bookingRequest.BookingId);
+            }
+
+            if (bookingRequest.UserId > 0)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.UserId == bookingRequest.UserId);
+            }
+
+            if (!string.IsNullOrEmpty(bookingRequest.Model))
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.Vehicle.Model.ModelName == bookingRequest.Model);
+            }
+
+            if (!string.IsNullOrEmpty(bookingRequest.Make))
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.Vehicle.Model.Make.MakeName == bookingRequest.Make);
+            }
+
+            if (bookingRequest.VehicleId > 0)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.VehicleId == bookingRequest.VehicleId);
+            }
+
+            if (bookingRequest.MinPrice > 0)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.TotalPrice >= bookingRequest.MinPrice);
+            }
+
+            if (bookingRequest.MaxPrice > 0)
+            {
+                bookingsQuery = bookingsQuery.Where(x => x.TotalPrice <= bookingRequest.MaxPrice);
+            }
+
+            return await bookingsQuery.ToListAsync();
         }
 
         public async Task<List<Booking>> GetBookingHistory()

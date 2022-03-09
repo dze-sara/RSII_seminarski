@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Rentacar.DataAccess.Interfaces;
 using Rentacar.Dto;
+using Rentacar.Dto.Request;
 using Rentacar.Entities;
 using Rentacar.Services.Interfaces;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace Rentacar.Services.Services
             Booking bookingEf = _mapper.Map<Booking>(booking);
             Booking createdBooking = await _bookingRepository.AddBooking(bookingEf);
             return _mapper.Map<BookingDto>(createdBooking);
+        }
+
+        public async Task<List<BaseBookingDto>> FilterBooking(BookingRequestDto bookingRequest)
+        {
+            List<Booking> filteredBookings = await _bookingRepository.FilterBooking(bookingRequest);
+            return _mapper.Map<List<BaseBookingDto>>(filteredBookings);
         }
 
         public async Task<List<BaseBookingDto>> GetBookingHistory()

@@ -1,4 +1,6 @@
-﻿using Rentacar.Entities;
+﻿using Rentacar.Dto;
+using Rentacar.Dto.Request;
+using Rentacar.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +13,7 @@ namespace Rentacar.DataAccess.Interfaces
         Task<Booking> AddBooking(Booking booking);
         Task<List<Booking>> GetLatestActiveBookings();
         Task<List<Booking>> GetBookingHistory();
+        Task<List<Booking>> FilterBooking(BookingRequestDto bookingRequest);
+
     }
 }
