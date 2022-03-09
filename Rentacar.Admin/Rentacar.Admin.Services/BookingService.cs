@@ -1,4 +1,5 @@
 ﻿using Rentacar.Dto;
+using Rentacar.Dto.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,6 +19,13 @@ namespace Rentacar.Admin.Services
         public static async Task<List<BaseBookingDto>> GetBookingHistory()
         {
             var bookingHistoryResponse = await HttpHelper.GetAsync<List<BaseBookingDto>>(_baseUrl + "/history");
+
+            return bookingHistoryResponse;
+        }
+
+        public static async Task<List<BaseBookingDto>> FilterBookings(BookingRequestDto request)
+        {
+            var bookingHistoryResponse = await HttpHelper.PostAsync<List<BaseBookingDto>, BookingRequestDto>(_baseUrl + "/filter", request);
 
             return bookingHistoryResponse;
         }

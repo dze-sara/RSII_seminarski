@@ -1,6 +1,7 @@
 ﻿using Rentacar.Admin.Forms;
 using Rentacar.Admin.Services;
 using Rentacar.Dto;
+using Rentacar.Dto.Request;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +60,9 @@ namespace Rentacar.Admin
             comboBoxVehicleTransmission.SelectedItem = null;
             comboBoxVehiclesLocation.DataSource = _filterLookupsDto.Locations;
             comboBoxVehiclesLocation.SelectedItem = null;
+
+            dataGridViewBookings.DataSource = await BookingService.FilterBookings(new BookingRequestDto());
+            dataGridViewBookings.Refresh();
         }
 
         private async Task InitializeHomePage()
@@ -87,9 +91,28 @@ namespace Rentacar.Admin
 
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private async void buttonSearch_Click(object sender, EventArgs e)
         {
+            var bookingInt = int.TryParse(textBoxBookingId.Text, out int bookingId);
+            var vehicleInt = int.TryParse(textBoxVehicleId.Text, out int vehicleId);
+            var userInt = int.TryParse(textBoxBuyerId.Text, out int userId);
 
+            var bookingQuery = new BookingRequestDto()
+            {
+                StartDate = dateTimePickerStartDate.Value,
+                EndDate = dateTimePickerEndDate.Value,
+                BookingId = bookingInt ? bookingId : 0,
+                VehicleId = vehicleInt ? vehicleId : 0,
+                UserId = userInt ? userId : 0,
+                Model = comboBoxBookingModel.SelectedItem?.ToString(),
+                Make = comboBoxBookingMake.SelectedItem?.ToString(),
+                MinPrice = (int)numericBookingMinPrice.Value,
+                MaxPrice = (int)numericBookingMaxPrice.Value,
+                VehicleType = comboBoxBookingVehicleType.Text
+            };
+
+            dataGridViewBookings.DataSource = await BookingService.FilterBookings(bookingQuery);
+            dataGridViewBookings.Refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,5 +131,6 @@ namespace Rentacar.Admin
             dataGridViewUsers.DataSource = await UserService.FilterUsers(userId, firstName, lastName, email);
             dataGridViewUsers.Refresh();
         }
+
     }
 }

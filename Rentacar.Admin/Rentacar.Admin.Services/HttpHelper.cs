@@ -17,7 +17,7 @@ namespace Rentacar.Admin.Services
             var response = await _httpClient.PostAsync(resourceUrl, CreateJsonContent(parameter));
 
             T deserializedResponse = await DeserializeResponse<T>(response);
-
+            
             return deserializedResponse;
         }
 
