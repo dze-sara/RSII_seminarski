@@ -177,11 +177,6 @@ namespace Rentacar.Admin
             vehiclesReport.Show();
         }
 
-        private void dataGridViewBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void OpenVehicleDetails()
         {
             var vehicle = dataGridViewVehicles.SelectedRows[0].DataBoundItem as VehicleBaseDto;
@@ -189,9 +184,41 @@ namespace Rentacar.Admin
             vehicleDetails.ShowDialog();
         }
 
+        private void OpenUserDetails()
+        {
+            var user = dataGridViewUsers.SelectedRows[0].DataBoundItem as BaseUserDto;
+            Form userDetails = new UserDetails(user);
+            userDetails.ShowDialog();
+        }
+
         private void dataGridViewVehicles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             OpenVehicleDetails();
+        }
+
+        private void dataGridViewUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OpenUserDetails();
+        }
+
+        private async void dataGridViewBookings_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var booking = dataGridViewBookings.SelectedRows[0].DataBoundItem as BaseBookingDto;
+
+            var user = await UserService.FilterUsers(booking.UserId.ToString());
+
+            var vehicle = await VehicleService.FilterVehicles(new VehicleRequestDto()
+            {
+                VehicleId = booking.VehicleId
+            });
+
+            Form bookingDetails = new BookingDetails(booking, user.FirstOrDefault(), vehicle.FirstOrDefault());
+            bookingDetails.ShowDialog();
+        }
+
+        private void dataGridViewBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

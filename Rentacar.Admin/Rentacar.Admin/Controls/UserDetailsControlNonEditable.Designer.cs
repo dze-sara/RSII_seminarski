@@ -1,7 +1,7 @@
 ﻿
-namespace Rentacar.Admin
+namespace Rentacar.Admin.Controls
 {
-    partial class UserDetailsControl
+    partial class UserDetailsControlNonEditable
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,18 +29,55 @@ namespace Rentacar.Admin
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBoxUserId = new System.Windows.Forms.TextBox();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxUserId = new System.Windows.Forms.TextBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.textBoxLastName = new System.Windows.Forms.TextBox();
-            this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // textBoxUserId
+            // 
+            this.textBoxUserId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxUserId.Location = new System.Drawing.Point(137, 73);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.ReadOnly = true;
+            this.textBoxUserId.Size = new System.Drawing.Size(149, 23);
+            this.textBoxUserId.TabIndex = 31;
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxFirstName.Location = new System.Drawing.Point(137, 115);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.ReadOnly = true;
+            this.textBoxFirstName.Size = new System.Drawing.Size(149, 23);
+            this.textBoxFirstName.TabIndex = 30;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(67, -1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 29);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "User details";
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxLastName.Location = new System.Drawing.Point(137, 158);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.ReadOnly = true;
+            this.textBoxLastName.Size = new System.Drawing.Size(149, 23);
+            this.textBoxLastName.TabIndex = 29;
             // 
             // tableLayoutPanel2
             // 
@@ -50,7 +87,7 @@ namespace Rentacar.Admin
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label11, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 63);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 62);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99999F));
@@ -61,7 +98,7 @@ namespace Rentacar.Admin
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(121, 172);
-            this.tableLayoutPanel2.TabIndex = 4;
+            this.tableLayoutPanel2.TabIndex = 26;
             // 
             // label9
             // 
@@ -127,50 +164,16 @@ namespace Rentacar.Admin
             this.label14.Text = "User Id";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(73, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 29);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "User details";
-            // 
-            // textBoxUserId
-            // 
-            this.textBoxUserId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxUserId.Location = new System.Drawing.Point(143, 74);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.ReadOnly = true;
-            this.textBoxUserId.Size = new System.Drawing.Size(149, 23);
-            this.textBoxUserId.TabIndex = 25;
-            // 
             // textBoxEmail
             // 
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxEmail.Location = new System.Drawing.Point(143, 203);
+            this.textBoxEmail.Location = new System.Drawing.Point(137, 202);
             this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.ReadOnly = true;
             this.textBoxEmail.Size = new System.Drawing.Size(149, 23);
-            this.textBoxEmail.TabIndex = 22;
+            this.textBoxEmail.TabIndex = 28;
             // 
-            // textBoxLastName
-            // 
-            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxLastName.Location = new System.Drawing.Point(143, 159);
-            this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(149, 23);
-            this.textBoxLastName.TabIndex = 23;
-            // 
-            // textBoxFirstName
-            // 
-            this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxFirstName.Location = new System.Drawing.Point(143, 116);
-            this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(149, 23);
-            this.textBoxFirstName.TabIndex = 24;
-            // 
-            // UserDetailsControl
+            // UserDetailsControlNonEditable
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoSize = true;
@@ -180,10 +183,8 @@ namespace Rentacar.Admin
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.textBoxEmail);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "UserDetailsControl";
-            this.Size = new System.Drawing.Size(319, 251);
-            this.Load += new System.EventHandler(this.UserDetailsControl_Load);
+            this.Name = "UserDetailsControlNonEditable";
+            this.Size = new System.Drawing.Size(300, 248);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -192,15 +193,16 @@ namespace Rentacar.Admin
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox textBoxUserId;
+        private System.Windows.Forms.TextBox textBoxFirstName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxUserId;
         private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.TextBox textBoxLastName;
-        private System.Windows.Forms.TextBox textBoxFirstName;
     }
 }

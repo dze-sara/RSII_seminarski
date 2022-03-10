@@ -66,11 +66,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BookingDetailsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BookingDetailsControl.Designer.cs">
+      <DependentUpon>BookingDetailsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserDetailsControlNonEditable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserDetailsControlNonEditable.Designer.cs">
+      <DependentUpon>UserDetailsControlNonEditable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VehicleDetailsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\VehicleDetailsControl.Designer.cs">
       <DependentUpon>VehicleDetailsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VehicleDetailsControlNonEditable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VehicleDetailsControlNonEditable.Designer.cs">
+      <DependentUpon>VehicleDetailsControlNonEditable.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BookingDetailsForm.cs">
       <SubType>Form</SubType>
@@ -125,8 +143,17 @@
       <DependentUpon>VehiclesReport.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Controls\BookingDetailsControl.resx">
+      <DependentUpon>BookingDetailsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserDetailsControlNonEditable.resx">
+      <DependentUpon>UserDetailsControlNonEditable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\VehicleDetailsControl.resx">
       <DependentUpon>VehicleDetailsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VehicleDetailsControlNonEditable.resx">
+      <DependentUpon>VehicleDetailsControlNonEditable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BookingDetailsForm.resx">
       <DependentUpon>BookingDetailsForm.cs</DependentUpon>

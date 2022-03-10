@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rentacar.Dto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace Rentacar.Admin
         public UserDetails()
         {
             InitializeComponent();
+        }
+
+        public UserDetails(BaseUserDto user)
+        {
+            InitializeComponent();
+            this.userDetailsControl1.User = user;
+            this.userDetailsControl1.RefreshData();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rentacar.Dto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,22 @@ namespace Rentacar.Admin
 {
     public partial class UserDetailsControl : UserControl
     {
+        public BaseUserDto User { get; set; }
         public UserDetailsControl()
         {
             InitializeComponent();
         }
+        public void RefreshData()
+        {
+            textBoxEmail.Text = User.Email;
+            textBoxFirstName.Text = User.FirstName;
+            textBoxUserId.Text = User.UserId.ToString();
+            textBoxLastName.Text = User.LastName;
+        }
 
+        private void UserDetailsControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

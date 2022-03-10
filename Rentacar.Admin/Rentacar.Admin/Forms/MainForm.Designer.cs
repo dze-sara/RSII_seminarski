@@ -323,9 +323,12 @@ namespace Rentacar.Admin
             this.dataGridViewBookings.Location = new System.Drawing.Point(27, 283);
             this.dataGridViewBookings.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewBookings.Name = "dataGridViewBookings";
+            this.dataGridViewBookings.ReadOnly = true;
             this.dataGridViewBookings.RowHeadersWidth = 51;
+            this.dataGridViewBookings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBookings.Size = new System.Drawing.Size(984, 185);
             this.dataGridViewBookings.TabIndex = 30;
+            this.dataGridViewBookings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookings_CellClick);
             this.dataGridViewBookings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookings_CellContentClick);
             // 
             // buttonSearch
@@ -877,13 +880,19 @@ namespace Rentacar.Admin
             // 
             // dataGridViewUsers
             // 
+            this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.AllowUserToDeleteRows = false;
+            this.dataGridViewUsers.AllowUserToOrderColumns = true;
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Location = new System.Drawing.Point(28, 192);
             this.dataGridViewUsers.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.ReadOnly = true;
             this.dataGridViewUsers.RowHeadersWidth = 51;
+            this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewUsers.Size = new System.Drawing.Size(980, 386);
             this.dataGridViewUsers.TabIndex = 38;
+            this.dataGridViewUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsers_CellClick);
             // 
             // textBoxUserEmail
             // 

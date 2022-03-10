@@ -1,7 +1,7 @@
 ﻿
 namespace Rentacar.Admin.Controls
 {
-    partial class VehicleDetailsControl
+    partial class VehicleDetailsControlNonEditable
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,9 @@ namespace Rentacar.Admin.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportAction1 = new Microsoft.AnalysisServices.ReportAction();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.textBoxType = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -39,21 +41,40 @@ namespace Rentacar.Admin.Controls
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBoxVehicleId = new System.Windows.Forms.TextBox();
+            this.textBoxMake = new System.Windows.Forms.TextBox();
+            this.textBoxModel = new System.Windows.Forms.TextBox();
             this.textBoxNumberOfSeats = new System.Windows.Forms.TextBox();
             this.textBoxTransmission = new System.Windows.Forms.TextBox();
-            this.textBoxModel = new System.Windows.Forms.TextBox();
-            this.textBoxMake = new System.Windows.Forms.TextBox();
-            this.textBoxType = new System.Windows.Forms.TextBox();
-            this.textBoxPrice = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // reportAction1
+            // label1
             // 
-            this.reportAction1.Application = null;
-            this.reportAction1.Path = null;
-            this.reportAction1.ReportServer = null;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(94, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(193, 29);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Vehicle details";
+            // 
+            // textBoxPrice
+            // 
+            this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxPrice.Location = new System.Drawing.Point(186, 333);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.ReadOnly = true;
+            this.textBoxPrice.Size = new System.Drawing.Size(149, 23);
+            this.textBoxPrice.TabIndex = 28;
+            // 
+            // textBoxType
+            // 
+            this.textBoxType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxType.Location = new System.Drawing.Point(186, 288);
+            this.textBoxType.Name = "textBoxType";
+            this.textBoxType.ReadOnly = true;
+            this.textBoxType.Size = new System.Drawing.Size(149, 23);
+            this.textBoxType.TabIndex = 27;
             // 
             // tableLayoutPanel2
             // 
@@ -66,7 +87,7 @@ namespace Rentacar.Admin.Controls
             this.tableLayoutPanel2.Controls.Add(this.label12, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.label13, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 62);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 62);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28633F));
@@ -77,7 +98,7 @@ namespace Rentacar.Admin.Controls
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28634F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28199F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(163, 305);
-            this.tableLayoutPanel2.TabIndex = 3;
+            this.tableLayoutPanel2.TabIndex = 21;
             // 
             // label15
             // 
@@ -194,74 +215,51 @@ namespace Rentacar.Admin.Controls
             // textBoxVehicleId
             // 
             this.textBoxVehicleId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxVehicleId.Location = new System.Drawing.Point(189, 73);
+            this.textBoxVehicleId.Location = new System.Drawing.Point(186, 73);
             this.textBoxVehicleId.Name = "textBoxVehicleId";
             this.textBoxVehicleId.ReadOnly = true;
             this.textBoxVehicleId.Size = new System.Drawing.Size(149, 23);
-            this.textBoxVehicleId.TabIndex = 17;
-            // 
-            // textBoxNumberOfSeats
-            // 
-            this.textBoxNumberOfSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxNumberOfSeats.Location = new System.Drawing.Point(189, 245);
-            this.textBoxNumberOfSeats.Name = "textBoxNumberOfSeats";
-            this.textBoxNumberOfSeats.Size = new System.Drawing.Size(149, 23);
-            this.textBoxNumberOfSeats.TabIndex = 13;
-            // 
-            // textBoxTransmission
-            // 
-            this.textBoxTransmission.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxTransmission.Location = new System.Drawing.Point(189, 202);
-            this.textBoxTransmission.Name = "textBoxTransmission";
-            this.textBoxTransmission.Size = new System.Drawing.Size(149, 23);
-            this.textBoxTransmission.TabIndex = 14;
-            // 
-            // textBoxModel
-            // 
-            this.textBoxModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxModel.Location = new System.Drawing.Point(189, 159);
-            this.textBoxModel.Name = "textBoxModel";
-            this.textBoxModel.Size = new System.Drawing.Size(149, 23);
-            this.textBoxModel.TabIndex = 15;
+            this.textBoxVehicleId.TabIndex = 26;
             // 
             // textBoxMake
             // 
             this.textBoxMake.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxMake.Location = new System.Drawing.Point(189, 116);
+            this.textBoxMake.Location = new System.Drawing.Point(186, 116);
             this.textBoxMake.Name = "textBoxMake";
+            this.textBoxMake.ReadOnly = true;
             this.textBoxMake.Size = new System.Drawing.Size(149, 23);
-            this.textBoxMake.TabIndex = 16;
+            this.textBoxMake.TabIndex = 25;
             // 
-            // textBoxType
+            // textBoxModel
             // 
-            this.textBoxType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxType.Location = new System.Drawing.Point(189, 288);
-            this.textBoxType.Name = "textBoxType";
-            this.textBoxType.Size = new System.Drawing.Size(149, 23);
-            this.textBoxType.TabIndex = 18;
+            this.textBoxModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxModel.Location = new System.Drawing.Point(186, 159);
+            this.textBoxModel.Name = "textBoxModel";
+            this.textBoxModel.ReadOnly = true;
+            this.textBoxModel.Size = new System.Drawing.Size(149, 23);
+            this.textBoxModel.TabIndex = 24;
             // 
-            // textBoxPrice
+            // textBoxNumberOfSeats
             // 
-            this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxPrice.Location = new System.Drawing.Point(189, 333);
-            this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(149, 23);
-            this.textBoxPrice.TabIndex = 19;
+            this.textBoxNumberOfSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxNumberOfSeats.Location = new System.Drawing.Point(186, 245);
+            this.textBoxNumberOfSeats.Name = "textBoxNumberOfSeats";
+            this.textBoxNumberOfSeats.ReadOnly = true;
+            this.textBoxNumberOfSeats.Size = new System.Drawing.Size(149, 23);
+            this.textBoxNumberOfSeats.TabIndex = 22;
             // 
-            // label1
+            // textBoxTransmission
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(97, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 29);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Vehicle details";
+            this.textBoxTransmission.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxTransmission.Location = new System.Drawing.Point(186, 202);
+            this.textBoxTransmission.Name = "textBoxTransmission";
+            this.textBoxTransmission.ReadOnly = true;
+            this.textBoxTransmission.Size = new System.Drawing.Size(149, 23);
+            this.textBoxTransmission.TabIndex = 23;
             // 
-            // VehicleDetailsControl
+            // VehicleDetailsControlNonEditable
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.AutoSize = true;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.textBoxType);
@@ -271,9 +269,8 @@ namespace Rentacar.Admin.Controls
             this.Controls.Add(this.textBoxModel);
             this.Controls.Add(this.textBoxNumberOfSeats);
             this.Controls.Add(this.textBoxTransmission);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "VehicleDetailsControl";
-            this.Size = new System.Drawing.Size(391, 386);
+            this.Name = "VehicleDetailsControlNonEditable";
+            this.Size = new System.Drawing.Size(363, 396);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -282,22 +279,22 @@ namespace Rentacar.Admin.Controls
         }
 
         #endregion
-        private Microsoft.AnalysisServices.ReportAction reportAction1;
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.TextBox textBoxType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBoxVehicleId;
+        private System.Windows.Forms.TextBox textBoxMake;
+        private System.Windows.Forms.TextBox textBoxModel;
         private System.Windows.Forms.TextBox textBoxNumberOfSeats;
         private System.Windows.Forms.TextBox textBoxTransmission;
-        private System.Windows.Forms.TextBox textBoxModel;
-        private System.Windows.Forms.TextBox textBoxMake;
-        private System.Windows.Forms.TextBox textBoxType;
-        private System.Windows.Forms.TextBox textBoxPrice;
-        private System.Windows.Forms.Label label1;
     }
 }

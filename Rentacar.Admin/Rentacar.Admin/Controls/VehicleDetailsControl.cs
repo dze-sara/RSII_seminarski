@@ -22,18 +22,13 @@ namespace Rentacar.Admin.Controls
 
         public void RefreshData()
         {
-            labelMake.Text = Vehicle.Make;
-            labelModel.Text = Vehicle.Model;
-            labelVehicleId.Text = Vehicle.VehicleId.ToString();
-            labelSeats.Text = Vehicle.NumberOfSeats.ToString();
-            labelType.Text = Vehicle.VehicleType;
-            labelPrice.Text = Vehicle.RatePerDay.ToString();
-            labelTransmission.Text = Vehicle.TransmissionType.ToString();
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
+            textBoxMake.Text = Vehicle.Make;
+            textBoxModel.Text = Vehicle.Model;
+            textBoxVehicleId.Text = Vehicle.VehicleId.ToString();
+            textBoxNumberOfSeats.Text = Vehicle.NumberOfSeats.ToString();
+            textBoxType.Text = Vehicle.VehicleType;
+            textBoxPrice.Text = Vehicle.RatePerDay.ToString();
+            textBoxTransmission.Text = Vehicle.TransmissionType.ToString();
         }
     }
 }
