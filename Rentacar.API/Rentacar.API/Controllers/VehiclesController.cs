@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rentacar.Dto;
 using Rentacar.Dto.Enums;
+using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
 using Rentacar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,13 @@ namespace Rentacar.API.Controllers
             }
 
             ICollection<VehicleDto> vehicles =  await _vehicleService.FilterVehicles(transmissionType, bookingStart, bookingEnd, vehicleType);
+            return Ok(vehicles);
+        }
+
+        [HttpPost("filter")]
+        public async Task<IActionResult> FilterVehiclesPost([FromBody] VehicleRequestDto request)
+        {
+            ICollection<VehicleBaseDto> vehicles = await _vehicleService.FilterVehicles(request);
             return Ok(vehicles);
         }
     }

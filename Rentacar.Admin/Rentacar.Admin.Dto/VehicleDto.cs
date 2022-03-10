@@ -13,6 +13,6 @@ namespace Rentacar.Dto
 
         public ModelDto Model { get; set; }
         public LocationDto Location { get; set; }
-        public ICollection<BookingDto> Bookings { get; set; }
+        public ICollection<BaseBookingDto> Bookings { get; set; }
     }
 }

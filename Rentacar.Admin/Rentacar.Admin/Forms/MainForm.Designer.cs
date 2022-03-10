@@ -131,7 +131,7 @@ namespace Rentacar.Admin
             this.tabControl.Controls.Add(this.tabPageVehicles);
             this.tabControl.Controls.Add(this.tabPageUsers);
             this.tabControl.Location = new System.Drawing.Point(16, 32);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1035, 614);
@@ -145,9 +145,9 @@ namespace Rentacar.Admin
             this.tabPageHome.Controls.Add(this.dataGridViewActiveBookings);
             this.tabPageHome.Controls.Add(this.label1);
             this.tabPageHome.Location = new System.Drawing.Point(4, 25);
-            this.tabPageHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageHome.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageHome.Name = "tabPageHome";
-            this.tabPageHome.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageHome.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageHome.Size = new System.Drawing.Size(1027, 585);
             this.tabPageHome.TabIndex = 0;
             this.tabPageHome.Text = "HOME";
@@ -179,7 +179,7 @@ namespace Rentacar.Admin
             // 
             this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHistory.Location = new System.Drawing.Point(20, 388);
-            this.dataGridViewHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewHistory.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistory.Name = "dataGridViewHistory";
             this.dataGridViewHistory.RowHeadersWidth = 51;
             this.dataGridViewHistory.Size = new System.Drawing.Size(996, 185);
@@ -189,7 +189,7 @@ namespace Rentacar.Admin
             // 
             this.dataGridViewActiveBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewActiveBookings.Location = new System.Drawing.Point(20, 85);
-            this.dataGridViewActiveBookings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewActiveBookings.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewActiveBookings.Name = "dataGridViewActiveBookings";
             this.dataGridViewActiveBookings.RowHeadersWidth = 51;
             this.dataGridViewActiveBookings.Size = new System.Drawing.Size(996, 240);
@@ -241,9 +241,9 @@ namespace Rentacar.Admin
             this.tabPageBookings.Controls.Add(this.dateTimePickerStartDate);
             this.tabPageBookings.Controls.Add(this.label5);
             this.tabPageBookings.Location = new System.Drawing.Point(4, 25);
-            this.tabPageBookings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageBookings.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageBookings.Name = "tabPageBookings";
-            this.tabPageBookings.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageBookings.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageBookings.Size = new System.Drawing.Size(1027, 585);
             this.tabPageBookings.TabIndex = 1;
             this.tabPageBookings.Text = "BOOKINGS";
@@ -252,7 +252,7 @@ namespace Rentacar.Admin
             // numericBookingMaxPrice
             // 
             this.numericBookingMaxPrice.Location = new System.Drawing.Point(868, 153);
-            this.numericBookingMaxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericBookingMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingMaxPrice.Name = "numericBookingMaxPrice";
             this.numericBookingMaxPrice.Size = new System.Drawing.Size(143, 22);
             this.numericBookingMaxPrice.TabIndex = 38;
@@ -260,7 +260,7 @@ namespace Rentacar.Admin
             // numericBookingMinPrice
             // 
             this.numericBookingMinPrice.Location = new System.Drawing.Point(727, 153);
-            this.numericBookingMinPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericBookingMinPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingMinPrice.Name = "numericBookingMinPrice";
             this.numericBookingMinPrice.Size = new System.Drawing.Size(129, 22);
             this.numericBookingMinPrice.TabIndex = 37;
@@ -289,7 +289,7 @@ namespace Rentacar.Admin
             // 
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExport.Location = new System.Drawing.Point(756, 494);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(255, 47);
             this.buttonExport.TabIndex = 33;
@@ -321,7 +321,7 @@ namespace Rentacar.Admin
             // 
             this.dataGridViewBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBookings.Location = new System.Drawing.Point(27, 283);
-            this.dataGridViewBookings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewBookings.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewBookings.Name = "dataGridViewBookings";
             this.dataGridViewBookings.RowHeadersWidth = 51;
             this.dataGridViewBookings.Size = new System.Drawing.Size(984, 185);
@@ -331,7 +331,7 @@ namespace Rentacar.Admin
             // 
             this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSearch.Location = new System.Drawing.Point(756, 208);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(255, 47);
             this.buttonSearch.TabIndex = 29;
@@ -342,7 +342,7 @@ namespace Rentacar.Admin
             // textBoxBuyerId
             // 
             this.textBoxBuyerId.Location = new System.Drawing.Point(301, 229);
-            this.textBoxBuyerId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxBuyerId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBuyerId.Name = "textBoxBuyerId";
             this.textBoxBuyerId.Size = new System.Drawing.Size(207, 22);
             this.textBoxBuyerId.TabIndex = 28;
@@ -351,7 +351,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxBookingVehicleType.FormattingEnabled = true;
             this.comboBoxBookingVehicleType.Location = new System.Drawing.Point(517, 229);
-            this.comboBoxBookingVehicleType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxBookingVehicleType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingVehicleType.Name = "comboBoxBookingVehicleType";
             this.comboBoxBookingVehicleType.Size = new System.Drawing.Size(199, 24);
             this.comboBoxBookingVehicleType.TabIndex = 27;
@@ -359,7 +359,7 @@ namespace Rentacar.Admin
             // textBoxVehicleId
             // 
             this.textBoxVehicleId.Location = new System.Drawing.Point(27, 229);
-            this.textBoxVehicleId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxVehicleId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxVehicleId.Name = "textBoxVehicleId";
             this.textBoxVehicleId.Size = new System.Drawing.Size(265, 22);
             this.textBoxVehicleId.TabIndex = 25;
@@ -409,7 +409,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxBookingModel.FormattingEnabled = true;
             this.comboBoxBookingModel.Location = new System.Drawing.Point(517, 154);
-            this.comboBoxBookingModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxBookingModel.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingModel.Name = "comboBoxBookingModel";
             this.comboBoxBookingModel.Size = new System.Drawing.Size(199, 24);
             this.comboBoxBookingModel.TabIndex = 15;
@@ -418,7 +418,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxBookingMake.FormattingEnabled = true;
             this.comboBoxBookingMake.Location = new System.Drawing.Point(301, 153);
-            this.comboBoxBookingMake.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxBookingMake.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingMake.Name = "comboBoxBookingMake";
             this.comboBoxBookingMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxBookingMake.TabIndex = 14;
@@ -426,7 +426,7 @@ namespace Rentacar.Admin
             // textBoxBookingId
             // 
             this.textBoxBookingId.Location = new System.Drawing.Point(27, 154);
-            this.textBoxBookingId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxBookingId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBookingId.Name = "textBoxBookingId";
             this.textBoxBookingId.Size = new System.Drawing.Size(265, 22);
             this.textBoxBookingId.TabIndex = 13;
@@ -515,7 +515,7 @@ namespace Rentacar.Admin
             // 
             this.dateTimePickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerEndTime.Location = new System.Drawing.Point(792, 82);
-            this.dateTimePickerEndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerEndTime.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerEndTime.Name = "dateTimePickerEndTime";
             this.dateTimePickerEndTime.Size = new System.Drawing.Size(217, 22);
             this.dateTimePickerEndTime.TabIndex = 4;
@@ -523,7 +523,7 @@ namespace Rentacar.Admin
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.Location = new System.Drawing.Point(517, 84);
-            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerEndDate.TabIndex = 3;
@@ -532,7 +532,7 @@ namespace Rentacar.Admin
             // 
             this.dateTimePickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerStartTime.Location = new System.Drawing.Point(301, 82);
-            this.dateTimePickerStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerStartTime.Name = "dateTimePickerStartTime";
             this.dateTimePickerStartTime.Size = new System.Drawing.Size(207, 22);
             this.dateTimePickerStartTime.TabIndex = 2;
@@ -540,7 +540,7 @@ namespace Rentacar.Admin
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(27, 84);
-            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerStartDate.TabIndex = 1;
@@ -582,7 +582,7 @@ namespace Rentacar.Admin
             this.tabPageVehicles.Controls.Add(this.label21);
             this.tabPageVehicles.Controls.Add(this.label20);
             this.tabPageVehicles.Location = new System.Drawing.Point(4, 25);
-            this.tabPageVehicles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageVehicles.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageVehicles.Name = "tabPageVehicles";
             this.tabPageVehicles.Size = new System.Drawing.Size(1027, 585);
             this.tabPageVehicles.TabIndex = 2;
@@ -593,7 +593,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxVehiclesLocation.FormattingEnabled = true;
             this.comboBoxVehiclesLocation.Location = new System.Drawing.Point(576, 162);
-            this.comboBoxVehiclesLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehiclesLocation.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesLocation.Name = "comboBoxVehiclesLocation";
             this.comboBoxVehiclesLocation.Size = new System.Drawing.Size(172, 24);
             this.comboBoxVehiclesLocation.TabIndex = 52;
@@ -601,7 +601,7 @@ namespace Rentacar.Admin
             // numericBookingsMaxPrice
             // 
             this.numericBookingsMaxPrice.Location = new System.Drawing.Point(864, 103);
-            this.numericBookingsMaxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericBookingsMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingsMaxPrice.Name = "numericBookingsMaxPrice";
             this.numericBookingsMaxPrice.Size = new System.Drawing.Size(148, 22);
             this.numericBookingsMaxPrice.TabIndex = 51;
@@ -609,7 +609,7 @@ namespace Rentacar.Admin
             // numericVehiclesMaxPrice
             // 
             this.numericVehiclesMaxPrice.Location = new System.Drawing.Point(721, 103);
-            this.numericVehiclesMaxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericVehiclesMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericVehiclesMaxPrice.Name = "numericVehiclesMaxPrice";
             this.numericVehiclesMaxPrice.Size = new System.Drawing.Size(133, 22);
             this.numericVehiclesMaxPrice.TabIndex = 50;
@@ -618,7 +618,7 @@ namespace Rentacar.Admin
             // 
             this.buttonExportVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExportVehicles.Location = new System.Drawing.Point(757, 507);
-            this.buttonExportVehicles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExportVehicles.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExportVehicles.Name = "buttonExportVehicles";
             this.buttonExportVehicles.Size = new System.Drawing.Size(255, 47);
             this.buttonExportVehicles.TabIndex = 48;
@@ -649,7 +649,7 @@ namespace Rentacar.Admin
             // 
             this.dataGridViewVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVehicles.Location = new System.Drawing.Point(25, 225);
-            this.dataGridViewVehicles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewVehicles.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewVehicles.Name = "dataGridViewVehicles";
             this.dataGridViewVehicles.RowHeadersWidth = 51;
             this.dataGridViewVehicles.Size = new System.Drawing.Size(987, 251);
@@ -659,7 +659,7 @@ namespace Rentacar.Admin
             // 
             this.buttonSearchVehicles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSearchVehicles.Location = new System.Drawing.Point(757, 150);
-            this.buttonSearchVehicles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSearchVehicles.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSearchVehicles.Name = "buttonSearchVehicles";
             this.buttonSearchVehicles.Size = new System.Drawing.Size(255, 47);
             this.buttonSearchVehicles.TabIndex = 44;
@@ -689,7 +689,7 @@ namespace Rentacar.Admin
             "8",
             "9"});
             this.comboBoxVehicleNoSeats.Location = new System.Drawing.Point(428, 162);
-            this.comboBoxVehicleNoSeats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehicleNoSeats.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehicleNoSeats.Name = "comboBoxVehicleNoSeats";
             this.comboBoxVehicleNoSeats.Size = new System.Drawing.Size(139, 24);
             this.comboBoxVehicleNoSeats.TabIndex = 41;
@@ -708,7 +708,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxVehicleTransmission.FormattingEnabled = true;
             this.comboBoxVehicleTransmission.Location = new System.Drawing.Point(237, 162);
-            this.comboBoxVehicleTransmission.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehicleTransmission.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehicleTransmission.Name = "comboBoxVehicleTransmission";
             this.comboBoxVehicleTransmission.Size = new System.Drawing.Size(175, 24);
             this.comboBoxVehicleTransmission.TabIndex = 39;
@@ -717,7 +717,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxVehiclesVehicleType.FormattingEnabled = true;
             this.comboBoxVehiclesVehicleType.Location = new System.Drawing.Point(21, 162);
-            this.comboBoxVehiclesVehicleType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehiclesVehicleType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesVehicleType.Name = "comboBoxVehiclesVehicleType";
             this.comboBoxVehiclesVehicleType.Size = new System.Drawing.Size(207, 24);
             this.comboBoxVehiclesVehicleType.TabIndex = 38;
@@ -746,7 +746,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxVehiclesModel.FormattingEnabled = true;
             this.comboBoxVehiclesModel.Location = new System.Drawing.Point(512, 103);
-            this.comboBoxVehiclesModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehiclesModel.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesModel.Name = "comboBoxVehiclesModel";
             this.comboBoxVehiclesModel.Size = new System.Drawing.Size(199, 24);
             this.comboBoxVehiclesModel.TabIndex = 33;
@@ -755,7 +755,7 @@ namespace Rentacar.Admin
             // 
             this.comboBoxVehiclesMake.FormattingEnabled = true;
             this.comboBoxVehiclesMake.Location = new System.Drawing.Point(296, 103);
-            this.comboBoxVehiclesMake.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxVehiclesMake.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesMake.Name = "comboBoxVehiclesMake";
             this.comboBoxVehiclesMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxVehiclesMake.TabIndex = 32;
@@ -803,7 +803,7 @@ namespace Rentacar.Admin
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(21, 103);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(265, 22);
             this.textBox1.TabIndex = 27;
@@ -843,7 +843,7 @@ namespace Rentacar.Admin
             this.tabPageUsers.Controls.Add(this.label35);
             this.tabPageUsers.Controls.Add(this.label32);
             this.tabPageUsers.Location = new System.Drawing.Point(4, 25);
-            this.tabPageUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageUsers.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageUsers.Name = "tabPageUsers";
             this.tabPageUsers.Size = new System.Drawing.Size(1027, 585);
             this.tabPageUsers.TabIndex = 3;
@@ -853,7 +853,7 @@ namespace Rentacar.Admin
             // numericUpDownUserId
             // 
             this.numericUpDownUserId.Location = new System.Drawing.Point(28, 92);
-            this.numericUpDownUserId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownUserId.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownUserId.Name = "numericUpDownUserId";
             this.numericUpDownUserId.Size = new System.Drawing.Size(236, 22);
             this.numericUpDownUserId.TabIndex = 46;
@@ -862,7 +862,7 @@ namespace Rentacar.Admin
             // 
             this.buttonUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonUsers.Location = new System.Drawing.Point(395, 138);
-            this.buttonUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUsers.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUsers.Name = "buttonUsers";
             this.buttonUsers.Size = new System.Drawing.Size(255, 47);
             this.buttonUsers.TabIndex = 45;
@@ -874,7 +874,7 @@ namespace Rentacar.Admin
             // 
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Location = new System.Drawing.Point(28, 192);
-            this.dataGridViewUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewUsers.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
             this.dataGridViewUsers.RowHeadersWidth = 51;
             this.dataGridViewUsers.Size = new System.Drawing.Size(980, 386);
@@ -883,7 +883,7 @@ namespace Rentacar.Admin
             // textBoxUserEmail
             // 
             this.textBoxUserEmail.Location = new System.Drawing.Point(768, 91);
-            this.textBoxUserEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUserEmail.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUserEmail.Name = "textBoxUserEmail";
             this.textBoxUserEmail.Size = new System.Drawing.Size(239, 22);
             this.textBoxUserEmail.TabIndex = 37;
@@ -901,7 +901,7 @@ namespace Rentacar.Admin
             // textBoxUserLastName
             // 
             this.textBoxUserLastName.Location = new System.Drawing.Point(520, 91);
-            this.textBoxUserLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUserLastName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUserLastName.Name = "textBoxUserLastName";
             this.textBoxUserLastName.Size = new System.Drawing.Size(239, 22);
             this.textBoxUserLastName.TabIndex = 35;
@@ -909,7 +909,7 @@ namespace Rentacar.Admin
             // textBoxUserFirstName
             // 
             this.textBoxUserFirstName.Location = new System.Drawing.Point(272, 91);
-            this.textBoxUserFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUserFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUserFirstName.Name = "textBoxUserFirstName";
             this.textBoxUserFirstName.Size = new System.Drawing.Size(239, 22);
             this.textBoxUserFirstName.TabIndex = 34;
@@ -973,7 +973,7 @@ namespace Rentacar.Admin
             this.ClientSize = new System.Drawing.Size(1067, 668);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CarRental";

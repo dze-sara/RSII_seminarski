@@ -55,8 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\BookingRequestDto.cs" />
     <Compile Include="Request\LoginRequestDto.cs" />
+    <Compile Include="Request\VehicleRequestDto.cs" />
     <Compile Include="RoleDto.cs" />
     <Compile Include="UserDto.cs" />
+    <Compile Include="VehicleBaseDto.cs" />
     <Compile Include="VehicleDto.cs" />
     <Compile Include="VehicleTypeBaseDto.cs" />
     <Compile Include="VehicleTypeDto.cs" />

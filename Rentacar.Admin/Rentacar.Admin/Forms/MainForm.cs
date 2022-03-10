@@ -32,6 +32,13 @@ namespace Rentacar.Admin
             await InitializeHomePage();
             await InitializeBookingFilters();
             await InitializeUsers();
+            await InitializeVehicles();
+        }
+
+        private async Task InitializeVehicles()
+        {
+            dataGridViewVehicles.DataSource = await VehicleService.FilterVehicles(new VehicleRequestDto());
+            dataGridViewVehicles.Refresh();
         }
 
         private async Task InitializeBookingFilters()
@@ -115,9 +122,38 @@ namespace Rentacar.Admin
             dataGridViewBookings.Refresh();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            var vehicleInt = int.TryParse(textBox1.Text, out int vehicleId);
+            var noOfSeatsInt = int.TryParse(comboBoxVehicleNoSeats.SelectedItem?.ToString(), out int numberOfSeats);
+            int transmission;
+            switch (comboBoxVehicleTransmission.SelectedItem?.ToString())
+            {
+                case "Manual":
+                    transmission = 1;
+                    break;
+                case "Automatic":
+                    transmission = 2;
+                    break;
+                default:
+                    transmission = 0;
+                    break;
+            };
 
+            var vehiclesQuery = new VehicleRequestDto()
+            {
+                VehicleId = vehicleInt ? vehicleId : 0,
+                Make = comboBoxVehiclesMake.SelectedItem?.ToString(),
+                Model = comboBoxVehiclesModel.SelectedItem?.ToString(),
+                MinPrice = (int)numericVehiclesMaxPrice.Value,
+                MaxPrice = (int)numericBookingsMaxPrice.Value,
+                NumberOfSeats = noOfSeatsInt ? numberOfSeats : 0,
+                Transmission = transmission,
+                VehicleType = comboBoxVehiclesVehicleType.SelectedItem?.ToString()
+            };
+
+            dataGridViewVehicles.DataSource = await VehicleService.FilterVehicles(vehiclesQuery);
+            dataGridViewVehicles.Refresh();
         }
 
         private async void buttonUsers_Click(object sender, EventArgs e)

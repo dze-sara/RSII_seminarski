@@ -3,6 +3,8 @@ using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
 using Rentacar.Dto;
 using Rentacar.Dto.Enums;
+using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
 using Rentacar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,11 @@ namespace Rentacar.Services.Services
         public async Task<ICollection<VehicleDto>> FilterVehicles(TransmissionTypeEnum? transmissionType, DateTime? bookingStartTime, DateTime? bookingEndTime, int? vehicleType)
         {
             return _mapper.Map<List<VehicleDto>>(await _vehicleRepository.FilterVehicles((int)transmissionType, bookingStartTime, bookingEndTime, vehicleType));
+        }
+
+        public async Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request)
+        {
+             return await _vehicleRepository.FilterVehicles(request);
         }
 
         public async Task<VehicleDto> GetVehicleById(int vehicleId)
