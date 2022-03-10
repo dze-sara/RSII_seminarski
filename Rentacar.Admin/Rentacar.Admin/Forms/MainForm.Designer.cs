@@ -326,6 +326,7 @@ namespace Rentacar.Admin
             this.dataGridViewBookings.RowHeadersWidth = 51;
             this.dataGridViewBookings.Size = new System.Drawing.Size(984, 185);
             this.dataGridViewBookings.TabIndex = 30;
+            this.dataGridViewBookings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookings_CellContentClick);
             // 
             // buttonSearch
             // 
@@ -624,6 +625,7 @@ namespace Rentacar.Admin
             this.buttonExportVehicles.TabIndex = 48;
             this.buttonExportVehicles.Text = "Export to PDF";
             this.buttonExportVehicles.UseVisualStyleBackColor = true;
+            this.buttonExportVehicles.Click += new System.EventHandler(this.buttonExportVehicles_Click);
             // 
             // label30
             // 
@@ -651,9 +653,12 @@ namespace Rentacar.Admin
             this.dataGridViewVehicles.Location = new System.Drawing.Point(25, 225);
             this.dataGridViewVehicles.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewVehicles.Name = "dataGridViewVehicles";
+            this.dataGridViewVehicles.ReadOnly = true;
             this.dataGridViewVehicles.RowHeadersWidth = 51;
+            this.dataGridViewVehicles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewVehicles.Size = new System.Drawing.Size(987, 251);
             this.dataGridViewVehicles.TabIndex = 45;
+            this.dataGridViewVehicles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVehicles_CellClick);
             // 
             // buttonSearchVehicles
             // 

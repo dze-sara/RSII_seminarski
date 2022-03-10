@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rentacar.Dto;
+using Rentacar.Dto.Response;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,22 @@ namespace Rentacar.Admin
         public VehicleDetails()
         {
             InitializeComponent();
+        }
+
+        public VehicleDetails(VehicleBaseDto vehicle)
+        {
+            InitializeComponent();
+            this.vehicleDetailsControl1.Vehicle = vehicle;
+            this.vehicleDetailsControl1.RefreshData();
+        }
+
+        private void VehicleDetails_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void vehicleDetailsControl2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

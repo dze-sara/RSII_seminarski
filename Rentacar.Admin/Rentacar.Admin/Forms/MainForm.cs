@@ -1,7 +1,9 @@
 ﻿using Rentacar.Admin.Forms;
+using Rentacar.Admin.Reports;
 using Rentacar.Admin.Services;
 using Rentacar.Dto;
 using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,7 +97,8 @@ namespace Rentacar.Admin
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-
+            BookingsReport bookingsReport = new BookingsReport(dataGridViewBookings.DataSource as List<BaseBookingDto>);
+            bookingsReport.Show();
         }
 
         private async void buttonSearch_Click(object sender, EventArgs e)
@@ -168,5 +171,27 @@ namespace Rentacar.Admin
             dataGridViewUsers.Refresh();
         }
 
+        private void buttonExportVehicles_Click(object sender, EventArgs e)
+        {
+            VehiclesReport vehiclesReport = new VehiclesReport(dataGridViewVehicles.DataSource as List<VehicleBaseDto>);
+            vehiclesReport.Show();
+        }
+
+        private void dataGridViewBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void OpenVehicleDetails()
+        {
+            var vehicle = dataGridViewVehicles.SelectedRows[0].DataBoundItem as VehicleBaseDto;
+            Form vehicleDetails = new VehicleDetails(vehicle);
+            vehicleDetails.ShowDialog();
+        }
+
+        private void dataGridViewVehicles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OpenVehicleDetails();
+        }
     }
 }
