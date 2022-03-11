@@ -48,9 +48,9 @@ namespace Rentacar.Admin
             _filterLookupsDto = await FilterService.GetFilterLookups();
 
             comboBoxBookingMake.DataSource = _filterLookupsDto.Makes;
-            comboBoxBookingMake.SelectedItem = null;
-            comboBoxBookingModel.DataSource = _filterLookupsDto.Models;
-            comboBoxBookingModel.SelectedItem = null;
+            comboBoxBookingMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
+            //comboBoxBookingModel.DataSource = _filterLookupsDto.Models;
+            //comboBoxBookingModel.SelectedItem = null;
             comboBoxBookingVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
             comboBoxBookingVehicleType.SelectedItem = null;
 
@@ -59,9 +59,9 @@ namespace Rentacar.Admin
             comboBoxVehiclesVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
             comboBoxVehiclesVehicleType.SelectedItem = null;
             comboBoxVehiclesMake.DataSource = _filterLookupsDto.Makes;
-            comboBoxVehiclesMake.SelectedItem = null;
-            comboBoxVehiclesModel.DataSource = _filterLookupsDto.Models;
-            comboBoxVehiclesModel.SelectedItem = null;
+            comboBoxVehiclesMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
+            //comboBoxVehiclesModel.DataSource = _filterLookupsDto.Models;
+            //comboBoxVehiclesModel.SelectedItem = null;
             comboBoxVehicleTransmission.DataSource = new List<ComboBoxItem>() {
                 new ComboBoxItem() { Value = 1, Text = "Manual"},
                 new ComboBoxItem() { Value = 2, Text = "Automatic"},
@@ -219,6 +219,28 @@ namespace Rentacar.Admin
         private void dataGridViewBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void buttonAddNew_Click(object sender, EventArgs e)
+        {
+            Form vehicleDetails = new NewVehicleForm();
+            vehicleDetails.ShowDialog();
+        }
+
+        private async void comboBoxVehiclesMake_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MakeBaseDto make;
+            make = comboBoxVehiclesMake.SelectedItem as MakeBaseDto;
+            var models = await FilterService.GetModelsForMake(make.MakeId);
+            comboBoxVehiclesModel.DataSource = models;
+        }
+
+        private async void comboBoxBookingMake_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MakeBaseDto make;
+            make = comboBoxBookingMake.SelectedItem as MakeBaseDto;
+            var models = await FilterService.GetModelsForMake(make.MakeId);
+            comboBoxBookingModel.DataSource = models;
         }
     }
 }

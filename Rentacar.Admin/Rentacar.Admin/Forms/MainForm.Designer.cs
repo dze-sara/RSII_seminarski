@@ -70,6 +70,7 @@ namespace Rentacar.Admin
             this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageVehicles = new System.Windows.Forms.TabPage();
+            this.buttonAddNew = new System.Windows.Forms.Button();
             this.comboBoxVehiclesLocation = new System.Windows.Forms.ComboBox();
             this.numericBookingsMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.numericVehiclesMaxPrice = new System.Windows.Forms.NumericUpDown();
@@ -426,6 +427,7 @@ namespace Rentacar.Admin
             this.comboBoxBookingMake.Name = "comboBoxBookingMake";
             this.comboBoxBookingMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxBookingMake.TabIndex = 14;
+            this.comboBoxBookingMake.SelectedIndexChanged += new System.EventHandler(this.comboBoxBookingMake_SelectedIndexChanged);
             // 
             // textBoxBookingId
             // 
@@ -561,6 +563,7 @@ namespace Rentacar.Admin
             // 
             // tabPageVehicles
             // 
+            this.tabPageVehicles.Controls.Add(this.buttonAddNew);
             this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesLocation);
             this.tabPageVehicles.Controls.Add(this.numericBookingsMaxPrice);
             this.tabPageVehicles.Controls.Add(this.numericVehiclesMaxPrice);
@@ -592,6 +595,18 @@ namespace Rentacar.Admin
             this.tabPageVehicles.TabIndex = 2;
             this.tabPageVehicles.Text = "VEHICLES";
             this.tabPageVehicles.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddNew
+            // 
+            this.buttonAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddNew.Location = new System.Drawing.Point(494, 507);
+            this.buttonAddNew.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddNew.Name = "buttonAddNew";
+            this.buttonAddNew.Size = new System.Drawing.Size(255, 47);
+            this.buttonAddNew.TabIndex = 53;
+            this.buttonAddNew.Text = "Add new vehicle";
+            this.buttonAddNew.UseVisualStyleBackColor = true;
+            this.buttonAddNew.Click += new System.EventHandler(this.buttonAddNew_Click);
             // 
             // comboBoxVehiclesLocation
             // 
@@ -767,6 +782,7 @@ namespace Rentacar.Admin
             this.comboBoxVehiclesMake.Name = "comboBoxVehiclesMake";
             this.comboBoxVehiclesMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxVehiclesMake.TabIndex = 32;
+            this.comboBoxVehiclesMake.SelectedIndexChanged += new System.EventHandler(this.comboBoxVehiclesMake_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -1095,6 +1111,7 @@ namespace Rentacar.Admin
         private System.Windows.Forms.NumericUpDown numericBookingsMaxPrice;
         private System.Windows.Forms.NumericUpDown numericVehiclesMaxPrice;
         private System.Windows.Forms.ComboBox comboBoxVehiclesLocation;
+        private System.Windows.Forms.Button buttonAddNew;
     }
 }
 

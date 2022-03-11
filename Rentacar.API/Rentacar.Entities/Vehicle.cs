@@ -16,9 +16,9 @@ namespace Rentacar.Entities
         public bool IsActive { get; set; }
         public short TransmissionType { get; set; }
         public int ModelId { get; set; }
-
         public virtual Model Model { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        public int LocationId { get; set; }
         public virtual Location Location { get; set; }
     }
 }

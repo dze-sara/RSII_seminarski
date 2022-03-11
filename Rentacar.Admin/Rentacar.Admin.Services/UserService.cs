@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Rentacar.Admin.Dto.Request;
 using Rentacar.Dto;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -42,5 +43,7 @@ namespace Rentacar.Admin.Services
         {
             await _httpClient.DeleteAsync($"{_baseUrl}/{userId}");
         }
+
+        
     }
 }

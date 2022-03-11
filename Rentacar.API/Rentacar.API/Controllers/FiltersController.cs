@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Rentacar.Dto;
 using Rentacar.Dto.Response;
 using Rentacar.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Rentacar.API.Controllers
@@ -22,5 +24,13 @@ namespace Rentacar.API.Controllers
             FilterLookupsDto result = await _filterService.GetFilterLookups();
             return Ok(result);
         }
+
+        [HttpGet("models/{id}")]
+        public async Task<IActionResult> GetModels([FromRoute] int id)
+        {
+            List<ModelBaseDto> result = await _filterService.GetModelsForMake(id);
+            return Ok(result);
+        }
+
     }
 }

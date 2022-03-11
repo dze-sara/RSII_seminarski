@@ -53,5 +53,13 @@ namespace Rentacar.API.Controllers
             ICollection<VehicleBaseDto> vehicles = await _vehicleService.FilterVehicles(request);
             return Ok(vehicles);
         }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> AddVehicle([FromBody] NewVehicleRequest request)
+        {
+            VehicleBaseDto vehicle = await _vehicleService.AddVehicle(request);
+            var x = Ok(vehicle);
+            return x;
+        }
     }
 }

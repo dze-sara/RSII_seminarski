@@ -134,5 +134,35 @@ namespace Rentacar.DataAccess.Repositories
             })).ConfigureAwait(false);
             return queryResponse;
         }
+
+        public async Task<Vehicle> AddVehicle(NewVehicleRequest vehicle)
+        {
+            var model = _context.Models.Where(x => x.ModelId == vehicle.Model.ModelId).FirstOrDefault();
+            var newVehicle = new Vehicle()
+            {
+                IsActive = true,
+                Model = model,
+                RatePerDay = vehicle.PricePerDay,
+                TransmissionType = (short)vehicle.Transmission,
+                LocationId = 1
+            };
+
+            // Validate user
+            AssertionHelper.AssertObject(newVehicle);
+
+            // Add user do database
+            Vehicle addedVehicle = _context.Vehicles.Add(newVehicle).Entity;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            // Return added user
+            return addedVehicle;
+        }
     }
 }

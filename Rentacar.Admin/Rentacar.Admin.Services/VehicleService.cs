@@ -1,4 +1,5 @@
-﻿using Rentacar.Dto;
+﻿using Rentacar.Admin.Dto.Request;
+using Rentacar.Dto;
 using Rentacar.Dto.Request;
 using Rentacar.Dto.Response;
 using System;
@@ -18,6 +19,12 @@ namespace Rentacar.Admin.Services
             var vehiclesFiltered = await HttpHelper.PostAsync<List<VehicleBaseDto>, VehicleRequestDto>(_baseUrl + "/filter", request);
 
             return vehiclesFiltered;
+        }
+
+        public static async Task<VehicleBaseDto> AddVehicle(NewVehicleRequest vehicle)
+        {
+            var newVehicle = await HttpHelper.PostAsync<VehicleBaseDto, NewVehicleRequest>($"{_baseUrl}/add", vehicle);
+            return newVehicle;
         }
     }
 }

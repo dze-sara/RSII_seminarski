@@ -28,6 +28,11 @@ namespace Rentacar.DataAccess.Repositories
             return await _context.Models.ToListAsync();
         }
 
+        public async Task<List<Model>> GetModelsForMake(int makeId)
+        {
+            return await _context.Models.Where(x => x.MakeId == makeId).ToListAsync();
+        }
+
         public async Task<List<VehicleType>> GetVehicleTypesForFilter()
         {
             return await _context.VehicleTypes.ToListAsync();

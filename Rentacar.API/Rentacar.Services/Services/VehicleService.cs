@@ -5,6 +5,7 @@ using Rentacar.Dto;
 using Rentacar.Dto.Enums;
 using Rentacar.Dto.Request;
 using Rentacar.Dto.Response;
+using Rentacar.Entities;
 using Rentacar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,23 @@ namespace Rentacar.Services.Services
         {
             _vehicleRepository = vehicleRepository;
             _mapper = mapper;
+        }
+
+        public async Task<VehicleBaseDto> AddVehicle(NewVehicleRequest newVehicle)
+        {
+            var vehicle = await _vehicleRepository.AddVehicle(newVehicle);
+            var vehicleDto = new VehicleBaseDto()
+            {
+                IsActive = vehicle.IsActive,
+                Make = vehicle.Model.Make?.MakeName,
+                Model = vehicle.Model.ModelName,
+                NumberOfSeats = vehicle.Model.NoOfSeats,
+                RatePerDay = vehicle.RatePerDay,
+                TransmissionType = (TransmissionTypeEnum)vehicle.TransmissionType,
+                VehicleId = vehicle.VehicleId,
+                VehicleType = vehicle.Model.VehicleType?.VehicleTypeName
+            };
+            return vehicleDto;
         }
 
         public async Task<ICollection<VehicleDto>> FilterVehicles(TransmissionTypeEnum? transmissionType, DateTime? bookingStartTime, DateTime? bookingEndTime, int? vehicleType)

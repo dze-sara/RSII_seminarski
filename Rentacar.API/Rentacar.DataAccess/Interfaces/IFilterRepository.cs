@@ -9,5 +9,6 @@ namespace Rentacar.DataAccess.Interfaces
         public Task<List<Make>> GetMakesForFilter();
         public Task<List<VehicleType>> GetVehicleTypesForFilter();
         public Task<List<Model>> GetModelsForFilter();
+        public Task<List<Model>> GetModelsForMake(int makeId);
     }
 }
