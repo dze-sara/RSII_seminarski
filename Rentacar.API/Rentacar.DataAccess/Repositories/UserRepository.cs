@@ -66,6 +66,7 @@ namespace Rentacar.DataAccess.Repositories
             AssertionHelper.AssertObject(user);
 
             // Add user do database
+            user.RoleId = 1;
             User addedUser = _context.Users.Add(user).Entity;
             await _context.SaveChangesAsync();
 

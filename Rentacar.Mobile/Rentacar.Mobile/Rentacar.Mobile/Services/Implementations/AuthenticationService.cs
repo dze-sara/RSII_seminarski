@@ -13,7 +13,7 @@ namespace Rentacar.Mobile.Services
         public UserDto User { get; set; }
         public async Task<UserDto> Register(UserDto userDto)
         {
-            UserDto registeredUser = await HttpHelper.PostAsync<UserDto, UserDto>(_baseUrl, userDto);
+            UserDto registeredUser = await HttpHelper.PostAsync<UserDto, UserDto>(_baseUrl + "/register", userDto);
             UserId = registeredUser?.UserId ?? 0;
             return registeredUser;
         }
