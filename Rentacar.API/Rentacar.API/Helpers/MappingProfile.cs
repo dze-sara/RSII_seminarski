@@ -26,7 +26,10 @@ namespace Rentacar.API.Helpers
             CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Model, ModelBaseDto>();
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
-            CreateMap<Vehicle, VehicleBaseDto>().ReverseMap();
+            CreateMap<Vehicle, VehicleBaseDto>()
+                .ForMember(x => x.Make, y => y.MapFrom(z => z.Model.Make.MakeName))
+                .ForMember(x => x.Model, y => y.MapFrom(z => z.Model.ModelName))
+                .ForMember(x => x.VehicleType, y => y.MapFrom(z => z.Model.VehicleType.VehicleTypeName));
             CreateMap<VehicleType, VehicleTypeDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeBaseDto>();
             CreateMap<Make, MakeDto>().ReverseMap();
