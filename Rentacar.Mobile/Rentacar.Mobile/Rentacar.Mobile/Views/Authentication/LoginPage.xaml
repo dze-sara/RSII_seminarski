@@ -8,6 +8,7 @@
              Shell.NavBarIsVisible="False" BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Image VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Source="logo.png"/>
             <Button VerticalOptions="Center" Text="sign in" Command="{Binding LoginCommand}"/>
             <Button VerticalOptions="Center" Text="register now" Command="{Binding RegisterCommand}"/>
         </StackLayout>

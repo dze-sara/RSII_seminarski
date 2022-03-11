@@ -44,6 +44,12 @@ namespace Rentacar.Services.Services
             return _mapper.Map<List<BaseBookingDto>>(result);
         }
 
+        public async Task<List<BaseBookingDto>> GetBookingHistoryForUser(int userId)
+        {
+            List<Booking> result = await _bookingRepository.GetBookingHistoryForUser(userId);
+            return _mapper.Map<List<BaseBookingDto>>(result);
+        }
+
         public async Task<ICollection<BookingDto>> GetBookingsByUser(int userId)
         {
             var bookings = await _bookingRepository.GetBookingsByUser(userId);

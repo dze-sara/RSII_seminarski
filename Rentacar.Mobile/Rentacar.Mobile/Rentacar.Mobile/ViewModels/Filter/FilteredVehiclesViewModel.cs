@@ -17,6 +17,9 @@ namespace Rentacar.Mobile.ViewModels
         public Command RentNowTapped { get; }
         private VehicleBaseDto _selectedItem;
 
+        public string StartDate { get => DataStore.BookingStartDate.ToString("MMM, dd yyyy");  }
+        public string EndDate { get => DataStore.BookingEndDate.ToString("MMM, dd yyyy");  }
+
         public VehicleBaseDto SelectedItem
         {
             get => _selectedItem;
@@ -31,12 +34,8 @@ namespace Rentacar.Mobile.ViewModels
         {
             Title = "Browse";
             VehicleItems = new ObservableCollection<VehicleBaseDto>();
-
-            VehicleItems =  new ObservableCollection<VehicleBaseDto>()
-            {
-                new VehicleBaseDto() { VehicleId = 1, VehicleType = "small car", Make = "Volvo", Model = "V40", IsActive = true, NumberOfSeats = 5, RatePerDay = 50 },
-                new VehicleBaseDto() { VehicleId = 2, VehicleType = "small car", Make = "VW", Model = "Polo", IsActive = true, NumberOfSeats = 5, RatePerDay = 30 }
-            };
+            
+            ExecuteLoadItemsCommand();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             RentNowTapped = new Command<VehicleBaseDto>(OnRentNowClicked);
@@ -51,25 +50,27 @@ namespace Rentacar.Mobile.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
-            //IsBusy = true;
+            IsBusy = true;
 
-            //try
-            //{
-            //    VehicleItems.Clear();
-            //    var items = await BookingService.FilterBookings(null);
-            //    foreach (var item in items)
-            //    {
-            //        VehicleItems.Add(item);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine(ex);
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
+            try
+            {
+                VehicleItems.Clear();
+                DateTime startDate = DataStore.BookingStartDate;
+                DateTime endDate = DataStore.BookingEndDate;
+                var items = await VehicleService.FilterVehiclesByDateRange(startDate, endDate);
+                foreach (var item in items)
+                {
+                    VehicleItems.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public void OnAppearing()

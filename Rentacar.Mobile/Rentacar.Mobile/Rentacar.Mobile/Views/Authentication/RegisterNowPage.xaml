@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Rentacar.Mobile.Views.RegisterNowPage">
+             x:Class="Rentacar.Mobile.Views.RegisterNowPage" BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label Text="Please register now in order to use application!"
+            <Image VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Source="logo.png"/>
+
+            <Label Text="Please register now in order to use application!" TextColor="White"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" VerticalOptions="Center" Placeholder="first name"/>
+            <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" VerticalOptions="Center" TextColor="White" PlaceholderColor="White" Placeholder="first name"/>
 
-            <Entry x:Name="lastNameEntry" Text="{Binding LastName}" VerticalOptions="Center" Placeholder="last name"/>
+            <Entry x:Name="lastNameEntry" Text="{Binding LastName}" VerticalOptions="Center" TextColor="White" PlaceholderColor="White" Placeholder="last name"/>
 
-            <Entry x:Name="emailEntry" Text="{Binding Email}" VerticalOptions="Center" Placeholder="email"/>
+            <Entry x:Name="emailEntry" Text="{Binding Email}" VerticalOptions="Center" TextColor="White" PlaceholderColor="White" Placeholder="email"/>
 
-            <Entry x:Name="passwordEntry" Text="{Binding Password}" VerticalOptions="Center" IsPassword="true"/>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" VerticalOptions="Center" TextColor="White" PlaceholderColor="White" IsPassword="true"/>
             
             <Button VerticalOptions="Center" Text="register now" Command="{Binding RegisterNowCommand}"/>
         </StackLayout>

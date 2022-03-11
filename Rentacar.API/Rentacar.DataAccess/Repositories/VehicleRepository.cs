@@ -22,6 +22,10 @@ namespace Rentacar.DataAccess.Repositories
         public async Task<ICollection<Vehicle>> FilterVehicles(int? transmissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType)
         {
             var query = _context.Vehicles
+                                .Include(x => x.Model)
+                                .ThenInclude(x => x.VehicleType)
+                                .Include(x =>x.Model)
+                                .ThenInclude(y => y.Make)
                                 .Include(x => x.Bookings)
                                 .AsQueryable();
 

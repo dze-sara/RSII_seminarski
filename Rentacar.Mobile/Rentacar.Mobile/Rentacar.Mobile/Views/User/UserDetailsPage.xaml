@@ -6,21 +6,21 @@
     
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label Text="Hi!"
+            <Label Text="Hi! You can edit your profile here"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Line/>
             <Label Text="First name" VerticalOptions="Center" />
-            <Entry x:Name="firstNameEntry" VerticalOptions="Center"/>
+            <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" VerticalOptions="Center"/>
 
             <Label Text="Last name" VerticalOptions="Center" />
-            <Entry x:Name="lastNameEntry" VerticalOptions="Center"/>
+            <Entry x:Name="lastNameEntry" Text="{Binding Lastname}" VerticalOptions="Center"/>
 
             <Label Text="Email" VerticalOptions="Center" />
-            <Entry x:Name="emailEntry" VerticalOptions="Center"/>
+            <Entry x:Name="emailEntry" Text="{Binding Email}" VerticalOptions="Center"/>
 
             <Label Text="Password" VerticalOptions="Center" />
-            <Entry x:Name="passwordEntry" VerticalOptions="Center" IsPassword="true"/>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" VerticalOptions="Center" IsPassword="true"/>
 
             <Button VerticalOptions="Center" Text="save changes" Command="{Binding SaveChangesCommand}"/>
         </StackLayout>

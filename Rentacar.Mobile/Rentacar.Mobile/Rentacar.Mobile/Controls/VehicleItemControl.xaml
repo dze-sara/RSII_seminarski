@@ -16,7 +16,7 @@
                         <ColumnDefinition Width="50*"></ColumnDefinition>
                         <ColumnDefinition Width="30*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Image Source="xamarin_logo.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
+                    <Image Source="icon_car.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
                     <Label Grid.Column="1" Grid.Row="0" Text="{Binding VehicleType}"></Label>
                     <FlexLayout Grid.Column="1" Grid.Row="1">
                         <Label Text="{Binding NumberOfSeats}"></Label>
@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="30*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <FlexLayout Grid.Column="0">
-                        <Label Text="Price: " />
+                        <Label Text="Price per day: " />
                         <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding RatePerDay}"/>
                         <Label Text=" €" />
                     </FlexLayout>

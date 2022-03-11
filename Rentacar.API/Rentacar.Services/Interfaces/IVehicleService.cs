@@ -12,7 +12,7 @@ namespace Rentacar.Services.Interfaces
     {
         Task<ICollection<VehicleDto>> GetVehicles();
         Task<VehicleDto> GetVehicleById(int vehicleId);
-        Task<ICollection<VehicleDto>> FilterVehicles(TransmissionTypeEnum? tranismissoinType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType);
+        Task<ICollection<VehicleBaseDto>> FilterVehicles(TransmissionTypeEnum? tranismissoinType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType);
         Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request);
         Task<VehicleBaseDto> AddVehicle(NewVehicleRequest vehicle);
 

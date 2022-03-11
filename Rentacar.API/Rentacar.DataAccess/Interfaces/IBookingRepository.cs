@@ -13,7 +13,7 @@ namespace Rentacar.DataAccess.Interfaces
         Task<Booking> AddBooking(Booking booking);
         Task<List<Booking>> GetLatestActiveBookings();
         Task<List<Booking>> GetBookingHistory();
+        Task<List<Booking>> GetBookingHistoryForUser(int userId);
         Task<List<Booking>> FilterBooking(BookingRequestDto bookingRequest);
-
     }
 }

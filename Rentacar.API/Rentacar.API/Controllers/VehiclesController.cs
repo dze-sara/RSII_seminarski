@@ -43,7 +43,7 @@ namespace Rentacar.API.Controllers
                 return BadRequest();
             }
 
-            ICollection<VehicleDto> vehicles =  await _vehicleService.FilterVehicles(transmissionType, bookingStart, bookingEnd, vehicleType);
+            ICollection<VehicleBaseDto> vehicles =  await _vehicleService.FilterVehicles(transmissionType, bookingStart, bookingEnd, vehicleType);
             return Ok(vehicles);
         }
 
