@@ -10,5 +10,6 @@ namespace Rentacar.Services.Interfaces
         Task<UserDto> RegisterUser(UserDto userDto);
         Task<UserDto> LoginUser(LoginRequestDto loginRequestDto);
         Task<List<BaseUserDto>> FilterUsers(FilterUsersDto filterUsersDto);
+        Task<UserDto> UpdateUser(UserDto userDto);
     }
 }

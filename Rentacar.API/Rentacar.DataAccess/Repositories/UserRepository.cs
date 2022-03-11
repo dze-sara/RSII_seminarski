@@ -72,5 +72,16 @@ namespace Rentacar.DataAccess.Repositories
             // Return added user
             return addedUser;
         }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            User updatingUser = _context.Users.FirstOrDefault(x => x.UserId == user.UserId);
+            updatingUser.FirstName = user.FirstName;
+            updatingUser.LastName = user.LastName;
+            updatingUser.Email = user.Email;
+            updatingUser.Password = user.Password;
+            await _context.SaveChangesAsync();
+            return updatingUser;
+        }
     }
 }

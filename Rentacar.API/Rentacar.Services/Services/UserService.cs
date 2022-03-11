@@ -53,5 +53,10 @@ namespace Rentacar.Services.Services
 
             return _mapper.Map<UserDto>(registeredUser);
         }
+
+        public async Task<UserDto> UpdateUser(UserDto userDto)
+        {
+            return _mapper.Map<UserDto>(await _userRepository.UpdateUser(_mapper.Map<User>(userDto)));
+        }
     }
 }
