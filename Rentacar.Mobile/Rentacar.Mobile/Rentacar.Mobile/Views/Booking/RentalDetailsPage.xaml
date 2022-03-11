@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.RentalDetailsPage"
+             Title="Confirm booking">
+    <ContentPage.Content>
+        
+        <StackLayout Padding="10,10,10,10">
+
+            <Frame BackgroundColor="AliceBlue">
+                <StackLayout>
+                    <FlexLayout>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.Make}"></Label>
+                        <Label Text=" "></Label>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Vehicle.Model}"></Label>
+                    </FlexLayout>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                            <ColumnDefinition Width="30*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="xamarin_logo.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.VehicleType}"></Label>
+                        <FlexLayout Grid.Column="1" Grid.Row="1">
+                            <Label Text="{Binding Vehicle.NumberOfSeats}"></Label>
+                            <Label Text=" seats"></Label>
+                        </FlexLayout>
+
+                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding Vehicle.TransmissionType}"></Label>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30*"></ColumnDefinition>
+                            <ColumnDefinition Width="30*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <FlexLayout Grid.Column="0">
+                            <Label Text="Price: " />
+                            <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding Vehicle.RatePerDay}"/>
+                            <Label Text=" €" />
+                        </FlexLayout>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+
+            <!--<controls:VehicleItemControl 
+                Vehicle="{Binding Source={RelativeSource AncestorType={x:Type local:RentalDetailsViewModel}}, Path=Vehicle}"/>-->
+
+            <Button Text="confirm booking" HorizontalOptions="Center" Clicked="OnConfirmBooking" ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

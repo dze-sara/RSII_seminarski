@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.RentalDatePage"
+             Title="Book vehicles">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Example Item"
+                 IconImageSource="icon_about.png"
+                 Order="Primary"
+                 Priority="0"
+                 Clicked="OnUserButtonClicked"/>
+    </ContentPage.ToolbarItems>
+
+
+        <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Label Text="pick a perfect car for you"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="pick up date" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2021"
+                            MaximumDate="12/31/2022"
+                            Date="03/11/2022" />
+
+                <TimePicker Grid.Column="1" Grid.Row="0" />
+            </Grid>
+
+            <Label Text="return date" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2021"
+                            MaximumDate="12/31/2022"
+                            Date="03/11/2022" />
+
+                <TimePicker Grid.Column="1" Grid.Row="0" />
+            </Grid>
+
+            <Button VerticalOptions="Center" Text="search" Command="{Binding SearchCommand}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

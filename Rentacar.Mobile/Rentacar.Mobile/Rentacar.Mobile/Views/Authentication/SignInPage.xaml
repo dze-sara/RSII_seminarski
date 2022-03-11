@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.SignInPage" BackgroundColor="{StaticResource Background}">
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Label Text="Please sign in!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" TextColor="White" />
+            <Entry x:Name="usernameEntry"  PlaceholderColor="White" VerticalOptions="Center" Placeholder="Username" Text="{Binding Username}"/>
+            <Entry x:Name="passwordEntry" PlaceholderColor="White" VerticalOptions="Center" IsPassword="true" Placeholder="Password" Text="{Binding Password}"/>
+            <Button VerticalOptions="Center" Text="sign in" Command="{Binding SignInCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

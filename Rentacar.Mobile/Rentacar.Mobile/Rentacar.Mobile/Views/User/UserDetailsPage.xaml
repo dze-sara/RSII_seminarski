@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.UserDetailsPage"
+             Title="User details">
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Label Text="Hi!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Line/>
+            <Label Text="First name" VerticalOptions="Center" />
+            <Entry x:Name="firstNameEntry" VerticalOptions="Center"/>
+
+            <Label Text="Last name" VerticalOptions="Center" />
+            <Entry x:Name="lastNameEntry" VerticalOptions="Center"/>
+
+            <Label Text="Email" VerticalOptions="Center" />
+            <Entry x:Name="emailEntry" VerticalOptions="Center"/>
+
+            <Label Text="Password" VerticalOptions="Center" />
+            <Entry x:Name="passwordEntry" VerticalOptions="Center" IsPassword="true"/>
+
+            <Button VerticalOptions="Center" Text="save changes" Command="{Binding SaveChangesCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
