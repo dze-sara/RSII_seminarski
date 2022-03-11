@@ -43,7 +43,7 @@ namespace Rentacar.Services.Services
 
         public async Task<ICollection<VehicleDto>> FilterVehicles(TransmissionTypeEnum? transmissionType, DateTime? bookingStartTime, DateTime? bookingEndTime, int? vehicleType)
         {
-            return _mapper.Map<List<VehicleDto>>(await _vehicleRepository.FilterVehicles((int)transmissionType, bookingStartTime, bookingEndTime, vehicleType));
+            return _mapper.Map<List<VehicleDto>>(await _vehicleRepository.FilterVehicles((int?)transmissionType, bookingStartTime, bookingEndTime, vehicleType));
         }
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request)
