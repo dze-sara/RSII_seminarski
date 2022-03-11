@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.Entities", "Rentac
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{74B16E02-0CC1-4666-84A6-ED05B803578F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rentacar.Resources", "Rentacar.Resources\Rentacar.Resources.csproj", "{0E3AAADB-3EEE-465E-AB01-8041E85CD860}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.Resources", "Rentacar.Resources\Rentacar.Resources.csproj", "{0E3AAADB-3EEE-465E-AB01-8041E85CD860}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rentacar.Common", "Rentacar.Common\Rentacar.Common.csproj", "{7248B49B-5E8C-433D-A76F-56C1BA63850B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.Common", "Rentacar.Common\Rentacar.Common.csproj", "{7248B49B-5E8C-433D-A76F-56C1BA63850B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +32,8 @@ Global
 		{C76ABA04-51B5-4A30-BF58-3922F221B54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76ABA04-51B5-4A30-BF58-3922F221B54F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09B2F0FA-08BF-48E7-AF5F-289129231003}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{065F6F00-5378-4D91-84A0-FE36ECB72F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{065F6F00-5378-4D91-84A0-FE36ECB72F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
