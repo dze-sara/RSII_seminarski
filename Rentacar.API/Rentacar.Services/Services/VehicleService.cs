@@ -9,6 +9,7 @@ using Rentacar.Entities;
 using Rentacar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Rentacar.Services.Services
@@ -49,6 +50,39 @@ namespace Rentacar.Services.Services
         public async Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request)
         {
              return await _vehicleRepository.FilterVehicles(request);
+        }
+
+        public async Task<ICollection<VehicleBaseDto>> GetRecommendedVehicles(int userId)
+        {
+            // Get user's last vehicle model
+            Vehicle lastVehicle = await _vehicleRepository.GetVehicleByUserId(userId);
+
+            // Get other vehicle models
+            ICollection<Vehicle> availableVehicles = await _vehicleRepository.GetVehicles();
+
+            // Calculate vehicle with lowest hamming distance
+            List<Model> recommendations = CalculateLowestDistance(lastVehicle, availableVehicles);
+
+            // Retrieve vehicle with recommended model and return data
+            var recommendedVehicles = await _vehicleRepository.GetVehicles(recommendations);
+
+            return _mapper.Map<List<VehicleBaseDto>>(recommendedVehicles);
+        }
+
+        private List<Model> CalculateLowestDistance(Vehicle lastVehicle, ICollection<Vehicle> availableVehicles)
+        {
+            var recommendations = availableVehicles.OrderByDescending(x => CalculateDistance(lastVehicle, x));
+            return recommendations.Select(x => x.Model).ToList();
+        }
+
+        private decimal CalculateDistance(Vehicle vehicle1, Vehicle vehicle2)
+        {
+            decimal distance = 0;
+            distance += Math.Abs(vehicle1.Model.VehicleTypeId - vehicle2.Model.VehicleTypeId);
+            distance += Math.Abs(vehicle1.Model.MakeId - vehicle2.Model.MakeId);
+            distance += Math.Abs(vehicle1.Model.ModelId - vehicle2.Model.ModelId);
+            distance += Math.Abs(vehicle1.RatePerDay - vehicle2.RatePerDay);
+            return distance;
         }
 
         public async Task<VehicleDto> GetVehicleById(int vehicleId)

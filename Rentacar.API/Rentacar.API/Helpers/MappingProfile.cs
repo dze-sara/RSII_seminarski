@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Rentacar.Dto;
+using Rentacar.Dto.Response;
 using Rentacar.Entities;
 
 namespace Rentacar.API.Helpers
@@ -25,6 +26,7 @@ namespace Rentacar.API.Helpers
             CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Model, ModelBaseDto>();
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
+            CreateMap<Vehicle, VehicleBaseDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeBaseDto>();
             CreateMap<Make, MakeDto>().ReverseMap();
