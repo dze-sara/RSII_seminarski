@@ -18,5 +18,11 @@ namespace Rentacar.Mobile.Services.Implementations
             List<VehicleBaseDto> vehicles = await HttpHelper.GetAsync<List<VehicleBaseDto>>(_baseUrl + "/filter", parameters);
             return vehicles;
         }
+
+        public async Task<List<VehicleBaseDto>> GetRecommendedVehicles(int userId)
+        {
+            List<VehicleBaseDto> vehicles = await HttpHelper.GetAsync<List<VehicleBaseDto>>(_baseUrl + "/recommended/" + userId.ToString());
+            return vehicles;
+        }
     }
 }

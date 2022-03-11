@@ -32,6 +32,7 @@
     <TabBar x:Name="mainpage" Route="mainpage">
         <ShellContent Title="Search" Icon="icon_about.png" Route="RentalDatePage" ContentTemplate="{DataTemplate local:RentalDatePage}" />
         <ShellContent Title="History" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:RentalHistoryPage}" />
+        <ShellContent Title="Recommendations" Icon="icon_car.png" ContentTemplate="{DataTemplate local:RecommendationPage}" />
     </TabBar>
 
 

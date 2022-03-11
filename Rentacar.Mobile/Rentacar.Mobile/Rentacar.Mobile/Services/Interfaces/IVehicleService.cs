@@ -9,5 +9,6 @@ namespace Rentacar.Mobile.Services.Interfaces
     public interface IVehicleService
     {
         Task<List<VehicleBaseDto>> FilterVehiclesByDateRange(DateTime startDate, DateTime endTime);
+        Task<List<VehicleBaseDto>> GetRecommendedVehicles(int userId);
     }
 }
