@@ -53,7 +53,7 @@ namespace Rentacar.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseExceptionHandler("/error");
+            //app.UseExceptionHandler("/error");
 
             app.UseSwagger();
             app.UseSwaggerUI();
