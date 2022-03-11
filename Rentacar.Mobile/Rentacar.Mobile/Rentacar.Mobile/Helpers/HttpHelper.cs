@@ -11,7 +11,7 @@ namespace Rentacar.Mobile.Services
     public static class HttpHelper
     {
         //public static string BaseUrl { get; set; } = "https://192.168.56.1:44379/";
-        public static string BaseUrl { get; set; } = "https://192.168.56.1:44379/";
+        public static string BaseUrl { get; set; } = "https://fitbarentacar.azurewebsites.net/";
         private static HttpClient _httpClient = new HttpClient(GetInsecureHandler());
 
         public static HttpClientHandler GetInsecureHandler()
