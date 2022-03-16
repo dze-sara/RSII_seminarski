@@ -16,5 +16,7 @@
     <ProjectReference Include="..\Rentacar.Services\Rentacar.Services.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 
 </Project>
