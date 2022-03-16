@@ -22,6 +22,10 @@ namespace Rentacar.DataAccess.Repositories
         public async Task<ICollection<Vehicle>> FilterVehicles(int? transmissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType)
         {
             var query = _context.Vehicles
+                                .Include(x => x.Model)
+                                .ThenInclude(x => x.VehicleType)
+                                .Include(x =>x.Model)
+                                .ThenInclude(y => y.Make)
                                 .Include(x => x.Bookings)
                                 .AsQueryable();
 
@@ -67,7 +71,21 @@ namespace Rentacar.DataAccess.Repositories
 
         public async Task<ICollection<Vehicle>> GetVehicles()
         {
-            List<Vehicle> vehicles = await _context.Vehicles.ToListAsync();
+            List<Vehicle> vehicles = await _context.Vehicles.Include(x => x.Model).ToListAsync();
+            return vehicles;
+        }
+
+        public async Task<ICollection<Vehicle>> GetVehicles(List<Model> models)
+        {
+            var topModels = models.Take(3);
+            List<Vehicle> vehicles = await _context.Vehicles
+                                                   .Include(x => x.Model)
+                                                   .ThenInclude(x => x.VehicleType)
+                                                   .Include(x => x.Model)
+                                                   .ThenInclude(y => y.Make)
+                                                   .Where(vehicle => topModels.Select(model => model.ModelId)
+                                                                              .Contains(vehicle.ModelId))
+                                                   .ToListAsync();
             return vehicles;
         }
 
@@ -163,6 +181,16 @@ namespace Rentacar.DataAccess.Repositories
 
             // Return added user
             return addedVehicle;
+        }
+
+        public async Task<Vehicle> GetVehicleByUserId(int userId)
+        {
+            Booking lastBooking = await _context.Bookings
+                                 .Include(x => x.Vehicle)
+                                 .ThenInclude(x => x.Model)
+                                 .OrderByDescending(x => x.EndDate)
+                                 .FirstOrDefaultAsync(x => x.UserId == userId);
+            return lastBooking?.Vehicle ?? await _context.Vehicles.FirstOrDefaultAsync();
         }
     }
 }

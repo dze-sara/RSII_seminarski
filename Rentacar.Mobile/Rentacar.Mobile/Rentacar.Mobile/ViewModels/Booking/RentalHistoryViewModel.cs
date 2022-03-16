@@ -1,5 +1,8 @@
-﻿using Rentacar.Dto.Response;
+﻿using Rentacar.Dto;
+using Rentacar.Dto.Response;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -7,43 +10,39 @@ namespace Rentacar.Mobile.ViewModels
 {
     public class RentalHistoryViewModel : BaseViewModel
     {
-        public ObservableCollection<VehicleBaseDto> VehicleItems { get; }
+        public ObservableCollection<BaseBookingDto> BookingItems { get; }
         public Command LoadItemsCommand { get; }
 
         public RentalHistoryViewModel()
         {
-            VehicleItems = new ObservableCollection<VehicleBaseDto>();
+            BookingItems = new ObservableCollection<BaseBookingDto>();
 
-            VehicleItems = new ObservableCollection<VehicleBaseDto>()
-            {
-                new VehicleBaseDto() { VehicleId = 1, VehicleType = "small car", Make = "Volvo", Model = "V40", IsActive = true, NumberOfSeats = 5, RatePerDay = 50 },
-                new VehicleBaseDto() { VehicleId = 2, VehicleType = "small car", Make = "VW", Model = "Polo", IsActive = true, NumberOfSeats = 5, RatePerDay = 30 }
-            };
+            ExecuteLoadItemsCommand();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-            //IsBusy = true;
+            IsBusy = true;
 
-            //try
-            //{
-            //    VehicleItems.Clear();
-            //    var items = await BookingService.FilterBookings(null);
-            //    foreach (var item in items)
-            //    {
-            //        VehicleItems.Add(item);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine(ex);
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
+            try
+            {
+                BookingItems.Clear();
+                var items = await BookingService.GetBookingHistoryForUser(AuthenticationService.UserId);
+                foreach (var item in items)
+                {
+                    BookingItems.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public void OnAppearing()

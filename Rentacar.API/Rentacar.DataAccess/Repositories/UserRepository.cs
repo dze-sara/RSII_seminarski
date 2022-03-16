@@ -66,11 +66,23 @@ namespace Rentacar.DataAccess.Repositories
             AssertionHelper.AssertObject(user);
 
             // Add user do database
+            user.RoleId = 1;
             User addedUser = _context.Users.Add(user).Entity;
             await _context.SaveChangesAsync();
 
             // Return added user
             return addedUser;
+        }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            User updatingUser = _context.Users.FirstOrDefault(x => x.UserId == user.UserId);
+            updatingUser.FirstName = user.FirstName;
+            updatingUser.LastName = user.LastName;
+            updatingUser.Email = user.Email;
+            updatingUser.Password = user.Password;
+            await _context.SaveChangesAsync();
+            return updatingUser;
         }
     }
 }

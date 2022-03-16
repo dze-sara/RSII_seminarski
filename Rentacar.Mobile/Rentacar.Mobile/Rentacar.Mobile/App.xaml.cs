@@ -1,4 +1,5 @@
 ﻿using Rentacar.Mobile.Services;
+using Rentacar.Mobile.Services.Implementations;
 using Rentacar.Mobile.Views;
 using System;
 using Xamarin.Forms;
@@ -13,9 +14,10 @@ namespace Rentacar.Mobile
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DataStore>();
             DependencyService.Register<BookingService>();
             DependencyService.Register<AuthenticationService>();
+            DependencyService.Register<VehicleService>();
             DependencyService.Register<UserService>();
 
             bool isLogged = false;

@@ -8,6 +8,7 @@ namespace Rentacar.DataAccess.Interfaces
     {
         Task<User> GetUserForLogin(string userEmail, string password);
         Task<User> RegisterUser(User user);
+        Task<User> UpdateUser(User user);
         Task<List<User>> FilterUsers(int? userId, string firstName, string lastName, string email);
     }
 }

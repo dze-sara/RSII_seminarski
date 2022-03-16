@@ -28,10 +28,5 @@ namespace Rentacar.Mobile.Views
             BindingContext = new RentalDetailsViewModel(Vehicle);
             InitializeComponent();
         }
-
-        private async void OnConfirmBooking(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync(nameof(RentalHistoryPage));
-        }
     }
 }

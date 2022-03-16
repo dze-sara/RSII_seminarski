@@ -53,6 +53,13 @@ namespace Rentacar.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("history/{userId}")]
+        public async Task<IActionResult> GetBookingHistory([FromRoute] int userId)
+        {
+            List<BaseBookingDto> result = await _bookingService.GetBookingHistoryForUser(userId);
+            return Ok(result);
+        }
+
         [HttpPost("filter")]
         public async Task<IActionResult> FilterBookings([FromBody] BookingRequestDto request)
         {

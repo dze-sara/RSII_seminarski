@@ -4,11 +4,13 @@
              x:Class="Rentacar.Mobile.Views.SignInPage" BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Image VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Source="logo.png"/>
+
             <Label Text="Please sign in!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" TextColor="White" />
-            <Entry x:Name="usernameEntry"  PlaceholderColor="White" VerticalOptions="Center" Placeholder="Username" Text="{Binding Username}"/>
-            <Entry x:Name="passwordEntry" PlaceholderColor="White" VerticalOptions="Center" IsPassword="true" Placeholder="Password" Text="{Binding Password}"/>
+            <Entry x:Name="usernameEntry"  PlaceholderColor="White" TextColor="White" VerticalOptions="Center" Placeholder="Username" Text="{Binding Username}"/>
+            <Entry x:Name="passwordEntry" PlaceholderColor="White" TextColor="White" VerticalOptions="Center" IsPassword="true" Placeholder="Password" Text="{Binding Password}"/>
             <Button VerticalOptions="Center" Text="sign in" Command="{Binding SignInCommand}"/>
         </StackLayout>
     </ContentPage.Content>

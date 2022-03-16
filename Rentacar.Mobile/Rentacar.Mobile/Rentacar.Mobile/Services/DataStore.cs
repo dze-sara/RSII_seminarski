@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Rentacar.Mobile.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class DataStore : IDataStore<Item>
     {
         readonly List<Item> items;
 
-        public MockDataStore()
+        public DateTime BookingStartDate { get; set; }
+        public DateTime BookingEndDate { get; set; }
+
+        public DataStore()
         {
             items = new List<Item>()
             {

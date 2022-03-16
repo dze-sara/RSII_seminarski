@@ -1,26 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:Rentacar.Mobile.Controls" xmlns:local="clr-namespace:Rentacar.Mobile.ViewModels" xmlns:model="clr-namespace:Rentacar.Dto.Response"
-             x:Class="Rentacar.Mobile.Views.FilteredVehiclesPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Rentacar.Mobile.ViewModels.Booking" xmlns:model="clr-namespace:Rentacar.Dto.Response"
+             x:Class="Rentacar.Mobile.Views.RecommendationPage">
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" VerticalOptions="Center">
-            <Frame Margin="10, 0, 20,0"  BorderColor="Yellow">
-                <Grid HeightRequest="80">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="50*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0" Text="pick up date"/>
-                    <Label  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="1" Text="{Binding StartDate}" />
+            <Label Text="Here are your vehicle recommendations!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
 
-                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.Row="0" Text="return date"/>
-                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.Row="1" Text="{Binding EndDate}" />
-
-                </Grid>
-            </Frame>
-            
-
-            <RefreshView x:DataType="local:FilteredVehiclesViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <RefreshView x:DataType="local:RecommendationsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                 <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding VehicleItems}"
                 SelectionMode="None">
@@ -65,37 +53,12 @@
 
                                     </StackLayout>
                                 </Frame>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FilteredVehiclesViewModel}}, Path=RentNowTapped}"		
-                                CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
-                                </StackLayout.GestureRecognizers>
+                                
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-
-
-
-                    <!--<CollectionView.ItemTemplate >
-                        <DataTemplate>
-                            <StackLayout Padding="10,10,10,10" x:DataType="model:VehicleBaseDto">
-                                <controls:VehicleItemControl BackgroundColor="AliceBlue" Vehicle="{Binding .}" ></controls:VehicleItemControl>
-                                
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                        NumberOfTapsRequired="1"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:FilteredVehiclesViewModel}}, Path=ItemTapped}"		
-                                        CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>-->
                 </CollectionView>
             </RefreshView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

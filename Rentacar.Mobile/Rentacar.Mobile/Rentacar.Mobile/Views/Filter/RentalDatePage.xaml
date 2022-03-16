@@ -6,7 +6,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Example Item"
-                 IconImageSource="icon_about.png"
+                 IconImageSource="icon_user.png"
                  Order="Primary"
                  Priority="0"
                  Clicked="OnUserButtonClicked"/>
@@ -27,9 +27,9 @@
                 </Grid.ColumnDefinitions>
                 <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2021"
                             MaximumDate="12/31/2022"
-                            Date="03/11/2022" />
+                            Date="{Binding StartDate}" />
 
-                <TimePicker Grid.Column="1" Grid.Row="0" />
+                <TimePicker Grid.Column="1" Grid.Row="0" Time="{Binding StartTime}" />
             </Grid>
 
             <Label Text="return date" />
@@ -38,11 +38,11 @@
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2021"
+                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/02/2021"
                             MaximumDate="12/31/2022"
-                            Date="03/11/2022" />
+                            Date="{Binding EndDate}" />
 
-                <TimePicker Grid.Column="1" Grid.Row="0" />
+                <TimePicker Grid.Column="1" Grid.Row="0" Time="{Binding EndTime}" />
             </Grid>
 
             <Button VerticalOptions="Center" Text="search" Command="{Binding SearchCommand}"/>

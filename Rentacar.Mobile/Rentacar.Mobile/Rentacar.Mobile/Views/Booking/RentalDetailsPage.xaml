@@ -7,6 +7,21 @@
         
         <StackLayout Padding="10,10,10,10">
 
+            <Frame Margin="10, 0, 20,0"  BorderColor="Yellow">
+                <Grid HeightRequest="80">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0" Text="pick up date"/>
+                    <Label  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="1" Text="{Binding StartDate}" />
+
+                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.Row="0" Text="return date"/>
+                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.Row="1" Text="{Binding EndDate}" />
+
+                </Grid>
+            </Frame>
+
             <Frame BackgroundColor="AliceBlue">
                 <StackLayout>
                     <FlexLayout>
@@ -20,7 +35,7 @@
                             <ColumnDefinition Width="50*"></ColumnDefinition>
                             <ColumnDefinition Width="30*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="xamarin_logo.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
+                        <Image Source="icon_car.png" Scale="1" Grid.RowSpan="3" Grid.Column="0"></Image>
                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.VehicleType}"></Label>
                         <FlexLayout Grid.Column="1" Grid.Row="1">
                             <Label Text="{Binding Vehicle.NumberOfSeats}"></Label>
@@ -35,7 +50,7 @@
                             <ColumnDefinition Width="30*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <FlexLayout Grid.Column="0">
-                            <Label Text="Price: " />
+                            <Label Text="Price per day: " />
                             <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding Vehicle.RatePerDay}"/>
                             <Label Text=" €" />
                         </FlexLayout>
@@ -47,7 +62,7 @@
             <!--<controls:VehicleItemControl 
                 Vehicle="{Binding Source={RelativeSource AncestorType={x:Type local:RentalDetailsViewModel}}, Path=Vehicle}"/>-->
 
-            <Button Text="confirm booking" HorizontalOptions="Center" Clicked="OnConfirmBooking" ></Button>
+            <Button Text="confirm booking" HorizontalOptions="Center" Command="{Binding ConfirmBookingCommand}" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

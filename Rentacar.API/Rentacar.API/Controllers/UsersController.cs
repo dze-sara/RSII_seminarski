@@ -38,5 +38,12 @@ namespace Rentacar.API.Controllers
             List<BaseUserDto> filteredUsers = await _userService.FilterUsers(filterUsersDto);
             return Ok(filteredUsers);
         }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserDto userRequest)
+        {
+            UserDto registeredUser = await _userService.UpdateUser(userRequest);
+            return Ok(registeredUser);
+        }
     }
 }

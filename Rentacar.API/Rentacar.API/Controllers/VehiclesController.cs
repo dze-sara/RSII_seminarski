@@ -43,7 +43,7 @@ namespace Rentacar.API.Controllers
                 return BadRequest();
             }
 
-            ICollection<VehicleDto> vehicles =  await _vehicleService.FilterVehicles(transmissionType, bookingStart, bookingEnd, vehicleType);
+            ICollection<VehicleBaseDto> vehicles =  await _vehicleService.FilterVehicles(transmissionType, bookingStart, bookingEnd, vehicleType);
             return Ok(vehicles);
         }
 
@@ -60,6 +60,13 @@ namespace Rentacar.API.Controllers
             VehicleBaseDto vehicle = await _vehicleService.AddVehicle(request);
             var x = Ok(vehicle);
             return x;
+        }
+
+        [HttpGet("recommended/{userId}")]
+        public async Task<IActionResult> GetRecommendedVehicles([FromRoute]int userId)
+        {
+            ICollection<VehicleBaseDto> vehicles = await _vehicleService.GetRecommendedVehicles(userId);
+            return Ok(vehicles);
         }
     }
 }
