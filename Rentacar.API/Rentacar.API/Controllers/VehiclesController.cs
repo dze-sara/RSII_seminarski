@@ -68,5 +68,19 @@ namespace Rentacar.API.Controllers
             ICollection<VehicleBaseDto> vehicles = await _vehicleService.GetRecommendedVehicles(userId);
             return Ok(vehicles);
         }
+
+        [HttpPost("update/{vehicleId}")]
+        public async Task<IActionResult> UpdateVehicle([FromRoute] int vehicleId, [FromBody] NewVehicleRequest request)
+        {
+            VehicleBaseDto vehicle = await _vehicleService.UpdateVehicle(vehicleId, request);
+            var x = Ok(vehicle);
+            return x;
+        }
+
+        [HttpDelete("{vehicleId}")]
+        public async Task<IActionResult> DeleteVehicle([FromRoute] int vehicleId)
+        {
+            return Ok(await _vehicleService.DeleteVehicle(vehicleId));
+        }
     }
 }

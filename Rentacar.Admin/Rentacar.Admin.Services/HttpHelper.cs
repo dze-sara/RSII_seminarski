@@ -21,6 +21,15 @@ namespace Rentacar.Admin.Services
             return deserializedResponse;
         }
 
+        public static async Task<T> DeleteAsync<T>(string resourceUrl)
+        {
+            var response = await _httpClient.DeleteAsync(resourceUrl);
+
+            T deserializedResponse = await DeserializeResponse<T>(response);
+
+            return deserializedResponse;
+        }
+
         public static async Task<T> GetAsync<T>(string resourceUrl, Dictionary<string, string> parameters = null)
         {
             string getAsyncUrl = resourceUrl;

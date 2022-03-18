@@ -26,5 +26,17 @@ namespace Rentacar.Admin.Services
             var newVehicle = await HttpHelper.PostAsync<VehicleBaseDto, NewVehicleRequest>($"{_baseUrl}/add", vehicle);
             return newVehicle;
         }
+
+        public static async Task<bool> DeleteVehicle(int vehicleId)
+        {
+            var deleted = await HttpHelper.DeleteAsync<bool>($"{_baseUrl}/{vehicleId}");
+            return deleted;
+        }
+
+        public static async Task<VehicleBaseDto> UpdateVehicle(int vehicleId, NewVehicleRequest vehicle)
+        {
+            var newVehicle = await HttpHelper.PostAsync<VehicleBaseDto, NewVehicleRequest>($"{_baseUrl}/update/{vehicleId}", vehicle);
+            return newVehicle;
+        }
     }
 }

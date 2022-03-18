@@ -16,6 +16,11 @@ namespace Rentacar.Admin.Services
             return await HttpHelper.GetAsync<FilterLookupsDto>(_baseUrl);
         }
 
+        public async static Task<MakeBaseDto> GetMake(string makeName)
+        {
+            return await HttpHelper.GetAsync<MakeBaseDto>(_baseUrl+$"/make/{makeName}");
+        }
+
         public async static Task<List<ModelBaseDto>> GetModelsForMake(int id)
         {
             var res = await HttpHelper.GetAsync<List<ModelBaseDto>>(_baseUrl+$"/models/{id}");

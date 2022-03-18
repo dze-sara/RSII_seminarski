@@ -71,7 +71,7 @@ namespace Rentacar.Admin
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageVehicles = new System.Windows.Forms.TabPage();
             this.buttonAddNew = new System.Windows.Forms.Button();
-            this.comboBoxVehiclesLocation = new System.Windows.Forms.ComboBox();
+            this.comboBoxActive = new System.Windows.Forms.ComboBox();
             this.numericBookingsMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.numericVehiclesMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.buttonExportVehicles = new System.Windows.Forms.Button();
@@ -178,20 +178,26 @@ namespace Rentacar.Admin
             // 
             // dataGridViewHistory
             // 
+            this.dataGridViewHistory.AllowUserToAddRows = false;
+            this.dataGridViewHistory.AllowUserToDeleteRows = false;
             this.dataGridViewHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHistory.Location = new System.Drawing.Point(20, 388);
             this.dataGridViewHistory.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewHistory.Name = "dataGridViewHistory";
+            this.dataGridViewHistory.ReadOnly = true;
             this.dataGridViewHistory.RowHeadersWidth = 51;
             this.dataGridViewHistory.Size = new System.Drawing.Size(996, 185);
             this.dataGridViewHistory.TabIndex = 2;
             // 
             // dataGridViewActiveBookings
             // 
+            this.dataGridViewActiveBookings.AllowUserToAddRows = false;
+            this.dataGridViewActiveBookings.AllowUserToDeleteRows = false;
             this.dataGridViewActiveBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewActiveBookings.Location = new System.Drawing.Point(20, 85);
             this.dataGridViewActiveBookings.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewActiveBookings.Name = "dataGridViewActiveBookings";
+            this.dataGridViewActiveBookings.ReadOnly = true;
             this.dataGridViewActiveBookings.RowHeadersWidth = 51;
             this.dataGridViewActiveBookings.Size = new System.Drawing.Size(996, 240);
             this.dataGridViewActiveBookings.TabIndex = 1;
@@ -330,7 +336,6 @@ namespace Rentacar.Admin
             this.dataGridViewBookings.Size = new System.Drawing.Size(984, 185);
             this.dataGridViewBookings.TabIndex = 30;
             this.dataGridViewBookings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookings_CellClick);
-            this.dataGridViewBookings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookings_CellContentClick);
             // 
             // buttonSearch
             // 
@@ -564,7 +569,7 @@ namespace Rentacar.Admin
             // tabPageVehicles
             // 
             this.tabPageVehicles.Controls.Add(this.buttonAddNew);
-            this.tabPageVehicles.Controls.Add(this.comboBoxVehiclesLocation);
+            this.tabPageVehicles.Controls.Add(this.comboBoxActive);
             this.tabPageVehicles.Controls.Add(this.numericBookingsMaxPrice);
             this.tabPageVehicles.Controls.Add(this.numericVehiclesMaxPrice);
             this.tabPageVehicles.Controls.Add(this.buttonExportVehicles);
@@ -608,14 +613,14 @@ namespace Rentacar.Admin
             this.buttonAddNew.UseVisualStyleBackColor = true;
             this.buttonAddNew.Click += new System.EventHandler(this.buttonAddNew_Click);
             // 
-            // comboBoxVehiclesLocation
+            // comboBoxActive
             // 
-            this.comboBoxVehiclesLocation.FormattingEnabled = true;
-            this.comboBoxVehiclesLocation.Location = new System.Drawing.Point(576, 162);
-            this.comboBoxVehiclesLocation.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxVehiclesLocation.Name = "comboBoxVehiclesLocation";
-            this.comboBoxVehiclesLocation.Size = new System.Drawing.Size(172, 24);
-            this.comboBoxVehiclesLocation.TabIndex = 52;
+            this.comboBoxActive.FormattingEnabled = true;
+            this.comboBoxActive.Location = new System.Drawing.Point(585, 162);
+            this.comboBoxActive.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxActive.Name = "comboBoxActive";
+            this.comboBoxActive.Size = new System.Drawing.Size(139, 24);
+            this.comboBoxActive.TabIndex = 52;
             // 
             // numericBookingsMaxPrice
             // 
@@ -667,6 +672,8 @@ namespace Rentacar.Admin
             // 
             // dataGridViewVehicles
             // 
+            this.dataGridViewVehicles.AllowUserToAddRows = false;
+            this.dataGridViewVehicles.AllowUserToDeleteRows = false;
             this.dataGridViewVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVehicles.Location = new System.Drawing.Point(25, 225);
             this.dataGridViewVehicles.Margin = new System.Windows.Forms.Padding(4);
@@ -693,12 +700,12 @@ namespace Rentacar.Admin
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(572, 143);
+            this.label29.Location = new System.Drawing.Point(582, 143);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(62, 17);
+            this.label29.Size = new System.Drawing.Size(46, 17);
             this.label29.TabIndex = 42;
-            this.label29.Text = "Location";
+            this.label29.Text = "Active";
             // 
             // comboBoxVehicleNoSeats
             // 
@@ -1110,7 +1117,7 @@ namespace Rentacar.Admin
         private System.Windows.Forms.NumericUpDown numericBookingMinPrice;
         private System.Windows.Forms.NumericUpDown numericBookingsMaxPrice;
         private System.Windows.Forms.NumericUpDown numericVehiclesMaxPrice;
-        private System.Windows.Forms.ComboBox comboBoxVehiclesLocation;
+        private System.Windows.Forms.ComboBox comboBoxActive;
         private System.Windows.Forms.Button buttonAddNew;
     }
 }

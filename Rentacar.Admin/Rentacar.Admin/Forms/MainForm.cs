@@ -33,8 +33,8 @@ namespace Rentacar.Admin
         {
             await InitializeHomePage();
             await InitializeBookingFilters();
-            await InitializeUsers();
             await InitializeVehicles();
+            await InitializeUsers();
         }
 
         private async Task InitializeVehicles()
@@ -49,8 +49,7 @@ namespace Rentacar.Admin
 
             comboBoxBookingMake.DataSource = _filterLookupsDto.Makes;
             comboBoxBookingMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
-            //comboBoxBookingModel.DataSource = _filterLookupsDto.Models;
-            //comboBoxBookingModel.SelectedItem = null;
+
             comboBoxBookingVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
             comboBoxBookingVehicleType.SelectedItem = null;
 
@@ -60,15 +59,18 @@ namespace Rentacar.Admin
             comboBoxVehiclesVehicleType.SelectedItem = null;
             comboBoxVehiclesMake.DataSource = _filterLookupsDto.Makes;
             comboBoxVehiclesMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
-            //comboBoxVehiclesModel.DataSource = _filterLookupsDto.Models;
-            //comboBoxVehiclesModel.SelectedItem = null;
+
             comboBoxVehicleTransmission.DataSource = new List<ComboBoxItem>() {
                 new ComboBoxItem() { Value = 1, Text = "Manual"},
                 new ComboBoxItem() { Value = 2, Text = "Automatic"},
             };
             comboBoxVehicleTransmission.SelectedItem = null;
-            comboBoxVehiclesLocation.DataSource = _filterLookupsDto.Locations;
-            comboBoxVehiclesLocation.SelectedItem = null;
+
+            comboBoxActive.DataSource = new List<ComboBoxItem>() {
+                new ComboBoxItem() { Value = 0, Text = "All"},
+                new ComboBoxItem() { Value = 1, Text = "True"},
+                new ComboBoxItem() { Value = 2, Text = "False"},
+            };
 
             dataGridViewBookings.DataSource = await BookingService.FilterBookings(new BookingRequestDto());
             dataGridViewBookings.Refresh();
@@ -88,7 +90,7 @@ namespace Rentacar.Admin
                 dataGridViewHistory.Refresh();
             }));
         }
-
+        
         private async Task InitializeUsers()
         {
             dataGridViewUsers.DataSource = await UserService.FilterUsers(null, null, null, null);
@@ -181,7 +183,9 @@ namespace Rentacar.Admin
         {
             var vehicle = dataGridViewVehicles.SelectedRows[0].DataBoundItem as VehicleBaseDto;
             Form vehicleDetails = new VehicleDetails(vehicle);
-            vehicleDetails.ShowDialog();
+            vehicleDetails.Show();
+
+            vehicleDetails.FormClosed += new FormClosedEventHandler(this.FormClosedActivity);
         }
 
         private void OpenUserDetails()
@@ -216,15 +220,16 @@ namespace Rentacar.Admin
             bookingDetails.ShowDialog();
         }
 
-        private void dataGridViewBookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void buttonAddNew_Click(object sender, EventArgs e)
         {
             Form vehicleDetails = new NewVehicleForm();
-            vehicleDetails.ShowDialog();
+            vehicleDetails.Show();
+            vehicleDetails.FormClosed += new FormClosedEventHandler(this.FormClosedActivity);
+        }
+
+        private async void FormClosedActivity(object sender, FormClosedEventArgs e)
+        {
+            await InitializeVehicles();
         }
 
         private async void comboBoxVehiclesMake_SelectedIndexChanged(object sender, EventArgs e)

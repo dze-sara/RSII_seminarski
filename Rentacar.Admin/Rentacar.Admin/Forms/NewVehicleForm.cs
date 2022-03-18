@@ -21,8 +21,6 @@ namespace Rentacar.Admin.Forms
         {
             InitializeComponent();
             InitializeFilters();
-
-
         }
 
         private async void InitializeFilters()
@@ -73,6 +71,7 @@ namespace Rentacar.Admin.Forms
             };
 
             var addedVehicle = await VehicleService.AddVehicle(newvehicle);
+            this.Close();
         }
 
         private async void comboBoxMake_SelectedIndexChanged(object sender, EventArgs e)

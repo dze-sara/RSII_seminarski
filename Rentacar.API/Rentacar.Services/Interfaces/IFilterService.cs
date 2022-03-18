@@ -9,5 +9,6 @@ namespace Rentacar.Services.Interfaces
     {
         public Task<FilterLookupsDto> GetFilterLookups();
         public Task<List<ModelBaseDto>> GetModelsForMake(int makeId);
+        public Task<MakeBaseDto> GetMake(string makeName);
     }
 }

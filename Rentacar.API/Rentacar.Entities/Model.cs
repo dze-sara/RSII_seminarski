@@ -19,7 +19,6 @@ namespace Rentacar.Entities
         public short NoOfSeats { get; set; }
         public int MakeId { get; set; }
         public int VehicleTypeId { get; set; }
-
         public virtual Make Make { get; set; }
         public virtual ICollection<Vehicle> Vehicles { get; set; }
         public virtual VehicleType VehicleType { get; set; }

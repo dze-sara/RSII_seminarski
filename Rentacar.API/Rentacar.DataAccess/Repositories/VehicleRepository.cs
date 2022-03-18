@@ -160,7 +160,7 @@ namespace Rentacar.DataAccess.Repositories
             {
                 IsActive = true,
                 Model = model,
-                RatePerDay = vehicle.PricePerDay,
+                RatePerDay = (decimal)vehicle.PricePerDay,
                 TransmissionType = (short)vehicle.Transmission,
                 LocationId = 1
             };
@@ -183,6 +183,40 @@ namespace Rentacar.DataAccess.Repositories
             return addedVehicle;
         }
 
+        public async Task<Vehicle> UpdateVehicle(int vehicleId, NewVehicleRequest vehicle)
+        {
+            var existingVehicle = _context.Vehicles.Where(x => x.VehicleId == vehicleId)
+                .Include(x => x.Model)
+                .ThenInclude(x => x.Make)
+                .FirstOrDefault();
+
+            if(existingVehicle == null)
+            {
+                return null;
+            }
+
+            if(vehicle.Model != null)
+            {
+                var model = _context.Models.Where(x => x.ModelId == vehicle.Model.ModelId).FirstOrDefault();
+                existingVehicle.Model = model;
+            }
+
+            if (vehicle.PricePerDay != null && vehicle.PricePerDay != 0)
+            {
+                existingVehicle.RatePerDay = (decimal)vehicle.PricePerDay;
+            }
+
+            if(vehicle.Transmission != null && vehicle.Transmission != 0)
+            {
+                existingVehicle.TransmissionType = (short)vehicle.Transmission;
+            }
+
+            var updatedVehicle = _context.Update<Vehicle>(existingVehicle);
+            await _context.SaveChangesAsync();
+
+            return updatedVehicle.Entity;
+        }
+
         public async Task<Vehicle> GetVehicleByUserId(int userId)
         {
             Booking lastBooking = await _context.Bookings
@@ -191,6 +225,21 @@ namespace Rentacar.DataAccess.Repositories
                                  .OrderByDescending(x => x.EndDate)
                                  .FirstOrDefaultAsync(x => x.UserId == userId);
             return lastBooking?.Vehicle ?? await _context.Vehicles.FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> DeleteVehicle(int vehicleId)
+        {
+            var vehicle = _context.Vehicles.Where(x => x.VehicleId == vehicleId).FirstOrDefault();
+
+            if(vehicle == null)
+            {
+                return false;
+            }
+
+            _context.Remove<Vehicle>(vehicle);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

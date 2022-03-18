@@ -18,6 +18,11 @@ namespace Rentacar.DataAccess.Repositories
             _context = context;
         }
 
+        public async Task<Make> GetMake(string makeName)
+        {
+            return await _context.Makes.Where(x => x.MakeName == makeName).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Make>> GetMakesForFilter()
         {
             return await _context.Makes.ToListAsync();

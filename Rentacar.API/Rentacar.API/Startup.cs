@@ -53,6 +53,12 @@ namespace Rentacar.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            using (IServiceScope scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<RentacarContext>().Database.Migrate();
+            }
+
             //app.UseExceptionHandler("/error");
 
             app.UseSwagger();

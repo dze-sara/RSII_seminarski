@@ -32,5 +32,12 @@ namespace Rentacar.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("make/{makeName}")]
+        public async Task<IActionResult> GetModels([FromRoute] string makeName)
+        {
+            MakeBaseDto result = await _filterService.GetMake(makeName);
+            return Ok(result);
+        }
+
     }
 }

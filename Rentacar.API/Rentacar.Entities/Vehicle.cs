@@ -15,6 +15,8 @@ namespace Rentacar.Entities
         public decimal RatePerDay { get; set; }
         public bool IsActive { get; set; }
         public short TransmissionType { get; set; }
+        public string ImageUrl { get; set; }
+
         public int ModelId { get; set; }
         public virtual Model Model { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }

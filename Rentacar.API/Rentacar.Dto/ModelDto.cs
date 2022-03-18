@@ -16,7 +16,7 @@ namespace Rentacar.Dto
         public int VehicleTypeId { get; set; }
 
         public MakeDto Make { get; set; }
-        public ICollection<VehicleDto> Vehicles { get; set; }
+        //public ICollection<VehicleDto> Vehicles { get; set; }
         public VehicleTypeDto VehicleType { get; set; }
         public ICollection<ReviewDto> Reviews { get; set; }
     }

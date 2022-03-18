@@ -12,7 +12,7 @@ namespace Rentacar.Dto
         public bool IsActive { get; set; }
         public TransmissionTypeEnum TransmissionType { get; set; }
         public int ModelId { get; set; }
-
+        public string ImageUrl { get; set; }
         public ModelDto Model { get; set; }
         public LocationDto Location { get; set; }
         public ICollection<BaseBookingDto> Bookings { get; set; }

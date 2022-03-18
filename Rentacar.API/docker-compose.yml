@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings:RentacarConnection=Server=rentacar-sql,1433;Database=Rentacar;User=sa;Password=QWElkj132!;ConnectRetryCount=30
+      - ConnectionStrings:RentacarConnection=Server=rentacar-sql,1433;Database=CarRental;User=sa;Password=QWElkj132!;ConnectRetryCount=30
     ports:
       - 5000:80
     networks:

@@ -29,6 +29,11 @@ namespace Rentacar.Services.Services
             return filterLookups;
         }
 
+        public async Task<MakeBaseDto> GetMake(string makeName)
+        {
+            return _mapper.Map<MakeBaseDto>(await _filterRepository.GetMake(makeName));
+        }
+
         public async Task<List<ModelBaseDto>> GetModelsForMake(int makeId)
         {
             return _mapper.Map<List<ModelBaseDto>>(await _filterRepository.GetModelsForMake(makeId));

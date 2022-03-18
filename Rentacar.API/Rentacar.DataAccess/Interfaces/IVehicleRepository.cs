@@ -15,6 +15,8 @@ namespace Rentacar.DataAccess.Interfaces
         Task<ICollection<Vehicle>> FilterVehicles(int? tranismissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType);
         Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request);
         Task<Vehicle> AddVehicle(NewVehicleRequest vehicle);
+        Task<Vehicle> UpdateVehicle(int vehicleId, NewVehicleRequest vehicle);
         Task<Vehicle> GetVehicleByUserId(int userId);
+        Task<bool> DeleteVehicle(int vehicleId);
     }
 }
