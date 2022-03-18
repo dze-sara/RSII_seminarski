@@ -15,6 +15,8 @@ namespace Rentacar.Services.Interfaces
         Task<List<BaseBookingDto>> GetBookingHistory();
         Task<List<BaseBookingDto>> GetBookingHistoryForUser(int userId);
         Task<List<BaseBookingDto>> FilterBooking(BookingRequestDto bookingRequest);
+        Task<List<BaseBookingDto>> BookingReport(BookingReportRequestDto bookingReport);
+        
 
     }
 }

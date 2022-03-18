@@ -29,5 +29,12 @@ namespace Rentacar.Admin.Services
 
             return bookingHistoryResponse;
         }
+
+        public static async Task<List<BaseBookingDto>> BookingReport(BookingReportRequestDto request)
+        {
+            var bookingReport = await HttpHelper.PostAsync<List<BaseBookingDto>, BookingReportRequestDto>(_baseUrl + "/report", request);
+
+            return bookingReport;
+        }
     }
 }

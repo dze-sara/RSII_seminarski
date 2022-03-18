@@ -33,6 +33,32 @@ namespace Rentacar.DataAccess.Repositories
             return addedBooking;
         }
 
+        public async Task<List<Booking>> BookingReport(BookingReportRequestDto bookingRequest)
+        {
+            var query = _context.Bookings
+                                 .Include(x => x.Vehicle)
+                                 .ThenInclude(y => y.Model)
+                                 .Include(x => x.User)
+                                 .AsQueryable();
+
+            if (bookingRequest.FromDate >= bookingRequest.ToDate)
+            {
+                return null;
+            }
+
+            if(bookingRequest.FromDate != null)
+            {
+                query = query.Where(x => x.StartDate >= bookingRequest.FromDate);
+            }
+
+            if(bookingRequest.ToDate != null)
+            {
+                query = query.Where(x => x.EndDate <= bookingRequest.ToDate);
+            }
+
+            return await query.ToListAsync();
+        }
+
         public async Task<bool> CancelBooking(int bookingId)
         {
             //AssertionHelper.AssertInt(bookingId);

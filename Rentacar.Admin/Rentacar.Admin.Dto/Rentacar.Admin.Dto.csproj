@@ -53,6 +53,7 @@
     <Compile Include="ModelBaseDto.cs" />
     <Compile Include="ModelDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\BookingReportRequestDto.cs" />
     <Compile Include="Request\BookingRequestDto.cs" />
     <Compile Include="Request\LoginRequestDto.cs" />
     <Compile Include="Request\NewVehicleRequest.cs" />

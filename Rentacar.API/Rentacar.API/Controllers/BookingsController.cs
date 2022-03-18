@@ -66,5 +66,12 @@ namespace Rentacar.API.Controllers
             List<BaseBookingDto> result = await _bookingService.FilterBooking(request);
             return Ok(result);
         }
+
+        [HttpPost("report")]
+        public async Task<IActionResult> BookingReport([FromBody] BookingReportRequestDto reportRequest)
+        {
+            List<BaseBookingDto> result = await _bookingService.BookingReport(reportRequest);
+            return Ok(result);
+        }
     }
 }

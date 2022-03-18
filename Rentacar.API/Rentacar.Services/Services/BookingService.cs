@@ -20,6 +20,12 @@ namespace Rentacar.Services.Services
             _bookingRepository = bookingRepository;
         }
 
+        public async Task<List<BaseBookingDto>> BookingReport(BookingReportRequestDto bookingReport)
+        {
+            List<Booking> result = await _bookingRepository.BookingReport(bookingReport);
+            return _mapper.Map<List<BaseBookingDto>>(result);
+        }
+
         public async Task<bool> CancelBooking(int bookingId)
         {
             return await _bookingRepository.CancelBooking(bookingId);

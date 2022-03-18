@@ -136,17 +136,11 @@
     <Compile Include="Forms\VehicleDetailsForm.Designer.cs">
       <DependentUpon>VehicleDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\BookingsReport.cs">
+    <Compile Include="Reports\BookingsReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\BookingsReport.Designer.cs">
-      <DependentUpon>BookingsReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\VehiclesReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\VehiclesReport.Designer.cs">
-      <DependentUpon>VehiclesReport.cs</DependentUpon>
+    <Compile Include="Reports\BookingsReportForm.Designer.cs">
+      <DependentUpon>BookingsReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Controls\BookingDetailsControl.resx">
@@ -193,13 +187,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\BookingsReport.rdlc" />
-    <EmbeddedResource Include="Reports\BookingsReport.resx">
-      <DependentUpon>BookingsReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\BookingsReportForm.resx">
+      <DependentUpon>BookingsReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\VehiclesReport.resx">
-      <DependentUpon>VehiclesReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ReportVehicles.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Rentacar.Dto.BaseBookingDto.datasource" />
     <None Include="Properties\DataSources\Rentacar.Dto.Request.VehicleRequestDto.datasource" />

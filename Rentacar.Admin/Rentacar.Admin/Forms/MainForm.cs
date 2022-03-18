@@ -99,8 +99,8 @@ namespace Rentacar.Admin
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            BookingsReport bookingsReport = new BookingsReport(dataGridViewBookings.DataSource as List<BaseBookingDto>);
-            bookingsReport.Show();
+            Form bookingReport = new BookingsReportForm(dataGridViewBookings.DataSource as List<BaseBookingDto>);
+            bookingReport.Show();
         }
 
         private async void buttonSearch_Click(object sender, EventArgs e)
@@ -175,8 +175,8 @@ namespace Rentacar.Admin
 
         private void buttonExportVehicles_Click(object sender, EventArgs e)
         {
-            VehiclesReport vehiclesReport = new VehiclesReport(dataGridViewVehicles.DataSource as List<VehicleBaseDto>);
-            vehiclesReport.Show();
+            //VehiclesReport vehiclesReport = new VehiclesReport(dataGridViewVehicles.DataSource as List<VehicleBaseDto>);
+            //vehiclesReport.Show();
         }
 
         private void OpenVehicleDetails()
@@ -246,6 +246,64 @@ namespace Rentacar.Admin
             make = comboBoxBookingMake.SelectedItem as MakeBaseDto;
             var models = await FilterService.GetModelsForMake(make.MakeId);
             comboBoxBookingModel.DataSource = models;
+        }
+
+        private BookingReportRequestDto bookingReportRequest;
+
+        private async void button1_Click_1(object sender, EventArgs e)
+        {
+            if (cbAllDates.Checked)
+                this.bookingReportRequest = new BookingReportRequestDto()
+                {
+                    FromDate = null,
+                    ToDate = null
+                };
+            else
+                this.bookingReportRequest = new BookingReportRequestDto()
+                {
+                    FromDate = dtFromDate.Value,
+                    ToDate = dtToDate.Value
+                };
+
+            var bookings = await BookingService.BookingReport(bookingReportRequest);
+
+            Form bookingReport = new BookingsReportForm(bookings, bookingReportRequest);
+            bookingReport.Show();
+        }
+
+        private void cbAllDates_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAllDates.Checked)
+            {
+                dtFromDate.Enabled = false;
+                dtToDate.Enabled = false;
+            }
+            else
+            {
+                dtFromDate.Enabled = true;
+                dtToDate.Enabled = true;
+            }
+        }
+
+        private async void btnGetBookings_Click(object sender, EventArgs e)
+        {
+            if (cbAllDates.Checked)
+                this.bookingReportRequest = new BookingReportRequestDto()
+                {
+                    FromDate = null,
+                    ToDate = null
+                };
+            else
+                this.bookingReportRequest = new BookingReportRequestDto()
+                {
+                    FromDate = dtFromDate.Value,
+                    ToDate = dtToDate.Value
+                };
+
+            var bookings = await BookingService.BookingReport(bookingReportRequest);
+            dgvReportBookings.DataSource = bookings;
+            dgvReportBookings.Refresh();
+            buttonGenerateReport.Enabled = true;
         }
     }
 }
