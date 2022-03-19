@@ -62,6 +62,9 @@
     <Compile Include="UserDto.cs" />
     <Compile Include="VehicleBaseDto.cs" />
     <Compile Include="VehicleDto.cs" />
+    <Compile Include="VehiclesReportDataDto.cs" />
+    <Compile Include="VehiclesReportDataTableDto.cs" />
+    <Compile Include="VehiclesReportResponseDto.cs" />
     <Compile Include="VehicleTypeBaseDto.cs" />
     <Compile Include="VehicleTypeDto.cs" />
   </ItemGroup>

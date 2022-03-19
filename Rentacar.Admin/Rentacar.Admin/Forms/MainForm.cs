@@ -6,11 +6,7 @@ using Rentacar.Dto.Request;
 using Rentacar.Dto.Response;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -175,8 +171,9 @@ namespace Rentacar.Admin
 
         private void buttonExportVehicles_Click(object sender, EventArgs e)
         {
-            //VehiclesReport vehiclesReport = new VehiclesReport(dataGridViewVehicles.DataSource as List<VehicleBaseDto>);
-            //vehiclesReport.Show();
+            var vehiclesList = dataGridViewVehicles.DataSource as List<VehicleBaseDto>;
+            VehiclesReportMainForm vehiclesReport = new VehiclesReportMainForm(vehiclesList);
+            vehiclesReport.Show();
         }
 
         private void OpenVehicleDetails()
@@ -305,5 +302,15 @@ namespace Rentacar.Admin
             dgvReportBookings.Refresh();
             buttonGenerateReport.Enabled = true;
         }
+
+        private async void buttonVehiclesReport_Click(object sender, EventArgs e)
+        {
+            var vehiclesReportApiResponse = await VehicleService.VehiclesReport();
+            var vehiclesReportChartData = VehicleService.PrepareVehicleReportDataChart(vehiclesReportApiResponse);
+            var vehiclesReportTableData = VehicleService.PrepareVehicleReportDataTable(vehiclesReportApiResponse);
+            Form vehiclesReportForm = new VehiclesReportForm(vehiclesReportChartData, vehiclesReportTableData);
+            vehiclesReportForm.Show();
+        }
+        
     }
 }

@@ -39,11 +39,7 @@ namespace Rentacar.Admin
             this.tabPageBookings = new System.Windows.Forms.TabPage();
             this.numericBookingMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.numericBookingMinPrice = new System.Windows.Forms.NumericUpDown();
-            this.labelTotalPrice = new System.Windows.Forms.Label();
-            this.labelTotalResults = new System.Windows.Forms.Label();
             this.buttonExport = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.dataGridViewBookings = new System.Windows.Forms.DataGridView();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxBuyerId = new System.Windows.Forms.TextBox();
@@ -75,8 +71,6 @@ namespace Rentacar.Admin
             this.numericBookingsMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.numericVehiclesMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.buttonExportVehicles = new System.Windows.Forms.Button();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.dataGridViewVehicles = new System.Windows.Forms.DataGridView();
             this.buttonSearchVehicles = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
@@ -108,20 +102,22 @@ namespace Rentacar.Admin
             this.label35 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.tabPageReports = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label42 = new System.Windows.Forms.Label();
-            this.dgvReportBookings = new System.Windows.Forms.DataGridView();
-            this.btnGetBookings = new System.Windows.Forms.Button();
-            this.cbAllDates = new System.Windows.Forms.CheckBox();
-            this.buttonGenerateReport = new System.Windows.Forms.Button();
-            this.dtToDate = new System.Windows.Forms.DateTimePicker();
-            this.label40 = new System.Windows.Forms.Label();
-            this.dtFromDate = new System.Windows.Forms.DateTimePicker();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.dtFromDate = new System.Windows.Forms.DateTimePicker();
+            this.buttonGenerateReport = new System.Windows.Forms.Button();
+            this.dgvReportBookings = new System.Windows.Forms.DataGridView();
+            this.label39 = new System.Windows.Forms.Label();
+            this.btnGetBookings = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.cbAllDates = new System.Windows.Forms.CheckBox();
+            this.dtToDate = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.buttonVehiclesReport = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
@@ -138,9 +134,9 @@ namespace Rentacar.Admin
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.tabPageReports.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReportBookings)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportBookings)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -234,13 +230,10 @@ namespace Rentacar.Admin
             // 
             // tabPageBookings
             // 
+            this.tabPageBookings.Controls.Add(this.label37);
             this.tabPageBookings.Controls.Add(this.numericBookingMaxPrice);
             this.tabPageBookings.Controls.Add(this.numericBookingMinPrice);
-            this.tabPageBookings.Controls.Add(this.labelTotalPrice);
-            this.tabPageBookings.Controls.Add(this.labelTotalResults);
             this.tabPageBookings.Controls.Add(this.buttonExport);
-            this.tabPageBookings.Controls.Add(this.label16);
-            this.tabPageBookings.Controls.Add(this.label15);
             this.tabPageBookings.Controls.Add(this.dataGridViewBookings);
             this.tabPageBookings.Controls.Add(this.buttonSearch);
             this.tabPageBookings.Controls.Add(this.textBoxBuyerId);
@@ -291,26 +284,6 @@ namespace Rentacar.Admin
             this.numericBookingMinPrice.Size = new System.Drawing.Size(129, 22);
             this.numericBookingMinPrice.TabIndex = 37;
             // 
-            // labelTotalPrice
-            // 
-            this.labelTotalPrice.AutoSize = true;
-            this.labelTotalPrice.Location = new System.Drawing.Point(124, 524);
-            this.labelTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTotalPrice.Name = "labelTotalPrice";
-            this.labelTotalPrice.Size = new System.Drawing.Size(54, 17);
-            this.labelTotalPrice.TabIndex = 36;
-            this.labelTotalPrice.Text = "TOTAL";
-            // 
-            // labelTotalResults
-            // 
-            this.labelTotalResults.AutoSize = true;
-            this.labelTotalResults.Location = new System.Drawing.Point(120, 489);
-            this.labelTotalResults.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTotalResults.Name = "labelTotalResults";
-            this.labelTotalResults.Size = new System.Drawing.Size(54, 17);
-            this.labelTotalResults.TabIndex = 35;
-            this.labelTotalResults.Text = "TOTAL";
-            // 
             // buttonExport
             // 
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -322,26 +295,6 @@ namespace Rentacar.Admin
             this.buttonExport.Text = "Export to PDF";
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(23, 524);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(79, 17);
-            this.label16.TabIndex = 32;
-            this.label16.Text = "Total price:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(23, 489);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(90, 17);
-            this.label15.TabIndex = 31;
-            this.label15.Text = "Total results:";
             // 
             // dataGridViewBookings
             // 
@@ -587,13 +540,12 @@ namespace Rentacar.Admin
             // 
             // tabPageVehicles
             // 
+            this.tabPageVehicles.Controls.Add(this.label15);
             this.tabPageVehicles.Controls.Add(this.buttonAddNew);
             this.tabPageVehicles.Controls.Add(this.comboBoxActive);
             this.tabPageVehicles.Controls.Add(this.numericBookingsMaxPrice);
             this.tabPageVehicles.Controls.Add(this.numericVehiclesMaxPrice);
             this.tabPageVehicles.Controls.Add(this.buttonExportVehicles);
-            this.tabPageVehicles.Controls.Add(this.label30);
-            this.tabPageVehicles.Controls.Add(this.label31);
             this.tabPageVehicles.Controls.Add(this.dataGridViewVehicles);
             this.tabPageVehicles.Controls.Add(this.buttonSearchVehicles);
             this.tabPageVehicles.Controls.Add(this.label29);
@@ -668,26 +620,6 @@ namespace Rentacar.Admin
             this.buttonExportVehicles.Text = "Export to PDF";
             this.buttonExportVehicles.UseVisualStyleBackColor = true;
             this.buttonExportVehicles.Click += new System.EventHandler(this.buttonExportVehicles_Click);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(119, 507);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(54, 17);
-            this.label30.TabIndex = 47;
-            this.label30.Text = "TOTAL";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(21, 507);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(90, 17);
-            this.label31.TabIndex = 46;
-            this.label31.Text = "Total results:";
             // 
             // dataGridViewVehicles
             // 
@@ -1023,142 +955,6 @@ namespace Rentacar.Admin
             this.tabPageReports.Text = "REPORTS";
             this.tabPageReports.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label42);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox1.Location = new System.Drawing.Point(20, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(989, 100);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Vehicles report";
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(686, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(290, 45);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "GENERATE REPORT";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label42.Location = new System.Drawing.Point(6, 41);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(618, 17);
-            this.label42.TabIndex = 11;
-            this.label42.Text = "Generate report to see most frequently booked vehicles and overall vehicles usage" +
-    ".\r\n";
-            // 
-            // dgvReportBookings
-            // 
-            this.dgvReportBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReportBookings.Location = new System.Drawing.Point(17, 100);
-            this.dgvReportBookings.Name = "dgvReportBookings";
-            this.dgvReportBookings.RowHeadersWidth = 51;
-            this.dgvReportBookings.RowTemplate.Height = 24;
-            this.dgvReportBookings.Size = new System.Drawing.Size(959, 256);
-            this.dgvReportBookings.TabIndex = 9;
-            // 
-            // btnGetBookings
-            // 
-            this.btnGetBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnGetBookings.Location = new System.Drawing.Point(833, 39);
-            this.btnGetBookings.Name = "btnGetBookings";
-            this.btnGetBookings.Size = new System.Drawing.Size(143, 37);
-            this.btnGetBookings.TabIndex = 8;
-            this.btnGetBookings.Text = "Get bookings";
-            this.btnGetBookings.UseVisualStyleBackColor = true;
-            this.btnGetBookings.Click += new System.EventHandler(this.btnGetBookings_Click);
-            // 
-            // cbAllDates
-            // 
-            this.cbAllDates.AutoSize = true;
-            this.cbAllDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cbAllDates.Location = new System.Drawing.Point(627, 55);
-            this.cbAllDates.Name = "cbAllDates";
-            this.cbAllDates.Size = new System.Drawing.Size(84, 21);
-            this.cbAllDates.TabIndex = 7;
-            this.cbAllDates.Text = "All dates";
-            this.cbAllDates.UseVisualStyleBackColor = true;
-            this.cbAllDates.CheckedChanged += new System.EventHandler(this.cbAllDates_CheckedChanged);
-            // 
-            // buttonGenerateReport
-            // 
-            this.buttonGenerateReport.Enabled = false;
-            this.buttonGenerateReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGenerateReport.Location = new System.Drawing.Point(686, 362);
-            this.buttonGenerateReport.Name = "buttonGenerateReport";
-            this.buttonGenerateReport.Size = new System.Drawing.Size(290, 45);
-            this.buttonGenerateReport.TabIndex = 6;
-            this.buttonGenerateReport.Text = "GENERATE REPORT";
-            this.buttonGenerateReport.UseVisualStyleBackColor = true;
-            this.buttonGenerateReport.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // dtToDate
-            // 
-            this.dtToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtToDate.Location = new System.Drawing.Point(394, 55);
-            this.dtToDate.Name = "dtToDate";
-            this.dtToDate.Size = new System.Drawing.Size(200, 23);
-            this.dtToDate.TabIndex = 5;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label40.Location = new System.Drawing.Point(327, 60);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(61, 17);
-            this.label40.TabIndex = 4;
-            this.label40.Text = "To date:";
-            // 
-            // dtFromDate
-            // 
-            this.dtFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtFromDate.Location = new System.Drawing.Point(96, 55);
-            this.dtFromDate.Name = "dtFromDate";
-            this.dtFromDate.Size = new System.Drawing.Size(200, 23);
-            this.dtFromDate.TabIndex = 3;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label39.Location = new System.Drawing.Point(14, 60);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(76, 17);
-            this.label39.TabIndex = 2;
-            this.label39.Text = "From date:";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label38.Location = new System.Drawing.Point(6, 35);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(544, 17);
-            this.label38.TabIndex = 1;
-            this.label38.Text = "Generate report for all bookings between specified dates or for all dates. ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(875, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "CarRental.com";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label38);
@@ -1177,6 +973,162 @@ namespace Rentacar.Admin
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bookings report";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label38.Location = new System.Drawing.Point(6, 35);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(544, 17);
+            this.label38.TabIndex = 1;
+            this.label38.Text = "Generate report for all bookings between specified dates or for all dates. ";
+            // 
+            // dtFromDate
+            // 
+            this.dtFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dtFromDate.Location = new System.Drawing.Point(96, 55);
+            this.dtFromDate.Name = "dtFromDate";
+            this.dtFromDate.Size = new System.Drawing.Size(200, 23);
+            this.dtFromDate.TabIndex = 3;
+            // 
+            // buttonGenerateReport
+            // 
+            this.buttonGenerateReport.Enabled = false;
+            this.buttonGenerateReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonGenerateReport.Location = new System.Drawing.Point(686, 362);
+            this.buttonGenerateReport.Name = "buttonGenerateReport";
+            this.buttonGenerateReport.Size = new System.Drawing.Size(290, 45);
+            this.buttonGenerateReport.TabIndex = 6;
+            this.buttonGenerateReport.Text = "GENERATE REPORT";
+            this.buttonGenerateReport.UseVisualStyleBackColor = true;
+            this.buttonGenerateReport.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // dgvReportBookings
+            // 
+            this.dgvReportBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReportBookings.Location = new System.Drawing.Point(17, 100);
+            this.dgvReportBookings.Name = "dgvReportBookings";
+            this.dgvReportBookings.RowHeadersWidth = 51;
+            this.dgvReportBookings.RowTemplate.Height = 24;
+            this.dgvReportBookings.Size = new System.Drawing.Size(959, 256);
+            this.dgvReportBookings.TabIndex = 9;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label39.Location = new System.Drawing.Point(14, 60);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(76, 17);
+            this.label39.TabIndex = 2;
+            this.label39.Text = "From date:";
+            // 
+            // btnGetBookings
+            // 
+            this.btnGetBookings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnGetBookings.Location = new System.Drawing.Point(833, 39);
+            this.btnGetBookings.Name = "btnGetBookings";
+            this.btnGetBookings.Size = new System.Drawing.Size(143, 37);
+            this.btnGetBookings.TabIndex = 8;
+            this.btnGetBookings.Text = "Get bookings";
+            this.btnGetBookings.UseVisualStyleBackColor = true;
+            this.btnGetBookings.Click += new System.EventHandler(this.btnGetBookings_Click);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label40.Location = new System.Drawing.Point(327, 60);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(61, 17);
+            this.label40.TabIndex = 4;
+            this.label40.Text = "To date:";
+            // 
+            // cbAllDates
+            // 
+            this.cbAllDates.AutoSize = true;
+            this.cbAllDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbAllDates.Location = new System.Drawing.Point(627, 55);
+            this.cbAllDates.Name = "cbAllDates";
+            this.cbAllDates.Size = new System.Drawing.Size(84, 21);
+            this.cbAllDates.TabIndex = 7;
+            this.cbAllDates.Text = "All dates";
+            this.cbAllDates.UseVisualStyleBackColor = true;
+            this.cbAllDates.CheckedChanged += new System.EventHandler(this.cbAllDates_CheckedChanged);
+            // 
+            // dtToDate
+            // 
+            this.dtToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dtToDate.Location = new System.Drawing.Point(394, 55);
+            this.dtToDate.Name = "dtToDate";
+            this.dtToDate.Size = new System.Drawing.Size(200, 23);
+            this.dtToDate.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label42);
+            this.groupBox1.Controls.Add(this.buttonVehiclesReport);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox1.Location = new System.Drawing.Point(20, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(989, 100);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Vehicles report";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label42.Location = new System.Drawing.Point(6, 41);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(618, 17);
+            this.label42.TabIndex = 11;
+            this.label42.Text = "Generate report to see most frequently booked vehicles and overall vehicles usage" +
+    ".\r\n";
+            // 
+            // buttonVehiclesReport
+            // 
+            this.buttonVehiclesReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonVehiclesReport.Location = new System.Drawing.Point(686, 26);
+            this.buttonVehiclesReport.Name = "buttonVehiclesReport";
+            this.buttonVehiclesReport.Size = new System.Drawing.Size(290, 45);
+            this.buttonVehiclesReport.TabIndex = 12;
+            this.buttonVehiclesReport.Text = "GENERATE REPORT";
+            this.buttonVehiclesReport.UseVisualStyleBackColor = true;
+            this.buttonVehiclesReport.Click += new System.EventHandler(this.buttonVehiclesReport_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(875, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(154, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "CarRental.com";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label37.Location = new System.Drawing.Point(27, 259);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(270, 17);
+            this.label37.TabIndex = 39;
+            this.label37.Text = "Click on the table row to see more details.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Location = new System.Drawing.Point(22, 204);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(270, 17);
+            this.label15.TabIndex = 54;
+            this.label15.Text = "Click on the table row to see more details.";
             // 
             // MainForm
             // 
@@ -1209,11 +1161,11 @@ namespace Rentacar.Admin
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownUserId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.tabPageReports.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReportBookings)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportBookings)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1233,8 +1185,6 @@ namespace Rentacar.Admin
         private System.Windows.Forms.DataGridView dataGridViewHistory;
         private System.Windows.Forms.TabPage tabPageBookings;
         private System.Windows.Forms.Button buttonExport;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewBookings;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.TextBox textBoxBuyerId;
@@ -1260,8 +1210,6 @@ namespace Rentacar.Admin
         private System.Windows.Forms.DateTimePicker dateTimePickerStartTime;
         private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelTotalPrice;
-        private System.Windows.Forms.Label labelTotalResults;
         private System.Windows.Forms.ComboBox comboBoxVehiclesModel;
         private System.Windows.Forms.ComboBox comboBoxVehiclesMake;
         private System.Windows.Forms.Label label22;
@@ -1280,8 +1228,6 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button buttonExportVehicles;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.DataGridView dataGridViewVehicles;
         private System.Windows.Forms.Button buttonUsers;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
@@ -1310,10 +1256,12 @@ namespace Rentacar.Admin
         private System.Windows.Forms.CheckBox cbAllDates;
         private System.Windows.Forms.DataGridView dgvReportBookings;
         private System.Windows.Forms.Button btnGetBookings;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonVehiclesReport;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label15;
     }
 }
 

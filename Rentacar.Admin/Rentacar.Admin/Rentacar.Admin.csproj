@@ -142,6 +142,18 @@
     <Compile Include="Reports\BookingsReportForm.Designer.cs">
       <DependentUpon>BookingsReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\VehiclesReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\VehiclesReportForm.Designer.cs">
+      <DependentUpon>VehiclesReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VehiclesReportMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\VehiclesReportMainForm.Designer.cs">
+      <DependentUpon>VehiclesReportMainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Controls\BookingDetailsControl.resx">
       <DependentUpon>BookingDetailsControl.cs</DependentUpon>
@@ -190,7 +202,18 @@
     <EmbeddedResource Include="Reports\BookingsReportForm.resx">
       <DependentUpon>BookingsReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehiclesReport.rdlc" />
+    <EmbeddedResource Include="Reports\VehiclesReportForm.resx">
+      <DependentUpon>VehiclesReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehiclesReportMain.rdlc" />
+    <EmbeddedResource Include="Reports\VehiclesReportMainForm.resx">
+      <DependentUpon>VehiclesReportMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Rentacar.Admin.Dto.VehiclesReportDataDto.datasource" />
+    <None Include="Properties\DataSources\Rentacar.Admin.Dto.VehiclesReportDataTableDto.datasource" />
+    <None Include="Properties\DataSources\Rentacar.Admin.Dto.VehiclesReportResponseDto.datasource" />
     <None Include="Properties\DataSources\Rentacar.Dto.BaseBookingDto.datasource" />
     <None Include="Properties\DataSources\Rentacar.Dto.Request.VehicleRequestDto.datasource" />
     <None Include="Properties\DataSources\Rentacar.Dto.Response.VehicleBaseDto.datasource" />
