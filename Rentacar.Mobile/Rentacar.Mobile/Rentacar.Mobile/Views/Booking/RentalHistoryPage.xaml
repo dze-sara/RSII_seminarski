@@ -26,7 +26,8 @@
                                                 <ColumnDefinition Width="50*"></ColumnDefinition>
                                                 <ColumnDefinition Width="30*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <Image Source="icon_car.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
+                                            <Image x:Name="backgroundImage" HorizontalOptions="FillAndExpand" Grid.RowSpan="4" Grid.Column="0" Source="{Binding ImageUrl}" AbsoluteLayout.LayoutBounds="0,0,0,0" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                                            <!--<Image Source="icon_car.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>-->
                                             <!--<Label Grid.Column="1" Grid.Row="0" Text="{Binding VehicleType}"></Label>-->
                                             <FlexLayout Grid.Column="1" Grid.Row="1">
                                                 <!--<Label Text="{Binding NumberOfSeats}"></Label>-->
@@ -37,14 +38,15 @@
                                         </Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="30*"></ColumnDefinition>
+                                                <ColumnDefinition Width="35*"></ColumnDefinition>
                                                 <ColumnDefinition Width="30*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
                                             <FlexLayout Grid.Column="0">
-                                                <Label Text="Price per day: " />
+                                                <Label Text="Price per day: "  VerticalOptions="FillAndExpand"/>
                                                 <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding TotalPrice}"/>
-                                                <Label Text=" €" />
                                             </FlexLayout>
+                                            <Label Grid.Column="1" Text=" €" VerticalOptions="FillAndExpand" />
+
                                         </Grid>
 
                                         <Frame Margin="10, 0, 20,0"  BorderColor="Yellow">

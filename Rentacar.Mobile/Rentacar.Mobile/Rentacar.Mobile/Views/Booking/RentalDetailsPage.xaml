@@ -35,7 +35,7 @@
                             <ColumnDefinition Width="50*"></ColumnDefinition>
                             <ColumnDefinition Width="30*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="icon_car.png" Scale="1" Grid.RowSpan="3" Grid.Column="0"></Image>
+                        <Image x:Name="backgroundImage" HorizontalOptions="FillAndExpand" Grid.RowSpan="4" Grid.Column="0" Source="{Binding Vehicle.ImageUrl}" AbsoluteLayout.LayoutBounds="0,0,0,0" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.VehicleType}"></Label>
                         <FlexLayout Grid.Column="1" Grid.Row="1">
                             <Label Text="{Binding Vehicle.NumberOfSeats}"></Label>
@@ -43,6 +43,7 @@
                         </FlexLayout>
 
                         <Label Grid.Column="1" Grid.Row="2" Text="{Binding Vehicle.TransmissionType}"></Label>
+                        <Label Grid.Column="1" Grid.Row="3" Text=""></Label>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>

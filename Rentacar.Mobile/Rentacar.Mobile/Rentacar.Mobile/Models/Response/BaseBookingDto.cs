@@ -14,5 +14,6 @@ namespace Rentacar.Dto
         public int VehicleId { get; set; }
         public string VehicleModel { get; set; }
         public decimal TotalPrice { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

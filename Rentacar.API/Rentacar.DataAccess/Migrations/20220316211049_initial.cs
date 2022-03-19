@@ -370,9 +370,9 @@ namespace Rentacar.DataAccess.Migrations
                columns: new[] { "VehicleId", "RatePerDay", "IsActive", "TransmissionType", "ModelId", "LocationId", "ImageUrl" },
                values: new object[,]
                {
-                   {1, decimal.Parse("70"), true, 1, 45, 1, "http://www.carlander.ba/wp-content/uploads/2012/02/Volvo-V40-2013.jpg" },
+                   {1, decimal.Parse("70"), true, 1, 45, 1, "https://i.imgur.com/Et4zWdn.jpg" },
                    {2, decimal.Parse("50"), true, 1, 20, 2, "https://www.automobili.ba/wp-content/uploads/2020/09/novi-hyundai-i30.jpg" },
-                   {3, decimal.Parse("60"), true, 1, 31, 3, "http://www.carlander.ba/wp-content/uploads/2014/06/MINI-Cooper-SD-01.jpg" },
+                   {3, decimal.Parse("60"), true, 1, 31, 3, "https://i.imgur.com/KgXMySH.jpg" },
                    {4, decimal.Parse("100"), true, 1, 10, 4, "https://www.tportal.hr/media/thumbnail/w1000/525457.jpeg" },
                    {5, decimal.Parse("120"), true, 1, 5, 1, "https://audimediacenter-a.akamaihd.net/system/production/media/66243/images/479a24d3a67427d9e7d3d7c8c8b086057ac49d94/A189655_x500.jpg?1582445375" },
                    {6, decimal.Parse("120"), true, 1, 26, 2, "https://www.mercedes-benz.hr/osobna-vozila/mercedes-benz-vozila/modeli/gla/gla-h247/dizajn/lines/_jcr_content/swipeableteaserbox/par/swipeableteaser/asset.MQ6.12.20200917083806.jpeg" },
@@ -380,7 +380,7 @@ namespace Rentacar.DataAccess.Migrations
                    {8, decimal.Parse("60"), true, 1, 25, 4, "https://ip.index.hr/remote/indexnew.s3.index.hr/1386cb6c-dabc-43ba-bc3e-c743ddf403d4.jpg" },
                    {9, decimal.Parse("70"), true, 1, 6, 1, "https://static.jutarnji.hr/images/live-multimedia/binary/2018/7/11/15/IMG_4076.jpg" },
                    {10, decimal.Parse("60"), true, 1, 18, 2, "https://assets-eu-01.kc-usercontent.com/bb5aba31-d98c-0160-8548-418b3723c58e/a9e89138-d4e9-4b81-8e3c-c4d8d0b8350e/Honda%20Civic%20(10).jpg?width=800&fm=jpg&auto=format" },
-                   {11, decimal.Parse("125"), true, 1, 36, 3, "http://proauto.ba/wp-content/uploads/2015/11/ponuda-porsche-cayenne-2018-proauto-00.jpg" },
+                   {11, decimal.Parse("125"), true, 1, 36, 3, "https://i.imgur.com/xrAWayQ.jpg" },
                    {12, decimal.Parse("65"), true, 1, 38, 4, "https://autoportal.hr/wp-content/uploads/2020/07/Toyota-Corolla-GR-1.jpg" }
                });
 
