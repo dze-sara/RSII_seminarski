@@ -81,6 +81,7 @@ namespace Rentacar.DataAccess.Repositories
             updatingUser.LastName = user.LastName;
             updatingUser.Email = user.Email;
             updatingUser.Password = user.Password;
+            updatingUser.DateUpdated = DateTime.Now;
             await _context.SaveChangesAsync();
             return updatingUser;
         }

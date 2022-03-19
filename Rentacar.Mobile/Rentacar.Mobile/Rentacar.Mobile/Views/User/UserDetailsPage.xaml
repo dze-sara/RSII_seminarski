@@ -14,7 +14,7 @@
             <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" VerticalOptions="Center"/>
 
             <Label Text="Last name" VerticalOptions="Center" />
-            <Entry x:Name="lastNameEntry" Text="{Binding Lastname}" VerticalOptions="Center"/>
+            <Entry x:Name="lastNameEntry" Text="{Binding LastName}" VerticalOptions="Center"/>
 
             <Label Text="Email" VerticalOptions="Center" />
             <Entry x:Name="emailEntry" Text="{Binding Email}" VerticalOptions="Center"/>

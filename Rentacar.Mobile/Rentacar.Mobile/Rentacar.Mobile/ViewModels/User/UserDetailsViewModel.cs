@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rentacar.Dto;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -40,11 +41,23 @@ namespace Rentacar.Mobile.ViewModels
         public UserDetailsViewModel()
         {
             SaveChangesCommand = new Command(OnSaveChangesClicked);
+            var user = AuthenticationService.User;
+            _firstName = user.FirstName;
+            _lastName = user.LastName;
+            _email = user.Email;
+            _password = user.Password;
         }
 
         private async void OnSaveChangesClicked(object obj)
         {
-            
+            var newUserData = new UserDto();
+            newUserData.FirstName = _firstName;
+            newUserData.LastName = _lastName;
+            newUserData.Email = _email;
+            newUserData.Password = _password;
+            newUserData.UserId = AuthenticationService.UserId;
+            var user = await UserService.EditUserInfo(newUserData);
+            AuthenticationService.User = user;
         }
     }
 }

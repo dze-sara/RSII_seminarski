@@ -5,6 +5,6 @@ namespace Rentacar.Mobile.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<bool> EditUserInfo(UserDto userDto);
+        Task<UserDto> EditUserInfo(UserDto userDto);
     }
 }

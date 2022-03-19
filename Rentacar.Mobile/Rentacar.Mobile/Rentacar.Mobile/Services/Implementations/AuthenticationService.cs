@@ -15,6 +15,8 @@ namespace Rentacar.Mobile.Services
         {
             UserDto registeredUser = await HttpHelper.PostAsync<UserDto, UserDto>(_baseUrl + "/register", userDto);
             UserId = registeredUser?.UserId ?? 0;
+            User = registeredUser;
+
             return registeredUser;
         }
 
@@ -22,6 +24,8 @@ namespace Rentacar.Mobile.Services
         {
             UserDto loggedUser = await HttpHelper.PostAsync<UserDto, LoginRequestDto>(_baseUrl + "/login", new LoginRequestDto { Email = username, Password = password });
             UserId = loggedUser?.UserId ?? 0; 
+            User = loggedUser;
+
             return loggedUser;
         }
     }

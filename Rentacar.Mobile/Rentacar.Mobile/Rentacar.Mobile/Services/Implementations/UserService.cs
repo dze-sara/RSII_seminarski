@@ -9,9 +9,11 @@ namespace Rentacar.Mobile.Services
 {
     public class UserService : IUserService
     {
-        public Task<bool> EditUserInfo(UserDto userDto)
+        private static string _baseUrl = HttpHelper.BaseUrl + "api/Users";
+
+        public async Task<UserDto> EditUserInfo(UserDto userDto)
         {
-            throw new NotImplementedException();
+            return await HttpHelper.PostAsync<UserDto, UserDto>(_baseUrl + "/update", userDto);
         }
     }
 }
