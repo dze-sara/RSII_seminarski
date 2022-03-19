@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.API", "Rentacar.API\Rentacar.API.csproj", "{C76ABA04-51B5-4A30-BF58-3922F221B54F}"
 EndProject
@@ -20,6 +20,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.Resources", "Rentacar.Resources\Rentacar.Resources.csproj", "{0E3AAADB-3EEE-465E-AB01-8041E85CD860}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rentacar.Common", "Rentacar.Common\Rentacar.Common.csproj", "{7248B49B-5E8C-433D-A76F-56C1BA63850B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F367171E-A5E2-4F88-9F10-2ED18F6CAA1A}"
+	ProjectSection(SolutionItems) = preProject
+		.vs\Rentacar\config\applicationhost.config = .vs\Rentacar\config\applicationhost.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
