@@ -47,13 +47,15 @@ namespace Rentacar.Admin
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.comboBoxTransmission = new System.Windows.Forms.ComboBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(213, 399);
+            this.buttonSave.Location = new System.Drawing.Point(221, 587);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(135, 47);
@@ -65,7 +67,7 @@ namespace Rentacar.Admin
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(70, 399);
+            this.buttonDelete.Location = new System.Drawing.Point(78, 587);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(135, 47);
@@ -77,7 +79,7 @@ namespace Rentacar.Admin
             // comboBoxModel
             // 
             this.comboBoxModel.FormattingEnabled = true;
-            this.comboBoxModel.Location = new System.Drawing.Point(223, 135);
+            this.comboBoxModel.Location = new System.Drawing.Point(231, 323);
             this.comboBoxModel.Name = "comboBoxModel";
             this.comboBoxModel.Size = new System.Drawing.Size(149, 24);
             this.comboBoxModel.TabIndex = 64;
@@ -85,7 +87,7 @@ namespace Rentacar.Admin
             // comboBoxMake
             // 
             this.comboBoxMake.FormattingEnabled = true;
-            this.comboBoxMake.Location = new System.Drawing.Point(223, 92);
+            this.comboBoxMake.Location = new System.Drawing.Point(231, 280);
             this.comboBoxMake.Name = "comboBoxMake";
             this.comboBoxMake.Size = new System.Drawing.Size(149, 24);
             this.comboBoxMake.TabIndex = 63;
@@ -94,7 +96,7 @@ namespace Rentacar.Admin
             // comboBoxVehicleNoSeats
             // 
             this.comboBoxVehicleNoSeats.FormattingEnabled = true;
-            this.comboBoxVehicleNoSeats.Location = new System.Drawing.Point(223, 221);
+            this.comboBoxVehicleNoSeats.Location = new System.Drawing.Point(231, 409);
             this.comboBoxVehicleNoSeats.Name = "comboBoxVehicleNoSeats";
             this.comboBoxVehicleNoSeats.Size = new System.Drawing.Size(149, 24);
             this.comboBoxVehicleNoSeats.TabIndex = 62;
@@ -102,7 +104,7 @@ namespace Rentacar.Admin
             // textBoxImageUrl
             // 
             this.textBoxImageUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxImageUrl.Location = new System.Drawing.Point(223, 352);
+            this.textBoxImageUrl.Location = new System.Drawing.Point(231, 540);
             this.textBoxImageUrl.Name = "textBoxImageUrl";
             this.textBoxImageUrl.Size = new System.Drawing.Size(149, 23);
             this.textBoxImageUrl.TabIndex = 61;
@@ -118,7 +120,7 @@ namespace Rentacar.Admin
             this.tableLayoutPanel2.Controls.Add(this.label12, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label15, 0, 5);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(36, 81);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(44, 269);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28633F));
@@ -256,7 +258,7 @@ namespace Rentacar.Admin
             // comboBoxType
             // 
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(223, 264);
+            this.comboBoxType.Location = new System.Drawing.Point(231, 452);
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(149, 24);
             this.comboBoxType.TabIndex = 58;
@@ -264,7 +266,7 @@ namespace Rentacar.Admin
             // comboBoxTransmission
             // 
             this.comboBoxTransmission.FormattingEnabled = true;
-            this.comboBoxTransmission.Location = new System.Drawing.Point(223, 178);
+            this.comboBoxTransmission.Location = new System.Drawing.Point(231, 366);
             this.comboBoxTransmission.Name = "comboBoxTransmission";
             this.comboBoxTransmission.Size = new System.Drawing.Size(149, 24);
             this.comboBoxTransmission.TabIndex = 57;
@@ -272,17 +274,30 @@ namespace Rentacar.Admin
             // textBoxPrice
             // 
             this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxPrice.Location = new System.Drawing.Point(223, 307);
+            this.textBoxPrice.Location = new System.Drawing.Point(231, 495);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(149, 23);
             this.textBoxPrice.TabIndex = 56;
+            // 
+            // pbImage
+            // 
+            this.pbImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbImage.Location = new System.Drawing.Point(44, 64);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(336, 199);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 65;
+            this.pbImage.TabStop = false;
             // 
             // VehicleDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(433, 467);
+            this.ClientSize = new System.Drawing.Size(428, 647);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.comboBoxModel);
             this.Controls.Add(this.comboBoxMake);
             this.Controls.Add(this.comboBoxVehicleNoSeats);
@@ -298,6 +313,7 @@ namespace Rentacar.Admin
             this.Text = "VehicleDetails";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +338,6 @@ namespace Rentacar.Admin
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.ComboBox comboBoxTransmission;
         private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }

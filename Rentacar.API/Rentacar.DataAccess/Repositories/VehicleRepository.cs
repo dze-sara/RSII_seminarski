@@ -154,7 +154,8 @@ namespace Rentacar.DataAccess.Repositories
                 NumberOfSeats = x.Model.NoOfSeats,
                 RatePerDay = x.RatePerDay,
                 TransmissionType = (TransmissionTypeEnum)x.TransmissionType,
-                VehicleType = x.Model.VehicleType.VehicleTypeName
+                VehicleType = x.Model.VehicleType.VehicleTypeName,
+                ImageUrl = x.ImageUrl
             })).ConfigureAwait(false);
             return queryResponse;
         }
