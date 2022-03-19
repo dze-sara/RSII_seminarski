@@ -65,7 +65,7 @@ namespace Rentacar.Services.Services
 
         public async Task<List<BaseBookingDto>> GetLatestActiveBookings()
         {
-            List<Booking> result = await _bookingRepository.GetBookingHistory();
+            List<Booking> result = await _bookingRepository.GetLatestActiveBookings();
             return _mapper.Map<List<BaseBookingDto>>(result);
         }
     }
