@@ -67,6 +67,8 @@ namespace Rentacar.DataAccess.Repositories
 
             // Add user do database
             user.RoleId = 1;
+            user.DateCreated = DateTime.Now;
+            user.DateUpdated = DateTime.Now;
             User addedUser = _context.Users.Add(user).Entity;
             await _context.SaveChangesAsync();
 

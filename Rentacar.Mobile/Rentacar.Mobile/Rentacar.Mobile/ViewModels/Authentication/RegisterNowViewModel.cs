@@ -55,8 +55,7 @@ namespace Rentacar.Mobile.ViewModels
             UserDto user = await AuthenticationService.Register(newRegisteredUser);
             if (user != null)
             {
-                App.isLogged = true;
-                App.Current.MainPage = new AppShell("mainpage");
+                await Shell.Current.GoToAsync("//mainpage");
             }
             else
             {
