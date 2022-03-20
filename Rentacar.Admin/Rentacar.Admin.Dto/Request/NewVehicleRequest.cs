@@ -10,7 +10,7 @@ namespace Rentacar.Admin.Dto.Request
         public TransmissionTypeEnum Transmission { get; set; }
         public int NumberOfSeats { get; set; }
         public int PricePerDay { get; set; }
-        //public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
         public int TypeId { get; set; }
     }
 }

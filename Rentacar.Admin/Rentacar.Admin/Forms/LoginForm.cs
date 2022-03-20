@@ -28,8 +28,20 @@ namespace Rentacar.Admin.Forms
 
             if(adminAuthenticated)
             {
+                errorProvider1.SetError(labelError, "");
+                labelError.Visible = false;
                 this.Close();
             }
+            else
+            {
+                errorProvider1.SetError(labelError, "Username or password invalid.");
+                labelError.Visible = true;
+            }
+        }
+
+        private void linkCancel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

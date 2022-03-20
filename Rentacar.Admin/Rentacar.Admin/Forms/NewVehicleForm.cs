@@ -45,7 +45,6 @@ namespace Rentacar.Admin.Forms
         {
             int.TryParse(comboBoxVehicleNoSeats.SelectedItem.ToString(), out var number);
             int.TryParse(textBoxPrice.Text, out var price);
-            int.TryParse(comboBoxType.SelectedValue.ToString(), out var type);
             int transmission;
             switch (comboBoxTransmission.SelectedItem?.ToString())
             {
@@ -59,15 +58,27 @@ namespace Rentacar.Admin.Forms
                     transmission = 0;
                     break;
             };
+
+            if(number == 0 || price == 0 || transmission == 0 || comboBoxMake?.SelectedItem == null || comboBoxModel?.SelectedItem == null || string.IsNullOrEmpty(textBoxImageUrl.Text))
+            {
+                errorProvider1.SetError(labelError, "All fields are required.");
+                labelError.Visible = true;
+                return;
+            }
+            else
+            {
+                labelError.Visible = false;
+            }
+
             var newvehicle = new NewVehicleRequest()
             {
                 Make = comboBoxMake.SelectedItem as MakeBaseDto,
                 Model = comboBoxModel.SelectedItem as ModelBaseDto,
-                //ImageUrl = textBoxImageUrl.Text,
+                ImageUrl = textBoxImageUrl.Text,
                 NumberOfSeats = number,
                 PricePerDay = price,
                 Transmission = (TransmissionTypeEnum)transmission,
-                TypeId = 1
+                TypeId = comboBoxType.SelectedIndex + 1
             };
 
             var addedVehicle = await VehicleService.AddVehicle(newvehicle);

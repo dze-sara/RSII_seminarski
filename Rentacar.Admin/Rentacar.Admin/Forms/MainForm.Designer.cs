@@ -37,6 +37,9 @@ namespace Rentacar.Admin
             this.dataGridViewActiveBookings = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageBookings = new System.Windows.Forms.TabPage();
+            this.cbAllModelsBookings = new System.Windows.Forms.CheckBox();
+            this.cbAllMakesBookings = new System.Windows.Forms.CheckBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.numericBookingMaxPrice = new System.Windows.Forms.NumericUpDown();
             this.numericBookingMinPrice = new System.Windows.Forms.NumericUpDown();
             this.buttonExport = new System.Windows.Forms.Button();
@@ -57,15 +60,14 @@ namespace Rentacar.Admin
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePickerEndTime = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerStartTime = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageVehicles = new System.Windows.Forms.TabPage();
+            this.cbAllModelsVehicles = new System.Windows.Forms.CheckBox();
+            this.cbAllMakesVehicles = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.buttonAddNew = new System.Windows.Forms.Button();
             this.comboBoxActive = new System.Windows.Forms.ComboBox();
             this.numericBookingsMaxPrice = new System.Windows.Forms.NumericUpDown();
@@ -116,8 +118,6 @@ namespace Rentacar.Admin
             this.label42 = new System.Windows.Forms.Label();
             this.buttonVehiclesReport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistory)).BeginInit();
@@ -230,6 +230,8 @@ namespace Rentacar.Admin
             // 
             // tabPageBookings
             // 
+            this.tabPageBookings.Controls.Add(this.cbAllModelsBookings);
+            this.tabPageBookings.Controls.Add(this.cbAllMakesBookings);
             this.tabPageBookings.Controls.Add(this.label37);
             this.tabPageBookings.Controls.Add(this.numericBookingMaxPrice);
             this.tabPageBookings.Controls.Add(this.numericBookingMinPrice);
@@ -251,12 +253,8 @@ namespace Rentacar.Admin
             this.tabPageBookings.Controls.Add(this.label11);
             this.tabPageBookings.Controls.Add(this.label10);
             this.tabPageBookings.Controls.Add(this.label9);
-            this.tabPageBookings.Controls.Add(this.label8);
             this.tabPageBookings.Controls.Add(this.label7);
-            this.tabPageBookings.Controls.Add(this.label6);
-            this.tabPageBookings.Controls.Add(this.dateTimePickerEndTime);
             this.tabPageBookings.Controls.Add(this.dateTimePickerEndDate);
-            this.tabPageBookings.Controls.Add(this.dateTimePickerStartTime);
             this.tabPageBookings.Controls.Add(this.dateTimePickerStartDate);
             this.tabPageBookings.Controls.Add(this.label5);
             this.tabPageBookings.Location = new System.Drawing.Point(4, 25);
@@ -268,9 +266,41 @@ namespace Rentacar.Admin
             this.tabPageBookings.Text = "BOOKINGS";
             this.tabPageBookings.UseVisualStyleBackColor = true;
             // 
+            // cbAllModelsBookings
+            // 
+            this.cbAllModelsBookings.AutoSize = true;
+            this.cbAllModelsBookings.Location = new System.Drawing.Point(560, 151);
+            this.cbAllModelsBookings.Name = "cbAllModelsBookings";
+            this.cbAllModelsBookings.Size = new System.Drawing.Size(94, 21);
+            this.cbAllModelsBookings.TabIndex = 57;
+            this.cbAllModelsBookings.Text = "All models";
+            this.cbAllModelsBookings.UseVisualStyleBackColor = true;
+            this.cbAllModelsBookings.CheckedChanged += new System.EventHandler(this.cbAllModelsBookings_CheckedChanged);
+            // 
+            // cbAllMakesBookings
+            // 
+            this.cbAllMakesBookings.AutoSize = true;
+            this.cbAllMakesBookings.Location = new System.Drawing.Point(244, 151);
+            this.cbAllMakesBookings.Name = "cbAllMakesBookings";
+            this.cbAllMakesBookings.Size = new System.Drawing.Size(90, 21);
+            this.cbAllMakesBookings.TabIndex = 56;
+            this.cbAllMakesBookings.Text = "All makes";
+            this.cbAllMakesBookings.UseVisualStyleBackColor = true;
+            this.cbAllMakesBookings.CheckedChanged += new System.EventHandler(this.cbAllMakesBookings_CheckedChanged);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label37.Location = new System.Drawing.Point(27, 259);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(270, 17);
+            this.label37.TabIndex = 39;
+            this.label37.Text = "Click on the table row to see more details.";
+            // 
             // numericBookingMaxPrice
             // 
-            this.numericBookingMaxPrice.Location = new System.Drawing.Point(868, 153);
+            this.numericBookingMaxPrice.Location = new System.Drawing.Point(868, 150);
             this.numericBookingMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingMaxPrice.Name = "numericBookingMaxPrice";
             this.numericBookingMaxPrice.Size = new System.Drawing.Size(143, 22);
@@ -278,10 +308,10 @@ namespace Rentacar.Admin
             // 
             // numericBookingMinPrice
             // 
-            this.numericBookingMinPrice.Location = new System.Drawing.Point(727, 153);
+            this.numericBookingMinPrice.Location = new System.Drawing.Point(693, 150);
             this.numericBookingMinPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingMinPrice.Name = "numericBookingMinPrice";
-            this.numericBookingMinPrice.Size = new System.Drawing.Size(129, 22);
+            this.numericBookingMinPrice.Size = new System.Drawing.Size(143, 22);
             this.numericBookingMinPrice.TabIndex = 37;
             // 
             // buttonExport
@@ -312,7 +342,7 @@ namespace Rentacar.Admin
             // buttonSearch
             // 
             this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.Location = new System.Drawing.Point(756, 208);
+            this.buttonSearch.Location = new System.Drawing.Point(756, 198);
             this.buttonSearch.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(255, 47);
@@ -323,7 +353,7 @@ namespace Rentacar.Admin
             // 
             // textBoxBuyerId
             // 
-            this.textBoxBuyerId.Location = new System.Drawing.Point(301, 229);
+            this.textBoxBuyerId.Location = new System.Drawing.Point(299, 221);
             this.textBoxBuyerId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBuyerId.Name = "textBoxBuyerId";
             this.textBoxBuyerId.Size = new System.Drawing.Size(207, 22);
@@ -332,7 +362,7 @@ namespace Rentacar.Admin
             // comboBoxBookingVehicleType
             // 
             this.comboBoxBookingVehicleType.FormattingEnabled = true;
-            this.comboBoxBookingVehicleType.Location = new System.Drawing.Point(517, 229);
+            this.comboBoxBookingVehicleType.Location = new System.Drawing.Point(515, 221);
             this.comboBoxBookingVehicleType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingVehicleType.Name = "comboBoxBookingVehicleType";
             this.comboBoxBookingVehicleType.Size = new System.Drawing.Size(199, 24);
@@ -340,7 +370,7 @@ namespace Rentacar.Admin
             // 
             // textBoxVehicleId
             // 
-            this.textBoxVehicleId.Location = new System.Drawing.Point(27, 229);
+            this.textBoxVehicleId.Location = new System.Drawing.Point(25, 221);
             this.textBoxVehicleId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxVehicleId.Name = "textBoxVehicleId";
             this.textBoxVehicleId.Size = new System.Drawing.Size(265, 22);
@@ -349,7 +379,7 @@ namespace Rentacar.Admin
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(517, 208);
+            this.label17.Location = new System.Drawing.Point(515, 200);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(90, 17);
@@ -359,7 +389,7 @@ namespace Rentacar.Admin
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(297, 209);
+            this.label18.Location = new System.Drawing.Point(295, 201);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(60, 17);
@@ -369,7 +399,7 @@ namespace Rentacar.Admin
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(27, 209);
+            this.label19.Location = new System.Drawing.Point(25, 201);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(69, 17);
@@ -380,7 +410,7 @@ namespace Rentacar.Admin
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(420, 25);
+            this.label14.Location = new System.Drawing.Point(394, 26);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(272, 25);
@@ -390,7 +420,7 @@ namespace Rentacar.Admin
             // comboBoxBookingModel
             // 
             this.comboBoxBookingModel.FormattingEnabled = true;
-            this.comboBoxBookingModel.Location = new System.Drawing.Point(517, 154);
+            this.comboBoxBookingModel.Location = new System.Drawing.Point(354, 151);
             this.comboBoxBookingModel.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingModel.Name = "comboBoxBookingModel";
             this.comboBoxBookingModel.Size = new System.Drawing.Size(199, 24);
@@ -399,16 +429,17 @@ namespace Rentacar.Admin
             // comboBoxBookingMake
             // 
             this.comboBoxBookingMake.FormattingEnabled = true;
-            this.comboBoxBookingMake.Location = new System.Drawing.Point(301, 153);
+            this.comboBoxBookingMake.Location = new System.Drawing.Point(30, 151);
             this.comboBoxBookingMake.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBookingMake.Name = "comboBoxBookingMake";
             this.comboBoxBookingMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxBookingMake.TabIndex = 14;
-            this.comboBoxBookingMake.SelectedIndexChanged += new System.EventHandler(this.comboBoxBookingMake_SelectedIndexChanged);
+            this.comboBoxBookingMake.SelectedIndexChanged += new System.EventHandler(this.comboBoxBookingMake_SelectedIndexChanged_1);
+            this.comboBoxBookingMake.SelectedValueChanged += new System.EventHandler(this.comboBoxBookingMake_SelectedIndexChanged);
             // 
             // textBoxBookingId
             // 
-            this.textBoxBookingId.Location = new System.Drawing.Point(27, 154);
+            this.textBoxBookingId.Location = new System.Drawing.Point(746, 84);
             this.textBoxBookingId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBookingId.Name = "textBoxBookingId";
             this.textBoxBookingId.Size = new System.Drawing.Size(265, 22);
@@ -417,7 +448,7 @@ namespace Rentacar.Admin
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(864, 132);
+            this.label13.Location = new System.Drawing.Point(865, 130);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(68, 17);
@@ -427,7 +458,7 @@ namespace Rentacar.Admin
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(731, 132);
+            this.label12.Location = new System.Drawing.Point(690, 130);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
@@ -437,7 +468,7 @@ namespace Rentacar.Admin
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(517, 133);
+            this.label11.Location = new System.Drawing.Point(354, 130);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 17);
@@ -447,7 +478,7 @@ namespace Rentacar.Admin
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(297, 134);
+            this.label10.Location = new System.Drawing.Point(26, 132);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 17);
@@ -457,68 +488,30 @@ namespace Rentacar.Admin
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 134);
+            this.label9.Location = new System.Drawing.Point(746, 64);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 17);
             this.label9.TabIndex = 8;
             this.label9.Text = "Booking id";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(792, 60);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 17);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "End time";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(517, 60);
+            this.label7.Location = new System.Drawing.Point(399, 60);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 17);
             this.label7.TabIndex = 6;
             this.label7.Text = "End date";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(297, 64);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Start time";
-            // 
-            // dateTimePickerEndTime
-            // 
-            this.dateTimePickerEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerEndTime.Location = new System.Drawing.Point(792, 82);
-            this.dateTimePickerEndTime.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePickerEndTime.Name = "dateTimePickerEndTime";
-            this.dateTimePickerEndTime.Size = new System.Drawing.Size(217, 22);
-            this.dateTimePickerEndTime.TabIndex = 4;
-            // 
             // dateTimePickerEndDate
             // 
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(517, 84);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(399, 84);
             this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(265, 22);
             this.dateTimePickerEndDate.TabIndex = 3;
-            // 
-            // dateTimePickerStartTime
-            // 
-            this.dateTimePickerStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerStartTime.Location = new System.Drawing.Point(301, 82);
-            this.dateTimePickerStartTime.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePickerStartTime.Name = "dateTimePickerStartTime";
-            this.dateTimePickerStartTime.Size = new System.Drawing.Size(207, 22);
-            this.dateTimePickerStartTime.TabIndex = 2;
             // 
             // dateTimePickerStartDate
             // 
@@ -540,6 +533,8 @@ namespace Rentacar.Admin
             // 
             // tabPageVehicles
             // 
+            this.tabPageVehicles.Controls.Add(this.cbAllModelsVehicles);
+            this.tabPageVehicles.Controls.Add(this.cbAllMakesVehicles);
             this.tabPageVehicles.Controls.Add(this.label15);
             this.tabPageVehicles.Controls.Add(this.buttonAddNew);
             this.tabPageVehicles.Controls.Add(this.comboBoxActive);
@@ -572,6 +567,38 @@ namespace Rentacar.Admin
             this.tabPageVehicles.Text = "VEHICLES";
             this.tabPageVehicles.UseVisualStyleBackColor = true;
             // 
+            // cbAllModelsVehicles
+            // 
+            this.cbAllModelsVehicles.AutoSize = true;
+            this.cbAllModelsVehicles.Location = new System.Drawing.Point(648, 102);
+            this.cbAllModelsVehicles.Name = "cbAllModelsVehicles";
+            this.cbAllModelsVehicles.Size = new System.Drawing.Size(94, 21);
+            this.cbAllModelsVehicles.TabIndex = 56;
+            this.cbAllModelsVehicles.Text = "All models";
+            this.cbAllModelsVehicles.UseVisualStyleBackColor = true;
+            this.cbAllModelsVehicles.CheckedChanged += new System.EventHandler(this.cbAllModelsVehicles_CheckedChanged);
+            // 
+            // cbAllMakesVehicles
+            // 
+            this.cbAllMakesVehicles.AutoSize = true;
+            this.cbAllMakesVehicles.Location = new System.Drawing.Point(341, 103);
+            this.cbAllMakesVehicles.Name = "cbAllMakesVehicles";
+            this.cbAllMakesVehicles.Size = new System.Drawing.Size(90, 21);
+            this.cbAllMakesVehicles.TabIndex = 55;
+            this.cbAllMakesVehicles.Text = "All makes";
+            this.cbAllMakesVehicles.UseVisualStyleBackColor = true;
+            this.cbAllMakesVehicles.CheckedChanged += new System.EventHandler(this.cbAllMakesVehicles_CheckedChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Location = new System.Drawing.Point(22, 204);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(270, 17);
+            this.label15.TabIndex = 54;
+            this.label15.Text = "Click on the table row to see more details.";
+            // 
             // buttonAddNew
             // 
             this.buttonAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -595,18 +622,18 @@ namespace Rentacar.Admin
             // 
             // numericBookingsMaxPrice
             // 
-            this.numericBookingsMaxPrice.Location = new System.Drawing.Point(864, 103);
+            this.numericBookingsMaxPrice.Location = new System.Drawing.Point(892, 103);
             this.numericBookingsMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericBookingsMaxPrice.Name = "numericBookingsMaxPrice";
-            this.numericBookingsMaxPrice.Size = new System.Drawing.Size(148, 22);
+            this.numericBookingsMaxPrice.Size = new System.Drawing.Size(120, 22);
             this.numericBookingsMaxPrice.TabIndex = 51;
             // 
             // numericVehiclesMaxPrice
             // 
-            this.numericVehiclesMaxPrice.Location = new System.Drawing.Point(721, 103);
+            this.numericVehiclesMaxPrice.Location = new System.Drawing.Point(757, 104);
             this.numericVehiclesMaxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.numericVehiclesMaxPrice.Name = "numericVehiclesMaxPrice";
-            this.numericVehiclesMaxPrice.Size = new System.Drawing.Size(133, 22);
+            this.numericVehiclesMaxPrice.Size = new System.Drawing.Size(120, 22);
             this.numericVehiclesMaxPrice.TabIndex = 50;
             // 
             // buttonExportVehicles
@@ -726,7 +753,7 @@ namespace Rentacar.Admin
             // comboBoxVehiclesModel
             // 
             this.comboBoxVehiclesModel.FormattingEnabled = true;
-            this.comboBoxVehiclesModel.Location = new System.Drawing.Point(512, 103);
+            this.comboBoxVehiclesModel.Location = new System.Drawing.Point(439, 100);
             this.comboBoxVehiclesModel.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesModel.Name = "comboBoxVehiclesModel";
             this.comboBoxVehiclesModel.Size = new System.Drawing.Size(199, 24);
@@ -735,17 +762,17 @@ namespace Rentacar.Admin
             // comboBoxVehiclesMake
             // 
             this.comboBoxVehiclesMake.FormattingEnabled = true;
-            this.comboBoxVehiclesMake.Location = new System.Drawing.Point(296, 103);
+            this.comboBoxVehiclesMake.Location = new System.Drawing.Point(127, 101);
             this.comboBoxVehiclesMake.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVehiclesMake.Name = "comboBoxVehiclesMake";
             this.comboBoxVehiclesMake.Size = new System.Drawing.Size(207, 24);
             this.comboBoxVehiclesMake.TabIndex = 32;
-            this.comboBoxVehiclesMake.SelectedIndexChanged += new System.EventHandler(this.comboBoxVehiclesMake_SelectedIndexChanged);
+            this.comboBoxVehiclesMake.SelectedValueChanged += new System.EventHandler(this.comboBoxVehiclesMake_SelectedIndexChanged);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(872, 82);
+            this.label22.Location = new System.Drawing.Point(889, 81);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(68, 17);
@@ -755,7 +782,7 @@ namespace Rentacar.Admin
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(720, 84);
+            this.label23.Location = new System.Drawing.Point(754, 83);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(65, 17);
@@ -765,7 +792,7 @@ namespace Rentacar.Admin
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(508, 84);
+            this.label24.Location = new System.Drawing.Point(435, 81);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(46, 17);
@@ -775,7 +802,7 @@ namespace Rentacar.Admin
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(296, 84);
+            this.label25.Location = new System.Drawing.Point(127, 82);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(42, 17);
@@ -787,7 +814,7 @@ namespace Rentacar.Admin
             this.textBox1.Location = new System.Drawing.Point(21, 103);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 22);
+            this.textBox1.Size = new System.Drawing.Size(85, 22);
             this.textBox1.TabIndex = 27;
             // 
             // label21
@@ -1110,26 +1137,6 @@ namespace Rentacar.Admin
             this.label2.TabIndex = 3;
             this.label2.Text = "CarRental.com";
             // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label37.Location = new System.Drawing.Point(27, 259);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(270, 17);
-            this.label37.TabIndex = 39;
-            this.label37.Text = "Click on the table row to see more details.";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(22, 204);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(270, 17);
-            this.label15.TabIndex = 54;
-            this.label15.Text = "Click on the table row to see more details.";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1202,12 +1209,8 @@ namespace Rentacar.Admin
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePickerEndTime;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
-        private System.Windows.Forms.DateTimePicker dateTimePickerStartTime;
         private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxVehiclesModel;
@@ -1262,6 +1265,10 @@ namespace Rentacar.Admin
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox cbAllModelsVehicles;
+        private System.Windows.Forms.CheckBox cbAllMakesVehicles;
+        private System.Windows.Forms.CheckBox cbAllMakesBookings;
+        private System.Windows.Forms.CheckBox cbAllModelsBookings;
     }
 }
 

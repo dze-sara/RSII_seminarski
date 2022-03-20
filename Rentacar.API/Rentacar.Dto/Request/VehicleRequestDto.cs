@@ -16,5 +16,7 @@ namespace Rentacar.Dto.Request
         public int? Transmission { get; set; }
         public string VehicleType { get; set; }
         public int? NumberOfSeats { get; set; }
+        public string ImageUrl { get; set; }
+
     }
 }

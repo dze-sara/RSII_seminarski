@@ -30,28 +30,24 @@ namespace Rentacar.Admin.Reports
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.VehicleBaseDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.VehicleBaseDtoBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // VehicleBaseDtoBindingSource
+            // 
+            this.VehicleBaseDtoBindingSource.DataSource = typeof(Rentacar.Dto.Response.VehicleBaseDto);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "dsVehicleBase";
-            reportDataSource1.Value = this.VehicleBaseDtoBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Rentacar.Admin.Reports.VehiclesReportMain.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // VehicleBaseDtoBindingSource
-            // 
-            this.VehicleBaseDtoBindingSource.DataSource = typeof(Rentacar.Dto.Response.VehicleBaseDto);
             // 
             // VehiclesReportMainForm
             // 
@@ -70,8 +66,7 @@ namespace Rentacar.Admin.Reports
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource VehicleBaseDtoBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

@@ -29,6 +29,7 @@ namespace Rentacar.Admin.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.comboBoxTransmission = new System.Windows.Forms.ComboBox();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,10 @@ namespace Rentacar.Admin.Forms
             this.buttonSave = new System.Windows.Forms.Button();
             this.comboBoxMake = new System.Windows.Forms.ComboBox();
             this.comboBoxModel = new System.Windows.Forms.ComboBox();
+            this.labelError = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPrice
@@ -238,7 +242,7 @@ namespace Rentacar.Admin.Forms
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(111, 411);
+            this.buttonSave.Location = new System.Drawing.Point(102, 414);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(158, 48);
@@ -264,11 +268,28 @@ namespace Rentacar.Admin.Forms
             this.comboBoxModel.Size = new System.Drawing.Size(149, 24);
             this.comboBoxModel.TabIndex = 36;
             // 
+            // labelError
+            // 
+            this.labelError.AutoSize = true;
+            this.labelError.ForeColor = System.Drawing.Color.Red;
+            this.labelError.Location = new System.Drawing.Point(114, 393);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(146, 17);
+            this.labelError.TabIndex = 67;
+            this.labelError.Text = "All fields are required.";
+            this.labelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelError.Visible = false;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // NewVehicleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 483);
+            this.Controls.Add(this.labelError);
             this.Controls.Add(this.comboBoxModel);
             this.Controls.Add(this.comboBoxMake);
             this.Controls.Add(this.buttonSave);
@@ -283,6 +304,7 @@ namespace Rentacar.Admin.Forms
             this.Text = "NewVehicle";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,5 +329,7 @@ namespace Rentacar.Admin.Forms
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.ComboBox comboBoxMake;
         private System.Windows.Forms.ComboBox comboBoxModel;
+        private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

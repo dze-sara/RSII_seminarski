@@ -16,9 +16,15 @@ namespace Rentacar.Admin.Services
                 Password = password
             };
 
-            UserDto loggedInUser = await HttpHelper.PostAsync<UserDto, LoginRequestDto>(_baseUrl + "/login", loginRequestDto);
-
-            return loggedInUser?.Role?.RoleName == "Administrator";
+            try
+            {
+                UserDto loggedInUser = await HttpHelper.PostAsync<UserDto, LoginRequestDto>(_baseUrl + "/login", loginRequestDto);
+                return loggedInUser?.Role?.RoleName == "Administrator";
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
         }
     }
 }

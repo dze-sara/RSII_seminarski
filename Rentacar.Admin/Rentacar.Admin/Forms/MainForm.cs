@@ -43,18 +43,27 @@ namespace Rentacar.Admin
         {
             _filterLookupsDto = await FilterService.GetFilterLookups();
 
+            cbAllMakesBookings.Checked = true;
+            cbAllModelsBookings.Checked = true;
             comboBoxBookingMake.DataSource = _filterLookupsDto.Makes;
-            comboBoxBookingMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
+            comboBoxBookingMake.SelectedItem = null;
+            comboBoxBookingMake.Enabled = false;
+
 
             comboBoxBookingVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
             comboBoxBookingVehicleType.SelectedItem = null;
 
             comboBoxVehicleNoSeats.DataSource = new List<string>() { "3", "4", "5", "6" };
             comboBoxVehicleNoSeats.SelectedItem = null;
+
             comboBoxVehiclesVehicleType.DataSource = _filterLookupsDto.VehicleTypes;
             comboBoxVehiclesVehicleType.SelectedItem = null;
+
+            cbAllMakesVehicles.Checked = true;
+            cbAllModelsVehicles.Checked = true;
             comboBoxVehiclesMake.DataSource = _filterLookupsDto.Makes;
-            comboBoxVehiclesMake.SelectedItem = _filterLookupsDto.Makes.FirstOrDefault();
+            comboBoxVehiclesMake.SelectedItem = null;
+            comboBoxVehiclesMake.Enabled = false;
 
             comboBoxVehicleTransmission.DataSource = new List<ComboBoxItem>() {
                 new ComboBoxItem() { Value = 1, Text = "Manual"},
@@ -105,6 +114,19 @@ namespace Rentacar.Admin
             var vehicleInt = int.TryParse(textBoxVehicleId.Text, out int vehicleId);
             var userInt = int.TryParse(textBoxBuyerId.Text, out int userId);
 
+            string model = cbAllModelsBookings.Checked ? null : comboBoxBookingModel.SelectedItem?.ToString();
+            string make;
+
+            if (cbAllMakesBookings.Checked)
+            {
+                make = null;
+                model = null;
+            }
+            else
+            {
+                make = comboBoxBookingMake.SelectedItem?.ToString();
+            }
+
             var bookingQuery = new BookingRequestDto()
             {
                 StartDate = dateTimePickerStartDate.Value,
@@ -112,8 +134,8 @@ namespace Rentacar.Admin
                 BookingId = bookingInt ? bookingId : 0,
                 VehicleId = vehicleInt ? vehicleId : 0,
                 UserId = userInt ? userId : 0,
-                Model = comboBoxBookingModel.SelectedItem?.ToString(),
-                Make = comboBoxBookingMake.SelectedItem?.ToString(),
+                Model = model,
+                Make = make,
                 MinPrice = (int)numericBookingMinPrice.Value,
                 MaxPrice = (int)numericBookingMaxPrice.Value,
                 VehicleType = comboBoxBookingVehicleType.Text
@@ -141,11 +163,24 @@ namespace Rentacar.Admin
                     break;
             };
 
+            string model = cbAllModelsVehicles.Checked ? null : comboBoxVehiclesModel.SelectedItem?.ToString();
+            string make;
+
+            if (cbAllMakesVehicles.Checked)
+            {
+                make = null;
+                model = null;
+            }
+            else
+            {
+                make = comboBoxVehiclesMake.SelectedItem?.ToString();
+            }
+
             var vehiclesQuery = new VehicleRequestDto()
             {
                 VehicleId = vehicleInt ? vehicleId : 0,
-                Make = comboBoxVehiclesMake.SelectedItem?.ToString(),
-                Model = comboBoxVehiclesModel.SelectedItem?.ToString(),
+                Make = make,
+                Model = model,
                 MinPrice = (int)numericVehiclesMaxPrice.Value,
                 MaxPrice = (int)numericBookingsMaxPrice.Value,
                 NumberOfSeats = noOfSeatsInt ? numberOfSeats : 0,
@@ -231,18 +266,46 @@ namespace Rentacar.Admin
 
         private async void comboBoxVehiclesMake_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MakeBaseDto make;
-            make = comboBoxVehiclesMake.SelectedItem as MakeBaseDto;
-            var models = await FilterService.GetModelsForMake(make.MakeId);
-            comboBoxVehiclesModel.DataSource = models;
+            if (cbAllModelsVehicles.Checked)
+            {
+                return;
+            }
+            GetModelsForMake();
+        }
+
+        private async void GetModelsForMake()
+        {
+            if(comboBoxVehiclesMake.SelectedItem != null)
+            {
+                comboBoxVehiclesModel.Enabled = true;
+                MakeBaseDto make;
+                make = comboBoxVehiclesMake.SelectedItem as MakeBaseDto;
+                var models = await FilterService.GetModelsForMake(make.MakeId);
+                comboBoxVehiclesModel.DataSource = models;
+            }
+            else
+            {
+                comboBoxVehiclesModel.Enabled = false;
+            }
         }
 
         private async void comboBoxBookingMake_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MakeBaseDto make;
-            make = comboBoxBookingMake.SelectedItem as MakeBaseDto;
-            var models = await FilterService.GetModelsForMake(make.MakeId);
-            comboBoxBookingModel.DataSource = models;
+            if(comboBoxBookingMake.SelectedItem != null)
+            {
+                comboBoxBookingModel.Enabled = true;
+                MakeBaseDto make;
+                make = comboBoxBookingMake.SelectedItem as MakeBaseDto;
+                var models = await FilterService.GetModelsForMake(make.MakeId);
+                comboBoxBookingModel.DataSource = models;
+
+            }
+            else
+            {
+                comboBoxBookingModel.DataSource = null;
+                comboBoxBookingModel.SelectedItem = null;
+                comboBoxBookingModel.Enabled = false;
+            }
         }
 
         private BookingReportRequestDto bookingReportRequest;
@@ -311,6 +374,86 @@ namespace Rentacar.Admin
             Form vehiclesReportForm = new VehiclesReportForm(vehiclesReportChartData, vehiclesReportTableData);
             vehiclesReportForm.Show();
         }
-        
+
+        private void cbAllMakesVehicles_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAllMakesVehicles.Checked == true)
+            {
+                comboBoxVehiclesMake.Enabled = false;
+                comboBoxVehiclesModel.Enabled = false;
+                cbAllModelsVehicles.Enabled = false;
+            }
+            else
+            {
+                comboBoxVehiclesMake.Enabled = true;
+                cbAllModelsVehicles.Enabled = true;
+            }
+        }
+
+        private void cbAllModelsVehicles_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAllModelsVehicles.Checked == true)
+            {
+                comboBoxVehiclesModel.Enabled = false;
+            }
+            else
+            {
+                comboBoxVehiclesModel.Enabled = true;
+                GetModelsForMake();
+            }
+        }
+
+        private void cbAllMakesBookings_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAllMakesBookings.Checked == true)
+            {
+                comboBoxBookingMake.Enabled = false;
+                comboBoxBookingModel.Enabled = false;
+                cbAllModelsBookings.Enabled = false;
+            }
+            else
+            {
+                comboBoxBookingMake.Enabled = true;
+                cbAllModelsBookings.Enabled = true;
+            }
+        }
+
+        private void cbAllModelsBookings_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAllModelsBookings.Checked == true)
+            {
+                comboBoxBookingModel.Enabled = false;
+            }
+            else
+            {
+                comboBoxBookingModel.Enabled = true;
+                GetModelsForMakeBookings();
+            }
+        }
+
+        private void comboBoxBookingMake_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cbAllModelsBookings.Checked)
+            {
+                return;
+            }
+            GetModelsForMakeBookings();
+        }
+
+        private async void GetModelsForMakeBookings()
+        {
+            if(comboBoxBookingMake.SelectedItem != null)
+            {
+                comboBoxBookingModel.Enabled = true;
+                MakeBaseDto make;
+                make = comboBoxBookingMake.SelectedItem as MakeBaseDto;
+                var models = await FilterService.GetModelsForMake(make.MakeId);
+                comboBoxVehiclesModel.DataSource = models;
+            }
+            else
+            {
+                comboBoxBookingModel.Enabled = false;
+            }
+        }
     }
 }

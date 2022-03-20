@@ -98,8 +98,17 @@ namespace Rentacar.Admin
 
         private async void buttonClose_Click(object sender, EventArgs e)
         {
-            await VehicleService.DeleteVehicle(_vehicle.VehicleId);
-            this.Close();
+            DialogResult res = MessageBox.Show("Are you sure you want to delete this vehicle?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (res == DialogResult.OK)
+            {
+                await VehicleService.DeleteVehicle(_vehicle.VehicleId);
+                this.Close();
+            }
+            if (res == DialogResult.Cancel)
+            {
+                this.Close();
+            }
+
         }
 
         private async void buttonSave_Click(object sender, EventArgs e)
@@ -121,11 +130,23 @@ namespace Rentacar.Admin
                     break;
             };
 
+            if(number == 0 || price == 0 || transmission == 0 || comboBoxMake?.SelectedItem == null ||
+                comboBoxModel?.SelectedItem == null || string.IsNullOrEmpty(textBoxImageUrl?.Text))
+            {
+                errorProvider1.SetError(labelError, "All fields are required.");
+                labelError.Visible = true;
+                return;
+            }
+            else
+            {
+                labelError.Visible = false;
+            }
+
             var updateVehicle = new NewVehicleRequest()
             {
                 Make = comboBoxMake.SelectedItem as MakeBaseDto,
                 Model = comboBoxModel.SelectedItem as ModelBaseDto,
-                //ImageUrl = textBoxImageUrl.Text,
+                ImageUrl = textBoxImageUrl.Text,
                 NumberOfSeats = number,
                 PricePerDay = price,
                 Transmission = (TransmissionTypeEnum)transmission,

@@ -33,6 +33,7 @@ namespace Rentacar.Admin.Reports
             this.reportViewer1.LocalReport.SetParameters(parameters);
             this.reportViewer1.ZoomMode = ZoomMode.PageWidth;
             this.reportViewer1.RefreshReport();
+            this.reportViewer1.RefreshReport();
         }
     }
 }
