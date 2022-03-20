@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2021"
+                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2022"
                             MaximumDate="12/31/2022"
                             Date="{Binding StartDate}" />
 
@@ -38,7 +38,7 @@
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/02/2021"
+                <DatePicker Grid.Column="0" Grid.Row="0" MinimumDate="01/01/2022"
                             MaximumDate="12/31/2022"
                             Date="{Binding EndDate}" />
 
