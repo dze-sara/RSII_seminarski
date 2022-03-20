@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,17 @@ namespace Rentacar.Admin
         {
             this._vehicle = vehicle;
 
+            if(vehicle.ImageUrl != null)
+            {
+                var request = WebRequest.Create($"{vehicle.ImageUrl}");
+
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                {
+                    pbImage.Image = Bitmap.FromStream(stream);
+                }
+            }
+
             _filterLookupsDto = await FilterService.GetFilterLookups();
             comboBoxMake.DataSource = _filterLookupsDto.Makes;
             comboBoxMake.SelectedIndex = _filterLookupsDto.Makes.FindIndex(x => x.MakeName == vehicle.Make);
@@ -43,12 +55,30 @@ namespace Rentacar.Admin
                 new ComboBoxItem() { Value = 4, Text = "Sports car"},
             };
 
+            var typeInt = GetVehicleType();
             await GetModels();
 
             comboBoxVehicleNoSeats.SelectedItem = vehicle.NumberOfSeats.ToString();
             comboBoxTransmission.SelectedItem = vehicle.TransmissionType.ToString();
-            comboBoxType.SelectedItem = vehicle.VehicleType;
+            comboBoxType.SelectedIndex = typeInt;
             textBoxPrice.Text = vehicle.RatePerDay.ToString();
+            textBoxImageUrl.Text = vehicle.ImageUrl;
+        }
+
+        private int GetVehicleType()
+        {
+            switch (_vehicle.VehicleType)
+            {
+                case "Small car":
+                    return 0;
+                case "Sedan":
+                    return 1;
+                case "SUV":
+                    return 2;
+                case "Sports car":
+                    return 3;
+            }
+            return 0;
         }
 
         private async Task GetModels()
@@ -57,6 +87,7 @@ namespace Rentacar.Admin
             make = comboBoxMake.SelectedItem as MakeBaseDto;
             var models = await FilterService.GetModelsForMake(make.MakeId);
             comboBoxModel.DataSource = models;
+            comboBoxModel.SelectedIndex = models.FindIndex(x => x.ModelName.ToLower() == _vehicle.Model.ToLower());
         }
 
         public VehicleDetails(VehicleBaseDto vehicle)

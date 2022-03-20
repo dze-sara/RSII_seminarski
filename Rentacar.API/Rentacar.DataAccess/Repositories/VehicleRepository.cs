@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
+using Rentacar.Dto;
 using Rentacar.Dto.Enums;
 using Rentacar.Dto.Request;
 using Rentacar.Dto.Response;
@@ -15,16 +17,20 @@ namespace Rentacar.DataAccess.Repositories
     public class VehicleRepository : IVehicleRepository
     {
         private readonly RentacarContext _context;
-        public VehicleRepository(RentacarContext context)
+        private readonly IMapper _mapper;
+
+        public VehicleRepository(RentacarContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+
         }
         public async Task<ICollection<Vehicle>> FilterVehicles(int? transmissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType)
         {
             var query = _context.Vehicles
                                 .Include(x => x.Model)
                                 .ThenInclude(x => x.VehicleType)
-                                .Include(x =>x.Model)
+                                .Include(x => x.Model)
                                 .ThenInclude(y => y.Make)
                                 .Include(x => x.Bookings)
                                 .AsQueryable();
@@ -113,7 +119,7 @@ namespace Rentacar.DataAccess.Repositories
                 query = query.Where(x => x.Model.ModelName == request.Model);
             }
 
-            if(request.MaxPrice > 0)
+            if (request.MaxPrice > 0)
             {
                 query = query.Where(x => x.RatePerDay <= request.MaxPrice);
             }
@@ -148,7 +154,8 @@ namespace Rentacar.DataAccess.Repositories
                 NumberOfSeats = x.Model.NoOfSeats,
                 RatePerDay = x.RatePerDay,
                 TransmissionType = (TransmissionTypeEnum)x.TransmissionType,
-                VehicleType = x.Model.VehicleType.VehicleTypeName
+                VehicleType = x.Model.VehicleType.VehicleTypeName,
+                ImageUrl = x.ImageUrl
             })).ConfigureAwait(false);
             return queryResponse;
         }
@@ -190,12 +197,12 @@ namespace Rentacar.DataAccess.Repositories
                 .ThenInclude(x => x.Make)
                 .FirstOrDefault();
 
-            if(existingVehicle == null)
+            if (existingVehicle == null)
             {
                 return null;
             }
 
-            if(vehicle.Model != null)
+            if (vehicle.Model != null)
             {
                 var model = _context.Models.Where(x => x.ModelId == vehicle.Model.ModelId).FirstOrDefault();
                 existingVehicle.Model = model;
@@ -206,7 +213,7 @@ namespace Rentacar.DataAccess.Repositories
                 existingVehicle.RatePerDay = (decimal)vehicle.PricePerDay;
             }
 
-            if(vehicle.Transmission != null && vehicle.Transmission != 0)
+            if (vehicle.Transmission != null && vehicle.Transmission != 0)
             {
                 existingVehicle.TransmissionType = (short)vehicle.Transmission;
             }
@@ -231,7 +238,7 @@ namespace Rentacar.DataAccess.Repositories
         {
             var vehicle = _context.Vehicles.Where(x => x.VehicleId == vehicleId).FirstOrDefault();
 
-            if(vehicle == null)
+            if (vehicle == null)
             {
                 return false;
             }
@@ -241,5 +248,32 @@ namespace Rentacar.DataAccess.Repositories
 
             return true;
         }
+
+        public async Task<List<VehiclesReportResponseDto>> VehiclesReport()
+        {
+            var vehicles = _context.Vehicles
+                                    .Include(x => x.Model)
+                                    .ThenInclude(x => x.VehicleType)
+                                    .Include(x => x.Model)
+                                    .ThenInclude(y => y.Make)
+                                    .ToList();
+            var bookings = _context.Bookings.ToList();
+
+            var response = new List<VehiclesReportResponseDto>();
+
+            foreach (var vehicle in vehicles)
+            {
+                var bookingsForVehicle = bookings.Where(x => x.VehicleId == vehicle.VehicleId).ToList();
+                var vehicleReport = new VehiclesReportResponseDto()
+                {
+                    VehicleBase = _mapper.Map<VehicleBaseDto>(vehicle),
+                    BookingsForVehicle = _mapper.Map<List<BaseBookingDto>>(bookingsForVehicle)
+                };
+                response.Add(vehicleReport);
+            }
+
+            return response;
+        }
     }
+
 }

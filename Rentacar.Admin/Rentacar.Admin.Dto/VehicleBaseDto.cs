@@ -17,5 +17,7 @@ namespace Rentacar.Dto.Response
         public string Make { get; set; }
         public string VehicleType { get; set; }
         public int NumberOfSeats { get; set; }
+        public string ImageUrl { get; set; }
+
     }
 }

@@ -120,5 +120,10 @@ namespace Rentacar.Services.Services
         {
             return await _vehicleRepository.DeleteVehicle(vehicleId);
         }
+
+        public async Task<List<VehiclesReportResponseDto>> VehiclesReport()
+        {
+            return await _vehicleRepository.VehiclesReport();
+        }
     }
 }

@@ -82,5 +82,11 @@ namespace Rentacar.API.Controllers
         {
             return Ok(await _vehicleService.DeleteVehicle(vehicleId));
         }
+
+        [HttpGet("report")]
+        public async Task<IActionResult> VehiclesReport()
+        {
+            return Ok(await _vehicleService.VehiclesReport());
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace Rentacar.DataAccess.Interfaces
         Task<Vehicle> UpdateVehicle(int vehicleId, NewVehicleRequest vehicle);
         Task<Vehicle> GetVehicleByUserId(int userId);
         Task<bool> DeleteVehicle(int vehicleId);
+        Task<List<VehiclesReportResponseDto>> VehiclesReport();
     }
 }
