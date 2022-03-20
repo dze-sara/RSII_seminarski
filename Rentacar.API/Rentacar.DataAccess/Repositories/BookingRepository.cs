@@ -146,6 +146,7 @@ namespace Rentacar.DataAccess.Repositories
             return await _context.Bookings
                                  .Include(x => x.Vehicle)
                                  .ThenInclude(y => y.Model)
+                                 .ThenInclude(z => z.VehicleType)
                                  .Include(x => x.User)
                                  .Where(x => x.UserId == userId)
                                  .Where(x => x.StartDate < DateTime.UtcNow && x.EndDate < DateTime.UtcNow)

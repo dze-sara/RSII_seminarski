@@ -13,6 +13,9 @@ namespace Rentacar.API.Helpers
             CreateMap<Booking, BaseBookingDto>()
                 .ForMember(x => x.BookedBy, y => y.MapFrom(z => $"{z.User.FirstName} {z.User.LastName}"))
                 .ForMember(x => x.ImageUrl, y=> y.MapFrom(z => z.Vehicle.ImageUrl))
+                .ForMember(x => x.NumberOfSeats, y => y.MapFrom(z => z.Vehicle.Model.NoOfSeats))
+                .ForMember(x => x.TransmissionType, y => y.MapFrom(z => z.Vehicle.TransmissionType))
+                .ForMember(x => x.VehicleType, y => y.MapFrom(z => z.Vehicle.Model.VehicleType.VehicleTypeName))
                 .ForMember(x => x.VehicleModel, y => y.MapFrom(z => z.Vehicle.Model.ModelName));
 
             CreateMap<Review, ReviewDto>().ReverseMap();
@@ -30,6 +33,7 @@ namespace Rentacar.API.Helpers
             CreateMap<Vehicle, VehicleBaseDto>()
                 .ForMember(x => x.Make, y => y.MapFrom(z => z.Model.Make.MakeName))
                 .ForMember(x => x.Model, y => y.MapFrom(z => z.Model.ModelName))
+                .ForMember(x => x.NumberOfSeats, y => y.MapFrom(z => z.Model.NoOfSeats))
                 .ForMember(x => x.VehicleType, y => y.MapFrom(z => z.Model.VehicleType.VehicleTypeName));
             CreateMap<VehicleType, VehicleTypeDto>().ReverseMap();
             CreateMap<VehicleType, VehicleTypeBaseDto>();

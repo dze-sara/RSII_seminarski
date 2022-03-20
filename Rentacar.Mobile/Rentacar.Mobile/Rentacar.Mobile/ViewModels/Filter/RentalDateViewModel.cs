@@ -6,10 +6,10 @@ namespace Rentacar.Mobile.ViewModels
 {
     public class RentalDateViewModel : BaseViewModel
     {
-        private DateTime _startDate;
-        private DateTime _endDate;
-        private DateTime _startTime;
-        private DateTime _endTime;
+        private DateTime _startDate = DateTime.Now;
+        private DateTime _endDate = DateTime.Now.AddDays(1);
+        private DateTime _startTime = DateTime.Now;
+        private DateTime _endTime = DateTime.Now.AddDays(1);
         public DateTime StartDate
         {
             get => _startDate;

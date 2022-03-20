@@ -28,7 +28,7 @@
                                                 <ColumnDefinition Width="50*"></ColumnDefinition>
                                                 <ColumnDefinition Width="30*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <Image Source="xamarin_logo.png" Scale="0.5" Grid.RowSpan="3" Grid.Column="0"></Image>
+                                            <Image x:Name="backgroundImage" HorizontalOptions="FillAndExpand" Grid.RowSpan="4" Grid.Column="0" Source="{Binding ImageUrl}" AbsoluteLayout.LayoutBounds="0,0,0,0" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
                                             <Label Grid.Column="1" Grid.Row="0" Text="{Binding VehicleType}"></Label>
                                             <FlexLayout Grid.Column="1" Grid.Row="1">
                                                 <Label Text="{Binding NumberOfSeats}"></Label>
@@ -36,6 +36,7 @@
                                             </FlexLayout>
 
                                             <Label Grid.Column="1" Grid.Row="2" Text="{Binding TransmissionType}"></Label>
+                                            <Label Grid.Column="1" Grid.Row="3" Text=""></Label>
                                         </Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -48,9 +49,7 @@
                                                 <Label Text=" €" />
                                             </FlexLayout>
 
-                                            <!--<Button Margin="10, 0, 0, 0" Grid.Column="1" Text="rent now" Clicked="RentNowTapped" />-->
                                         </Grid>
-
                                     </StackLayout>
                                 </Frame>
                                 
