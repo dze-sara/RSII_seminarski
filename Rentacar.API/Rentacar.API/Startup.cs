@@ -39,6 +39,7 @@ namespace Rentacar.API
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IFilterService, FilterService>();
             services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IPaymentProcessingService, StripeIntegrationService>();
 
             // Repositories
             services.AddTransient<IBookingRepository, BookingRepository>();

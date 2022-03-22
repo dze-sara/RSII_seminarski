@@ -13,11 +13,13 @@ namespace Rentacar.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly IBookingRepository _bookingRepository;
+        private readonly IPaymentProcessingService _paymentProcessingService;
 
-        public BookingService(IMapper mapper, IBookingRepository bookingRepository)
+        public BookingService(IMapper mapper, IBookingRepository bookingRepository, IPaymentProcessingService paymentProcessingService)
         {
             _mapper = mapper;
             _bookingRepository = bookingRepository;
+            _paymentProcessingService = paymentProcessingService;
         }
 
         public async Task<List<BaseBookingDto>> BookingReport(BookingReportRequestDto bookingReport)
@@ -35,6 +37,7 @@ namespace Rentacar.Services.Services
         {
             Booking bookingEf = _mapper.Map<Booking>(booking);
             Booking createdBooking = await _bookingRepository.AddBooking(bookingEf);
+            await _paymentProcessingService.AddPayment(booking.CardInfo, booking.TotalPrice ?? 0);
             return _mapper.Map<BookingDto>(createdBooking);
         }
 
