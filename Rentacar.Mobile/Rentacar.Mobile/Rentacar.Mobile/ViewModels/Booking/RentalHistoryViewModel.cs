@@ -28,6 +28,11 @@ namespace Rentacar.Mobile.ViewModels
 
         public async void OnAddReviewTapped(BaseBookingDto bookingProp)
         {
+            if(!bookingProp.CanAddReview)
+            {
+                return;
+            }
+
             AddReviewPage.Booking = bookingProp;
 
             await Shell.Current.GoToAsync(nameof(AddReviewPage));
@@ -35,12 +40,15 @@ namespace Rentacar.Mobile.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+            if (IsBusy)
+                return;
+
             IsBusy = true;
 
             try
             {
-                BookingItems.Clear();
                 var items = await BookingService.GetBookingHistoryForUser(AuthenticationService.UserId);
+                BookingItems.Clear();
                 foreach (var item in items)
                 {
                     BookingItems.Add(item);

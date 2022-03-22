@@ -27,7 +27,7 @@ namespace Rentacar.Mobile.ViewModels
             ReviewItems = new ObservableCollection<ReviewDto>();
             ConfirmBookingCommand = new Command(OnConfirmBooking);
 
-            ExecuteLoadItemsCommand();
+            //ExecuteLoadItemsCommand();
             LoadReviewsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 

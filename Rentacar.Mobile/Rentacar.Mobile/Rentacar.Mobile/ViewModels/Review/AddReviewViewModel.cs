@@ -55,7 +55,9 @@ namespace Rentacar.Mobile.ViewModels.Review
             {
                 BookingId = Booking.BookingId,
                 Content = Description,
-                Score = (short)Score
+                Score = (short)Score,
+                ModelId = Booking.ModelId,
+                UserId = AuthenticationService.UserId
             };
 
             await ReviewService.AddReview(newReview);

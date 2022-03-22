@@ -20,5 +20,6 @@ namespace Rentacar.Dto
         public string ImageUrl { get; set; }
         public TransmissionTypeEnum TransmissionType { get; set; }
         public bool CanAddReview { get; set; }
+        public int ModelId { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace Rentacar.API.Helpers
                 .ForMember(x => x.TransmissionType, y => y.MapFrom(z => z.Vehicle.TransmissionType))
                 .ForMember(x => x.VehicleType, y => y.MapFrom(z => z.Vehicle.Model.VehicleType.VehicleTypeName))
                 .ForMember(x => x.CanAddReview, y => y.MapFrom(z => !z.ReviewAdded))
+                .ForMember(x => x.ModelId, y => y.MapFrom(z => z.Vehicle.ModelId))
                 .ForMember(x => x.VehicleModel, y => y.MapFrom(z => z.Vehicle.Model.ModelName));
 
             CreateMap<Review, ReviewDto>()

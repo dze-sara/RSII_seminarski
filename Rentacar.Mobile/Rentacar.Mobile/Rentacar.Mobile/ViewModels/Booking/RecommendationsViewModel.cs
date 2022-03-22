@@ -24,7 +24,7 @@ namespace Rentacar.Mobile.ViewModels.Booking
             Title = "Browse";
             VehicleItems = new ObservableCollection<VehicleBaseDto>();
 
-            ExecuteLoadItemsCommand();
+            //ExecuteLoadItemsCommand();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
