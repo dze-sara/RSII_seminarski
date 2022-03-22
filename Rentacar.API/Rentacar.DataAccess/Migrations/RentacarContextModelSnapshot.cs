@@ -33,6 +33,9 @@ namespace Rentacar.DataAccess.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("ReviewAdded")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -155,9 +158,14 @@ namespace Rentacar.DataAccess.Migrations
                     b.Property<short>("Score")
                         .HasColumnType("smallint");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ReviewId");
 
                     b.HasIndex("ModelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Review");
                 });
@@ -229,6 +237,9 @@ namespace Rentacar.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -243,9 +254,6 @@ namespace Rentacar.DataAccess.Migrations
 
                     b.Property<short>("TransmissionType")
                         .HasColumnType("smallint");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VehicleId");
 
@@ -316,10 +324,18 @@ namespace Rentacar.DataAccess.Migrations
                     b.HasOne("Rentacar.Entities.Model", "Model")
                         .WithMany("Reviews")
                         .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_Review_Model_ModelId")
+                        .IsRequired();
+
+                    b.HasOne("Rentacar.Entities.User", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Review_User_UserId")
                         .IsRequired();
 
                     b.Navigation("Model");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rentacar.Entities.User", b =>
@@ -367,6 +383,8 @@ namespace Rentacar.DataAccess.Migrations
             modelBuilder.Entity("Rentacar.Entities.User", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("Rentacar.Entities.Vehicle", b =>

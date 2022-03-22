@@ -53,6 +53,7 @@ namespace Rentacar.Mobile.ViewModels.Review
         {
             ReviewDto newReview = new ReviewDto()
             {
+                BookingId = Booking.BookingId,
                 Content = Description,
                 Score = (short)Score
             };

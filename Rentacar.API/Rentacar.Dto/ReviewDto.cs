@@ -8,6 +8,7 @@
         public int ModelId { get; set; }
         public virtual ModelDto Model { get; set; }
         public int UserId { get; set; }
-        public virtual UserDto User { get; set; }
+        public string AuthorName { get; set; }
+        public int BookingId { get; set; }
     }
 }

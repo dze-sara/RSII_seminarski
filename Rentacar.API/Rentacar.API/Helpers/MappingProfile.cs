@@ -18,7 +18,10 @@ namespace Rentacar.API.Helpers
                 .ForMember(x => x.VehicleType, y => y.MapFrom(z => z.Vehicle.Model.VehicleType.VehicleTypeName))
                 .ForMember(x => x.VehicleModel, y => y.MapFrom(z => z.Vehicle.Model.ModelName));
 
-            CreateMap<Review, ReviewDto>().ReverseMap();
+            CreateMap<Review, ReviewDto>()
+                .ForMember(x => x.AuthorName, y => y.MapFrom(z => $"{z.User.FirstName} {z.User.LastName}"));
+
+            CreateMap<ReviewDto, Review>();
 
             CreateMap<Location, LocationDto>().ReverseMap();
 

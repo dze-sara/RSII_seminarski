@@ -19,5 +19,6 @@ namespace Rentacar.Dto
         public decimal? TotalPrice { get; set; }
         public string ImageUrl { get; set; }
         public TransmissionTypeEnum TransmissionType { get; set; }
+        public bool ReviewAdded { get; set; }
     }
 }

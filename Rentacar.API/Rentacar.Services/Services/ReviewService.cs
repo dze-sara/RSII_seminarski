@@ -22,7 +22,7 @@ namespace Rentacar.Services.Services
         public async Task<bool> AddReview(ReviewDto review)
         {
             Review newReview = _mapper.Map<Review>(review);
-            return await _reviewRepository.AddReview(newReview);
+            return await _reviewRepository.AddReview(newReview, review.BookingId);
         }
 
         public async Task<List<ReviewDto>> GetReviewsByModelId(int modelId)

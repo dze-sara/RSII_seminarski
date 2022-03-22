@@ -15,6 +15,8 @@ namespace Rentacar.Entities
         public int UserId { get; set; }
         public int VehicleId { get; set; }
         public decimal? TotalPrice { get; set; }
+        public bool ReviewAdded { get; set; }
+
         public virtual User User { get; set; }
         public virtual Vehicle Vehicle { get; set; }
     }

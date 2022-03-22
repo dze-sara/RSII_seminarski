@@ -18,9 +18,13 @@ namespace Rentacar.DataAccess.Repositories
             _context = context;
         }
 
-        public async Task<bool> AddReview(Review addReview)
+        public async Task<bool> AddReview(Review addReview, int bookingId)
         {
+            Booking booking = await _context.Bookings.FirstOrDefaultAsync(x => x.BookingId == bookingId);
+            booking.ReviewAdded = true;
+
             await _context.Reviews.AddAsync(addReview);
+            await _context.SaveChangesAsync();
 
             return true;
         }
