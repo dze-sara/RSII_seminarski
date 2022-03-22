@@ -61,7 +61,7 @@
                                             </Grid>
 
                                         </Frame>
-                                        <Label HorizontalOptions="Center" FontSize="Micro" Text="(click to add review)"/>
+                                        <Label IsVisible="{Binding CanAddReview}" HorizontalOptions="Center" FontSize="Micro" Text="(click to add review)"/>
                                     </StackLayout>
                                 </Frame>
                                 <StackLayout.GestureRecognizers>

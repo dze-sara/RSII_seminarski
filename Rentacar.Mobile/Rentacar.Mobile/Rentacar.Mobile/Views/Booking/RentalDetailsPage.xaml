@@ -68,18 +68,30 @@
                                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                        <FlexLayout Padding="0,5,0,0" BackgroundColor="AliceBlue">
-                            <Label  Text="Score: " FontAttributes="Bold" WidthRequest="50"></Label>
-                            <Label Text="{Binding Score}" 
+                        <StackLayout>
+                            <FlexLayout Padding="0,5,0,0" BackgroundColor="AliceBlue">
+                                <Label Text="{Binding AuthorName}" 
+                                   WidthRequest="150" FontSize="13"
+                                   Style="{DynamicResource ListItemTextStyle}" HorizontalOptions="Start" 
+                                   LineBreakMode="WordWrap" VerticalOptions="StartAndExpand"/>
+                                <Label  Text="Score: " FontAttributes="Bold" WidthRequest="100"></Label>
+                                <Label Text="{Binding Score}" 
                                         LineBreakMode="NoWrap" 
-                                        Style="{DynamicResource ListItemTextStyle}"  WidthRequest="15"
+                                        Style="{DynamicResource ListItemTextStyle}"  WidthRequest="65"
                                         FontSize="16" />
-                            <Label Margin="15,0,0,0" Text="{Binding Content}" WidthRequest="300"
+                                <Label Margin="15,0,0,0" Text="{Binding Content}" WidthRequest="250"
                                         LineBreakMode="WordWrap" HorizontalOptions="Start" VerticalOptions="FillAndExpand"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
                                         FontSize="13" />
-                        </FlexLayout>
-                        </DataTemplate>
+
+                            </FlexLayout>
+                            <BoxView 
+                               HeightRequest="0.2"
+                               Color="LightGray"
+                               Margin ="2, 0, 2, 0"/>
+                        </StackLayout>
+                        
+                    </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
         </StackLayout>

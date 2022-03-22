@@ -31,9 +31,11 @@ namespace Rentacar.DataAccess.Repositories
 
         public async Task<List<Review>> GetReviewsByModelId(int modelId)
         {
-            return await _context.Reviews.Where(x => x.ModelId == modelId)
-                           .OrderByDescending(x => x.ReviewId)
-                           .ToListAsync();
+            return await _context.Reviews
+                                 .Include(x => x.User)
+                                 .Where(x => x.ModelId == modelId)
+                                 .OrderByDescending(x => x.ReviewId)
+                                 .ToListAsync();
         }
     }
 }
