@@ -18,12 +18,14 @@ namespace Rentacar.DataAccess.Repositories
     {
         private readonly RentacarContext _context;
         private readonly IMapper _mapper;
+        private readonly IBookingRepository _bookingRepository;
 
-        public VehicleRepository(RentacarContext context, IMapper mapper)
+        public VehicleRepository(RentacarContext context, IMapper mapper, IBookingRepository bookingRepostiory)
         {
             _context = context;
             _mapper = mapper;
 
+            _bookingRepository = bookingRepostiory;
         }
         public async Task<ICollection<Vehicle>> FilterVehicles(int? transmissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType)
         {
@@ -47,8 +49,8 @@ namespace Rentacar.DataAccess.Repositories
 
             if (bookingStartDate.HasValue && bookingEndDate.HasValue)
             {
-                //query.Where(x => !x.Bookings.Any(booking => DateSpansOverlap(booking.StartDate, booking.EndDate, bookingStartDate.Value, bookingEndDate.Value)));
-                query = query.Where(x => !x.Bookings.Any(y => !(bookingStartDate < y.EndDate || bookingEndDate < y.StartDate)));
+                var activeBookings = await _bookingRepository.GetLatestActiveBookings();
+                query = query.Where(x => !activeBookings.Select(y => y.VehicleId).Contains(x.VehicleId));
             }
 
             return await query.ToListAsync();

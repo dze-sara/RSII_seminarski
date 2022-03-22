@@ -34,18 +34,18 @@ namespace Rentacar.API
             services.AddControllers();
 
             // Services
-            services.AddScoped<IBookingService, BookingService>();
-            services.AddScoped<IVehicleService, VehicleService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IFilterService, FilterService>();
-            services.AddScoped<IReviewService, ReviewService>();
+            services.AddTransient<IBookingService, BookingService>();
+            services.AddTransient<IVehicleService, VehicleService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IFilterService, FilterService>();
+            services.AddTransient<IReviewService, ReviewService>();
 
             // Repositories
-            services.AddScoped<IBookingRepository, BookingRepository>();
-            services.AddScoped<IVehicleRepository, VehicleRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IFilterRepository, FilterRepository>();
-            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IBookingRepository, BookingRepository>();
+            services.AddTransient<IVehicleRepository, VehicleRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IFilterRepository, FilterRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
