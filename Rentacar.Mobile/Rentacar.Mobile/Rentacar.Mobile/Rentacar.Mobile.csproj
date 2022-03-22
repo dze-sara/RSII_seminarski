@@ -27,6 +27,9 @@
     <Compile Update="Views\Filter\FilteredVehiclesPage.xaml.cs">
       <DependentUpon>FilteredVehiclesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Reviews\AddReviewPage.xaml.cs">
+      <DependentUpon>AddReviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\User\UserDetailsPage.xaml.cs">
       <DependentUpon>UserDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -58,6 +61,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Filter\RentalDatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Reviews\AddReviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\User\UserDetailsPage.xaml">

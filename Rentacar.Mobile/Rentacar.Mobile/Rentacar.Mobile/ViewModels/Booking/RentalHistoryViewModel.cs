@@ -1,5 +1,6 @@
 ﻿using Rentacar.Dto;
 using Rentacar.Dto.Response;
+using Rentacar.Mobile.Views.Reviews;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -12,6 +13,8 @@ namespace Rentacar.Mobile.ViewModels
     {
         public ObservableCollection<BaseBookingDto> BookingItems { get; }
         public Command LoadItemsCommand { get; }
+        public Command AddReviewTapped { get; }
+
 
         public RentalHistoryViewModel()
         {
@@ -20,6 +23,14 @@ namespace Rentacar.Mobile.ViewModels
             ExecuteLoadItemsCommand();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            AddReviewTapped = new Command<BaseBookingDto>(OnAddReviewTapped);
+        }
+
+        public async void OnAddReviewTapped(BaseBookingDto bookingProp)
+        {
+            AddReviewPage.Booking = bookingProp;
+
+            await Shell.Current.GoToAsync(nameof(AddReviewPage));
         }
 
         async Task ExecuteLoadItemsCommand()

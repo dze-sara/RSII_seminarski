@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.Reviews.AddReviewPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Add a new Review" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Score" FontSize="Medium" />
+            <Slider x:Name="scoreSlider" Maximum="5" Minimum="1" ThumbColor="Blue" MaximumTrackColor="Green" MinimumTrackColor="Green" Value="{Binding Score}"
+                ValueChanged="OnSliderValueChanged" />
+            <Label x:Name="displayLabel"
+               Text=""
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            
+            <Label Text="Review content" FontSize="Medium" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

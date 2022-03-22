@@ -1,4 +1,5 @@
 ﻿using Rentacar.Mobile.Views;
+using Rentacar.Mobile.Views.Reviews;
 using Xamarin.Forms;
 
 namespace Rentacar.Mobile
@@ -53,8 +54,11 @@ namespace Rentacar.Mobile
             // Booking
             Routing.RegisterRoute(nameof(RentalDetailsPage), typeof(RentalDetailsPage));
             Routing.RegisterRoute(nameof(RentalHistoryPage), typeof(RentalHistoryPage));
+
+            // Review
+            Routing.RegisterRoute(nameof(AddReviewPage), typeof(AddReviewPage));
         }
 
-        
+
     }
 }
