@@ -19,6 +19,7 @@ namespace Rentacar.Services.Interfaces
         Task<VehicleBaseDto> UpdateVehicle(int vehicleId, NewVehicleRequest request);
         Task<bool> DeleteVehicle(int vehicleId);
         Task<List<VehiclesReportResponseDto>> VehiclesReport();
+        Task<ICollection<VehicleBaseDto>> GetRecommendationsForUser(int userId);
 
     }
 }

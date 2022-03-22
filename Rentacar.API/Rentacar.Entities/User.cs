@@ -10,6 +10,7 @@ namespace Rentacar.Entities
         public User()
         {
             Bookings = new HashSet<Booking>();
+            Reviews = new HashSet<Review>();
         }
 
         public int UserId { get; set; }
@@ -23,5 +24,6 @@ namespace Rentacar.Entities
 
         public virtual Role Role { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }

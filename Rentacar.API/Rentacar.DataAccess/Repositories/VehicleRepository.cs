@@ -274,6 +274,36 @@ namespace Rentacar.DataAccess.Repositories
 
             return response;
         }
+
+        public async Task<List<Review>> GetReviewsForUser(int userId)
+        {
+            return await _context.Reviews
+                .Where(x => x.UserId == userId)
+                .Include(x => x.Model)
+                .ThenInclude(x => x.Vehicles)
+                .OrderByDescending(x => x.Score)
+                .ToListAsync();
+        }
+
+        public async Task<List<Review>> GetOtherModels(List<Model> models)
+        {
+            return await _context.Reviews.Where(x => !models.Select(y => y.ModelId).Contains(x.ModelId))
+                .Include(x => x.Model)
+                .ToListAsync();
+        }
+
+        public async Task<List<Model>> GetOtherModelsReviews(List<Model> models, int userId)
+        {
+            return await _context.Models
+                .Include(x => x.Reviews)
+                .Where(x => !x.Reviews.Select(y => y.UserId).Contains(userId) && !models.Select(y => y.ModelId).Contains(x.ModelId) && x.Reviews.Count > 0)
+                .ToListAsync();
+        }
+
+        public async Task<List<Vehicle>> GetVehiclesByModelsId(List<int> modelIds)
+        {
+            return await _context.Vehicles.Where(x => modelIds.Contains(x.ModelId)).ToListAsync();
+        }
     }
 
 }

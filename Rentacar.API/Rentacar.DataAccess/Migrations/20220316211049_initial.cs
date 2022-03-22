@@ -125,7 +125,8 @@ namespace Rentacar.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Score = table.Column<short>(type: "smallint", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false)
+                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -135,6 +136,12 @@ namespace Rentacar.DataAccess.Migrations
                         column: x => x.ModelId,
                         principalTable: "Model",
                         principalColumn: "ModelId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Review_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -223,6 +230,11 @@ namespace Rentacar.DataAccess.Migrations
                 name: "IX_Review_ModelId",
                 table: "Review",
                 column: "ModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Review_UserId",
+                table: "Review",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_RoleId",
@@ -357,12 +369,16 @@ namespace Rentacar.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                table: "Review",
-               columns: new[] { "ReviewId", "Content", "Score", "ModelId" },
+               columns: new[] { "ReviewId", "Content", "Score", "ModelId", "UserId" },
                values: new object[,]
                {
-                   {1, "Great car", 5, 45 },
-                   {2, "Very comfortable and clean", 5, 45 },
-                   {3, "I did not like the color", 3, 45 }
+                   {1, "Great car", 5, 45, 2 },
+                   {2, "Nice car.", 4, 30, 2 },
+                   {3, "I did not like the car", 1, 11, 2 },
+                   {4, "Great car", 5, 10, 1 },
+                   {5, "Very comfortable and clean", 5, 5, 1 },
+                   {6, "I did not like the color", 3, 26, 1 },
+                   {7, "Nice car.", 4, 41, 1 }
                });
 
             migrationBuilder.InsertData(
@@ -391,7 +407,11 @@ namespace Rentacar.DataAccess.Migrations
                {
                    {1, new DateTime(2021, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 17, 1, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, decimal.Parse("70") },
                    {2, new DateTime(2022, 4, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 17, 13, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 16, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 16, 12, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, decimal.Parse("50") },
-                   {3, new DateTime(2022, 5, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 5, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, decimal.Parse("720") }
+                   {3, new DateTime(2022, 5, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, decimal.Parse("720") },
+                   {4, new DateTime(2022, 3, 21, 14, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 5, 21, 14, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 4, decimal.Parse("6100") },
+                   {5, new DateTime(2022, 3, 15, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 15, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 5, decimal.Parse("3720") },
+                   {6, new DateTime(2022, 3, 17, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 4, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 6, decimal.Parse("1800") },
+                   {7, new DateTime(2022, 3, 20, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 3, 27, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 7, decimal.Parse("490") }
                });
         }
 

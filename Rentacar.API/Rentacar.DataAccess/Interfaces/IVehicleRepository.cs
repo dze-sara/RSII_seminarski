@@ -19,5 +19,8 @@ namespace Rentacar.DataAccess.Interfaces
         Task<Vehicle> GetVehicleByUserId(int userId);
         Task<bool> DeleteVehicle(int vehicleId);
         Task<List<VehiclesReportResponseDto>> VehiclesReport();
+        Task<List<Review>> GetReviewsForUser(int userId);
+        Task<List<Model>> GetOtherModelsReviews(List<Model> models, int userId);
+        Task<List<Vehicle>> GetVehiclesByModelsId(List<int> modelIds);
     }
 }

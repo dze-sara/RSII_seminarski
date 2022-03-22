@@ -65,7 +65,7 @@ namespace Rentacar.API.Controllers
         [HttpGet("recommended/{userId}")]
         public async Task<IActionResult> GetRecommendedVehicles([FromRoute]int userId)
         {
-            ICollection<VehicleBaseDto> vehicles = await _vehicleService.GetRecommendedVehicles(userId);
+            ICollection<VehicleBaseDto> vehicles = await _vehicleService.GetRecommendationsForUser(userId);
             return Ok(vehicles);
         }
 

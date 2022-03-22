@@ -71,6 +71,38 @@ namespace Rentacar.Services.Services
              return await _vehicleRepository.FilterVehicles(request);
         }
 
+        public async Task<ICollection<VehicleBaseDto>> GetRecommendationsForUser(int userId)
+        {
+            List<Review> userReviews = await _vehicleRepository.GetReviewsForUser(userId);
+
+            List<Model> modelsUserRated = userReviews.Select(x => x.Model).ToList();
+            List<Model> modelsUserDidNotRate = await _vehicleRepository.GetOtherModelsReviews(modelsUserRated, userId);
+
+            List<Review> otherReviews = new List<Review>();
+            List<int> modelsToRecommend = new List<int>();
+            foreach (var ratedModel in modelsUserRated)
+            {
+                if (userReviews.Where(x => x.ModelId == ratedModel.ModelId).First().Score > 3)
+                {
+                    foreach (var unratedModel in modelsUserDidNotRate)
+                    {
+                        if (ratedModel.VehicleTypeId == unratedModel.VehicleTypeId)
+                            otherReviews = unratedModel.Reviews.ToList();
+
+                        double similarity = ComputeSimilarityPearson(ratedModel.Reviews.ToList(), otherReviews);
+
+                        if (similarity > 0.5)
+                        {
+                            modelsToRecommend.Add(unratedModel.ModelId);
+                        }
+                    }
+                }
+            }
+
+            var vehiclesEf = await _vehicleRepository.GetVehiclesByModelsId(modelsToRecommend);
+            return _mapper.Map<List<VehicleBaseDto>>(vehiclesEf);
+        }
+
         public async Task<ICollection<VehicleBaseDto>> GetRecommendedVehicles(int userId)
         {
             // Get user's last vehicle model
@@ -124,6 +156,37 @@ namespace Rentacar.Services.Services
         public async Task<List<VehiclesReportResponseDto>> VehiclesReport()
         {
             return await _vehicleRepository.VehiclesReport();
+        }
+
+        private double ComputeSimilarityPearson(List<Review> model1Reviews, List<Review> model2Reviews)
+        {
+            if(model1Reviews.Count != model2Reviews.Count)
+            {
+                return 0;
+            }
+
+            double modelsProduct = 0;
+            double model1DotProduct = 0;
+            double model2DotProduct = 0;
+
+            for (int i = 0; i < model1Reviews.Count; i++)
+            {
+                modelsProduct += model1Reviews[i].Score * model2Reviews[i].Score;
+                model1DotProduct += model1Reviews[i].Score * model1Reviews[i].Score;
+                model2DotProduct += model2Reviews[i].Score * model2Reviews[i].Score;
+            }
+
+            model1DotProduct = Math.Sqrt(model1DotProduct);
+            model2DotProduct = Math.Sqrt(model2DotProduct);
+
+            if(model1DotProduct * model2DotProduct == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return modelsProduct/(model1DotProduct * model2DotProduct);
+            }
         }
     }
 }

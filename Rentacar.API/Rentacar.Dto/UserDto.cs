@@ -18,5 +18,6 @@ namespace Rentacar.Dto
 
         public RoleDto Role { get; set; }
         public ICollection<BookingDto> Bookings { get; set; }
+        public ICollection<ReviewDto> Reviews { get; set; }
     }
 }
