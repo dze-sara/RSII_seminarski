@@ -8,6 +8,7 @@ namespace Rentacar.Dto.Response
         public decimal RatePerDay { get; set; }
         public bool IsActive { get; set; }
         public TransmissionTypeEnum TransmissionType { get; set; }
+        public int ModelId { get; set; }
         public string Model { get; set; }
         public string Make { get; set; }
         public string VehicleType { get; set; }

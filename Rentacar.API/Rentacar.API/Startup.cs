@@ -38,12 +38,14 @@ namespace Rentacar.API
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IFilterService, FilterService>();
+            services.AddScoped<IReviewService, ReviewService>();
 
             // Repositories
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFilterRepository, FilterRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

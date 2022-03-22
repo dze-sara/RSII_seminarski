@@ -19,6 +19,7 @@ namespace Rentacar.Mobile
             DependencyService.Register<AuthenticationService>();
             DependencyService.Register<VehicleService>();
             DependencyService.Register<UserService>();
+            DependencyService.Register<ReviewService>();
 
             bool isLogged = false;
             if (isLogged)
