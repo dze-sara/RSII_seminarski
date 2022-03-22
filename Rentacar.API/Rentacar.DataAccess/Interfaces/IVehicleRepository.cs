@@ -13,6 +13,8 @@ namespace Rentacar.DataAccess.Interfaces
         Task<ICollection<Vehicle>> GetVehicles(List<Model> models);
         Task<Vehicle> GetVehicleById(int vehicleId);
         Task<ICollection<Vehicle>> FilterVehicles(int? tranismissionType, DateTime? bookingStartDate, DateTime? bookingEndDate, int? vehicleType);
+        Task<ICollection<Vehicle>> FilterVehiclesForBooking(BookVehiclesRequest bookVehiclesRequest);
+
         Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request);
         Task<Vehicle> AddVehicle(NewVehicleRequest vehicle);
         Task<Vehicle> UpdateVehicle(int vehicleId, NewVehicleRequest vehicle);

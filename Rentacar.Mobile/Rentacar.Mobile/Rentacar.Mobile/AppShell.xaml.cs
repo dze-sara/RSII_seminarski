@@ -1,4 +1,6 @@
 ﻿using Rentacar.Mobile.Views;
+using Rentacar.Mobile.Views.Booking;
+using Rentacar.Mobile.Views.Filter;
 using Rentacar.Mobile.Views.Reviews;
 using Xamarin.Forms;
 
@@ -46,7 +48,7 @@ namespace Rentacar.Mobile
 
             // Filter
             Routing.RegisterRoute(nameof(FilteredVehiclesPage), typeof(FilteredVehiclesPage));
-            Routing.RegisterRoute(nameof(EditFiltersPage), typeof(EditFiltersPage));
+            Routing.RegisterRoute(nameof(AdvancedFiltersPage), typeof(AdvancedFiltersPage));
 
             // User
             Routing.RegisterRoute(nameof(UserDetailsPage), typeof(UserDetailsPage));
@@ -54,6 +56,7 @@ namespace Rentacar.Mobile
             // Booking
             Routing.RegisterRoute(nameof(RentalDetailsPage), typeof(RentalDetailsPage));
             Routing.RegisterRoute(nameof(RentalHistoryPage), typeof(RentalHistoryPage));
+            Routing.RegisterRoute(nameof(ProcessPaymentPage), typeof(ProcessPaymentPage));
 
             // Review
             Routing.RegisterRoute(nameof(AddReviewPage), typeof(AddReviewPage));

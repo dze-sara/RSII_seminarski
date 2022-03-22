@@ -17,6 +17,7 @@ namespace Rentacar.Mobile.ViewModels
         public IUserService UserService => DependencyService.Get<IUserService>();
         public IVehicleService VehicleService => DependencyService.Get<IVehicleService>();
         public IReviewService ReviewService => DependencyService.Get<IReviewService>();
+        public IFiltersService FiltersService => DependencyService.Get<IFiltersService>();
 
         bool isBusy = false;
         public bool IsBusy

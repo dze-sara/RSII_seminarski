@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rentacar.Mobile.Views.Filter.AdvancedFiltersPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Min price"/>
+
+            <Slider x:Name="minPriceSlider" Maximum="500" Minimum="0" ThumbColor="Blue" MaximumTrackColor="Green" MinimumTrackColor="Green" Value="{Binding MinPrice}"
+                />
+            <Label x:Name="minDisplayLabel"
+               Text=""
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            
+            <Label Text="Max price"/>
+            <Slider x:Name="maxPriceSlider" Maximum="500" Minimum="0" ThumbColor="Blue" MaximumTrackColor="Green" MinimumTrackColor="Green" Value="{Binding MaxPrice}"
+               />
+            <Label x:Name="maxDisplayLabel"
+               Text=""
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+
+            <Grid>
+                <FlexLayout Grid.Column="0" Grid.Row="0">
+                    <CheckBox x:Name="smallcarCb"></CheckBox>
+                    <Label Text="Small car"></Label>
+                </FlexLayout>
+
+                <FlexLayout Grid.Column="1" Grid.Row="0">
+                    <CheckBox x:Name="sedanCb"></CheckBox>
+                    <Label Text="Sedan"></Label>
+                </FlexLayout>
+
+                <FlexLayout Grid.Column="0" Grid.Row="1">
+                    <CheckBox x:Name="suvCb"></CheckBox>
+                    <Label Text="SUV"></Label>
+                </FlexLayout>
+
+                <FlexLayout Grid.Column="1" Grid.Row="1">
+                    <CheckBox x:Name="sportscarCb"></CheckBox>
+                    <Label Text="Sports car"></Label>
+                </FlexLayout>
+            </Grid>
+            <Button Text="close" HorizontalOptions="Center" Clicked="OnCloseFilters" ></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

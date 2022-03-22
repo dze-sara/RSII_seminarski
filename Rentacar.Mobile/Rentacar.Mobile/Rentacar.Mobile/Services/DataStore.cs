@@ -1,4 +1,7 @@
-﻿using Rentacar.Mobile.Models;
+﻿using Rentacar.Dto;
+using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
+using Rentacar.Mobile.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,8 @@ namespace Rentacar.Mobile.Services
 
         public DateTime BookingStartDate { get; set; }
         public DateTime BookingEndDate { get; set; }
+        public VehicleBaseDto Vehicle { get; set; }
+        public BookVehiclesRequest Filter { get; set; }
 
         public DataStore()
         {

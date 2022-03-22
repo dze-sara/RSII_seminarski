@@ -24,21 +24,26 @@ namespace Rentacar.Mobile.ViewModels.Booking
             Title = "Browse";
             VehicleItems = new ObservableCollection<VehicleBaseDto>();
 
-            //ExecuteLoadItemsCommand();
+            ExecuteLoadItemsCommand();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         async Task ExecuteLoadItemsCommand()
         {
+            if(IsBusy)
+            {
+                return;
+            }
+
             IsBusy = true;
 
             try
             {
-                VehicleItems.Clear();
                 DateTime startDate = DataStore.BookingStartDate;
                 DateTime endDate = DataStore.BookingEndDate;
                 var items = await VehicleService.GetRecommendedVehicles(AuthenticationService.UserId);
+                VehicleItems.Clear();
                 foreach (var item in items)
                 {
                     VehicleItems.Add(item);

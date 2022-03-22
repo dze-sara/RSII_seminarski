@@ -1,4 +1,5 @@
-﻿using Rentacar.Dto.Response;
+﻿using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
 using Rentacar.Mobile.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace Rentacar.Mobile.Services.Implementations
             parameters["bookingEnd"] = endDate.ToString("yyyy-MM-dd hh:mm:ss");
 
             List<VehicleBaseDto> vehicles = await HttpHelper.GetAsync<List<VehicleBaseDto>>(_baseUrl + "/filter", parameters);
+            return vehicles;
+        }
+
+        public async Task<List<VehicleBaseDto>> FilterVehicles(BookVehiclesRequest vehicleRequestDto)
+        {
+            List<VehicleBaseDto> vehicles = await HttpHelper.PostAsync<List<VehicleBaseDto>, BookVehiclesRequest>(_baseUrl + "/filter2book", vehicleRequestDto);
             return vehicles;
         }
 

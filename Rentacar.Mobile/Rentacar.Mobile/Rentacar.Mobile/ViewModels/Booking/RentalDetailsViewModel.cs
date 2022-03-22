@@ -1,6 +1,7 @@
 ﻿using Rentacar.Dto;
 using Rentacar.Dto.Response;
 using Rentacar.Mobile.Views;
+using Rentacar.Mobile.Views.Booking;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,18 +64,8 @@ namespace Rentacar.Mobile.ViewModels
 
         private async void OnConfirmBooking(object obj)
         {
-            BookingDto booking = new BookingDto()
-            {
-                StartDate = DataStore.BookingStartDate,
-                EndDate = DataStore.BookingEndDate,
-                TotalPrice = (decimal)(DataStore.BookingEndDate - DataStore.BookingStartDate).TotalDays * Vehicle.RatePerDay,
-                VehicleId = Vehicle.VehicleId,
-                UserId = AuthenticationService.UserId
-            };
-
-            await BookingService.BookVehicle(booking);
-
-            await Shell.Current.GoToAsync(nameof(RentalHistoryPage));
+            DataStore.Vehicle = this.Vehicle;
+            await Shell.Current.GoToAsync(nameof(ProcessPaymentPage));
         }
     }
 }

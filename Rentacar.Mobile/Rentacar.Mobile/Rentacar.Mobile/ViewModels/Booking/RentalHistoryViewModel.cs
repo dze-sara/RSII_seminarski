@@ -1,5 +1,6 @@
 ﻿using Rentacar.Dto;
 using Rentacar.Dto.Response;
+using Rentacar.Mobile.Views;
 using Rentacar.Mobile.Views.Reviews;
 using System;
 using System.Collections.ObjectModel;
@@ -16,9 +17,23 @@ namespace Rentacar.Mobile.ViewModels
         public Command AddReviewTapped { get; }
 
 
+        private void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ExecuteLoadItemsCommand();
+        }
+        private void OnPageAppearing(object sender, Page e)
+        {
+            if(e is RentalHistoryPage)
+            {
+                ExecuteLoadItemsCommand();
+            }
+        }
+
         public RentalHistoryViewModel()
         {
             BookingItems = new ObservableCollection<BaseBookingDto>();
+
+            Application.Current.PageAppearing += OnPageAppearing;
 
             ExecuteLoadItemsCommand();
 

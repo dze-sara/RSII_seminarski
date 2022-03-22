@@ -47,6 +47,18 @@ namespace Rentacar.API.Controllers
             return Ok(vehicles);
         }
 
+        [HttpPost("filter2book")]
+        public async Task<IActionResult> FilterVehicles([FromBody] BookVehiclesRequest bookVehiclesRequest)
+        {
+            if (bookVehiclesRequest.StartDate >= bookVehiclesRequest.EndDate)
+            {
+                return BadRequest();
+            }
+
+            ICollection<VehicleBaseDto> vehicles = await _vehicleService.FilterVehiclesForBooking(bookVehiclesRequest);
+            return Ok(vehicles);
+        }
+
         [HttpPost("filter")]
         public async Task<IActionResult> FilterVehiclesPost([FromBody] VehicleRequestDto request)
         {

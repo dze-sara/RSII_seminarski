@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +10,9 @@ namespace Rentacar.Mobile.Services
     {
         DateTime BookingStartDate { get; set; }
         DateTime BookingEndDate { get; set; }
+
+        VehicleBaseDto Vehicle { get; set; }
+        BookVehiclesRequest Filter { get; set; }
 
         Task<bool> AddItemAsync(T item);
         Task<bool> UpdateItemAsync(T item);

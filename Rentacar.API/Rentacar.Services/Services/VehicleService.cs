@@ -197,5 +197,19 @@ namespace Rentacar.Services.Services
                 return modelsProduct/(model1DotProduct * model2DotProduct);
             }
         }
+
+        public async Task<ICollection<VehicleBaseDto>> FilterVehiclesForBooking(BookVehiclesRequest bookVehiclesRequest)
+        {
+            List<VehicleBaseDto> vehicles =  _mapper.Map<List<VehicleBaseDto>>(await _vehicleRepository.FilterVehiclesForBooking(bookVehiclesRequest));
+
+            double numberOfHours = (bookVehiclesRequest.EndDate - bookVehiclesRequest.StartDate).TotalHours;
+
+            foreach (VehicleBaseDto v in vehicles)
+            {
+                v.TotalPrice = v.RatePerDay * (decimal)numberOfHours;
+            }
+
+            return vehicles;
+        }
     }
 }

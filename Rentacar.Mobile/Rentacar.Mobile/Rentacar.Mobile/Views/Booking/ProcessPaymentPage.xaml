@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Rentacar.Mobile.Views.Booking.ProcessPaymentPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Please enter your payment info"/>
+
+            <Label Text="Card number" FontSize="Medium" />
+            <Entry Text="{Binding CardNumber}">
+                <Entry.Behaviors>
+                    <xct:MaskedBehavior Mask="xxxx-xxxx-xxxx-xxxx" UnMaskedCharacter="x"></xct:MaskedBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Grid>
+                <StackLayout Grid.Column="0">
+                    <Label Text="Expiry date" FontSize="Medium" />
+                    <Entry Text="{Binding ExpiryDate}">
+                        <Entry.Behaviors>
+                            <xct:MaskedBehavior Mask="xx/xx" UnMaskedCharacter="x"></xct:MaskedBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="CVV" FontSize="Medium" />
+                    <Entry Text="{Binding CVV}">
+                        <Entry.Behaviors>
+                            <xct:MaskedBehavior Mask="XXX" UnMaskedCharacter="X"></xct:MaskedBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                </StackLayout>
+            </Grid>
+
+            <Button Text="confirm payment" HorizontalOptions="Center" Command="{Binding ConfirmPaymentCommand}" ></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

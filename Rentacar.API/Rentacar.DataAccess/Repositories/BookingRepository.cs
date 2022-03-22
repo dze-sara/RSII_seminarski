@@ -149,7 +149,6 @@ namespace Rentacar.DataAccess.Repositories
                                  .ThenInclude(z => z.VehicleType)
                                  .Include(x => x.User)
                                  .Where(x => x.UserId == userId)
-                                 .Where(x => x.StartDate < DateTime.UtcNow && x.EndDate < DateTime.UtcNow)
                                  .OrderByDescending(x => x.EndDate)
                                  .ToListAsync();
         }

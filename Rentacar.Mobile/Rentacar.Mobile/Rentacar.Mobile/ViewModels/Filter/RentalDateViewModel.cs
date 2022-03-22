@@ -1,4 +1,5 @@
-﻿using Rentacar.Mobile.Services;
+﻿using Rentacar.Dto.Response;
+using Rentacar.Mobile.Services;
 using System;
 using Xamarin.Forms;
 
@@ -6,10 +7,14 @@ namespace Rentacar.Mobile.ViewModels
 {
     public class RentalDateViewModel : BaseViewModel
     {
-        private DateTime _startDate = DateTime.Now;
-        private DateTime _endDate = DateTime.Now.AddDays(1);
-        private DateTime _startTime = DateTime.Now;
-        private DateTime _endTime = DateTime.Now.AddDays(1);
+        private DateTime _startDate = DateTime.Now.Date;
+        private DateTime _endDate = DateTime.Now.Date.AddDays(1);
+        private DateTime _startTime = DateTime.Now.Date;
+        private DateTime _endTime = DateTime.Now.Date.AddDays(1);
+        private double _minPrice;
+        private double _maxPrice;
+
+        public FilterLookupsDto FilterLookups { get; set; }
         public DateTime StartDate
         {
             get => _startDate;
@@ -34,12 +39,37 @@ namespace Rentacar.Mobile.ViewModels
             set => SetProperty(ref _endTime, value);
         }
 
+        public double MinPrice
+        {
+            get => _minPrice;
+            set => SetProperty(ref _minPrice, value);
+        }
+
+        public double MaxPrice
+        {
+            get => _maxPrice;
+            set => SetProperty(ref _maxPrice, value);
+        }
+
 
         public Command SearchCommand { get; }
+        public Command AdvancedFiltersCommand { get; }
 
         public RentalDateViewModel()
         {
             SearchCommand = new Command(OnSearchClicked);
+            AdvancedFiltersCommand = new Command(OnAdvancedFiltersClicked);
+
+            GetFilters();
+        }
+        private async void GetFilters()
+        {
+            FilterLookups = await FiltersService.GetFilterLookups();
+        }
+
+        private async void OnAdvancedFiltersClicked(object obj)
+        {
+            await Shell.Current.GoToAsync("AdvancedFiltersPage");
         }
 
         private async void OnSearchClicked(object obj)

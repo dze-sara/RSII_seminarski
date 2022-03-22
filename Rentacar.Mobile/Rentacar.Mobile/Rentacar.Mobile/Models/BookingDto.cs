@@ -13,6 +13,7 @@ namespace Rentacar.Dto
         public int UserId { get; set; }
         public int VehicleId { get; set; }
         public decimal? TotalPrice { get; set; }
+        public CardInfoDto CardInfo { get; set; }
         //public UserDto User { get; set; }
         //public VehicleDto Vehicle { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Rentacar.Dto.Response;
+﻿using Rentacar.Dto.Request;
+using Rentacar.Dto.Response;
 using Rentacar.Mobile.Views;
 using System;
 using System.Collections.Generic;
@@ -50,14 +51,27 @@ namespace Rentacar.Mobile.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+            if(IsBusy)
+            {
+                return;
+            }
+
             IsBusy = true;
 
             try
             {
-                VehicleItems.Clear();
                 DateTime startDate = DataStore.BookingStartDate;
                 DateTime endDate = DataStore.BookingEndDate;
-                var items = await VehicleService.FilterVehiclesByDateRange(startDate, endDate);
+                BookVehiclesRequest vehicleRequest = new BookVehiclesRequest()
+                {
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    MaxPrice = DataStore.Filter?.MaxPrice,
+                    MinPrice = DataStore.Filter?.MinPrice,
+                    VehicleTypes = DataStore.Filter?.VehicleTypes
+                };
+                var items = await VehicleService.FilterVehicles(vehicleRequest);
+                VehicleItems.Clear();
                 foreach (var item in items)
                 {
                     VehicleItems.Add(item);

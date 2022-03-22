@@ -313,6 +313,34 @@ namespace Rentacar.DataAccess.Repositories
                 .ThenInclude(x => x.VehicleType)
                 .ToListAsync();
         }
+
+        public async Task<ICollection<Vehicle>> FilterVehiclesForBooking(BookVehiclesRequest bookVehiclesRequest)
+        {
+            var query = _context.Vehicles
+                                .Include(x => x.Model)
+                                .ThenInclude(x => x.VehicleType)
+                                .Include(x => x.Model)
+                                .ThenInclude(y => y.Make)
+                                .Include(x => x.Bookings)
+                                .AsQueryable();
+
+            if (bookVehiclesRequest.TransmissionType.HasValue)
+            {
+                query = query.Where(x => x.TransmissionType == bookVehiclesRequest.TransmissionType.Value);
+            }
+
+            if (bookVehiclesRequest.VehicleTypes != null && bookVehiclesRequest.VehicleTypes.Any())
+            {
+                query = query.Where(x => bookVehiclesRequest.VehicleTypes.Contains(x.Model.VehicleType.VehicleTypeName));
+            }
+
+            query = query.Where(x => !x.Bookings.Any(y => !(bookVehiclesRequest.StartDate < y.EndDate || bookVehiclesRequest.EndDate < y.StartDate)));
+            
+            
+            //query = query.Where(x => x.Bookings.Any(y => bookingEndDate < y.StartDate || y.EndDate < bookingStartDate));
+
+            return await query.ToListAsync();
+        }
     }
 
 }
