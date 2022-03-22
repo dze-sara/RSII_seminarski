@@ -3,7 +3,10 @@ using Rentacar.Dto.Response;
 using Rentacar.Mobile.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Rentacar.Mobile.ViewModels
@@ -15,10 +18,47 @@ namespace Rentacar.Mobile.ViewModels
 
         public VehicleBaseDto Vehicle { get; set; }
         public Command ConfirmBookingCommand { get; set; }
+        public Command LoadReviewsCommand { get; set; }
+        public ObservableCollection<ReviewDto> ReviewItems { get; }
+
         public RentalDetailsViewModel(VehicleBaseDto vehicleBaseDto)
         {
             Vehicle = vehicleBaseDto;
+            ReviewItems = new ObservableCollection<ReviewDto>();
             ConfirmBookingCommand = new Command(OnConfirmBooking);
+
+            ExecuteLoadItemsCommand();
+            LoadReviewsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                ReviewItems.Clear();
+                DateTime startDate = DataStore.BookingStartDate;
+                DateTime endDate = DataStore.BookingEndDate;
+                var items = await ReviewService.GetReviewsByModelId(Vehicle.ModelId);
+                foreach (var item in items)
+                {
+                    ReviewItems.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
         }
 
         private async void OnConfirmBooking(object obj)

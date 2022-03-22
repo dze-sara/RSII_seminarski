@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:Rentacar.Dto" xmlns:local="clr-namespace:Rentacar.Mobile.ViewModels"
              x:Class="Rentacar.Mobile.Views.RentalDetailsPage"
              Title="Confirm booking">
     <ContentPage.Content>
         
         <StackLayout Padding="10,10,10,10">
-
             <Frame Margin="10, 0, 20,0"  BorderColor="Yellow">
-                <Grid HeightRequest="80">
+                <Grid MinimumHeightRequest="40">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50*"/>
                         <ColumnDefinition Width="50*"/>
@@ -21,8 +20,7 @@
 
                 </Grid>
             </Frame>
-
-            <Frame BackgroundColor="AliceBlue">
+            <Frame BackgroundColor="AliceBlue" MinimumHeightRequest="130">
                 <StackLayout>
                     <FlexLayout>
                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding Vehicle.Make}"></Label>
@@ -59,11 +57,31 @@
 
                 </StackLayout>
             </Frame>
-
-            <!--<controls:VehicleItemControl 
-                Vehicle="{Binding Source={RelativeSource AncestorType={x:Type local:RentalDetailsViewModel}}, Path=Vehicle}"/>-->
-
             <Button Text="confirm booking" HorizontalOptions="Center" Command="{Binding ConfirmBookingCommand}" ></Button>
+            <Label Text="Here are some reviews for this vehicle:"></Label>
+            <BoxView 
+                   HeightRequest="0.5"
+                   Color="LightGray"
+                   Margin ="5, 0, 5, 0"/>
+                <CollectionView x:Name="ItemsListView"
+                                ItemsSource="{Binding ReviewItems}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                        <FlexLayout Padding="0,5,0,0" BackgroundColor="AliceBlue">
+                            <Label  Text="Score: " FontAttributes="Bold" WidthRequest="50"></Label>
+                            <Label Text="{Binding Score}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}"  WidthRequest="15"
+                                        FontSize="16" />
+                            <Label Margin="15,0,0,0" Text="{Binding Content}" WidthRequest="300"
+                                        LineBreakMode="WordWrap" HorizontalOptions="Start" VerticalOptions="FillAndExpand"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="13" />
+                        </FlexLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
