@@ -20,14 +20,14 @@ namespace Rentacar.DataAccess.Repositories
 
         public async Task<bool> AddReview(Review addReview)
         {
-            await _context.Review.AddAsync(addReview);
+            await _context.Reviews.AddAsync(addReview);
 
             return true;
         }
 
         public async Task<List<Review>> GetReviewsByModelId(int modelId)
         {
-            return await _context.Review.Where(x => x.ModelId == modelId)
+            return await _context.Reviews.Where(x => x.ModelId == modelId)
                            .OrderByDescending(x => x.ReviewId)
                            .ToListAsync();
         }

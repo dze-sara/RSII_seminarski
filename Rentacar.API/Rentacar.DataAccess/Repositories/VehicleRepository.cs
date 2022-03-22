@@ -302,7 +302,13 @@ namespace Rentacar.DataAccess.Repositories
 
         public async Task<List<Vehicle>> GetVehiclesByModelsId(List<int> modelIds)
         {
-            return await _context.Vehicles.Where(x => modelIds.Contains(x.ModelId)).ToListAsync();
+            return await _context.Vehicles
+                .Where(x => modelIds.Contains(x.ModelId))
+                .Include(x => x.Model)
+                .ThenInclude(x => x.Make)
+                .Include(x => x.Model)
+                .ThenInclude(x => x.VehicleType)
+                .ToListAsync();
         }
     }
 
