@@ -63,7 +63,16 @@ namespace Rentacar.Services.Services
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehicles(TransmissionTypeEnum? transmissionType, DateTime? bookingStartTime, DateTime? bookingEndTime, int? vehicleType)
         {
-            return _mapper.Map<List<VehicleBaseDto>>(await _vehicleRepository.FilterVehicles((int?)transmissionType, bookingStartTime, bookingEndTime, vehicleType));
+            var vehicles = _mapper.Map<List<VehicleBaseDto>>(await _vehicleRepository.FilterVehicles((int?)transmissionType, bookingStartTime, bookingEndTime, vehicleType));
+
+            int numberOfDays = (bookingEndTime - bookingStartTime).GetValueOrDefault().Days;
+
+            foreach(VehicleBaseDto v in vehicles)
+            {
+                v.TotalPrice = v.RatePerDay * numberOfDays;
+            }
+
+            return vehicles;
         }
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request)

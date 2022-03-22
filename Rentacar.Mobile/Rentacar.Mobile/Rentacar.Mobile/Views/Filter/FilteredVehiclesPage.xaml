@@ -52,17 +52,15 @@
                                             <Label Grid.Column="1" Grid.Row="3" Text=""></Label> 
                                         </Grid>
                                         <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="30*"></ColumnDefinition>
-                                                <ColumnDefinition Width="30*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
                                             <FlexLayout Grid.Column="0">
                                                 <Label Text="Price: " />
                                                 <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding RatePerDay}"/>
                                                 <Label Text=" €" />
+                                                <Label Padding="40,0,0,0" Text="Total price: " />
+                                                <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding TotalPrice}"/>
+                                                <Label Text=" €" />
                                             </FlexLayout>
 
-                                            <!--<Button Margin="10, 0, 0, 0" Grid.Column="1" Text="rent now" Clicked="RentNowTapped" />-->
                                         </Grid>
 
                                     </StackLayout>
