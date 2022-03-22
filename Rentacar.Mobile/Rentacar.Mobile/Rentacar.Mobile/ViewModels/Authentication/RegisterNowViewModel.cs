@@ -45,6 +45,14 @@ namespace Rentacar.Mobile.ViewModels
 
         private async void OnRegisterNowClicked(object obj)
         {
+            if (string.IsNullOrWhiteSpace(FirstName)
+               || string.IsNullOrWhiteSpace(LastName)
+               || string.IsNullOrWhiteSpace(Email)
+               || string.IsNullOrWhiteSpace(Password))
+            {
+                await Shell.Current.DisplayAlert("Incorrect", "Please populate all input fields", "OK");
+                return;
+            }
             UserDto newRegisteredUser = new UserDto()
             {
                 FirstName = FirstName,

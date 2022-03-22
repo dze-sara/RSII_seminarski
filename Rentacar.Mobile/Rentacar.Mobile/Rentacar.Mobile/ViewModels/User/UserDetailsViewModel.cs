@@ -50,6 +50,14 @@ namespace Rentacar.Mobile.ViewModels
 
         private async void OnSaveChangesClicked(object obj)
         {
+            if(string.IsNullOrWhiteSpace(_firstName)
+               || string.IsNullOrWhiteSpace(_lastName)
+               || string.IsNullOrWhiteSpace(_email)
+               || string.IsNullOrWhiteSpace(_password))
+            {
+                await Shell.Current.DisplayAlert("Incorrect", "Please populate all input fields", "OK");
+                return;
+            }
             var newUserData = new UserDto();
             newUserData.FirstName = _firstName;
             newUserData.LastName = _lastName;
