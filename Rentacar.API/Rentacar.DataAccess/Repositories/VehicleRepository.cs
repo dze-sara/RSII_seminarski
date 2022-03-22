@@ -47,7 +47,8 @@ namespace Rentacar.DataAccess.Repositories
 
             if (bookingStartDate.HasValue && bookingEndDate.HasValue)
             {
-                query.Where(x => !x.Bookings.Any(booking => DateSpansOverlap(booking.StartDate, booking.EndDate, bookingStartDate.Value, bookingEndDate.Value)));
+                //query.Where(x => !x.Bookings.Any(booking => DateSpansOverlap(booking.StartDate, booking.EndDate, bookingStartDate.Value, bookingEndDate.Value)));
+                query = query.Where(x => !x.Bookings.Any(y => !(bookingStartDate < y.EndDate || bookingEndDate < y.StartDate)));
             }
 
             return await query.ToListAsync();
