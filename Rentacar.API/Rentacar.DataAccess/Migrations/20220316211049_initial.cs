@@ -378,7 +378,21 @@ namespace Rentacar.DataAccess.Migrations
                    {4, "Great car", 5, 10, 1 },
                    {5, "Very comfortable and clean", 5, 5, 1 },
                    {6, "I did not like the color", 3, 26, 1 },
-                   {7, "Nice car.", 4, 41, 1 }
+                   {7, "Nice car.", 4, 41, 1 },
+                   {8, "Great car", 5, 20, 2 },
+                   {9, "Nice car.", 4, 20, 2 },
+                   {10, "I did not like the car", 1, 20, 2 },
+                   {11, "Great car", 5, 10, 1 },
+                   {12, "Very comfortable and clean", 5, 20, 1 },
+                   {13, "I did not like the color", 3, 31, 1 },
+                   {14, "Nice car.", 4, 31, 1 },
+                   {15, "Great car", 5, 31, 2 },
+                   {16, "Nice car.", 4, 31, 2 },
+                   {17, "I did not like the car", 1, 11, 2 },
+                   {18, "Great car", 5, 10, 1 },
+                   {19, "Very comfortable and clean", 5, 5, 1 },
+                   {20, "I did not like the color", 3, 26, 1 },
+                   {21, "Nice car.", 4, 41, 1 }
                });
 
             migrationBuilder.InsertData(
