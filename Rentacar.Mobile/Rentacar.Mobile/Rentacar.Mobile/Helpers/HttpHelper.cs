@@ -10,8 +10,8 @@ namespace Rentacar.Mobile.Services
 {
     public static class HttpHelper
     {
-        public static string BaseUrl { get; set; } = "https://10.0.3.2:44379/";
-        //public static string BaseUrl { get; set; } = "http://10.0.3.2:5000/";
+        //public static string BaseUrl { get; set; } = "https://10.0.3.2:44379/";
+        public static string BaseUrl { get; set; } = "http://10.0.3.2:5000/";
         //public static string BaseUrl { get; set; } = "https://fitbarentacar.azurewebsites.net/";
         private static HttpClient _httpClient = new HttpClient(GetInsecureHandler());
 
