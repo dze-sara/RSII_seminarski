@@ -44,13 +44,12 @@
                         <Label Grid.Column="1" Grid.Row="3" Text=""></Label>
                     </Grid>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30*"></ColumnDefinition>
-                            <ColumnDefinition Width="30*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
                         <FlexLayout Grid.Column="0">
                             <Label Text="Price per day: " />
                             <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding Vehicle.RatePerDay}"/>
+                            <Label Text=" €" />
+                            <Label Padding="40,0,0,0" Text="Total price: " />
+                            <Label Padding="10, 0,0,0" FontSize="Large" Text="{Binding Vehicle.TotalPrice}"/>
                             <Label Text=" €" />
                         </FlexLayout>
                     </Grid>

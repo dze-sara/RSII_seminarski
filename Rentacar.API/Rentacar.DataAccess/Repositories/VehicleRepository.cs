@@ -334,11 +334,21 @@ namespace Rentacar.DataAccess.Repositories
                 query = query.Where(x => bookVehiclesRequest.VehicleTypes.Contains(x.Model.VehicleType.VehicleTypeName));
             }
 
-            query = query.Where(x => !x.Bookings.Any(y => !(bookVehiclesRequest.StartDate < y.EndDate || bookVehiclesRequest.EndDate < y.StartDate)));
-            
-            
-            //query = query.Where(x => x.Bookings.Any(y => bookingEndDate < y.StartDate || y.EndDate < bookingStartDate));
+            if (bookVehiclesRequest.MinPrice != null)
+            {
+                query = query.Where(x => x.RatePerDay > bookVehiclesRequest.MinPrice);
+            }
 
+            if (bookVehiclesRequest.MaxPrice != null)
+            {
+                query = query.Where(x => x.RatePerDay < bookVehiclesRequest.MaxPrice);
+            }
+
+            query = query.Where(x => !x.Bookings.Any(y => (y.StartDate >= bookVehiclesRequest.StartDate && y.StartDate <= bookVehiclesRequest.EndDate) // start date overlaps
+                                                          || (y.EndDate >= bookVehiclesRequest.StartDate && y.EndDate <= bookVehiclesRequest.EndDate) // end date overlaps
+                                                          || (y.StartDate >= bookVehiclesRequest.StartDate && y.EndDate <= bookVehiclesRequest.EndDate) // whole booking inside span
+                                                          || (y.StartDate <= bookVehiclesRequest.StartDate && y.EndDate >= bookVehiclesRequest.EndDate))); // whole span inside booking
+            
             return await query.ToListAsync();
         }
     }
