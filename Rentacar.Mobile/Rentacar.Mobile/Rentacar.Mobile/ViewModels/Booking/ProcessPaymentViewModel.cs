@@ -77,6 +77,7 @@ namespace Rentacar.Mobile.ViewModels.Booking
             }
             else
             {
+                await Shell.Current.Navigation.PopToRootAsync();
                 await Shell.Current.GoToAsync(nameof(RentalHistoryPage));
             }
         }
