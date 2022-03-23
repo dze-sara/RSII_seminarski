@@ -53,5 +53,17 @@ namespace Rentacar.Mobile.Views.Filter
             _viewModel.DataStore.Filter = filters;
             await Shell.Current.GoToAsync("..");
         }
+
+        private void OnMinSliderValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double value = e.NewValue;
+            minDisplayLabel.Text = String.Format("{0}", value);
+        }
+
+        private void OnMaxSliderValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double value = e.NewValue;
+            maxDisplayLabel.Text = String.Format("{0}", value);
+        }
     }
 }

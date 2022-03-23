@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Rentacar.Mobile.Views.Filter.AdvancedFiltersPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20,20">
             <Label Text="Min price"/>
 
             <Slider x:Name="minPriceSlider" Maximum="500" Minimum="0" ThumbColor="Blue" MaximumTrackColor="Green" MinimumTrackColor="Green" Value="{Binding MinPrice}"
-                />
+               ValueChanged="OnMinSliderValueChanged"  />
             <Label x:Name="minDisplayLabel"
                Text=""
                HorizontalOptions="Center"
@@ -15,12 +15,13 @@
             
             <Label Text="Max price"/>
             <Slider x:Name="maxPriceSlider" Maximum="500" Minimum="0" ThumbColor="Blue" MaximumTrackColor="Green" MinimumTrackColor="Green" Value="{Binding MaxPrice}"
-               />
+               ValueChanged="OnMaxSliderValueChanged" />
             <Label x:Name="maxDisplayLabel"
                Text=""
                HorizontalOptions="Center"
                VerticalOptions="Center" />
 
+            <Label Padding="0,0,0,15" Text="Select a vehicle type"/>
 
             <Grid>
                 <FlexLayout Grid.Column="0" Grid.Row="0">
