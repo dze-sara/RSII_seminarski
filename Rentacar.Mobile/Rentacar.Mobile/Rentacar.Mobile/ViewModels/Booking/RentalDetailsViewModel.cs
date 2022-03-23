@@ -28,20 +28,25 @@ namespace Rentacar.Mobile.ViewModels
             ReviewItems = new ObservableCollection<ReviewDto>();
             ConfirmBookingCommand = new Command(OnConfirmBooking);
 
-            //ExecuteLoadItemsCommand();
+            ExecuteLoadItemsCommand();
             LoadReviewsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         async Task ExecuteLoadItemsCommand()
         {
+            if(IsBusy)
+            {
+                return;
+            }
+
             IsBusy = true;
 
             try
-            {
-                ReviewItems.Clear();
+            { 
                 DateTime startDate = DataStore.BookingStartDate;
                 DateTime endDate = DataStore.BookingEndDate;
                 var items = await ReviewService.GetReviewsByModelId(Vehicle.ModelId);
+                ReviewItems.Clear();
                 foreach (var item in items)
                 {
                     ReviewItems.Add(item);
