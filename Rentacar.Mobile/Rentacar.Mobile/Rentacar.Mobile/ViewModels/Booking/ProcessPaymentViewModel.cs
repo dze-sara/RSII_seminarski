@@ -3,6 +3,7 @@ using Rentacar.Mobile.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
 namespace Rentacar.Mobile.ViewModels.Booking
@@ -41,6 +42,19 @@ namespace Rentacar.Mobile.ViewModels.Booking
 
         public async void OnConfirmPaymentCommand(object sender)
         {
+            Regex regex = new Regex("^[0-9]+$");
+
+            if (string.IsNullOrWhiteSpace(CVV) || 
+                string.IsNullOrWhiteSpace(CardNumber) || 
+                string.IsNullOrWhiteSpace(ExpiryDate) || 
+                !regex.Match(CVV).Success || 
+                !regex.Match(CardNumber.Replace("-","")).Success ||
+                !regex.Match(ExpiryDate.Replace("/", "")).Success)
+            {
+                await Shell.Current.DisplayAlert("Error", "Please check entered data", "OK");
+                return;
+            }
+
             BookingDto booking = new BookingDto()
             {
                 StartDate = DataStore.BookingStartDate,
@@ -56,9 +70,15 @@ namespace Rentacar.Mobile.ViewModels.Booking
                 }
             };
 
-            await BookingService.BookVehicle(booking);
-
-            await Shell.Current.GoToAsync(nameof(RentalHistoryPage));
+            var response = await BookingService.BookVehicle(booking);
+            if(response != null)
+            {
+                await Shell.Current.DisplayAlert("Error", "Payment was not successfull, please check entered data", "OK");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync(nameof(RentalHistoryPage));
+            }
         }
     }
 }

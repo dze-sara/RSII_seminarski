@@ -29,26 +29,40 @@ namespace Rentacar.Mobile.Services
 
         public static async Task<T> PostAsync<T, T2>(string resourceUrl, T2 parameter)
         {
-            var response = await _httpClient.PostAsync(resourceUrl, CreateJsonContent(parameter));
+            try
+            {
+                var response = await _httpClient.PostAsync(resourceUrl, CreateJsonContent(parameter));
 
-            T deserializedResponse = await DeserializeResponse<T>(response);
+                T deserializedResponse = await DeserializeResponse<T>(response);
 
-            return deserializedResponse;
+                return deserializedResponse;
+            }
+            catch
+            {
+                return default(T);
+            }
         }
 
         public static async Task<T> GetAsync<T>(string resourceUrl, Dictionary<string, string> parameters = null)
         {
-            string getAsyncUrl = resourceUrl;
-
-            if (parameters != null)
+            try
             {
-                getAsyncUrl = BuildQueryParams(resourceUrl, parameters);
+                string getAsyncUrl = resourceUrl;
+
+                if (parameters != null)
+                {
+                    getAsyncUrl = BuildQueryParams(resourceUrl, parameters);
+                }
+
+                HttpResponseMessage response = await _httpClient.GetAsync(getAsyncUrl);
+                T deserializedResponse = await DeserializeResponse<T>(response);
+
+                return deserializedResponse;
             }
-
-            HttpResponseMessage response = await _httpClient.GetAsync(getAsyncUrl);
-            T deserializedResponse = await DeserializeResponse<T>(response);
-
-            return deserializedResponse;
+            catch
+            {
+                return default(T);
+            }
         }
 
         private static async Task<T> DeserializeResponse<T>(HttpResponseMessage response)
