@@ -1,10 +1,11 @@
-# RSII_seminarski
+# CarRental
 
-Mobile app credentials:
-username: user
-password: user
+## Mobile application credentials
 
+- username: user
+- password: user
 
-Admin app credentials:
-username: sara
-password: password
+## Admin application credentials
+
+- username: sara
+- password: password
