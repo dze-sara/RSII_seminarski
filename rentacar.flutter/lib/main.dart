@@ -6,10 +6,10 @@ import 'package:rentacar/screens/search_dates.dart';
 void main() => runApp(const RentACar());
 
 final routes = <String, WidgetBuilder>{
-    Login.tag: (context) => Login(),
-    Register.tag: (context) => Register(),
-    SearchDates.tag: (context) => SearchDates()
-  };
+  Login.tag: (context) => Login(),
+  Register.tag: (context) => Register(),
+  SearchDates.tag: (context) => SearchDates()
+};
 
 class RentACar extends StatelessWidget {
   const RentACar({Key? key}) : super(key: key);
@@ -23,8 +23,9 @@ class RentACar extends StatelessWidget {
       home: Scaffold(
         body: const Login(),
       ),
-      routes: routes, 
+      routes: routes,
     );
   }
 }
+// izmjena
 
