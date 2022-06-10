@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/screens/booking_details.dart';
+import 'package:rentacar/screens/filters.dart';
 import 'package:rentacar/screens/login.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/screens/search_dates.dart';
@@ -11,6 +13,8 @@ final routes = <String, WidgetBuilder>{
   Register.tag: (context) => Register(),
   SearchDates.tag: (context) => SearchDates(),
   VehiclesList.tag: (context) => VehiclesList(),
+  Filters.tag: (context) => Filters(),
+  BookingDetails.tag:(context) => BookingDetails(),
 };
 
 class RentACar extends StatelessWidget {
@@ -23,7 +27,7 @@ class RentACar extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        body: VehiclesList(),
+        body: Login(),
       ),
       routes: routes,
     );

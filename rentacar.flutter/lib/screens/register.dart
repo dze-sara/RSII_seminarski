@@ -97,26 +97,29 @@ class _RegisterState extends State<Register> {
       child: SizedBox(
         height: 50,
         width: 20,
-        child: ElevatedButton(
+        child: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed(SearchDates.tag);
         },
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(
-            const Color.fromARGB(255, 216, 113, 29)
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        heroTag: 'btnRegister',
+          backgroundColor: 
+            const Color.fromARGB(255, 216, 113, 29),
+          
+          shape: 
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
-            )
-          )          
-        ),
+            ),
+              
+        
         child: const Text('Register', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
         )
       )
     );
 
-    final loginLink = TextButton(
+    final loginLink = FloatingActionButton(
+      heroTag: 'btnLoginLink',
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       onPressed: () {
         Navigator.of(context).pushNamed(Login.tag);
       },
