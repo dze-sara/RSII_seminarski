@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:rentacar/screens/login.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/screens/search_dates.dart';
+import 'package:rentacar/screens/vehicles_list.dart';
 
 void main() => runApp(const RentACar());
 
 final routes = <String, WidgetBuilder>{
   Login.tag: (context) => Login(),
   Register.tag: (context) => Register(),
-  SearchDates.tag: (context) => SearchDates()
+  SearchDates.tag: (context) => SearchDates(),
+  VehiclesList.tag: (context) => VehiclesList(),
 };
 
 class RentACar extends StatelessWidget {
@@ -21,7 +23,7 @@ class RentACar extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        body: const Login(),
+        body: VehiclesList(),
       ),
       routes: routes,
     );
