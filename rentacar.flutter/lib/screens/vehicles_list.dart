@@ -404,104 +404,103 @@ class _VehiclesListState extends State<VehiclesList> {
               )
             ]));
 
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'CarRental.com',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-          toolbarHeight: 90,
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.car_rental_outlined,
-                color: Colors.white,
-                size: 50,
-              )),
-          backgroundColor: const Color.fromARGB(255, 4, 28, 48),
+    final appBar = AppBar(
+        title: const Text(
+          'CarRental.com',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
+        toolbarHeight: 90,
+        leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.car_rental_outlined,
+              color: Colors.white,
+              size: 50,
+            )),
+        backgroundColor: const Color.fromARGB(255, 4, 28, 48));
+
+    final datesContainer = Container(
+      margin: EdgeInsets.all(5),
+      padding: EdgeInsets.all(10),
+      foregroundDecoration: BoxDecoration(
+          border: Border.all(color: Color.fromARGB(255, 216, 113, 29)),
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: pickUpDate,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: returnDate,
+          )
+        ],
+      ),
+    );
+
+    final filterButtonSizedBox = SizedBox(
+      width: 150,
+      child: FloatingActionButton(
+        heroTag: 'btnFilters1',
+        onPressed: () {
+          _showModalBottomSheet(context);
+        },
+        child: Text('Filters'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Color.fromARGB(255, 99, 99, 99),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(
+            color: Color.fromARGB(255, 216, 113, 29),
+            width: 1.0,
+          ),
+        ),
+      ),
+    );
+
+    final sortDropdownSizedBox = SizedBox(
+      width: 150,
+      child: DropdownButton<String>(
+        value: dropdownValue,
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        style: const TextStyle(color: Color.fromARGB(255, 99, 99, 99)),
+        underline: Container(
+          height: 2,
+          width: 20,
+          color: Color.fromARGB(255, 216, 113, 29),
+        ),
+        onChanged: (String? newValue) {
+          setState(() {
+            dropdownValue = newValue!;
+          });
+        },
+        items: sortButtonDropdownItems
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
+
+    return Scaffold(
+        appBar: appBar,
         body: Column(
           children: [
-            Container(
-              margin: EdgeInsets.all(5),
-              padding: EdgeInsets.all(10),
-              foregroundDecoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(255, 216, 113, 29)),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: pickUpDate,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: returnDate,
-                  )
-                ],
-              ),
-            ),
+            datesContainer,
             Container(
               margin: EdgeInsets.all(5),
               child: Row(children: [
-                SizedBox(
-                  width: 150,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _showModalBottomSheet(context);
-                    },
-                    child: Text('Filters'),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.transparent),
-                      shadowColor:
-                          MaterialStateProperty.all<Color>(Colors.transparent),
-                      elevation: MaterialStateProperty.all<double>(0),
-                      foregroundColor: MaterialStateProperty.all<Color>(
-                          Color.fromARGB(255, 99, 99, 99)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(
-                            color: Color.fromARGB(255, 216, 113, 29),
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                filterButtonSizedBox,
                 SizedBox(
                   height: 0,
                   width: 20,
                 ),
-                SizedBox(
-                  width: 150,
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    style:
-                        const TextStyle(color: Color.fromARGB(255, 99, 99, 99)),
-                    underline: Container(
-                      height: 2,
-                      width: 20,
-                      color: Color.fromARGB(255, 216, 113, 29),
-                    ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: sortButtonDropdownItems
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                )
+                sortDropdownSizedBox
               ]),
             ),
             vehicleListItem
