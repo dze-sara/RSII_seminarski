@@ -14,7 +14,7 @@ final routes = <String, WidgetBuilder>{
   SearchDates.tag: (context) => SearchDates(),
   VehiclesList.tag: (context) => VehiclesList(),
   Filters.tag: (context) => Filters(),
-  BookingDetails.tag:(context) => BookingDetails(),
+  BookingDetails.tag: (context) => BookingDetails(),
 };
 
 class RentACar extends StatelessWidget {
@@ -33,5 +33,5 @@ class RentACar extends StatelessWidget {
     );
   }
 }
-// izmjena
+// 
 
