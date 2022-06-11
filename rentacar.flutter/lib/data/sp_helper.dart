@@ -17,4 +17,12 @@ class SPHelper {
   User getUser() {
     return User.fromJson(json.decode(prefs.getString('user') ?? ''));
   }
+
+  Future writeToken(String token) async {
+    prefs.setString('token', json.encode(token));
+  }
+
+  String getToken() {
+    return prefs.getString('token') ?? '';
+  }
 }

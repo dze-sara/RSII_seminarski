@@ -65,7 +65,7 @@ namespace Rentacar.DataAccess.Repositories
             // Validate user
             AssertionHelper.AssertObject(user);
 
-            // Add user do database
+            // Add user to database
             user.RoleId = 1;
             user.DateCreated = DateTime.Now;
             user.DateUpdated = DateTime.Now;

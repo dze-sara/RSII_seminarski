@@ -9,9 +9,10 @@ class User {
   DateTime? dateCreated;
   DateTime? dateUpdated;
   int? roleId;
+  String? token;
 
   User(this.userId, this.email, this.firstName, this.lastName, this.password,
-      this.dateCreated, this.dateUpdated, this.roleId);
+      this.dateCreated, this.dateUpdated, this.roleId, this.token);
 
   User.fromJson(Map<String, dynamic> userMap) {
     userId = userMap['userId'] ?? 0;
@@ -22,6 +23,7 @@ class User {
     password = userMap['password'] ?? '';
     dateCreated = DateTime.parse(userMap['dateCreated']);
     dateUpdated = DateTime.parse(userMap['dateUpdated']);
+    token = userMap['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -32,8 +34,9 @@ class User {
       'firstName': firstName,
       'lastName': lastName,
       'password': password,
-      'dateCreated': dateCreated.toString(),
-      'dateUpdated': dateUpdated.toString()
+      'dateCreated': dateCreated?.toString(),
+      'dateUpdated': dateUpdated?.toString(),
+      'token': token
     };
   }
 }

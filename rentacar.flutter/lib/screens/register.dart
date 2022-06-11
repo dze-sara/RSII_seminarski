@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/models/user.dart';
 import 'package:rentacar/screens/login.dart';
 import 'package:rentacar/screens/search_dates.dart';
 
+import '../services/user_service.dart';
+
 class Register extends StatefulWidget {
-  const Register({ Key? key }) : super(key: key);
+  const Register({Key? key}) : super(key: key);
 
   static String tag = 'register';
 
@@ -12,9 +15,13 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController txtEmail = TextEditingController();
+  final TextEditingController txtFirstName = TextEditingController();
+  final TextEditingController txtLastName = TextEditingController();
+  final TextEditingController txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    
     final logo = Hero(
         tag: '123',
         child: CircleAvatar(
@@ -33,9 +40,9 @@ class _RegisterState extends State<Register> {
             )));
 
     final firstName = TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       autofocus: false,
-      initialValue: '',
+      controller: txtFirstName,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -44,13 +51,16 @@ class _RegisterState extends State<Register> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
         hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 216, 113, 29)),
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Color.fromARGB(255, 216, 113, 29)),
     );
 
     final lastName = TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       autofocus: false,
-      initialValue: '',
+      controller: txtLastName,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -59,59 +69,68 @@ class _RegisterState extends State<Register> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
         hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 216, 113, 29)),
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Color.fromARGB(255, 216, 113, 29)),
     );
 
     final username = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: '',
+      controller: txtEmail,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: 'username',
+        hintText: 'email',
         contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
         hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 216, 113, 29)),
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Color.fromARGB(255, 216, 113, 29)),
     );
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: '',
+      controller: txtPassword,
       obscureText: true,
       decoration: InputDecoration(
-        fillColor: Colors.white,
-        filled: true,
-        hintText: 'password',
-        contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-        hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-      ),
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromARGB(255, 216, 113, 29)),
+          fillColor: Colors.white,
+          filled: true,
+          hintText: 'password',
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+          hintStyle:
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Color.fromARGB(255, 216, 113, 29)),
     );
 
     final registerButton = Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: SizedBox(
-        height: 50,
-        width: 20,
-        child: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(SearchDates.tag);
-        },
-        heroTag: 'btnRegister',
-          backgroundColor: 
-            const Color.fromARGB(255, 216, 113, 29),
-          shape: 
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
-            ),
-        child: const Text('Register', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-        )
-      )
-    );
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: SizedBox(
+            height: 50,
+            width: 20,
+            child: FloatingActionButton(
+              onPressed: () {
+                onRegisterPressed();
+              },
+              heroTag: 'btnRegister',
+              backgroundColor: const Color.fromARGB(255, 216, 113, 29),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+              child: const Text('Register',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+            )));
 
     final loginLink = FloatingActionButton(
       heroTag: 'btnLoginLink',
@@ -120,7 +139,12 @@ class _RegisterState extends State<Register> {
       onPressed: () {
         Navigator.of(context).pushNamed(Login.tag);
       },
-      child: const Text("Already have an account?", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline)),
+      child: const Text("Already have an account?",
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline)),
     );
 
     return Scaffold(
@@ -145,6 +169,45 @@ class _RegisterState extends State<Register> {
           ],
         ),
       ),
+    );
+  }
+
+  onRegisterPressed() async {
+    UserService userService = UserService();
+    User newUserData = User(0, txtEmail.text, txtFirstName.text,
+        txtLastName.text, txtPassword.text, null, null, 0, null);
+    User? user = await userService.Register(newUserData);
+    if (user != null) {
+      Navigator.of(context).pushNamed(SearchDates.tag);
+    } else {
+      showAlertDialog(context);
+    }
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Invalid data provided"),
+      content: Text("Please check the input and try again."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
