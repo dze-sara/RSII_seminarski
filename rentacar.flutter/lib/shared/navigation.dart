@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rentacar/screens/booking_history.dart';
 import 'package:rentacar/screens/search_dates.dart';
+import 'package:rentacar/screens/user_details.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
+
     final items = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.search),
@@ -24,6 +26,10 @@ class _NavigationState extends State<Navigation> {
       BottomNavigationBarItem(
         icon: Icon(Icons.directions_car),
         label: 'rental history',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'profile',
       ),
     ];
 
@@ -43,6 +49,9 @@ class _NavigationState extends State<Navigation> {
           break;
         case 2:
           Navigator.of(context).pushNamed(BookingHistory.tag);
+          break;
+        case 3:
+          Navigator.of(context).pushNamed(UserDetails.tag);
           break;
       };
     }
