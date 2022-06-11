@@ -26,18 +26,27 @@ class UserService {
     return registeredUser;
   }
 
-  Future<User> SignIn(String username, String password) async {
-    String path = '${Configuration().apiUrl}/api/Users';
+  Future<User?> SignIn(String username, String password) async {
+    String path = '${Configuration().apiUrl}/api/Users/login';
 
-    http.Response result = await http.post(Uri.parse('$path/login'),
-        body: {'email': username, 'password': password});
+    try {
+      http.Response result = await http.post(Uri.parse(path),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(
+              <String, String>{'email': username, 'password': password}));
 
-    User signedUser = User.fromJson(json.decode(result.body));
+      User signedUser = User.fromJson(json.decode(result.body));
 
-    if (signedUser != null && signedUser.userId != 0) {
-      helper.writeUser(signedUser);
+      if (signedUser != null && signedUser.userId != 0) {
+        helper.writeUser(signedUser);
+        return signedUser;
+      } else {
+        return null;
+      }
+    } catch (_) {
+      return null;
     }
-
-    return signedUser;
   }
 }

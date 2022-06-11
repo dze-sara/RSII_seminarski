@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/screens/search_dates.dart';
+import 'package:rentacar/services/user_service.dart';
+import 'package:rentacar/services/vehicle_service.dart';
+
+import '../models/user.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +16,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController txtUsername = TextEditingController();
+  final TextEditingController txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -34,7 +41,7 @@ class _LoginState extends State<Login> {
     final username = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: '',
+      controller: txtUsername,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -51,7 +58,7 @@ class _LoginState extends State<Login> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: '',
+      controller: txtPassword,
       obscureText: true,
       decoration: InputDecoration(
           fillColor: Colors.white,
@@ -75,7 +82,7 @@ class _LoginState extends State<Login> {
             child: FloatingActionButton(
               heroTag: 'btnLogin',
               onPressed: () {
-                Navigator.of(context).pushNamed(SearchDates.tag);
+                onLoginPressed(context);
               },
               backgroundColor: const Color.fromARGB(255, 216, 113, 29),
               shape: RoundedRectangleBorder(
@@ -121,6 +128,43 @@ class _LoginState extends State<Login> {
           ],
         ),
       ),
+    );
+  }
+
+  onLoginPressed(BuildContext context) async {
+    UserService userService = UserService();
+    User? user = await userService.SignIn(txtUsername.text, txtPassword.text);
+    if (user != null) {
+      Navigator.of(context).pushNamed(SearchDates.tag);
+    } else {
+      showAlertDialog(context);
+    }
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Incorrect credentials"),
+      content: Text("Please try again."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

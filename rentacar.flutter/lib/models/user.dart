@@ -16,12 +16,12 @@ class User {
   User.fromJson(Map<String, dynamic> userMap) {
     userId = userMap['userId'] ?? 0;
     roleId = userMap['roleId'] ?? 0;
-    email = userMap['email'] ?? 0;
+    email = userMap['email'] ?? '';
     firstName = userMap['firstName'] ?? '';
     lastName = userMap['lastName'] ?? '';
     password = userMap['password'] ?? '';
-    dateCreated = userMap['dateCreated'];
-    dateUpdated = userMap['dateUpdated'];
+    dateCreated = DateTime.parse(userMap['dateCreated']);
+    dateUpdated = DateTime.parse(userMap['dateUpdated']);
   }
 
   Map<String, dynamic> toJson() {
@@ -32,8 +32,8 @@ class User {
       'firstName': firstName,
       'lastName': lastName,
       'password': password,
-      'dateCreated': dateCreated,
-      'dateUpdated': dateUpdated
+      'dateCreated': dateCreated.toString(),
+      'dateUpdated': dateUpdated.toString()
     };
   }
 }
