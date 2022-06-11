@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:rentacar/screens/booking_details.dart';
+import 'package:rentacar/screens/booking_history.dart';
 import 'package:rentacar/screens/filters.dart';
 import 'package:rentacar/screens/login.dart';
+import 'package:rentacar/screens/payment.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
+import 'package:rentacar/shared/navigation.dart';
 
 void main() => runApp(const RentACar());
 
@@ -15,6 +20,8 @@ final routes = <String, WidgetBuilder>{
   VehiclesList.tag: (context) => VehiclesList(),
   Filters.tag: (context) => Filters(),
   BookingDetails.tag:(context) => BookingDetails(),
+  Payment.tag:(context) => Payment(),
+  BookingHistory.tag:(context) => BookingHistory(),
 };
 
 class RentACar extends StatelessWidget {

@@ -85,7 +85,7 @@ class _FiltersState extends State<Filters> {
           color: Color.fromARGB(255, 99, 99, 99)),
     );
 
-    final priceRange = RangeSlider(
+    final priceRange1 = RangeSlider(
       values: _priceRangeValues,
       max: 500,
       divisions: 20,
@@ -96,6 +96,21 @@ class _FiltersState extends State<Filters> {
       onChanged: (RangeValues values) {
         setState(() {
           _priceRangeValues = values;
+        });
+      },
+    );
+
+    double _startValue = 20.0;
+    double _endValue = 90.0;
+
+    final priceRange = RangeSlider(
+      min: 0.0,
+      max: 100.0,
+      values: RangeValues(_startValue, _endValue),
+      onChanged: (values) {
+        setState(() {
+          _startValue = values.start;
+          _endValue = values.end;
         });
       },
     );
@@ -125,28 +140,27 @@ class _FiltersState extends State<Filters> {
     );
 
     final loginButton = Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: SizedBox(
-        height: 35,
-        width: 100,
-        child: ElevatedButton(
-        onPressed: () {
-          // Navigator.of(context).pushNamed(SearchDates.tag);
-        },
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(
-            const Color.fromARGB(255, 216, 113, 29)
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
-            )
-          )          
-        ),
-        child: const Text('search', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-        )
-      )
-    );
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: SizedBox(
+            height: 35,
+            width: 100,
+            child: ElevatedButton(
+              onPressed: () {
+                // Navigator.of(context).pushNamed(SearchDates.tag);
+              },
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 216, 113, 29)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ))),
+              child: const Text('search',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+            )));
 
     Future<Null> _showModalBottomSheet(BuildContext context) async {
       await showModalBottomSheet(
@@ -155,45 +169,58 @@ class _FiltersState extends State<Filters> {
           elevation: 15,
           context: context,
           builder: (context) {
-            return Container(
-                padding: EdgeInsets.all(15),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        transmissionLabel,
-                        SizedBox(width: 20),
-                        transmissionDropdown,
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        vehicleTypeLabel,
-                        SizedBox(width: 20),
-                        vehicleTypeDropdown,
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    priceRangeLabel,
-                    priceRange,
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: minPriceLabel,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: maxPriceLabel,
-                        )
-                      ],
-                    ),
-                    loginButton
-                  ],
-                ));
+            return StatefulBuilder(builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          transmissionLabel,
+                          SizedBox(width: 20),
+                          transmissionDropdown,
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        children: [
+                          vehicleTypeLabel,
+                          SizedBox(width: 20),
+                          vehicleTypeDropdown,
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      priceRangeLabel,
+                      RangeSlider(
+                        min: 0.0,
+                        max: 100.0,
+                        values: RangeValues(_startValue, _endValue),
+                        onChanged: (values) {
+                          setState(() {
+                            _startValue = values.start;
+                            _endValue = values.end;
+                          });
+                        },
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: minPriceLabel,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: maxPriceLabel,
+                          )
+                        ],
+                      ),
+                      loginButton
+                    ],
+                  ));
+            });
           });
     }
 

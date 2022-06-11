@@ -16,7 +16,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     
     final logo = Hero(
-        tag: 'logo',
+        tag: '123',
         child: CircleAvatar(
             backgroundColor: Colors.transparent,
             radius: 100,
@@ -104,13 +104,10 @@ class _RegisterState extends State<Register> {
         heroTag: 'btnRegister',
           backgroundColor: 
             const Color.fromARGB(255, 216, 113, 29),
-          
           shape: 
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
             ),
-              
-        
         child: const Text('Register', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
         )
       )

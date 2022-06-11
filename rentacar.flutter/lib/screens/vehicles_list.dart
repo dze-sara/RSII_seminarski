@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/register.dart';
 
+import '../shared/navigation.dart';
 import 'filters.dart';
 
 class VehiclesList extends StatefulWidget {
@@ -46,7 +47,7 @@ List<DropdownMenuItem<String>> get vehicleTypeitems {
 var selectedValueTransmission = "1";
 var selectedValueCarType = "Small car";
 
-RangeValues _priceRangeValues = const RangeValues(10, 250);
+RangeValues _priceRangeValues = RangeValues(10, 250);
 //End filters variables
 
 class _VehiclesListState extends State<VehiclesList> {
@@ -173,17 +174,22 @@ class _VehiclesListState extends State<VehiclesList> {
           color: Color.fromARGB(255, 99, 99, 99)),
     );
 
+    double _startValue = 30.0;
+    double _endValue = 130.0;
+
     final priceRange = RangeSlider(
-      values: _priceRangeValues,
-      max: 500,
-      divisions: 20,
+      values: RangeValues(_startValue, _endValue),
+      min: 10,
+      max: 300,
+      divisions: 50,
       labels: RangeLabels(
-        _priceRangeValues.start.round().toString(),
-        _priceRangeValues.end.round().toString(),
+        _startValue.round().toString(),
+        _endValue.round().toString(),
       ),
-      onChanged: (RangeValues values) {
+      onChanged: (values) {
         setState(() {
-          _priceRangeValues = values;
+          _startValue = values.start;
+          _endValue = values.end;
         });
       },
     );
@@ -197,7 +203,7 @@ class _VehiclesListState extends State<VehiclesList> {
     );
 
     final minPriceLabel = Text(
-      'Min price ${_priceRangeValues.start.round().toString()}€',
+      'Min price ${_startValue.round().toString()}€',
       style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.normal,
@@ -205,14 +211,14 @@ class _VehiclesListState extends State<VehiclesList> {
     );
 
     final maxPriceLabel = Text(
-      'Max price ${_priceRangeValues.end.round().toString()}€',
+      'Max price ${_endValue.round().toString()}€',
       style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.normal,
           color: Color.fromARGB(255, 99, 99, 99)),
     );
 
-    final loginButton = Padding(
+    final searchButton = Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: SizedBox(
             height: 35,
@@ -242,45 +248,63 @@ class _VehiclesListState extends State<VehiclesList> {
           elevation: 15,
           context: context,
           builder: (context) {
-            return Container(
-                padding: EdgeInsets.all(15),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        transmissionLabel,
-                        SizedBox(width: 20),
-                        transmissionDropdown,
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        vehicleTypeLabel,
-                        SizedBox(width: 20),
-                        vehicleTypeDropdown,
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    priceRangeLabel,
-                    priceRange,
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: minPriceLabel,
+            return StatefulBuilder(builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          transmissionLabel,
+                          SizedBox(width: 20),
+                          transmissionDropdown,
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        children: [
+                          vehicleTypeLabel,
+                          SizedBox(width: 20),
+                          vehicleTypeDropdown,
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      priceRangeLabel,
+                      RangeSlider(
+                        values: RangeValues(_startValue, _endValue),
+                        min: 10,
+                        max: 300,
+                        divisions: 50,
+                        labels: RangeLabels(
+                          _startValue.round().toString(),
+                          _endValue.round().toString(),
                         ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: maxPriceLabel,
-                        )
-                      ],
-                    ),
-                    loginButton
-                  ],
-                ));
+                        onChanged: (values) {
+                          setState(() {
+                            _startValue = values.start;
+                            _endValue = values.end;
+                          });
+                        },
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: minPriceLabel,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: maxPriceLabel,
+                          )
+                        ],
+                      ),
+                      searchButton
+                    ],
+                  ));
+            });
           });
     }
     //End of filter widgets
@@ -488,8 +512,10 @@ class _VehiclesListState extends State<VehiclesList> {
     );
 
     return Scaffold(
+        bottomNavigationBar: Navigation(),
         appBar: appBar,
-        body: Column(
+        body: Center(
+            child: Column(
           children: [
             datesContainer,
             Container(
@@ -503,8 +529,12 @@ class _VehiclesListState extends State<VehiclesList> {
                 sortDropdownSizedBox
               ]),
             ),
-            vehicleListItem
+            ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 24, right: 24),
+              children: <Widget>[vehicleListItem],
+            ),
           ],
-        ));
+        )));
   }
 }

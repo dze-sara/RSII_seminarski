@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
 
 import '../shared/app_bar.dart';
+import '../shared/navigation.dart';
 
 class SearchDates extends StatefulWidget {
   const SearchDates({Key? key}) : super(key: key);
@@ -111,6 +112,7 @@ class _SearchDatesState extends State<SearchDates> {
             )));
     final appBarCustom = AppBarCustom();
     return Scaffold(
+      bottomNavigationBar: Navigation(),
       appBar: AppBar(
         title: const Text(
           'CarRental.com',
@@ -156,6 +158,7 @@ class _SearchDatesState extends State<SearchDates> {
                 SizedBox(
                     width: 200,
                     child: FloatingActionButton.extended(
+                      heroTag: null,
                       onPressed: () {
                         _selectPickUpDate(context);
                       },
@@ -171,6 +174,7 @@ class _SearchDatesState extends State<SearchDates> {
                 SizedBox(
                     width: 130,
                     child: FloatingActionButton.extended(
+                      heroTag: null,
                       onPressed: () {
                         _selectPickUpTime(context);
                       },
@@ -197,6 +201,7 @@ class _SearchDatesState extends State<SearchDates> {
                 SizedBox(
                     width: 200,
                     child: FloatingActionButton.extended(
+                      heroTag: null,
                       onPressed: () {
                         _selectReturnDate(context);
                       },
@@ -212,6 +217,7 @@ class _SearchDatesState extends State<SearchDates> {
                 SizedBox(
                     width: 130,
                     child: FloatingActionButton.extended(
+                      heroTag: null,
                       onPressed: () {
                         _selectReturnTime(context);
                       },

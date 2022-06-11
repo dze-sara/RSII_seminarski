@@ -1,72 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/screens/booking_history.dart';
+import 'package:rentacar/screens/search_dates.dart';
 
-class Navigation extends StatelessWidget {
+class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return NavigationBar();
-  }
+  _NavigationState createState() => _NavigationState();
 }
 
-class NavigationBar extends StatefulWidget {
-  const NavigationBar({Key? key}) : super(key: key);
-
-  @override
-  State<NavigationBar> createState() => _NavigationBar();
-}
-
-class _NavigationBar extends State<NavigationBar> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: bottomNavigationBar()
-    );
-  }
+    final items = <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+        icon: Icon(Icons.search),
+        label: 'search',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.flash_on),
+        label: 'recommended',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.directions_car),
+        label: 'rental history',
+      ),
+    ];
 
-  BottomNavigationBar bottomNavigationBar() {
+    int _selectedIndex = 0;
+
+    void _onItemTapped(int index) {
+
+      setState(() {
+        _selectedIndex = index;
+      });
+      switch (index) {
+        case 0:
+          Navigator.of(context).pushNamed(SearchDates.tag);
+          break;
+        case 1:
+          Navigator.of(context).pushNamed(SearchDates.tag);
+          break;
+        case 2:
+          Navigator.of(context).pushNamed(BookingHistory.tag);
+          break;
+      };
+    }
+
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: 'Business',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: 'School',
-        ),
-      ],
+      items: items,
+      backgroundColor: const Color.fromARGB(255, 4, 28, 48),
+      unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
+      unselectedItemColor: Colors.white,
+      selectedIconTheme:
+          IconThemeData(color: Color.fromARGB(255, 216, 113, 29), size: 30),
+      selectedItemColor: Color.fromARGB(255, 216, 113, 29),
       currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
     );
-}
+  }
 }
