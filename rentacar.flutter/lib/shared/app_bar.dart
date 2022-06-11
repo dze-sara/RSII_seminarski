@@ -10,8 +10,7 @@ class AppBarCustom extends StatefulWidget {
 class _AppBarCustomState extends State<AppBarCustom> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
+    final appBar = AppBar(
       title: const Text(
         'CarRental.com',
         style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -25,6 +24,7 @@ class _AppBarCustomState extends State<AppBarCustom> {
             size: 50,
           )),
       backgroundColor: const Color.fromARGB(255, 4, 28, 48),
-    ));
+    );
+    return appBar;
   }
 }

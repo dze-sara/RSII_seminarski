@@ -224,10 +224,60 @@ class _FiltersState extends State<Filters> {
           });
     }
 
+    final reviewIcons = Icon(
+      Icons.star,
+      size: 40,
+      color: Color.fromARGB(255, 216, 113, 29),
+    );
+
+    int number = 3;
+    List<Icon> _displayIcons(int number) {
+      List<Icon> icons = [];
+      for (var i = 0; i < number; i++) {
+        icons.add(reviewIcons);
+      }
+      return icons;
+    }
+
+    final review = Row(
+      children: [
+        Row(children: _displayIcons(number),),
+        SizedBox(width: 30),
+        Text('Great car.')
+      ],
+    );
+
+    List<Row> _displayReviews(int number) {
+      List<Row> reviews = [];
+      for (var i = 0; i < number; i++) {
+        reviews.add(review);
+      }
+      return reviews;
+    }
+
+    Future<Null> _showReviewsDialog(BuildContext context) async {
+      await showModalBottomSheet(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 15,
+          isScrollControlled: false,
+          context: context,
+          builder: (context) {
+            return StatefulBuilder(builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    children: _displayReviews(number),
+                  ));
+            });
+          });
+    }
+
     return Scaffold(
         body: ElevatedButton(
       onPressed: () {
-        _showModalBottomSheet(context);
+        _showReviewsDialog(context);
       },
       child: Text(
         'Click Me',

@@ -53,8 +53,8 @@ class _NavigationState extends State<Navigation> {
       unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
       unselectedItemColor: Colors.white,
       selectedIconTheme:
-          IconThemeData(color: Color.fromARGB(255, 216, 113, 29), size: 30),
-      selectedItemColor: Color.fromARGB(255, 216, 113, 29),
+          IconThemeData(color: Colors.white, size: 30),
+      selectedItemColor: Colors.white,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
     );

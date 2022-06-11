@@ -40,5 +40,3 @@ class RentACar extends StatelessWidget {
     );
   }
 }
-// izmjena
-

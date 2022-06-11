@@ -6,7 +6,7 @@ class BookingHistory extends StatefulWidget {
   const BookingHistory({Key? key}) : super(key: key);
 
   static String tag = 'booking-history';
-  
+
   @override
   _BookingHistoryState createState() => _BookingHistoryState();
 }
@@ -106,29 +106,6 @@ class _BookingHistoryState extends State<BookingHistory> {
                               color: Color.fromARGB(255, 99, 99, 99)))
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: SizedBox(
-                          height: 30,
-                          width: 130,
-                          child: FloatingActionButton(
-                            heroTag: 'btnRentNow',
-                            onPressed: () {
-                              // Navigator.of(context)
-                              //     .pushNamed(BookingDetails.tag);
-                            },
-                            backgroundColor:
-                                const Color.fromARGB(255, 216, 113, 29),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0),
-                            ),
-                            child: const Text('rent now',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-                          )))
                 ]),
               )
             ]));
