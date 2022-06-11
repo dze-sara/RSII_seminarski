@@ -1,11 +1,11 @@
 import 'package:http/http.dart' as http;
+import 'package:rentacar/data/configuration.dart';
 
 class HttpHelper {
-  final String path = "http://localhost:5000/api/Vehicles";
+  final String path = Configuration().apiUrl + "/api/Vehicles";
 
   Future<String> getVehicles() async {
-    Uri uri = Uri(path: path);
-    http.Response result = await http.get(Uri.parse('http://192.168.0.12:5000/api/Vehicles'));
+    http.Response result = await http.get(Uri.parse(path));
     return result.body;
   }
 }
