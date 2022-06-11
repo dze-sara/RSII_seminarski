@@ -127,7 +127,7 @@ class _BookingHistoryState extends State<BookingHistory> {
     final greetingMessage = const Text(
       'Hi, Sara!\nThis is your car rental history.',
       style: TextStyle(
-          fontSize: 30,
+          fontSize: 25,
           color: Color.fromARGB(255, 216, 113, 29),
           fontWeight: FontWeight.normal),
     );
@@ -137,11 +137,14 @@ class _BookingHistoryState extends State<BookingHistory> {
       appBar: appBar,
       body: Center(
         child: Column(children: [
-          greetingMessage,
           ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-            children: [vehicleListItem],
+            children: [
+              const SizedBox(height: 20.0),
+              greetingMessage,
+              vehicleListItem
+            ],
           )
         ]),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentacar/screens/booking_history.dart';
+import 'package:rentacar/screens/recommended.dart';
 import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/screens/user_details.dart';
 
@@ -45,7 +46,7 @@ class _NavigationState extends State<Navigation> {
           Navigator.of(context).pushNamed(SearchDates.tag);
           break;
         case 1:
-          Navigator.of(context).pushNamed(SearchDates.tag);
+          Navigator.of(context).pushNamed(Recommended.tag);
           break;
         case 2:
           Navigator.of(context).pushNamed(BookingHistory.tag);
@@ -58,6 +59,7 @@ class _NavigationState extends State<Navigation> {
 
     return BottomNavigationBar(
       items: items,
+      type: BottomNavigationBarType.fixed,
       backgroundColor: const Color.fromARGB(255, 4, 28, 48),
       unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
       unselectedItemColor: Colors.white,

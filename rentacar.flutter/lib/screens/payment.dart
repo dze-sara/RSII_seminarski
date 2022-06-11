@@ -41,7 +41,7 @@ class _PaymentState extends State<Payment> {
       decoration: InputDecoration(
           fillColor: Color.fromARGB(39, 99, 99, 99),
           filled: true,
-          hintText: 'CCV',
+          hintText: 'CVV',
           contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
           hintStyle:
@@ -86,8 +86,8 @@ class _PaymentState extends State<Payment> {
           color: Color.fromARGB(255, 216, 113, 29)),
     );
 
-    final ccvLabel = Text(
-      'CCV',
+    final cvvLabel = Text(
+      'CVV',
       style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _PaymentState extends State<Payment> {
     final paymentMessage = const Text(
       'Please enter your credit card details.',
       style: TextStyle(
-          fontSize: 30,
+          fontSize: 25,
           color: Color.fromARGB(255, 216, 113, 29),
           fontWeight: FontWeight.normal),
     );
@@ -181,7 +181,7 @@ class _PaymentState extends State<Payment> {
                     width: 150,
                     child: Column(children: [expiryLabel, expiryDate])),
                 SizedBox(width: 20),
-                SizedBox(width: 100, child: Column(children: [ccvLabel, ccv]))
+                SizedBox(width: 100, child: Column(children: [cvvLabel, ccv]))
               ],
             ),
             const SizedBox(height: 48.0),

@@ -6,6 +6,7 @@ import 'package:rentacar/screens/booking_history.dart';
 import 'package:rentacar/screens/filters.dart';
 import 'package:rentacar/screens/login.dart';
 import 'package:rentacar/screens/payment.dart';
+import 'package:rentacar/screens/recommended.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/screens/user_details.dart';
@@ -20,10 +21,11 @@ final routes = <String, WidgetBuilder>{
   SearchDates.tag: (context) => SearchDates(),
   VehiclesList.tag: (context) => VehiclesList(),
   Filters.tag: (context) => Filters(),
-  BookingDetails.tag:(context) => BookingDetails(),
-  Payment.tag:(context) => Payment(),
-  BookingHistory.tag:(context) => BookingHistory(),
-  UserDetails.tag:(context) => UserDetails(),
+  BookingDetails.tag: (context) => BookingDetails(),
+  Payment.tag: (context) => Payment(),
+  BookingHistory.tag: (context) => BookingHistory(),
+  UserDetails.tag: (context) => UserDetails(),
+  Recommended.tag: (context) => Recommended(),
 };
 
 class RentACar extends StatelessWidget {

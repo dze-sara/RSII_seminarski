@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../shared/navigation.dart';
+
 class UserDetails extends StatefulWidget {
   const UserDetails({Key? key}) : super(key: key);
 
@@ -120,13 +122,24 @@ class _UserDetailsState extends State<UserDetails> {
             )),
         backgroundColor: const Color.fromARGB(255, 4, 28, 48));
 
+        final greetingMessage = const Text(
+      'Hi, Sara!\nModify your profile details here.',
+      style: TextStyle(
+          fontSize: 25,
+          color: Color.fromARGB(255, 216, 113, 29),
+          fontWeight: FontWeight.normal),
+    );
+
     return Scaffold(
       appBar: appBar,
+      bottomNavigationBar: Navigation(),
       body: Center(
         child: ListView(
           shrinkWrap: true,
           padding: const EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
+            // const SizedBox(height: 20.0),
+            greetingMessage,
             const SizedBox(height: 48.0),
             firstName,
             const SizedBox(height: 8.0),
