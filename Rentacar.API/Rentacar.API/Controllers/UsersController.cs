@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rentacar.Dto;
 using Rentacar.Dto.Request;
 using Rentacar.Resources.Exceptions;
@@ -34,13 +35,14 @@ namespace Rentacar.API.Controllers
                 UserDto loggedUser = await _userService.LoginUser(loginRequestDto);
                 return Ok(loggedUser);
             }
-            catch (UserNotFoundException ex)
+            catch (UserNotFoundException)
             {
                 return null;
             }
             
         }
 
+        [Authorize]
         [HttpGet("filter")]
         public async Task<IActionResult> FilterUsers([FromQuery] FilterUsersDto filterUsersDto)
         {
@@ -48,6 +50,7 @@ namespace Rentacar.API.Controllers
             return Ok(filteredUsers);
         }
 
+        [Authorize]
         [HttpPost("update")]
         public async Task<IActionResult> UpdateUser([FromBody] UserDto userRequest)
         {

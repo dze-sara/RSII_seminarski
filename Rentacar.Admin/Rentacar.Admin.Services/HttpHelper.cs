@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,6 +12,12 @@ namespace Rentacar.Admin.Services
     public static class HttpHelper
     {
         private static HttpClient _httpClient = new HttpClient();
+        public static string AuthenticationToken { get; set; }
+
+        public static void SetAuthenticationToken(string token)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        }
 
         public static async Task<T> PostAsync<T, T2>(string resourceUrl, T2 parameter)
         {

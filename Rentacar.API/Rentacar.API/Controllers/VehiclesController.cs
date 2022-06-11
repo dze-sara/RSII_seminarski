@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rentacar.Dto;
 using Rentacar.Dto.Enums;
 using Rentacar.Dto.Request;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Rentacar.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VehiclesController : ControllerBase

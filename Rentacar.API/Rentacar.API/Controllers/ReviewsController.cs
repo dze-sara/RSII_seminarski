@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rentacar.Dto;
 using Rentacar.Services.Interfaces;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rentacar.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase

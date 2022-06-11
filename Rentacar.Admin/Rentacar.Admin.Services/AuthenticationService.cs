@@ -19,6 +19,7 @@ namespace Rentacar.Admin.Services
             try
             {
                 UserDto loggedInUser = await HttpHelper.PostAsync<UserDto, LoginRequestDto>(_baseUrl + "/login", loginRequestDto);
+                HttpHelper.SetAuthenticationToken(loggedInUser?.Token);
                 return loggedInUser?.Role?.RoleName == "Administrator";
             }
             catch (System.Exception)
