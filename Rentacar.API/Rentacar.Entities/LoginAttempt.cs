@@ -10,6 +10,6 @@ namespace Rentacar.Entities
         public int? UserId { get; set; }
         public DateTime AttemptedOn { get; set; }
         public int Status { get; set; }
-        public string Email { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -3,7 +3,7 @@ create table
 	[dbo].[User]
 (
 	[UserId] int identity(1,1) not null
-	, [Email] nvarchar(250) not null
+	, [Username] nvarchar(250) not null
 	, [FirstName] nvarchar(50) not null
 	, [LastName] nvarchar(50) not null
 	, [Password] nvarchar(10) not null

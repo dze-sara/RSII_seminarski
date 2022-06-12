@@ -46,7 +46,7 @@ namespace Rentacar.DataAccess.Migrations
                     UserId = table.Column<int>(type: "int", nullable: true),
                     AttemptedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,12 +94,12 @@ namespace Rentacar.DataAccess.Migrations
             
             migrationBuilder.InsertData(
                 table: "LoginAttempts",
-                columns: new[] { "LoginAttemptId", "UserId", "AttemptedOn", "Status", "Email" },
+                columns: new[] { "LoginAttemptId", "UserId", "AttemptedOn", "Status", "Username" },
                 values: new object[,]
                 {
-                    {1, 2, "2022-06-12T18:13:15.473", 1, "sara@email.com" },
-                    {2, 2, "2022-06-12T18:13:15.473", 2, "sara@edu.fit.ba" },
-                    {3, 1, "2022-06-12T18:13:15.473", 1, "admin@edu.fit.ba" },
+                    {1, 2, "2022-06-12T18:13:15.473", 1, "saraa" },
+                    {2, 2, "2022-06-12T18:13:15.473", 2, "sara" },
+                    {3, 1, "2022-06-12T18:13:15.473", 1, "administrator" },
                 });
 
             migrationBuilder.InsertData(

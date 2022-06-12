@@ -68,7 +68,7 @@ namespace Rentacar.DataAccess.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
@@ -307,7 +307,7 @@ namespace Rentacar.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                table: "User",
-               columns: new[] { "UserId", "Email", "FirstName", "LastName", "Password", "DateCreated", "DateUpdated", "RoleId"},
+               columns: new[] { "UserId", "Username", "FirstName", "LastName", "Password", "DateCreated", "DateUpdated", "RoleId"},
                values: new object[,]
                {
                    {1, "sara", "Sara", "Dzemidzic", "password", new DateTime(2022, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
