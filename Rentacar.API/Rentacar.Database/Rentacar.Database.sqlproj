@@ -84,5 +84,12 @@
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Vehicle.sql" />
     <Build Include="dbo\Tables\VehicleType.sql" />
+    <Build Include="dbo\Tables\PaymentInfo.sql" />
+    <Build Include="dbo\Tables\LoginAttempt.sql" />
+    <Build Include="dbo\Tables\IssuedToken.sql" />
+    <Build Include="dbo\Tables\CardInfo.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Rentacar.Database.refactorlog" />
   </ItemGroup>
 </Project>

@@ -16,5 +16,7 @@ namespace Rentacar.DataAccess.Interfaces
         Task<List<Booking>> GetBookingHistoryForUser(int userId);
         Task<List<Booking>> FilterBooking(BookingRequestDto bookingRequest);
         Task<List<Booking>> BookingReport(BookingReportRequestDto bookingRequest);
+        Task<bool> SaveCardInfo(CardInfo cardInfo);
+        Task<bool> SavePaymentInfo(PaymentInfo paymentInfo);
     }
 }
