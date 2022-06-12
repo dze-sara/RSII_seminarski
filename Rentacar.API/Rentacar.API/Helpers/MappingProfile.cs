@@ -44,6 +44,9 @@ namespace Rentacar.API.Helpers
             CreateMap<VehicleType, VehicleTypeBaseDto>();
             CreateMap<Make, MakeDto>().ReverseMap();
             CreateMap<Make, MakeBaseDto>().ReverseMap();
+
+            CreateMap<PaymentInfo, PaymentInfoDto>().ReverseMap();
+            CreateMap<CardInfo, CardInfoDto>().ReverseMap();
         }
     }
 }

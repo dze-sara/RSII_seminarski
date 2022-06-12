@@ -10,5 +10,7 @@ namespace Rentacar.DataAccess.Interfaces
         Task<User> RegisterUser(User user);
         Task<User> UpdateUser(User user);
         Task<List<User>> FilterUsers(int? userId, string firstName, string lastName, string email);
+        Task<bool> SaveIssuedToken(IssuedToken issuedToken);
+        Task<bool> SaveLoginAttempt(LoginAttempt loginAttempt);
     }
 }

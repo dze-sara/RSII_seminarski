@@ -5,6 +5,6 @@ namespace Rentacar.Services.Interfaces
 {
     public interface IPaymentProcessingService
     {
-        Task<bool> AddPayment(CardInfoDto cardInfo, decimal amount);
+        Task<PaymentInfoDto> AddPayment(CardInfoDto cardInfo, decimal amount);
     }
 }

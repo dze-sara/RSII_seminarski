@@ -76,6 +76,20 @@ namespace Rentacar.DataAccess.Repositories
             return addedUser;
         }
 
+        public async Task<bool> SaveIssuedToken(IssuedToken issuedToken)
+        {
+            _context.IssuedTokens.Add(issuedToken);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> SaveLoginAttempt(LoginAttempt loginAttempt)
+        {
+            _context.LoginAttempts.Add(loginAttempt);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<User> UpdateUser(User user)
         {
             User updatingUser = _context.Users.FirstOrDefault(x => x.UserId == user.UserId);

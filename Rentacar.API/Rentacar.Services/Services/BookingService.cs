@@ -37,8 +37,24 @@ namespace Rentacar.Services.Services
         {
             Booking bookingEf = _mapper.Map<Booking>(booking);
             Booking createdBooking = await _bookingRepository.AddBooking(bookingEf);
-            await _paymentProcessingService.AddPayment(booking.CardInfo, booking.TotalPrice ?? 0);
+            var paymentProcessingInfo = await _paymentProcessingService.AddPayment(booking.CardInfo, booking.TotalPrice ?? 0);
+            await SaveCardInfo(booking.CardInfo);
+            await SavePaymentDetails(paymentProcessingInfo);
             return _mapper.Map<BookingDto>(createdBooking);
+        }
+
+        private async Task<bool> SaveCardInfo(CardInfoDto cardInfoDto)
+        {
+            CardInfo cardInfoEf = _mapper.Map<CardInfo>(cardInfoDto);
+            await _bookingRepository.SaveCardInfo(cardInfoEf);
+            return true;
+        }
+
+        private async Task<bool> SavePaymentDetails(PaymentInfoDto paymentInfo)
+        {
+            PaymentInfo paymentInfoEf = _mapper.Map<PaymentInfo>(paymentInfo);
+            await _bookingRepository.SavePaymentInfo(paymentInfoEf);
+            return true;
         }
 
         public async Task<List<BaseBookingDto>> FilterBooking(BookingRequestDto bookingRequest)

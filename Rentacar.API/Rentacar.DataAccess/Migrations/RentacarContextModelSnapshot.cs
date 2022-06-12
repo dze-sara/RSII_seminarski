@@ -60,6 +60,48 @@ namespace Rentacar.DataAccess.Migrations
                     b.ToTable("Booking");
                 });
 
+            modelBuilder.Entity("Rentacar.Entities.CardInfo", b =>
+                {
+                    b.Property<int>("CardInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExpiryDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CardInfoId");
+
+                    b.ToTable("CardInfos");
+                });
+
+            modelBuilder.Entity("Rentacar.Entities.IssuedToken", b =>
+                {
+                    b.Property<int>("TokenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TokenValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ValidFor")
+                        .HasColumnType("int");
+
+                    b.HasKey("TokenId");
+
+                    b.ToTable("IssuedTokens");
+                });
+
             modelBuilder.Entity("Rentacar.Entities.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -79,6 +121,30 @@ namespace Rentacar.DataAccess.Migrations
                     b.HasKey("LocationId");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("Rentacar.Entities.LoginAttempt", b =>
+                {
+                    b.Property<int>("LoginAttemptId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AttemptedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginAttemptId");
+
+                    b.ToTable("LoginAttempts");
                 });
 
             modelBuilder.Entity("Rentacar.Entities.Make", b =>
@@ -140,6 +206,36 @@ namespace Rentacar.DataAccess.Migrations
                     b.HasIndex("VehicleTypeId");
 
                     b.ToTable("Model");
+                });
+
+            modelBuilder.Entity("Rentacar.Entities.PaymentInfo", b =>
+                {
+                    b.Property<int>("PaymentInfoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PaymentAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PaymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethodId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentInfoId");
+
+                    b.ToTable("PaymentInfos");
                 });
 
             modelBuilder.Entity("Rentacar.Entities.Review", b =>

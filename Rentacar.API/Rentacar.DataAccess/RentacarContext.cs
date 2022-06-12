@@ -25,6 +25,10 @@ namespace Rentacar.DataAccess
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<CardInfo> CardInfos { get; set; }
+        public virtual DbSet<PaymentInfo> PaymentInfos { get; set; }
+        public virtual DbSet<IssuedToken> IssuedTokens { get; set; }
+        public virtual DbSet<LoginAttempt> LoginAttempts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +49,8 @@ namespace Rentacar.DataAccess
                     .HasForeignKey(d => d.VehicleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Fk_Vehicle_Booking_VehicleId");
+
+                entity.Property(x => x.TotalPrice).HasColumnType("decimal(8,2)").HasPrecision(2);
             });
 
             modelBuilder.Entity<Review>(entity =>
@@ -163,6 +169,9 @@ namespace Rentacar.DataAccess
                     .IsRequired()
                     .HasMaxLength(30);
             });
+
+
+
 
             OnModelCreatingPartial(modelBuilder);
         }

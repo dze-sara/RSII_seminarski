@@ -174,5 +174,19 @@ namespace Rentacar.DataAccess.Repositories
                                  .OrderByDescending(x => x.EndDate)
                                  .ToListAsync();
         }
+
+        public async Task<bool> SaveCardInfo(CardInfo cardInfo)
+        {
+            _context.CardInfos.Add(cardInfo);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> SavePaymentInfo(PaymentInfo paymentInfo)
+        {
+            _context.PaymentInfos.Add(paymentInfo);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
