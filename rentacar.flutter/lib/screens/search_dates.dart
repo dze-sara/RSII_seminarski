@@ -67,9 +67,9 @@ class _SearchDatesState extends State<SearchDates> {
     Future<Null> _selectReturnDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
           context: context,
-          initialDate: selectedReturnDate,
+          initialDate: selectedPickUpDate,
           initialDatePickerMode: DatePickerMode.day,
-          firstDate: DateTime.now(),
+          firstDate: selectedPickUpDate,
           lastDate: DateTime(2100));
 
       if (picked != null) {
@@ -211,7 +211,7 @@ class _SearchDatesState extends State<SearchDates> {
                       onPressed: () {
                         _selectPickUpTime(context);
                       },
-                      label: Text("${_timePickUpController.text}"),
+                      label: Text("${selectedPickUpTime.format(context)}"),
                       icon: const Icon(Icons.access_time),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -254,7 +254,7 @@ class _SearchDatesState extends State<SearchDates> {
                       onPressed: () {
                         _selectReturnTime(context);
                       },
-                      label: Text("${_timeReturnController.text}"),
+                      label: Text("${selectedReturnTime.format(context)}"),
                       icon: const Icon(Icons.access_time),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),

@@ -10,6 +10,7 @@ class VehicleBase {
   int? numberOfSeats;
   String? imageUrl;
   double? totalPrice;
+  int? score;
 
   VehicleBase(
       this.vehicleId,
@@ -22,7 +23,8 @@ class VehicleBase {
       this.vehicleType,
       this.numberOfSeats,
       this.imageUrl,
-      this.totalPrice);
+      this.totalPrice,
+      this.score);
 
   VehicleBase.fromJson(Map<String, dynamic> vehicleBaseMap) {
     vehicleId = vehicleBaseMap['vehicleId'];
@@ -36,6 +38,7 @@ class VehicleBase {
     numberOfSeats = vehicleBaseMap['numberOfSeats'];
     imageUrl = vehicleBaseMap['imageUrl'];
     totalPrice = double.tryParse(vehicleBaseMap['totalPrice'].toString());
+    score = vehicleBaseMap['score'];
   }
 
   Map<String, dynamic> toJson() {
@@ -50,7 +53,8 @@ class VehicleBase {
       'vehicleType': vehicleType,
       'numberOfSeats': numberOfSeats,
       'imageUrl': imageUrl,
-      'totalPrice': totalPrice
+      'totalPrice': totalPrice,
+      'score': score
     };
   }
 }

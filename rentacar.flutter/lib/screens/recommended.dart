@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/services/vehicle_service.dart';
 
+import '../models/booking.dart';
+import '../models/responses/vehicle_base.dart';
+import '../models/review.dart';
+import '../services/review_service.dart';
 import '../shared/navigation.dart';
 import 'booking_details.dart';
 
@@ -13,7 +18,21 @@ class Recommended extends StatefulWidget {
 }
 
 class _RecommendedState extends State<Recommended> {
+  List<VehicleBase>? vehicles;
   @override
+  void initState() {
+    super.initState();
+    _getRecommendedVehicles(2);
+  }
+
+  _getRecommendedVehicles(userId) async {
+    VehicleService vehicleService = VehicleService();
+    var result = await vehicleService.Recommended(2);
+    setState(() {
+      vehicles = result;
+    });
+  }
+
   Widget build(BuildContext context) {
     final reviewIcons = Icon(
       Icons.star,
@@ -41,15 +60,63 @@ class _RecommendedState extends State<Recommended> {
       ],
     );
 
-    List<Row> _displayReviews(int number) {
-      List<Row> reviews = [];
-      for (var i = 0; i < number; i++) {
-        reviews.add(review);
+    List<Row> _displayReviews(List<Review>? reviews) {
+      List<Review> vehicleReviews = reviews ?? [];
+      List<Row> result = [];
+      if (vehicleReviews.length != null && vehicleReviews.length != 0) {
+        for (var i = 0; i < vehicleReviews.length; i++) {
+          var review = vehicleReviews[i];
+          var newRow = Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(84, 72, 255, 188),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text('${review.authorName}, score: ${review.score}/5',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Row(
+                          children: _displayIcons(review.score),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(review.content,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+          result.add(newRow);
+        }
       }
-      return reviews;
+      return result;
     }
 
-    Future<Null> _showReviewsDialog(BuildContext context) async {
+    Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
+      ReviewService reviewService = ReviewService();
+      List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
+
       await showModalBottomSheet(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -62,159 +129,197 @@ class _RecommendedState extends State<Recommended> {
               return Container(
                   padding: EdgeInsets.all(15),
                   child: Column(
-                    children: _displayReviews(number),
+                    children: _displayReviews(reviews),
                   ));
             });
           });
     }
 
-    final reviewsLabel = Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0),
-        child: SizedBox(
-            height: 23,
-            width: 60,
-            child: FloatingActionButton(
-              heroTag: 'btnReviews',
-              onPressed: () {
-                _showReviewsDialog(context);
-              },
-              backgroundColor: const Color.fromARGB(255, 216, 113, 29),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32.0),
-              ),
-              child: const Text('Reviews',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold)),
-            )));
+    _openBookingDetails(VehicleBase vehicle) {
+      Booking request = Booking(
+          0,
+          DateTime.now(),
+          DateTime.now(),
+          DateTime.now(),
+          DateTime.now(),
+          2,
+          vehicle.vehicleId,
+          vehicle.totalPrice,
+          null);
 
-    final vehicleListItem = Container(
-        margin: EdgeInsets.fromLTRB(5, 50, 5, 25),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Color.fromARGB(84, 72, 255, 188),
-            borderRadius: BorderRadius.circular(10)),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 200,
-                  height: 275,
-                  child: Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(child: Image.asset('assets/papi.jpg')),
-                      Center(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _displayIcons(number))),
-                      reviewsLabel
-                    ],
-                  ))),
-              SizedBox(
-                width: 5,
-              ),
-              SizedBox(
-                width: 100,
-                height: 275,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(children: [
-                        Text('SKODA',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 99, 99, 99)))
-                      ]),
-                      SizedBox(width: 5),
-                      Row(children: [
-                        Text('fabia',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 99, 99, 99)))
-                      ]),
-                      SizedBox(height: 15),
-                      Row(
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              BookingDetails(bookingRequest: request, vehicle: vehicle)));
+    }
+
+    List<Container> listitems = [];
+    List<Container> _createListItems() {
+      var listOfVehicles = vehicles ?? [];
+      for (var i = 0; i < listOfVehicles.length; i++) {
+        var listItem = Container(
+            margin: EdgeInsets.fromLTRB(5, 25, 5, 25),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Color.fromARGB(84, 72, 255, 188),
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: 200,
+                      height: 250,
+                      child: Center(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.directions_car),
-                          Text('small car',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 99, 99, 99)))
+                          Center(
+                              child: Image.network(
+                                  '${listOfVehicles[i].imageUrl}')),
+                          Center(
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: _displayIcons(
+                                      listOfVehicles[i].score ?? 0))),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              child: SizedBox(
+                                  height: 23,
+                                  width: 60,
+                                  child: FloatingActionButton(
+                                    heroTag: null,
+                                    onPressed: () {
+                                      _showReviewsDialog(
+                                          context, listOfVehicles[i].modelId);
+                                    },
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 216, 113, 29),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(32.0),
+                                    ),
+                                    child: const Text('Reviews',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold)),
+                                  )))
                         ],
-                      ),
-                      Row(
+                      ))),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  SizedBox(
+                    width: 100,
+                    height: 250,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.person),
-                          Text('5 seats',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 99, 99, 99)))
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.car_rental),
-                          Text('manual',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 99, 99, 99)))
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Text('price per day',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color.fromARGB(255, 99, 99, 99)))
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('100€',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 99, 99, 99)))
-                        ],
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: SizedBox(
-                              height: 30,
-                              width: 130,
-                              child: FloatingActionButton(
-                                heroTag: 'btnRentNow',
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamed(BookingDetails.tag);
-                                },
-                                backgroundColor:
-                                    const Color.fromARGB(255, 216, 113, 29),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(32.0),
-                                ),
-                                child: const Text('rent now',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
-                              )))
-                    ]),
-              )
-            ]));
+                          Row(children: [
+                            Text(listOfVehicles[i].make?.toUpperCase() ?? '',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 99, 99, 99)))
+                          ]),
+                          SizedBox(width: 5),
+                          Row(children: [
+                            Text(listOfVehicles[i].model?.toLowerCase() ?? '',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 99, 99, 99)))
+                          ]),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Icon(Icons.directions_car),
+                              Text(
+                                  listOfVehicles[i]
+                                          .vehicleType
+                                          ?.toLowerCase() ??
+                                      '',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.person),
+                              Text(
+                                  '${listOfVehicles[i].numberOfSeats?.toString() ?? ''} seats',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.car_rental),
+                              Text(
+                                  listOfVehicles[i]
+                                          .transmissionType
+                                          ?.toString() ??
+                                      '',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Text('price per day',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                  '${listOfVehicles[i].ratePerDay?.toString() ?? ''}€',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: SizedBox(
+                                  height: 30,
+                                  width: 130,
+                                  child: FloatingActionButton(
+                                    heroTag: null,
+                                    onPressed: () {
+                                      _openBookingDetails(listOfVehicles[i]);
+                                    },
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 216, 113, 29),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(32.0),
+                                    ),
+                                    child: const Text('rent now',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold)),
+                                  )))
+                        ]),
+                  )
+                ]));
+        listitems.add(listItem);
+      }
+      return listitems;
+    }
 
     final appBar = AppBar(
         title: const Text(
@@ -231,7 +336,7 @@ class _RecommendedState extends State<Recommended> {
             )),
         backgroundColor: const Color.fromARGB(255, 4, 28, 48));
     final greetingMessage = const Text(
-      'What we recommend based on your previous rentals:',
+      'What we recommend based on your previous rental scores:',
       style: TextStyle(
           fontSize: 25,
           color: Color.fromARGB(255, 216, 113, 29),
@@ -242,14 +347,15 @@ class _RecommendedState extends State<Recommended> {
       appBar: appBar,
       body: Center(
         child: Column(children: [
-          ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-            children: [
-              const SizedBox(height: 20.0),
-              greetingMessage,
-              vehicleListItem
-            ],
+          Container(
+              padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+              child: greetingMessage),
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 24, right: 24),
+              children: _createListItems(),
+            ),
           )
         ]),
       ),

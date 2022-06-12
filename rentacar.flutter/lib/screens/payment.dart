@@ -131,7 +131,7 @@ class _PaymentState extends State<Payment> {
             child: FloatingActionButton(
               heroTag: 'btnCancel',
               onPressed: () {
-                Navigator.of(context).pushNamed(BookingDetails.tag);
+                Navigator.pop(context);
               },
               backgroundColor: Colors.transparent,
               elevation: 0,

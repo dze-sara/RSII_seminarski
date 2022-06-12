@@ -29,4 +29,35 @@ class VehicleService {
       return null;
     }
   }
+
+  Future<List<VehicleBase>?> Recommended(int userId) async {
+    String path =
+        '${Configuration().apiUrl}/api/Vehicles/recommended/${userId}';
+    try {
+      http.Response result = await httpHelper.get(path);
+      var decoded = json.decode(result.body);
+
+      List<VehicleBase> vehicles = List<VehicleBase>.from(
+          decoded.map((model) => VehicleBase.fromJson(model)));
+      return vehicles;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<VehicleBase?> GetById(int vehicleId) async {
+    String path = '${Configuration().apiUrl}/api/Vehicles/filter';
+    try {
+      http.Response result =
+          await httpHelper.post(path, {'vehicleId': vehicleId});
+      var decoded = json.decode(result.body);
+
+      List<VehicleBase> vehicles = List<VehicleBase>.from(
+          decoded.map((model) => VehicleBase.fromJson(model)));
+
+      return vehicles[0];
+    } catch (_) {
+      return null;
+    }
+  }
 }

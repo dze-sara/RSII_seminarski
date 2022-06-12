@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/models/vehicle_booking.dart';
+import 'package:intl/intl.dart';
+import 'package:rentacar/screens/vehicles_list.dart';
+import 'package:rentacar/services/booking_service.dart';
 
+import '../models/booking.dart';
+import '../models/responses/vehicle_base.dart';
+import '../models/review.dart';
+import '../services/review_service.dart';
+import '../services/vehicle_service.dart';
 import '../shared/navigation.dart';
 
 class BookingHistory extends StatefulWidget {
@@ -12,103 +21,386 @@ class BookingHistory extends StatefulWidget {
 }
 
 class _BookingHistoryState extends State<BookingHistory> {
+  List<Booking>? bookings;
+  List<VehicleBooking>? vehicleBookings;
+
+  @override
+  void initState() {
+    super.initState();
+    _getBookinghistory(2);
+  }
+
+  _getBookinghistory(userId) async {
+    BookingService bookingService = BookingService();
+    var result = await bookingService.GetBookingHistory(2);
+    setState(() {
+      bookings = result;
+      _getVehicleBookings(bookings);
+    });
+  }
+
+  _getVehicleBookings(List<Booking>? bookings) async {
+    VehicleService vehicleService = VehicleService();
+    List<VehicleBooking>? vehicleBookingsMap = [];
+    var len = bookings?.length ?? 0;
+    for (var i = 0; i < len; i++) {
+      var vehicle = await vehicleService.GetById(bookings?[i].vehicleId ?? 0);
+      var vehicleBooking = VehicleBooking(
+          vehicle?.vehicleId ?? 0,
+          vehicle?.ratePerDay,
+          vehicle?.transmissionType,
+          vehicle?.modelId,
+          vehicle?.model,
+          vehicle?.make,
+          vehicle?.vehicleType,
+          vehicle?.numberOfSeats,
+          vehicle?.imageUrl,
+          bookings?[i].totalPrice,
+          vehicle?.score,
+          bookings?[i].bookingId ?? 0,
+          bookings?[i].endDate,
+          bookings?[i].startDate);
+      vehicleBookingsMap?.add(vehicleBooking);
+    }
+    setState(() {
+      vehicleBookings = vehicleBookingsMap;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final vehicleListItem = Container(
-        margin: EdgeInsets.fromLTRB(5, 50, 5, 50),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Color.fromARGB(84, 72, 255, 188),
-            borderRadius: BorderRadius.circular(10)),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    final reviewIcons = Icon(
+      Icons.star,
+      size: 40,
+      color: Color.fromARGB(255, 216, 113, 29),
+    );
+
+    int number = 3;
+
+    List<Icon> _displayIcons(int number) {
+      List<Icon> icons = [];
+      for (var i = 0; i < number; i++) {
+        icons.add(reviewIcons);
+      }
+      return icons;
+    }
+
+    List<Row> _displayReviews(List<Review>? reviews) {
+      List<Review> vehicleReviews = reviews ?? [];
+      List<Row> result = [];
+      if (vehicleReviews.length != null && vehicleReviews.length != 0) {
+        for (var i = 0; i < vehicleReviews.length; i++) {
+          var review = vehicleReviews[i];
+          var newRow = Row(
             children: [
-              SizedBox(
-                  width: 200,
-                  height: 250,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/papi.jpg'),
-                    ],
-                  )),
-              SizedBox(
-                width: 5,
-              ),
-              SizedBox(
-                width: 100,
-                height: 250,
-                child: Column(children: [
-                  Row(children: [
-                    Text('SKODA',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 99, 99, 99)))
-                  ]),
-                  SizedBox(width: 5),
-                  Row(children: [
-                    Text('fabia',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 99, 99, 99)))
-                  ]),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(Icons.directions_car),
-                      Text('small car',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.person),
-                      Text('5 seats',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.car_rental),
-                      Text('manual',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Text('price per day',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('100€',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                ]),
+              Container(
+                margin: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(84, 72, 255, 188),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text('${review.authorName}, score: ${review.score}/5',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Row(
+                          children: _displayIcons(review.score),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(review.content,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                      ],
+                    )
+                  ],
+                ),
               )
-            ]));
+            ],
+          );
+          result.add(newRow);
+        }
+      }
+      return result;
+    }
+
+    Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
+      ReviewService reviewService = ReviewService();
+      List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
+
+      await showModalBottomSheet(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 15,
+          isScrollControlled: false,
+          context: context,
+          builder: (context) {
+            return StatefulBuilder(builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    children: _displayReviews(reviews),
+                  ));
+            });
+          });
+    }
+
+    List<Container> listitems = [];
+    List<Container> _createListItems() {
+      var listOfVehicles = vehicleBookings ?? [];
+      for (var i = 0; i < listOfVehicles.length; i++) {
+        var listItem = Container(
+            margin: EdgeInsets.fromLTRB(5, 25, 5, 25),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Color.fromARGB(84, 72, 255, 188),
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            foregroundDecoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Color.fromARGB(255, 216, 113, 29)),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Row(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: SizedBox(
+                                      width: 145,
+                                      child: Column(children: [
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text('Pick up date',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Color.fromARGB(
+                                                        255, 99, 99, 99)))),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                                DateFormat('yyyy-MM-dd , kk:mm')
+                                                    .format(listOfVehicles[i]
+                                                            .startDate ??
+                                                        DateTime.now()),
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(
+                                                        255, 99, 99, 99))))
+                                      ])),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: SizedBox(
+                                    width: 145,
+                                    child: Column(children: [
+                                      Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text('Return date',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Color.fromARGB(
+                                                      255, 99, 99, 99)))),
+                                      Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                              DateFormat('yyyy-MM-dd , kk:mm')
+                                                  .format(listOfVehicles[i]
+                                                          .endDate ??
+                                                      DateTime.now()),
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color.fromARGB(
+                                                      255, 99, 99, 99))))
+                                    ]),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                              width: 200,
+                              height: 230,
+                              child: Center(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Center(
+                                      child: Image.network(
+                                          '${listOfVehicles[i].imageUrl}')),
+                                  Center(
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: _displayIcons(
+                                              listOfVehicles[i].score ?? 0))),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2.0),
+                                      child: SizedBox(
+                                          height: 23,
+                                          width: 60,
+                                          child: FloatingActionButton(
+                                            heroTag: null,
+                                            onPressed: () {
+                                              _showReviewsDialog(context,
+                                                  listOfVehicles[i].modelId);
+                                            },
+                                            backgroundColor:
+                                                const Color.fromARGB(
+                                                    255, 216, 113, 29),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(32.0),
+                                            ),
+                                            child: const Text('Reviews',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          )))
+                                ],
+                              ))),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 230,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(children: [
+                                    Text(
+                                        listOfVehicles[i].make?.toUpperCase() ??
+                                            '',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 99, 99, 99)))
+                                  ]),
+                                  SizedBox(width: 5),
+                                  Row(children: [
+                                    Text(
+                                        listOfVehicles[i]
+                                                .model
+                                                ?.toLowerCase() ??
+                                            '',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 99, 99, 99)))
+                                  ]),
+                                  SizedBox(height: 15),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.directions_car),
+                                      Text(
+                                          listOfVehicles[i]
+                                                  .vehicleType
+                                                  ?.toLowerCase() ??
+                                              '',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99)))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.person),
+                                      Text(
+                                          '${listOfVehicles[i].numberOfSeats?.toString() ?? ''} seats',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99)))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.car_rental),
+                                      Text(
+                                          listOfVehicles[i]
+                                                  .transmissionType
+                                                  ?.toString() ??
+                                              '',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99)))
+                                    ],
+                                  ),
+                                  SizedBox(height: 15),
+                                  Row(
+                                    children: [
+                                      Text('total price',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.normal,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99)))
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          '${listOfVehicles[i].totalPrice?.toString() ?? ''}€',
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99)))
+                                    ],
+                                  )
+                                ]),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ]));
+        listitems.add(listItem);
+      }
+      return listitems;
+    }
+
     final appBar = AppBar(
         title: const Text(
           'CarRental.com',
@@ -137,14 +429,15 @@ class _BookingHistoryState extends State<BookingHistory> {
       appBar: appBar,
       body: Center(
         child: Column(children: [
-          ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-            children: [
-              const SizedBox(height: 20.0),
-              greetingMessage,
-              vehicleListItem
-            ],
+          Container(
+              padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+              child: greetingMessage),
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 24, right: 24),
+              children: _createListItems(),
+            ),
           )
         ]),
       ),

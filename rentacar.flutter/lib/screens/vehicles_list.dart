@@ -5,6 +5,7 @@ import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/register.dart';
 import 'package:rentacar/services/review_service.dart';
 
+import '../models/booking.dart';
 import '../models/requests/book_vehicles_request.dart';
 import '../models/responses/vehicle_base.dart';
 import '../models/review.dart';
@@ -164,8 +165,6 @@ class _VehiclesListState extends State<VehiclesList> {
       color: Color.fromARGB(255, 216, 113, 29),
     );
 
-    int number = 3;
-
     List<Icon> _displayIcons(int number) {
       List<Icon> icons = [];
       for (var i = 0; i < number; i++) {
@@ -249,6 +248,23 @@ class _VehiclesListState extends State<VehiclesList> {
           });
     }
 
+    _openBookingDetails(VehicleBase vehicle) {
+      Booking request = Booking(
+          0,
+          widget.selectedPickupDate,
+          widget.selectedReturnDate,
+          DateTime.now(),
+          DateTime.now(),
+          2,
+          vehicle.vehicleId,
+          vehicle.totalPrice,
+          null);
+
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              BookingDetails(bookingRequest: request, vehicle: vehicle)));
+    }
+
     List<Container> listitems = [];
 
     List<Container> _createListItems([List<VehicleBase>? vehicles = null]) {
@@ -269,7 +285,7 @@ class _VehiclesListState extends State<VehiclesList> {
                 children: [
                   SizedBox(
                       width: 200,
-                      height: 275,
+                      height: 250,
                       child: Center(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -281,7 +297,8 @@ class _VehiclesListState extends State<VehiclesList> {
                           Center(
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: _displayIcons(number))),
+                                  children: _displayIcons(
+                                      listOfVehicles[i].score ?? 0))),
                           Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 2.0),
@@ -312,7 +329,7 @@ class _VehiclesListState extends State<VehiclesList> {
                   ),
                   SizedBox(
                     width: 100,
-                    height: 275,
+                    height: 250,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -393,15 +410,14 @@ class _VehiclesListState extends State<VehiclesList> {
                             ],
                           ),
                           Padding(
-                              padding: const EdgeInsets.only(top: 30),
+                              padding: const EdgeInsets.only(top: 15),
                               child: SizedBox(
                                   height: 30,
                                   width: 130,
                                   child: FloatingActionButton(
                                     heroTag: null,
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed(BookingDetails.tag);
+                                      _openBookingDetails(listOfVehicles[i]);
                                     },
                                     backgroundColor:
                                         const Color.fromARGB(255, 216, 113, 29),

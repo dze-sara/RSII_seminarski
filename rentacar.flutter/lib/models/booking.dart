@@ -22,9 +22,10 @@ class Booking {
       this.userId,
       this.vehicleId,
       this.totalPrice,
-      this.cardInfo);
+      this.cardInfo
+      );
 
-  Booking.fromJson(Map<String, dynamic> bookingMap) {
+  Booking.fromJson(Map<String?, dynamic> bookingMap) {
     bookingId = bookingMap['bookingId'];
     startDate = DateTime.parse(bookingMap['startDate']);
     endDate = DateTime.parse(bookingMap['endDate']);
@@ -33,7 +34,7 @@ class Booking {
     userId = bookingMap['userId'];
     vehicleId = bookingMap['vehicleId'];
     totalPrice = bookingMap['totalPrice'];
-    cardInfo = CardInfo.fromJson(bookingMap['cardInfo']);
+    cardInfo = CardInfo?.fromJson(bookingMap['cardInfo']);
   }
 
   Map<String, dynamic> toJson() {
@@ -46,7 +47,7 @@ class Booking {
       'userId': userId,
       'vehicleId': vehicleId,
       'totalPrice': totalPrice,
-      'cardInfo': jsonEncode(cardInfo)
+      // 'cardInfo': jsonEncode(cardInfo)
     };
   }
 }
