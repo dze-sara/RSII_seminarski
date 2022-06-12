@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:rentacar/models/cardInfo.dart';
 
 class Booking {
@@ -31,7 +33,7 @@ class Booking {
     userId = bookingMap['userId'];
     vehicleId = bookingMap['vehicleId'];
     totalPrice = bookingMap['totalPrice'];
-    cardInfo = bookingMap['cardInfo'];
+    cardInfo = CardInfo.fromJson(bookingMap['cardInfo']);
   }
 
   Map<String, dynamic> toJson() {
@@ -44,7 +46,7 @@ class Booking {
       'userId': userId,
       'vehicleId': vehicleId,
       'totalPrice': totalPrice,
-      'cardInfo': cardInfo
+      'cardInfo': jsonEncode(cardInfo)
     };
   }
 }
