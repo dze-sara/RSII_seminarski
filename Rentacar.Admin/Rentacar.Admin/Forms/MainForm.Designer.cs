@@ -95,7 +95,7 @@ namespace Rentacar.Admin
             this.numericUpDownUserId = new System.Windows.Forms.NumericUpDown();
             this.buttonUsers = new System.Windows.Forms.Button();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.textBoxUserEmail = new System.Windows.Forms.TextBox();
+            this.textBoxUserUsername = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.textBoxUserLastName = new System.Windows.Forms.TextBox();
             this.textBoxUserFirstName = new System.Windows.Forms.TextBox();
@@ -843,7 +843,7 @@ namespace Rentacar.Admin
             this.tabPageUsers.Controls.Add(this.numericUpDownUserId);
             this.tabPageUsers.Controls.Add(this.buttonUsers);
             this.tabPageUsers.Controls.Add(this.dataGridViewUsers);
-            this.tabPageUsers.Controls.Add(this.textBoxUserEmail);
+            this.tabPageUsers.Controls.Add(this.textBoxUserUsername);
             this.tabPageUsers.Controls.Add(this.label36);
             this.tabPageUsers.Controls.Add(this.textBoxUserLastName);
             this.tabPageUsers.Controls.Add(this.textBoxUserFirstName);
@@ -895,13 +895,13 @@ namespace Rentacar.Admin
             this.dataGridViewUsers.TabIndex = 38;
             this.dataGridViewUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsers_CellClick);
             // 
-            // textBoxUserEmail
+            // textBoxUserUsername
             // 
-            this.textBoxUserEmail.Location = new System.Drawing.Point(768, 91);
-            this.textBoxUserEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxUserEmail.Name = "textBoxUserEmail";
-            this.textBoxUserEmail.Size = new System.Drawing.Size(239, 22);
-            this.textBoxUserEmail.TabIndex = 37;
+            this.textBoxUserUsername.Location = new System.Drawing.Point(768, 91);
+            this.textBoxUserUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxUserUsername.Name = "textBoxUserUsername";
+            this.textBoxUserUsername.Size = new System.Drawing.Size(239, 22);
+            this.textBoxUserUsername.TabIndex = 37;
             // 
             // label36
             // 
@@ -911,7 +911,7 @@ namespace Rentacar.Admin
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(42, 17);
             this.label36.TabIndex = 36;
-            this.label36.Text = "Email";
+            this.label36.Text = "Username";
             // 
             // textBoxUserLastName
             // 
@@ -1234,7 +1234,7 @@ namespace Rentacar.Admin
         private System.Windows.Forms.DataGridView dataGridViewVehicles;
         private System.Windows.Forms.Button buttonUsers;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
-        private System.Windows.Forms.TextBox textBoxUserEmail;
+        private System.Windows.Forms.TextBox textBoxUserUsername;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox textBoxUserLastName;
         private System.Windows.Forms.TextBox textBoxUserFirstName;

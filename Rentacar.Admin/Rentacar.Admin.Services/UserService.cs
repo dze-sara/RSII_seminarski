@@ -12,7 +12,7 @@ namespace Rentacar.Admin.Services
         private static string _baseUrl = System.Configuration.ConfigurationManager.AppSettings["baseUrl"] + "api/users";
         private static HttpClient _httpClient = new HttpClient();
 
-        public static async Task<List<BaseUserDto>> FilterUsers(string userId, string firstName = null, string lastName = null, string email = null)
+        public static async Task<List<BaseUserDto>> FilterUsers(string userId, string firstName = null, string lastName = null, string username = null)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["userId"] = userId;
@@ -23,8 +23,8 @@ namespace Rentacar.Admin.Services
             if (!string.IsNullOrEmpty(lastName))
                 parameters["lastName"] = lastName;
 
-            if (!string.IsNullOrEmpty(email))
-                parameters["email"] = email;
+            if (!string.IsNullOrEmpty(username))
+                parameters["username"] = username;
 
             try
             {
