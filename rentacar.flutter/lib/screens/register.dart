@@ -15,7 +15,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final TextEditingController txtEmail = TextEditingController();
+  final TextEditingController txtUsername = TextEditingController();
   final TextEditingController txtFirstName = TextEditingController();
   final TextEditingController txtLastName = TextEditingController();
   final TextEditingController txtPassword = TextEditingController();
@@ -78,11 +78,11 @@ class _RegisterState extends State<Register> {
     final username = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      controller: txtEmail,
+      controller: txtUsername,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: 'email',
+        hintText: 'username',
         contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
         hintStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -174,7 +174,7 @@ class _RegisterState extends State<Register> {
 
   onRegisterPressed() async {
     UserService userService = UserService();
-    User newUserData = User(0, txtEmail.text, txtFirstName.text,
+    User newUserData = User(0, txtUsername.text, txtFirstName.text,
         txtLastName.text, txtPassword.text, null, null, 0, null);
     User? user = await userService.Register(newUserData);
     if (user != null) {
