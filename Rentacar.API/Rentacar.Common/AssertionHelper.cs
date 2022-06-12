@@ -1,5 +1,6 @@
 ﻿using Rentacar.Common.Exceptions;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Rentacar.Common
 {
@@ -10,6 +11,14 @@ namespace Rentacar.Common
             if(string.IsNullOrEmpty(param))
             {
                 throw new StringArgumentException(exceptionMessage ?? CommonExceptionMessages.StringArgumentNullOrEmpty);
+            }
+        }
+
+        public static void AssertEmail(string param, string exceptionMessage = null)
+        {
+            if (!new EmailAddressAttribute().IsValid(param))
+            {
+                throw new EmailArgumentException(exceptionMessage ?? CommonExceptionMessages.EmailArgumentFormatInvalid);
             }
         }
 

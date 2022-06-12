@@ -4,6 +4,7 @@ using Rentacar.Dto;
 using Rentacar.Dto.Request;
 using Rentacar.Resources.Exceptions;
 using Rentacar.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,8 +24,15 @@ namespace Rentacar.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserDto userRequest)
         {
-            UserDto registeredUser = await _userService.RegisterUser(userRequest);
-            return Ok(registeredUser);
+            try
+            {
+                UserDto registeredUser = await _userService.RegisterUser(userRequest);
+                return Ok(registeredUser);
+            }
+            catch(ArgumentException)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("login")]

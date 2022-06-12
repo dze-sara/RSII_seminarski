@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
+using Rentacar.Common;
 using Rentacar.DataAccess.Interfaces;
 using Rentacar.Dto;
 using Rentacar.Dto.Request;
@@ -81,6 +82,12 @@ namespace Rentacar.Services.Services
 
         public async Task<UserDto> RegisterUser(UserDto userDto)
         {
+            AssertionHelper.AssertString(userDto.Email);
+            AssertionHelper.AssertEmail(userDto.Email);
+            AssertionHelper.AssertString(userDto.FirstName);
+            AssertionHelper.AssertString(userDto.LastName);
+            AssertionHelper.AssertString(userDto.Password);
+
             User userEf = _mapper.Map<User>(userDto);
 
             User registeredUser = await _userRepository.RegisterUser(userEf);
