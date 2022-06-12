@@ -317,6 +317,8 @@ namespace Rentacar.DataAccess.Repositories
         {
             var query = _context.Vehicles
                                 .Include(x => x.Model)
+                                .ThenInclude(x => x.Reviews)
+                                .Include(x => x.Model)
                                 .ThenInclude(x => x.VehicleType)
                                 .Include(x => x.Model)
                                 .ThenInclude(y => y.Make)
