@@ -309,7 +309,7 @@ class _BookingDetailsState extends State<BookingDetails> {
             child: FloatingActionButton(
               heroTag: 'btnCancel1',
               onPressed: () {
-                Navigator.of(context).pushNamed(VehiclesList.tag);
+                Navigator.pop(context);
               },
               backgroundColor: Colors.transparent,
               elevation: 0,

@@ -35,10 +35,11 @@ class HttpHelper {
   }
 
   Future<Response> post(String url, dynamic body) async {
+    var bod = jsonEncode(body);
     return http.post(Uri.parse(url),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': token ?? ''
+          'Authorization': 'Bearer ${token}'
         },
         body: jsonEncode(body));
   }

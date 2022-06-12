@@ -1,5 +1,5 @@
 class BookVehiclesRequest {
-  int transmissionType = 0;
+  int? transmissionType;
   DateTime? startDate;
   DateTime? endDate;
   int? minPrice;
@@ -10,9 +10,9 @@ class BookVehiclesRequest {
       this.maxPrice, this.minPrice, this.vehicleTypes);
 
   BookVehiclesRequest.fromJson(Map<String, dynamic> bookVehiclesMap) {
-    transmissionType = bookVehiclesMap['transmissionType'] ?? 0;
-    startDate = bookVehiclesMap['startDate'];
-    endDate = bookVehiclesMap['endDate'];
+    transmissionType = bookVehiclesMap['transmissionType'];
+    startDate = DateTime.parse(bookVehiclesMap['startDate']);
+    endDate = DateTime.parse(bookVehiclesMap['endDate']);
     minPrice = bookVehiclesMap['minPrice'];
     maxPrice = bookVehiclesMap['maxPrice'];
     vehicleTypes = bookVehiclesMap['vehicleTypes'];
@@ -21,8 +21,8 @@ class BookVehiclesRequest {
   Map<String, dynamic> toJson() {
     return {
       'transmissionType': transmissionType,
-      'startDate': startDate,
-      'endDate': endDate,
+      'startDate': startDate?.toIso8601String(),
+      'endDate': endDate?.toIso8601String(),
       'minPrice': minPrice,
       'maxPrice': maxPrice,
       'vehicleTypes': vehicleTypes,

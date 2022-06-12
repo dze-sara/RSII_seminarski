@@ -4,11 +4,22 @@ import 'package:intl/intl.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/register.dart';
 
+import '../models/requests/book_vehicles_request.dart';
+import '../models/responses/vehicle_base.dart';
+import '../services/vehicle_service.dart';
 import '../shared/navigation.dart';
 import 'filters.dart';
 
 class VehiclesList extends StatefulWidget {
-  const VehiclesList({Key? key}) : super(key: key);
+  final List<VehicleBase>? vehicles;
+  final DateTime? selectedPickupDate;
+  final DateTime? selectedReturnDate;
+  const VehiclesList(
+      {Key? key,
+      this.vehicles,
+      this.selectedPickupDate,
+      this.selectedReturnDate})
+      : super(key: key);
 
   static String tag = 'vehiclesList';
 
@@ -16,7 +27,6 @@ class VehiclesList extends StatefulWidget {
   _VehiclesListState createState() => _VehiclesListState();
 }
 
-var formattedDateTime = DateFormat('yyyy-MM-dd , kk:mm').format(DateTime.now());
 var sortButtonDropdownItems = <String>[
   'name asc',
   'name desc',
@@ -48,55 +58,11 @@ var selectedValueTransmission = "1";
 var selectedValueCarType = "Small car";
 
 RangeValues _priceRangeValues = RangeValues(10, 250);
+double _startValue = 30.0;
+double _endValue = 130.0;
 //End filters variables
 
 class _VehiclesListState extends State<VehiclesList> {
-  String result = '';
-
-  Future getData() async {
-    HttpHelper helper = HttpHelper();
-    result = await helper.getVehicles();
-    setState(() {});
-  }
-
-  var dateTime = DateTime.now();
-
-  final pickUpDate = SizedBox(
-    width: 150,
-    child: Column(children: [
-      Align(
-          alignment: Alignment.centerLeft,
-          child: Text('Pick up date',
-              style: TextStyle(
-                  fontSize: 15, color: Color.fromARGB(255, 99, 99, 99)))),
-      Align(
-          alignment: Alignment.centerLeft,
-          child: Text(formattedDateTime,
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 99, 99, 99))))
-    ]),
-  );
-
-  final returnDate = SizedBox(
-    width: 150,
-    child: Column(children: [
-      Align(
-          alignment: Alignment.centerRight,
-          child: Text('Return date',
-              style: TextStyle(
-                  fontSize: 15, color: Color.fromARGB(255, 99, 99, 99)))),
-      Align(
-          alignment: Alignment.centerRight,
-          child: Text(formattedDateTime,
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 99, 99, 99))))
-    ]),
-  );
-
   var sortButton = DropdownButton<String>(
     value: dropdownValue,
     icon: const Icon(Icons.arrow_downward),
@@ -123,22 +89,44 @@ class _VehiclesListState extends State<VehiclesList> {
 
   @override
   Widget build(BuildContext context) {
-    //Filters widgets
-    final transmissionDropdown = DropdownButton(
-      value: selectedValueTransmission,
-      items: transmissionItems,
-      style:
-          const TextStyle(color: Color.fromARGB(255, 99, 99, 99), fontSize: 20),
-      underline: Container(
-        height: 2,
-        width: 20,
-        color: Color.fromARGB(255, 216, 113, 29),
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          selectedValueTransmission = newValue!;
-        });
-      },
+    final pickUpDate = SizedBox(
+      width: 150,
+      child: Column(children: [
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text('Pick up date',
+                style: TextStyle(
+                    fontSize: 15, color: Color.fromARGB(255, 99, 99, 99)))),
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+                DateFormat('yyyy-MM-dd , kk:mm')
+                    .format(widget.selectedPickupDate ?? DateTime.now()),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 99, 99, 99))))
+      ]),
+    );
+
+    final returnDate = SizedBox(
+      width: 150,
+      child: Column(children: [
+        Align(
+            alignment: Alignment.centerRight,
+            child: Text('Return date',
+                style: TextStyle(
+                    fontSize: 15, color: Color.fromARGB(255, 99, 99, 99)))),
+        Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+                DateFormat('yyyy-MM-dd , kk:mm')
+                    .format(widget.selectedReturnDate ?? DateTime.now()),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 99, 99, 99))))
+      ]),
     );
 
     final transmissionLabel = Text(
@@ -149,49 +137,12 @@ class _VehiclesListState extends State<VehiclesList> {
           color: Color.fromARGB(255, 99, 99, 99)),
     );
 
-    final vehicleTypeDropdown = DropdownButton(
-      value: selectedValueCarType,
-      items: vehicleTypeitems,
-      style:
-          const TextStyle(color: Color.fromARGB(255, 99, 99, 99), fontSize: 20),
-      underline: Container(
-        height: 2,
-        width: 20,
-        color: Color.fromARGB(255, 216, 113, 29),
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          selectedValueCarType = newValue!;
-        });
-      },
-    );
-
     final vehicleTypeLabel = Text(
       'Vehicle type',
       style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 99, 99, 99)),
-    );
-
-    double _startValue = 30.0;
-    double _endValue = 130.0;
-
-    final priceRange = RangeSlider(
-      values: RangeValues(_startValue, _endValue),
-      min: 10,
-      max: 300,
-      divisions: 50,
-      labels: RangeLabels(
-        _startValue.round().toString(),
-        _endValue.round().toString(),
-      ),
-      onChanged: (values) {
-        setState(() {
-          _startValue = values.start;
-          _endValue = values.end;
-        });
-      },
     );
 
     final priceRangeLabel = Text(
@@ -202,111 +153,6 @@ class _VehiclesListState extends State<VehiclesList> {
           color: Color.fromARGB(255, 99, 99, 99)),
     );
 
-    final minPriceLabel = Text(
-      'Min price ${_startValue.round().toString()}€',
-      style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.normal,
-          color: Color.fromARGB(255, 99, 99, 99)),
-    );
-
-    final maxPriceLabel = Text(
-      'Max price ${_endValue.round().toString()}€',
-      style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.normal,
-          color: Color.fromARGB(255, 99, 99, 99)),
-    );
-
-    final searchButton = Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: SizedBox(
-            height: 35,
-            width: 100,
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigator.of(context).pushNamed(SearchDates.tag);
-              },
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 216, 113, 29)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0),
-                  ))),
-              child: const Text('search',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-            )));
-
-    Future<Null> _showModalBottomSheet(BuildContext context) async {
-      await showModalBottomSheet(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 15,
-          context: context,
-          builder: (context) {
-            return StatefulBuilder(builder: (BuildContext context,
-                void Function(void Function()) setState) {
-              return Container(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          transmissionLabel,
-                          SizedBox(width: 20),
-                          transmissionDropdown,
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        children: [
-                          vehicleTypeLabel,
-                          SizedBox(width: 20),
-                          vehicleTypeDropdown,
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      priceRangeLabel,
-                      RangeSlider(
-                        values: RangeValues(_startValue, _endValue),
-                        min: 10,
-                        max: 300,
-                        divisions: 50,
-                        labels: RangeLabels(
-                          _startValue.round().toString(),
-                          _endValue.round().toString(),
-                        ),
-                        onChanged: (values) {
-                          setState(() {
-                            _startValue = values.start;
-                            _endValue = values.end;
-                          });
-                        },
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: minPriceLabel,
-                          ),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: maxPriceLabel,
-                          )
-                        ],
-                      ),
-                      searchButton
-                    ],
-                  ));
-            });
-          });
-    }
     //End of filter widgets
 
     //Reviews:
@@ -328,7 +174,9 @@ class _VehiclesListState extends State<VehiclesList> {
 
     final review = Row(
       children: [
-        Row(children: _displayIcons(number),),
+        Row(
+          children: _displayIcons(number),
+        ),
         SizedBox(width: 30),
         Text('Great car.')
       ],
@@ -360,15 +208,14 @@ class _VehiclesListState extends State<VehiclesList> {
             });
           });
     }
-    
 
     final reviewsLabel = Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: SizedBox(
             height: 23,
             width: 60,
             child: FloatingActionButton(
-              heroTag: 'btnReviews',
+              heroTag: null,
               onPressed: () {
                 _showReviewsDialog(context);
               },
@@ -383,132 +230,197 @@ class _VehiclesListState extends State<VehiclesList> {
                       fontWeight: FontWeight.bold)),
             )));
 
-      //End of reviews
+    List<Container> listitems = [];
 
-    final vehicleListItem = Container(
-        margin: EdgeInsets.fromLTRB(5, 50, 5, 50),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Color.fromARGB(84, 72, 255, 188),
-            borderRadius: BorderRadius.circular(10)),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: 200,
-                  height: 300,
-                  child: Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(child: Image.asset('assets/papi.jpg')),
-                      Center(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _displayIcons(number))),
-                      reviewsLabel
-                    ],
-                  ))),
-              SizedBox(
-                width: 5,
-              ),
-              SizedBox(
-                width: 100,
-                height: 250,
-                child: Column(children: [
-                  Row(children: [
-                    Text('SKODA',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 99, 99, 99)))
-                  ]),
-                  SizedBox(width: 5),
-                  Row(children: [
-                    Text('fabia',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 99, 99, 99)))
-                  ]),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(Icons.directions_car),
-                      Text('small car',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
+    List<Container> _createListItems([List<VehicleBase>? vehicles = null]) {
+      var listOfVehicles = widget.vehicles ?? [];
+      if (vehicles?.length != null && vehicles?.length != 0) {
+        listOfVehicles = vehicles ?? [];
+      }
+      for (var i = 0; i < listOfVehicles.length; i++) {
+        var listItem = Container(
+            margin: EdgeInsets.fromLTRB(5, 25, 5, 25),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Color.fromARGB(84, 72, 255, 188),
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: 200,
+                      height: 275,
+                      child: Center(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(child: Image.network('${listOfVehicles[i].imageUrl}')),
+                          Center(
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: _displayIcons(number))),
+                          reviewsLabel
+                        ],
+                      ))),
+                  SizedBox(
+                    width: 5,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.person),
-                      Text('5 seats',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.car_rental),
-                      Text('manual',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Text('price per day',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.normal,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('100€',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 99, 99, 99)))
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: SizedBox(
-                          height: 30,
-                          width: 130,
-                          child: FloatingActionButton(
-                            heroTag: 'btnRentNow',
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(BookingDetails.tag);
-                            },
-                            backgroundColor:
-                                const Color.fromARGB(255, 216, 113, 29),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0),
-                            ),
-                            child: const Text('rent now',
+                  SizedBox(
+                    width: 100,
+                    height: 275,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(children: [
+                            Text(listOfVehicles[i].make?.toUpperCase() ?? '',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-                          )))
-                ]),
-              )
-            ]));
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 99, 99, 99)))
+                          ]),
+                          SizedBox(width: 5),
+                          Row(children: [
+                            Text(listOfVehicles[i].model?.toLowerCase() ?? '',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 99, 99, 99)))
+                          ]),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Icon(Icons.directions_car),
+                              Text(
+                                  listOfVehicles[i]
+                                          .vehicleType
+                                          ?.toLowerCase() ??
+                                      '',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.person),
+                              Text(
+                                  '${listOfVehicles[i].numberOfSeats?.toString() ?? ''} seats',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.car_rental),
+                              Text(
+                                  listOfVehicles[i]
+                                          .transmissionType
+                                          ?.toString() ??
+                                      '',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          SizedBox(height: 15),
+                          Row(
+                            children: [
+                              Text('price per day',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                  '${listOfVehicles[i].ratePerDay?.toString() ?? ''}€',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99)))
+                            ],
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: SizedBox(
+                                  height: 30,
+                                  width: 130,
+                                  child: FloatingActionButton(
+                                    heroTag: null,
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pushNamed(BookingDetails.tag);
+                                    },
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 216, 113, 29),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(32.0),
+                                    ),
+                                    child: const Text('rent now',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold)),
+                                  )))
+                        ]),
+                  )
+                ]));
+        listitems.add(listItem);
+      }
+      return listitems;
+    }
+
+    _filterVehicles() async {
+      VehicleService service = VehicleService();
+      List<String> carTypes = [];
+      carTypes.add(selectedValueCarType);
+
+      BookVehiclesRequest request = BookVehiclesRequest(
+          int.tryParse(selectedValueTransmission) ?? null,
+          widget.selectedPickupDate,
+          widget.selectedReturnDate,
+          _endValue.round(),
+          _startValue.round(),
+          carTypes);
+
+      List<VehicleBase>? vehicles = await service.Filter(request);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => VehiclesList(
+                vehicles: vehicles,
+                selectedPickupDate: widget.selectedPickupDate,
+                selectedReturnDate: widget.selectedReturnDate,
+              )));
+    }
+
+    final searchButton = Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: SizedBox(
+            height: 35,
+            width: 100,
+            child: FloatingActionButton(
+              heroTag: null,
+              onPressed: () {
+                _filterVehicles();
+              },
+              backgroundColor: const Color.fromARGB(255, 216, 113, 29),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+              child: const Text('search',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+            )));
 
     final appBar = AppBar(
         title: const Text(
@@ -532,6 +444,8 @@ class _VehiclesListState extends State<VehiclesList> {
           border: Border.all(color: Color.fromARGB(255, 216, 113, 29)),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Align(
             alignment: Alignment.centerLeft,
@@ -545,8 +459,120 @@ class _VehiclesListState extends State<VehiclesList> {
       ),
     );
 
+    Future<Null> _showModalBottomSheet(BuildContext context) async {
+      await showModalBottomSheet(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 15,
+          context: context,
+          builder: (context) {
+            return StatefulBuilder(builder: (BuildContext context,
+                void Function(void Function()) setState) {
+              return Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          transmissionLabel,
+                          SizedBox(width: 20),
+                          DropdownButton(
+                            value: selectedValueTransmission,
+                            items: transmissionItems,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 99, 99, 99),
+                                fontSize: 20),
+                            underline: Container(
+                              height: 2,
+                              width: 20,
+                              color: Color.fromARGB(255, 216, 113, 29),
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValueTransmission = newValue!;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        children: [
+                          vehicleTypeLabel,
+                          SizedBox(width: 20),
+                          DropdownButton(
+                            value: selectedValueCarType,
+                            items: vehicleTypeitems,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 99, 99, 99),
+                                fontSize: 20),
+                            underline: Container(
+                              height: 2,
+                              width: 20,
+                              color: Color.fromARGB(255, 216, 113, 29),
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValueCarType = newValue!;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      priceRangeLabel,
+                      RangeSlider(
+                        values: RangeValues(_startValue, _endValue),
+                        min: 10,
+                        max: 300,
+                        divisions: 50,
+                        labels: RangeLabels(
+                          _startValue.round().toString(),
+                          _endValue.round().toString(),
+                        ),
+                        onChanged: (values) {
+                          setState(() {
+                            _startValue = values.start;
+                            _endValue = values.end;
+                          });
+                        },
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Min price ${_startValue.round().toString()}€',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color.fromARGB(255, 99, 99, 99)),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text(
+                              'Max price ${_endValue.round().toString()}€',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  color: Color.fromARGB(255, 99, 99, 99)),
+                            ),
+                          )
+                        ],
+                      ),
+                      searchButton
+                    ],
+                  ));
+            });
+          });
+    }
+
     final filterButtonSizedBox = SizedBox(
       width: 150,
+      height: 30,
       child: FloatingActionButton(
         heroTag: 'btnFilters1',
         onPressed: () {
@@ -567,12 +593,15 @@ class _VehiclesListState extends State<VehiclesList> {
     );
 
     final sortDropdownSizedBox = SizedBox(
-      width: 150,
+      width: 100,
       child: DropdownButton<String>(
         value: dropdownValue,
+        alignment: AlignmentDirectional.centerEnd,
         icon: const Icon(Icons.arrow_downward),
         elevation: 16,
-        style: const TextStyle(color: Color.fromARGB(255, 99, 99, 99)),
+        style: const TextStyle(
+          color: Color.fromARGB(255, 99, 99, 99),
+        ),
         underline: Container(
           height: 2,
           width: 20,
@@ -596,27 +625,31 @@ class _VehiclesListState extends State<VehiclesList> {
     return Scaffold(
         bottomNavigationBar: Navigation(),
         appBar: appBar,
-        body: Center(
-            child: Column(
+        body: Column(
           children: [
             datesContainer,
             Container(
               margin: EdgeInsets.all(5),
-              child: Row(children: [
-                filterButtonSizedBox,
-                SizedBox(
-                  height: 0,
-                  width: 20,
-                ),
-                sortDropdownSizedBox
-              ]),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    filterButtonSizedBox,
+                    SizedBox(
+                      height: 0,
+                      width: 20,
+                    ),
+                    sortDropdownSizedBox
+                  ]),
             ),
-            ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.only(left: 24, right: 24),
-              children: <Widget>[vehicleListItem],
-            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.only(left: 24, right: 24),
+                children: _createListItems(),
+              ),
+            )
           ],
-        )));
+        ));
   }
 }

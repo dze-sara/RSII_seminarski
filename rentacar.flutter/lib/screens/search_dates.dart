@@ -3,7 +3,10 @@ import 'package:intl/intl.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:rentacar/models/requests/book_vehicles_request.dart';
+import 'package:rentacar/models/responses/vehicle_base.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
+import 'package:rentacar/services/vehicle_service.dart';
 
 import '../shared/app_bar.dart';
 import '../shared/navigation.dart';
@@ -18,20 +21,20 @@ class SearchDates extends StatefulWidget {
 }
 
 class _SearchDatesState extends State<SearchDates> {
+  DateTime selectedPickUpDate = DateTime.now();
+  TextEditingController _datePickUpController = TextEditingController();
+
+  TimeOfDay selectedPickUpTime = TimeOfDay.now();
+  TextEditingController _timePickUpController = TextEditingController();
+
+  DateTime selectedReturnDate = DateTime.now();
+  TextEditingController _dateReturnController = TextEditingController();
+
+  TimeOfDay selectedReturnTime = TimeOfDay.now();
+  TextEditingController _timeReturnController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    DateTime selectedPickUpDate = DateTime.now();
-    TextEditingController _dateController = TextEditingController();
-
-    TimeOfDay selectedPickUpTime = TimeOfDay.now();
-    TextEditingController _timeController = TextEditingController();
-
-    DateTime selectedReturnDate = DateTime.now();
-    // TextEditingController _dateController = TextEditingController();
-
-    TimeOfDay selectedReturnTime = TimeOfDay.now();
-    // TextEditingController _timeController = TextEditingController();
-
     Future<Null> _selectPickUpDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
           context: context,
@@ -43,7 +46,8 @@ class _SearchDatesState extends State<SearchDates> {
       if (picked != null) {
         setState(() {
           selectedPickUpDate = picked;
-          _dateController.text = DateFormat.yMd().format(selectedPickUpDate);
+          _datePickUpController.text =
+              DateFormat.yMd().format(selectedPickUpDate);
         });
       }
     }
@@ -55,7 +59,7 @@ class _SearchDatesState extends State<SearchDates> {
       if (picked != null) {
         setState(() {
           selectedPickUpTime = picked;
-          _timeController.text = selectedPickUpTime.format(context);
+          _timePickUpController.text = selectedPickUpTime.format(context);
         });
       }
     }
@@ -71,7 +75,8 @@ class _SearchDatesState extends State<SearchDates> {
       if (picked != null) {
         setState(() {
           selectedReturnDate = picked;
-          _dateController.text = DateFormat.yMd().format(selectedReturnDate);
+          _dateReturnController.text =
+              DateFormat.yMd().format(selectedReturnDate);
         });
       }
     }
@@ -83,9 +88,37 @@ class _SearchDatesState extends State<SearchDates> {
       if (picked != null) {
         setState(() {
           selectedReturnTime = picked;
-          _timeController.text = selectedReturnTime.format(context);
+          _timeReturnController.text = selectedReturnTime.format(context);
         });
       }
+    }
+
+    onSearchPressed() async {
+      VehicleService vehicleService = VehicleService();
+
+      DateTime finalPickupDateTime = DateTime(
+          selectedPickUpDate.year,
+          selectedPickUpDate.month,
+          selectedPickUpDate.day,
+          selectedPickUpTime.hour,
+          selectedPickUpTime.minute);
+
+      DateTime finalReturnDateTime = DateTime(
+          selectedReturnDate.year,
+          selectedReturnDate.month,
+          selectedReturnDate.day,
+          selectedReturnTime.hour,
+          selectedReturnTime.minute);
+
+      BookVehiclesRequest request = BookVehiclesRequest(
+          null, finalPickupDateTime, finalReturnDateTime, null, null, null);
+      List<VehicleBase>? vehicles = await vehicleService.Filter(request);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => VehiclesList(
+                vehicles: vehicles,
+                selectedPickupDate: finalPickupDateTime,
+                selectedReturnDate: finalReturnDateTime,
+              )));
     }
 
     final searchButton = Padding(
@@ -95,7 +128,7 @@ class _SearchDatesState extends State<SearchDates> {
             width: 200,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(VehiclesList.tag);
+                onSearchPressed();
               },
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
@@ -110,7 +143,7 @@ class _SearchDatesState extends State<SearchDates> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
             )));
-    final appBarCustom = AppBarCustom();
+
     return Scaffold(
       bottomNavigationBar: Navigation(),
       appBar: AppBar(
@@ -178,7 +211,7 @@ class _SearchDatesState extends State<SearchDates> {
                       onPressed: () {
                         _selectPickUpTime(context);
                       },
-                      label: Text("${selectedPickUpTime.format(context)}"),
+                      label: Text("${_timePickUpController.text}"),
                       icon: const Icon(Icons.access_time),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -221,7 +254,7 @@ class _SearchDatesState extends State<SearchDates> {
                       onPressed: () {
                         _selectReturnTime(context);
                       },
-                      label: Text("${selectedReturnTime.format(context)}"),
+                      label: Text("${_timeReturnController.text}"),
                       icon: const Icon(Icons.access_time),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
