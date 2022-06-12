@@ -37,7 +37,7 @@ class UserService {
     String path = '${Configuration().apiUrl}/api/Users/login';
     try {
       http.Response result = await httpHelper
-          .post(path, {'email': username, 'password': password});
+          .post(path, {'username': username, 'password': password});
 
       User signedUser = User.fromJson(json.decode(result.body));
 

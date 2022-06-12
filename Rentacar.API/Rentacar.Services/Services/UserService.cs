@@ -34,25 +34,25 @@ namespace Rentacar.Services.Services
                 throw new ArgumentNullException();
             }
 
-            List<User> filteredUsers = await _userRepository.FilterUsers(filterUsersDto.UserId, filterUsersDto.FirstName, filterUsersDto.LastName, filterUsersDto.Email);
+            List<User> filteredUsers = await _userRepository.FilterUsers(filterUsersDto.UserId, filterUsersDto.FirstName, filterUsersDto.LastName, filterUsersDto.Username);
 
             return _mapper.Map<List<BaseUserDto>>(filteredUsers);
         }
 
         public async Task<UserDto> LoginUser(LoginRequestDto loginRequestDto)
         {
-            User userEf = await _userRepository.GetUserForLogin(loginRequestDto.Email, loginRequestDto.Password);
+            User userEf = await _userRepository.GetUserForLogin(loginRequestDto.Username, loginRequestDto.Password);
 
             if (userEf != null)
             {
                 UserDto mappedUser = _mapper.Map<UserDto>(userEf);
-                mappedUser.Token = IssueToken(mappedUser.Email);
+                mappedUser.Token = IssueToken(mappedUser.Username);
                 await SaveIssuedToken(mappedUser.Token, userEf.UserId);
-                await SaveLoginAttempt(mappedUser.Email, LoginStatus.Success, mappedUser.UserId);
+                await SaveLoginAttempt(mappedUser.Username, LoginStatus.Success, mappedUser.UserId);
                 return mappedUser;
             }
 
-            await SaveLoginAttempt(loginRequestDto.Email, LoginStatus.Failed, null);
+            await SaveLoginAttempt(loginRequestDto.Username, LoginStatus.Failed, null);
             throw new UserNotFoundException();
         }
 
@@ -68,12 +68,12 @@ namespace Rentacar.Services.Services
             await _userRepository.SaveIssuedToken(issuedToken);
         }
 
-        private async Task SaveLoginAttempt(string email, LoginStatus loginStatus, int? userId)
+        private async Task SaveLoginAttempt(string username, LoginStatus loginStatus, int? userId)
         {
             LoginAttempt attempt = new LoginAttempt()
             {
                 AttemptedOn = DateTime.Now,
-                Email = email,
+                Username = username,
                 UserId = userId,
                 Status = (int)loginStatus
             };
@@ -82,8 +82,7 @@ namespace Rentacar.Services.Services
 
         public async Task<UserDto> RegisterUser(UserDto userDto)
         {
-            AssertionHelper.AssertString(userDto.Email);
-            AssertionHelper.AssertEmail(userDto.Email);
+            AssertionHelper.AssertString(userDto.Username);
             AssertionHelper.AssertString(userDto.FirstName);
             AssertionHelper.AssertString(userDto.LastName);
             AssertionHelper.AssertString(userDto.Password);
@@ -93,9 +92,9 @@ namespace Rentacar.Services.Services
             User registeredUser = await _userRepository.RegisterUser(userEf);
 
             UserDto registeredMappedUser = _mapper.Map<UserDto>(registeredUser);
-            registeredMappedUser.Token = IssueToken(registeredMappedUser.Email);
+            registeredMappedUser.Token = IssueToken(registeredMappedUser.Username);
             await SaveIssuedToken(registeredMappedUser.Token, userEf.UserId);
-            await SaveLoginAttempt(registeredMappedUser.Email, LoginStatus.Success, registeredMappedUser.UserId);
+            await SaveLoginAttempt(registeredMappedUser.Username, LoginStatus.Success, registeredMappedUser.UserId);
 
             return registeredMappedUser;
         }
@@ -105,7 +104,7 @@ namespace Rentacar.Services.Services
             return _mapper.Map<UserDto>(await _userRepository.UpdateUser(_mapper.Map<User>(userDto)));
         }
 
-        private string IssueToken(string email)
+        private string IssueToken(string username)
         {
             // Else we generate JSON Web Token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -114,7 +113,7 @@ namespace Rentacar.Services.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
               {
-             new Claim(ClaimTypes.Name, email)
+             new Claim(ClaimTypes.Name, username)
               }),
                 Expires = DateTime.UtcNow.AddMinutes(3600),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)

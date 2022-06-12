@@ -20,7 +20,7 @@ namespace Rentacar.Admin.Controls
         }
         public void RefreshData()
         {
-            textBoxEmail.Text = User.Email;
+            textBoxUsername.Text = User.Username;
             textBoxFirstName.Text = User.FirstName;
             textBoxUserId.Text = User.UserId.ToString();
             textBoxLastName.Text = User.LastName;

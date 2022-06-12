@@ -15,5 +15,6 @@ namespace Rentacar.Dto.Response
         public int NumberOfSeats { get; set; }
         public string ImageUrl { get; set; }
         public decimal TotalPrice { get; set; }
+        public int Score { get; set; }
     }
 }

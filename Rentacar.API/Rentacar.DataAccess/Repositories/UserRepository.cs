@@ -17,7 +17,7 @@ namespace Rentacar.DataAccess.Repositories
             _context = context;
         }
 
-        public async Task<List<User>> FilterUsers(int? userId, string firstName, string lastName, string email)
+        public async Task<List<User>> FilterUsers(int? userId, string firstName, string lastName, string username)
         {
             // Query
             var usersQuery = _context.Users
@@ -39,25 +39,25 @@ namespace Rentacar.DataAccess.Repositories
                 usersQuery = usersQuery.Where(x => x.LastName.Contains(lastName));
             }
 
-            if (!string.IsNullOrWhiteSpace(email))
+            if (!string.IsNullOrWhiteSpace(username))
             {
-                usersQuery = usersQuery.Where(x => x.Email.Contains(email));
+                usersQuery = usersQuery.Where(x => x.Username.Contains(username));
             }
 
             // Execute
             return await usersQuery.ToListAsync();
         }
 
-        public async Task<User> GetUserForLogin(string userEmail, string password)
+        public async Task<User> GetUserForLogin(string username, string password)
         {
             // Validate
-            AssertionHelper.AssertString(userEmail);
+            AssertionHelper.AssertString(username);
             AssertionHelper.AssertString(password);
 
             // Get user if exists
             return await _context.Users
                                  .Include(x => x.Role)
-                                 .FirstOrDefaultAsync(user => user.Email == userEmail && user.Password == password);
+                                 .FirstOrDefaultAsync(user => user.Username == username && user.Password == password);
         }
 
         public async Task<User> RegisterUser(User user)
@@ -95,7 +95,7 @@ namespace Rentacar.DataAccess.Repositories
             User updatingUser = _context.Users.FirstOrDefault(x => x.UserId == user.UserId);
             updatingUser.FirstName = user.FirstName;
             updatingUser.LastName = user.LastName;
-            updatingUser.Email = user.Email;
+            updatingUser.Username = user.Username;
             updatingUser.Password = user.Password;
             updatingUser.DateUpdated = DateTime.Now;
             await _context.SaveChangesAsync();

@@ -2,15 +2,15 @@ class FilterUsers {
   int? userId;
   String? firstName;
   String? lastName;
-  String? email;
+  String? username;
 
-  FilterUsers(this.userId, this.firstName, this.lastName, this.email);
+  FilterUsers(this.userId, this.firstName, this.lastName, this.username);
 
   FilterUsers.fromJson(Map<String, dynamic> filterUsersMap) {
     userId = filterUsersMap['userId'];
     firstName = filterUsersMap['firstName'];
     lastName = filterUsersMap['lastName'];
-    email = filterUsersMap['email'];
+    username = filterUsersMap['username'];
   }
 
   Map<String, dynamic> toJson() {
@@ -18,7 +18,7 @@ class FilterUsers {
       'userId': userId,
       'firstName': firstName,
       'lastName': lastName,
-      'email': email,
+      'username': username,
     };
   }
 }

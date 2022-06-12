@@ -119,7 +119,7 @@ namespace Rentacar.DataAccess
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.Email)
+                entity.Property(e => e.Username)
                     .IsRequired()
                     .HasMaxLength(250);
 

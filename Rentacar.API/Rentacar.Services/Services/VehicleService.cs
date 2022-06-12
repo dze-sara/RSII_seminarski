@@ -200,7 +200,8 @@ namespace Rentacar.Services.Services
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehiclesForBooking(BookVehiclesRequest bookVehiclesRequest)
         {
-            List<VehicleBaseDto> vehicles =  _mapper.Map<List<VehicleBaseDto>>(await _vehicleRepository.FilterVehiclesForBooking(bookVehiclesRequest));
+            var queriedVehicles = await _vehicleRepository.FilterVehiclesForBooking(bookVehiclesRequest);
+            List<VehicleBaseDto> vehicles =  _mapper.Map<List<VehicleBaseDto>>(queriedVehicles);
 
             double numberOfHours = (bookVehiclesRequest.EndDate - bookVehiclesRequest.StartDate).TotalHours;
 
@@ -211,5 +212,6 @@ namespace Rentacar.Services.Services
 
             return vehicles;
         }
+
     }
 }

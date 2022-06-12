@@ -197,10 +197,10 @@ namespace Rentacar.Admin
             string userId = numericUpDownUserId.Value.ToString();
             string firstName = textBoxUserFirstName.Text;
             string lastName = textBoxUserLastName.Text;
-            string email = textBoxUserEmail.Text;
+            string username = textBoxUserUsername.Text;
 
             
-            dataGridViewUsers.DataSource = await UserService.FilterUsers(userId, firstName, lastName, email);
+            dataGridViewUsers.DataSource = await UserService.FilterUsers(userId, firstName, lastName, username);
             dataGridViewUsers.Refresh();
         }
 

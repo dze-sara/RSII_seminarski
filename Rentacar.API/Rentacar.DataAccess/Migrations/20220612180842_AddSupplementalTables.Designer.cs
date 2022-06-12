@@ -135,7 +135,7 @@ namespace Rentacar.DataAccess.Migrations
                     b.Property<DateTime>("AttemptedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -298,7 +298,7 @@ namespace Rentacar.DataAccess.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");

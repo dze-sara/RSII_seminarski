@@ -2,7 +2,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class User {
   int userId = 0;
-  String email = '';
+  String username = '';
   String firstName = '';
   String lastName = '';
   String password = '';
@@ -11,13 +11,13 @@ class User {
   int? roleId;
   String? token;
 
-  User(this.userId, this.email, this.firstName, this.lastName, this.password,
+  User(this.userId, this.username, this.firstName, this.lastName, this.password,
       this.dateCreated, this.dateUpdated, this.roleId, this.token);
 
   User.fromJson(Map<String, dynamic> userMap) {
     userId = userMap['userId'] ?? 0;
     roleId = userMap['roleId'] ?? 0;
-    email = userMap['email'] ?? '';
+    username = userMap['username'] ?? '';
     firstName = userMap['firstName'] ?? '';
     lastName = userMap['lastName'] ?? '';
     password = userMap['password'] ?? '';
@@ -30,7 +30,7 @@ class User {
     return {
       'userId': userId,
       'roleId': roleId,
-      'email': email,
+      'username': username,
       'firstName': firstName,
       'lastName': lastName,
       'password': password,
