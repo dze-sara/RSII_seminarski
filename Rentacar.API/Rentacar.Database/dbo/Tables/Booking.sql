@@ -18,7 +18,9 @@ create table
 	, [UserId] int not null
 	, [VehicleId] int not null
 ,
-constraint [Pk_Booking_BookingId] primary key clustered
+[TotalPrice] DECIMAL(8, 2) NOT NULL, 
+    [ReviewAdded] BIT NOT NULL, 
+    constraint [Pk_Booking_BookingId] primary key clustered
 (
 	[BookingId] asc
 )

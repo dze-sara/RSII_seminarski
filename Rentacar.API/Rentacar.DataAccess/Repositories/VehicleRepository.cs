@@ -74,7 +74,6 @@ namespace Rentacar.DataAccess.Repositories
 
             return await _context.Vehicles
                                  .Include(x => x.Model)
-                                 .ThenInclude(x => x.VehicleType)
                                  .FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
         }
 

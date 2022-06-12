@@ -22,6 +22,6 @@ namespace Rentacar.Entities
         public virtual Make Make { get; set; }
         public virtual ICollection<Vehicle> Vehicles { get; set; }
         public virtual VehicleType VehicleType { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }
