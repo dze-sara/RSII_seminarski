@@ -3,9 +3,11 @@ import 'package:rentacar/data/http_helper.dart';
 import 'package:intl/intl.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/register.dart';
+import 'package:rentacar/services/review_service.dart';
 
 import '../models/requests/book_vehicles_request.dart';
 import '../models/responses/vehicle_base.dart';
+import '../models/review.dart';
 import '../services/vehicle_service.dart';
 import '../shared/navigation.dart';
 import 'filters.dart';
@@ -172,25 +174,63 @@ class _VehiclesListState extends State<VehiclesList> {
       return icons;
     }
 
-    final review = Row(
-      children: [
-        Row(
-          children: _displayIcons(number),
-        ),
-        SizedBox(width: 30),
-        Text('Great car.')
-      ],
-    );
-
-    List<Row> _displayReviews(int number) {
-      List<Row> reviews = [];
-      for (var i = 0; i < number; i++) {
-        reviews.add(review);
+    List<Row> _displayReviews(List<Review>? reviews) {
+      List<Review> vehicleReviews = reviews ?? [];
+      List<Row> result = [];
+      if (vehicleReviews.length != null && vehicleReviews.length != 0) {
+        for (var i = 0; i < vehicleReviews.length; i++) {
+          var review = vehicleReviews[i];
+          var newRow = Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(84, 72, 255, 188),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text('${review.authorName}, score: ${review.score}/5',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Row(
+                          children: _displayIcons(review.score),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(review.content,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 99, 99, 99))),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+          result.add(newRow);
+        }
       }
-      return reviews;
+      return result;
     }
 
-    Future<Null> _showReviewsDialog(BuildContext context) async {
+    Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
+      ReviewService reviewService = ReviewService();
+      List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
+
       await showModalBottomSheet(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -203,32 +243,11 @@ class _VehiclesListState extends State<VehiclesList> {
               return Container(
                   padding: EdgeInsets.all(15),
                   child: Column(
-                    children: _displayReviews(number),
+                    children: _displayReviews(reviews),
                   ));
             });
           });
     }
-
-    final reviewsLabel = Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0),
-        child: SizedBox(
-            height: 23,
-            width: 60,
-            child: FloatingActionButton(
-              heroTag: null,
-              onPressed: () {
-                _showReviewsDialog(context);
-              },
-              backgroundColor: const Color.fromARGB(255, 216, 113, 29),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32.0),
-              ),
-              child: const Text('Reviews',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold)),
-            )));
 
     List<Container> listitems = [];
 
@@ -256,12 +275,36 @@ class _VehiclesListState extends State<VehiclesList> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Center(child: Image.network('${listOfVehicles[i].imageUrl}')),
+                          Center(
+                              child: Image.network(
+                                  '${listOfVehicles[i].imageUrl}')),
                           Center(
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: _displayIcons(number))),
-                          reviewsLabel
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              child: SizedBox(
+                                  height: 23,
+                                  width: 60,
+                                  child: FloatingActionButton(
+                                    heroTag: null,
+                                    onPressed: () {
+                                      _showReviewsDialog(
+                                          context, listOfVehicles[i].modelId);
+                                    },
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 216, 113, 29),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(32.0),
+                                    ),
+                                    child: const Text('Reviews',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold)),
+                                  )))
                         ],
                       ))),
                   SizedBox(

@@ -20,7 +20,7 @@ class HttpHelper {
   Future<Response> get(String url) async {
     return http.get(Uri.parse(url), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': token ?? ''
+      'Authorization': 'Bearer ${token}'
     });
   }
 
@@ -30,7 +30,7 @@ class HttpHelper {
 
     return http.get(uri, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': token ?? ''
+      'Authorization': 'Bearer ${token}'
     });
   }
 
