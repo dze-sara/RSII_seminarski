@@ -60,7 +60,7 @@ class _BookingHistoryState extends State<BookingHistory> {
           bookings?[i].bookingId ?? 0,
           bookings?[i].endDate,
           bookings?[i].startDate);
-      vehicleBookingsMap?.add(vehicleBooking);
+      vehicleBookingsMap.add(vehicleBooking);
     }
     setState(() {
       vehicleBookings = vehicleBookingsMap;

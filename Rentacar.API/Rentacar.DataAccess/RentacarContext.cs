@@ -50,7 +50,7 @@ namespace Rentacar.DataAccess
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Fk_Vehicle_Booking_VehicleId");
 
-                entity.Property(x => x.TotalPrice).HasColumnType("decimal(8,2)").HasPrecision(2);
+                entity.Property(x => x.TotalPrice).HasColumnType("decimal(18,2)").HasPrecision(18,2);
             });
 
             modelBuilder.Entity<Review>(entity =>

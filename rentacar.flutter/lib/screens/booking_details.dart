@@ -213,7 +213,7 @@ class _BookingDetailsState extends State<BookingDetails> {
             child: FloatingActionButton(
               heroTag: 'btnContinue',
               onPressed: () {
-                Navigator.of(context).pushNamed(Payment.tag);
+                onContinueToPaymentPressed();
               },
               backgroundColor: const Color.fromARGB(255, 216, 113, 29),
               shape: RoundedRectangleBorder(
@@ -301,5 +301,11 @@ class _BookingDetailsState extends State<BookingDetails> {
             cancelButton
           ],
         )));
+  }
+
+  onContinueToPaymentPressed() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => Payment(
+            bookingRequest: widget.bookingRequest, vehicle: widget.vehicle)));
   }
 }

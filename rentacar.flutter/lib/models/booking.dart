@@ -22,8 +22,7 @@ class Booking {
       this.userId,
       this.vehicleId,
       this.totalPrice,
-      this.cardInfo
-      );
+      this.cardInfo);
 
   Booking.fromJson(Map<String?, dynamic> bookingMap) {
     bookingId = bookingMap['bookingId'];
@@ -47,7 +46,7 @@ class Booking {
       'userId': userId,
       'vehicleId': vehicleId,
       'totalPrice': totalPrice,
-      // 'cardInfo': jsonEncode(cardInfo)
+      'cardInfo': cardInfo?.toJson()
     };
   }
 }

@@ -15,6 +15,20 @@ class BookingService {
     helper.init();
   }
 
+  Future<Booking?> BookVehicle(Booking booking) async {
+    String path = '${Configuration().apiUrl}/api/Bookings';
+    try {
+      http.Response result = await httpHelper.post(path, booking);
+
+      var decoded = json.decode(result.body);
+
+      Booking createdBooking = Booking.fromJson(decoded);
+      return createdBooking;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<List<Booking>?> GetBookingHistory(int userId) async {
     String path = '${Configuration().apiUrl}/api/Bookings/${userId}';
     try {
