@@ -349,11 +349,14 @@ class _VehiclesListState extends State<VehiclesList> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(children: [
-                            Text(listOfVehicles[i].make?.toUpperCase() ?? '',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 99, 99, 99)))
+                            Flexible(
+                              child: Text(
+                                  listOfVehicles[i].make?.toUpperCase() ?? '',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 99, 99, 99))),
+                            )
                           ]),
                           SizedBox(width: 5),
                           Row(children: [
@@ -423,27 +426,30 @@ class _VehiclesListState extends State<VehiclesList> {
                                       color: Color.fromARGB(255, 99, 99, 99)))
                             ],
                           ),
-                          Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: SizedBox(
-                                  height: 30,
-                                  width: 130,
-                                  child: FloatingActionButton(
-                                    heroTag: null,
-                                    onPressed: () {
-                                      _openBookingDetails(listOfVehicles[i]);
-                                    },
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 216, 113, 29),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32.0),
-                                    ),
-                                    child: const Text('rent now',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold)),
-                                  )))
+                          Flexible(
+                            child: Padding(
+                                padding: const EdgeInsets.only(top: 15),
+                                child: SizedBox(
+                                    height: 30,
+                                    width: 130,
+                                    child: FloatingActionButton(
+                                      heroTag: null,
+                                      onPressed: () {
+                                        _openBookingDetails(listOfVehicles[i]);
+                                      },
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 216, 113, 29),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(32.0),
+                                      ),
+                                      child: const Text('rent now',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold)),
+                                    ))),
+                          )
                         ]),
                   )
                 ]));

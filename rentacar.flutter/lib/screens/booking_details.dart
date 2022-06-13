@@ -136,11 +136,13 @@ class _BookingDetailsState extends State<BookingDetails> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(children: [
-                        Text(widget.vehicle?.make?.toUpperCase() ?? '',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 99, 99, 99)))
+                        Flexible(
+                          child: Text(widget.vehicle?.make?.toUpperCase() ?? '',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 99, 99, 99))),
+                        )
                       ]),
                       SizedBox(width: 5),
                       Row(children: [

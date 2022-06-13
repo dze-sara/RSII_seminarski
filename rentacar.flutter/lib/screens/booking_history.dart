@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 import 'package:rentacar/models/vehicle_booking.dart';
 import 'package:intl/intl.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
@@ -81,8 +82,6 @@ class _BookingHistoryState extends State<BookingHistory> {
       color: Color.fromARGB(255, 216, 113, 29),
     );
 
-    int number = 3;
-
     List<Icon> _displayIcons(int number) {
       List<Icon> icons = [];
       for (var i = 0; i < number; i++) {
@@ -164,6 +163,50 @@ class _BookingHistoryState extends State<BookingHistory> {
                   ));
             });
           });
+    }
+
+    Future<Null> _addReview(
+        VehicleBooking vehicleBooking, RatingDialogResponse rating) async {
+      ReviewService reviewService = ReviewService();
+
+      Review newReview = Review(
+          0,
+          rating.comment,
+          rating.rating.round(),
+          vehicleBooking.modelId ?? 0,
+          currentUser?.userId ?? 0,
+          '${currentUser?.firstName} ${currentUser?.lastName}',
+          vehicleBooking.bookingId);
+
+      var result = await reviewService.addReview(newReview);
+    }
+
+    void _showLeaveReviewDialog(
+        BuildContext context, VehicleBooking vehicleBooking) {
+      final _dialog = RatingDialog(
+        title: Text(
+          'Leave review for your rental',
+          style: TextStyle(
+              fontSize: 20,
+              color: Color.fromARGB(255, 216, 113, 29),
+              fontWeight: FontWeight.bold),
+        ),
+        message: Text(
+          'Select number of stars 1 - 5 to rate this vehicle',
+          style: TextStyle(
+              fontSize: 17,
+              color: Color.fromARGB(255, 216, 113, 29),
+              fontWeight: FontWeight.normal),
+        ),
+        submitButtonText: 'Submit',
+        onCancelled: () => print('cancelled'),
+        onSubmitted: (response) {
+          print('rating: ${response.rating}, comment: ${response.comment}');
+          _addReview(vehicleBooking, response);
+        },
+      );
+
+      showDialog(context: context, builder: (context) => _dialog);
     }
 
     List<Container> listitems = [];
@@ -254,7 +297,7 @@ class _BookingHistoryState extends State<BookingHistory> {
                         children: [
                           SizedBox(
                               width: 200,
-                              height: 230,
+                              height: 238,
                               child: Center(
                                   child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -274,7 +317,7 @@ class _BookingHistoryState extends State<BookingHistory> {
                                           vertical: 2.0),
                                       child: SizedBox(
                                           height: 23,
-                                          width: 60,
+                                          width: 100,
                                           child: FloatingActionButton(
                                             heroTag: null,
                                             onPressed: () {
@@ -294,6 +337,36 @@ class _BookingHistoryState extends State<BookingHistory> {
                                                     fontSize: 12,
                                                     fontWeight:
                                                         FontWeight.bold)),
+                                          ))),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2.0),
+                                      child: SizedBox(
+                                          height: 23,
+                                          width: 100,
+                                          child: FloatingActionButton(
+                                            heroTag: null,
+                                            elevation: 0,
+                                            onPressed: () {
+                                              _showLeaveReviewDialog(
+                                                  context, listOfVehicles[i]);
+                                            },
+                                            backgroundColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(32.0),
+                                              side: BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 216, 113, 29),
+                                                  width: 1),
+                                            ),
+                                            child: const Text('Leave review',
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 216, 113, 29),
+                                                    fontSize: 11,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
                                           )))
                                 ],
                               ))),
@@ -302,20 +375,24 @@ class _BookingHistoryState extends State<BookingHistory> {
                           ),
                           SizedBox(
                             width: 100,
-                            height: 230,
+                            height: 235,
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(children: [
-                                    Text(
-                                        listOfVehicles[i].make?.toUpperCase() ??
-                                            '',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color.fromARGB(
-                                                255, 99, 99, 99)))
+                                    Flexible(
+                                      child: Text(
+                                          listOfVehicles[i]
+                                                  .make
+                                                  ?.toUpperCase() ??
+                                              '',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 99, 99, 99))),
+                                    )
                                   ]),
                                   SizedBox(width: 5),
                                   Row(children: [

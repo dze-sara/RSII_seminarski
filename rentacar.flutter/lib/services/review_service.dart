@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import '../data/configuration.dart';
 import '../data/http_helper.dart';
 import '../data/sp_helper.dart';
@@ -31,14 +33,14 @@ class ReviewService {
     }
   }
 
-  Future<Review?> addReview(Review review) async {
+  Future<bool?> addReview(Review review) async {
     String path = '${Configuration().apiUrl}/api/Reviews';
     try {
       http.Response result = await httpHelper.post(path, review);
 
       var decoded = json.decode(result.body);
 
-      Review reviews = Review.fromJson(decoded);
+      bool reviews = decoded as bool;
       return reviews;
     } catch (_) {
       return null;

@@ -37,6 +37,13 @@ namespace Rentacar.API.Controllers
             return Ok(vehicleDetails);
         }
 
+        [HttpGet("vehicleBase/{vehicleId}")]
+        public async Task<IActionResult> GetVehicleBaseDetails(int vehicleId)
+        {
+            VehicleBaseDto vehicleDetails = await _vehicleService.GetVehicleBaseById(vehicleId);
+            return Ok(vehicleDetails);
+        }
+
         [HttpGet("filter")]
         public async Task<IActionResult> FilterVehicles([FromQuery] TransmissionTypeEnum? transmissionType, [FromQuery] DateTime? bookingStart, [FromQuery] DateTime? bookingEnd, [FromQuery] int? vehicleType)
         {

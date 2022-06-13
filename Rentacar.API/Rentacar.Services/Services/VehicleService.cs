@@ -152,6 +152,13 @@ namespace Rentacar.Services.Services
             return _mapper.Map<VehicleDto>(await _vehicleRepository.GetVehicleById(vehicleId));
         }
 
+        public async Task<VehicleBaseDto> GetVehicleBaseById(int vehicleId)
+        {
+            AssertionHelper.AssertInt(vehicleId);
+
+            return _mapper.Map<VehicleBaseDto>(await _vehicleRepository.GetVehicleDetailsById(vehicleId));
+        }
+
         public async Task<ICollection<VehicleDto>> GetVehicles()
         {
             return _mapper.Map<List<VehicleDto>>(await _vehicleRepository.GetVehicles());

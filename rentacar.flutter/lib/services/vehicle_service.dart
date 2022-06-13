@@ -46,16 +46,15 @@ class VehicleService {
   }
 
   Future<VehicleBase?> GetById(int vehicleId) async {
-    String path = '${Configuration().apiUrl}/api/Vehicles/filter';
+    String path =
+        '${Configuration().apiUrl}/api/Vehicles/vehicleBase/${vehicleId}';
     try {
-      http.Response result =
-          await httpHelper.post(path, {'vehicleId': vehicleId});
+      http.Response result = await httpHelper.get(path);
       var decoded = json.decode(result.body);
 
-      List<VehicleBase> vehicles = List<VehicleBase>.from(
-          decoded.map((model) => VehicleBase.fromJson(model)));
+      VehicleBase vehicle = VehicleBase.fromJson(json.decode(result.body));
 
-      return vehicles[0];
+      return vehicle;
     } catch (_) {
       return null;
     }

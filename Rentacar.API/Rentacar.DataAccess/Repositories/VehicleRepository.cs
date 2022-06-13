@@ -77,6 +77,20 @@ namespace Rentacar.DataAccess.Repositories
                                  .FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
         }
 
+        public async Task<Vehicle> GetVehicleDetailsById(int vehicleId)
+        {
+            AssertionHelper.AssertInt(vehicleId);
+
+            return await _context.Vehicles
+                                 .Include(x => x.Model)
+                                 .ThenInclude(x => x.VehicleType)
+                                 .Include(x => x.Model)
+                                 .ThenInclude(x => x.Reviews)
+                                 .Include(x => x.Model)
+                                 .ThenInclude(X => X.Make)
+                                 .FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
+        }
+
         public async Task<ICollection<Vehicle>> GetVehicles()
         {
             List<Vehicle> vehicles = await _context.Vehicles.Include(x => x.Model).ToListAsync();
