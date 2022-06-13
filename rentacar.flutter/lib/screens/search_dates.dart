@@ -27,7 +27,7 @@ class _SearchDatesState extends State<SearchDates> {
   TimeOfDay selectedPickUpTime = TimeOfDay.now();
   TextEditingController _timePickUpController = TextEditingController();
 
-  DateTime selectedReturnDate = DateTime.now();
+  DateTime selectedReturnDate = DateTime.now().add(Duration(days: 1));
   TextEditingController _dateReturnController = TextEditingController();
 
   TimeOfDay selectedReturnTime = TimeOfDay.now();
@@ -49,8 +49,9 @@ class _SearchDatesState extends State<SearchDates> {
           _datePickUpController.text =
               DateFormat.yMd().format(selectedPickUpDate);
 
-          if (selectedReturnDate.isBefore(selectedPickUpDate)) {
-            selectedReturnDate = selectedPickUpDate;
+          if (selectedReturnDate.isBefore(selectedPickUpDate) ||
+              selectedReturnDate == selectedPickUpDate) {
+            selectedReturnDate = selectedPickUpDate.add(Duration(days: 1));
           }
         });
       }
@@ -157,7 +158,7 @@ class _SearchDatesState extends State<SearchDates> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,

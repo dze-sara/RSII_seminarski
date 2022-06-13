@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:rentacar/data/sp_helper.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/booking_history.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/services/booking_service.dart';
 
 import '../models/booking.dart';
@@ -205,7 +206,9 @@ class _PaymentState extends State<Payment> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(SearchDates.tag);
+            },
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,

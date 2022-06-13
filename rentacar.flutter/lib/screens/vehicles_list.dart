@@ -3,12 +3,14 @@ import 'package:rentacar/data/http_helper.dart';
 import 'package:intl/intl.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/register.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/services/review_service.dart';
 
 import '../models/booking.dart';
 import '../models/requests/book_vehicles_request.dart';
 import '../models/responses/vehicle_base.dart';
 import '../models/review.dart';
+import '../models/transmission_type.dart';
 import '../services/vehicle_service.dart';
 import '../shared/navigation.dart';
 import 'filters.dart';
@@ -208,11 +210,16 @@ class _VehiclesListState extends State<VehiclesList> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(review.content,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 99, 99, 99))),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Flexible(
+                            child: Text(review.content,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 99, 99, 99))),
+                          ),
+                        ),
                       ],
                     )
                   ],
@@ -242,20 +249,24 @@ class _VehiclesListState extends State<VehiclesList> {
                 void Function(void Function()) setState) {
               return Container(
                   padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: reviewList.isNotEmpty
-                        ? reviewList
-                        : [
-                            Center(
-                                child: Text(
-                                    'Unfortunately, this vehicle does not have reviews. Be the first to add one.',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color.fromARGB(255, 99, 99, 99))))
-                          ],
+                  child: Container(
+                    height: (MediaQuery.of(context).size.height / 3) + 140,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: reviewList.isNotEmpty
+                          ? reviewList
+                          : [
+                              Center(
+                                  child: Text(
+                                      'Unfortunately, this vehicle does not have reviews. Be the first to add one.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 99, 99, 99))))
+                            ],
+                    ),
                   ));
             });
           });
@@ -396,10 +407,12 @@ class _VehiclesListState extends State<VehiclesList> {
                             children: [
                               Icon(Icons.car_rental),
                               Text(
-                                  listOfVehicles[i]
-                                          .transmissionType
-                                          ?.toString() ??
-                                      '',
+                                  TransmissionType
+                                      .values[
+                                          (listOfVehicles[i].transmissionType ??
+                                                  1) -
+                                              1]
+                                      .name,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -508,7 +521,7 @@ class _VehiclesListState extends State<VehiclesList> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,

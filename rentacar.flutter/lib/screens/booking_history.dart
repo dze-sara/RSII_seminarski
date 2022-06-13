@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import 'package:rentacar/models/vehicle_booking.dart';
 import 'package:intl/intl.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
 import 'package:rentacar/services/booking_service.dart';
 
@@ -9,6 +10,7 @@ import '../data/sp_helper.dart';
 import '../models/booking.dart';
 import '../models/responses/vehicle_base.dart';
 import '../models/review.dart';
+import '../models/transmission_type.dart';
 import '../models/user.dart';
 import '../services/review_service.dart';
 import '../services/vehicle_service.dart';
@@ -104,35 +106,42 @@ class _BookingHistoryState extends State<BookingHistory> {
                 decoration: BoxDecoration(
                     color: Color.fromARGB(84, 72, 255, 188),
                     borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Text('${review.authorName}, score: ${review.score}/5',
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 99, 99, 99))),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Row(
-                          children: _displayIcons(review.score),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(review.content,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 99, 99, 99))),
-                      ],
-                    )
-                  ],
+                child: Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text('${review.authorName}, score: ${review.score}/5',
+                              style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 99, 99, 99))),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Row(
+                            children: _displayIcons(review.score),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: Flexible(
+                              child: Text(review.content,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color.fromARGB(255, 99, 99, 99))),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
@@ -158,9 +167,15 @@ class _BookingHistoryState extends State<BookingHistory> {
                 void Function(void Function()) setState) {
               return Container(
                   padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: _displayReviews(reviews),
-                  ));
+                  child: Column(children: [
+                    Container(
+                      height: (MediaQuery.of(context).size.height / 3) + 140,
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: _displayReviews(reviews),
+                      ),
+                    ),
+                  ]));
             });
           });
     }
@@ -179,6 +194,9 @@ class _BookingHistoryState extends State<BookingHistory> {
           vehicleBooking.bookingId);
 
       var result = await reviewService.addReview(newReview);
+
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => BookingHistory()));
     }
 
     void _showLeaveReviewDialog(
@@ -312,32 +330,34 @@ class _BookingHistoryState extends State<BookingHistory> {
                                               MainAxisAlignment.center,
                                           children: _displayIcons(
                                               listOfVehicles[i].score ?? 0))),
-                                  Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 2.0),
-                                      child: SizedBox(
-                                          height: 23,
-                                          width: 100,
-                                          child: FloatingActionButton(
-                                            heroTag: null,
-                                            onPressed: () {
-                                              _showReviewsDialog(context,
-                                                  listOfVehicles[i].modelId);
-                                            },
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 216, 113, 29),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(32.0),
-                                            ),
-                                            child: const Text('Reviews',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ))),
+                                  Flexible(
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2.0),
+                                        child: SizedBox(
+                                            height: 23,
+                                            width: 100,
+                                            child: FloatingActionButton(
+                                              heroTag: null,
+                                              onPressed: () {
+                                                _showReviewsDialog(context,
+                                                    listOfVehicles[i].modelId);
+                                              },
+                                              backgroundColor:
+                                                  const Color.fromARGB(
+                                                      255, 216, 113, 29),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(32.0),
+                                              ),
+                                              child: const Text('Reviews',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ))),
+                                  ),
                                   Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 2.0),
@@ -439,10 +459,12 @@ class _BookingHistoryState extends State<BookingHistory> {
                                     children: [
                                       Icon(Icons.car_rental),
                                       Text(
-                                          listOfVehicles[i]
-                                                  .transmissionType
-                                                  ?.toString() ??
-                                              '',
+                                          TransmissionType
+                                              .values[(listOfVehicles[i]
+                                                          .transmissionType ??
+                                                      1) -
+                                                  1]
+                                              .name,
                                           style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
@@ -491,7 +513,7 @@ class _BookingHistoryState extends State<BookingHistory> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,

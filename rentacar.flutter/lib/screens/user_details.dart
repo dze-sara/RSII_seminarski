@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentacar/data/sp_helper.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/services/user_service.dart';
 
 import '../models/user.dart';
@@ -130,7 +131,7 @@ class _UserDetailsState extends State<UserDetails> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,
@@ -157,12 +158,32 @@ class _UserDetailsState extends State<UserDetails> {
             // const SizedBox(height: 20.0),
             greetingMessage,
             const SizedBox(height: 48.0),
+            Text('First name',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 99, 99, 99))),
             firstName,
             const SizedBox(height: 8.0),
+            Text('Last name',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 99, 99, 99))),
             lastName,
             const SizedBox(height: 8.0),
+            Text('Username',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 99, 99, 99))),
             username,
             const SizedBox(height: 8.0),
+            Text('Password',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 99, 99, 99))),
             password,
             const SizedBox(height: 24.0),
             saveButton,

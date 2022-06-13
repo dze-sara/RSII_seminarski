@@ -67,7 +67,7 @@ namespace Rentacar.Services.Services
 
             int numberOfDays = (bookingEndTime - bookingStartTime).GetValueOrDefault().Days;
 
-            foreach(VehicleBaseDto v in vehicles)
+            foreach (VehicleBaseDto v in vehicles)
             {
                 v.TotalPrice = v.RatePerDay * numberOfDays;
             }
@@ -77,7 +77,7 @@ namespace Rentacar.Services.Services
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehicles(VehicleRequestDto request)
         {
-             return await _vehicleRepository.FilterVehicles(request);
+            return await _vehicleRepository.FilterVehicles(request);
         }
 
         public async Task<ICollection<VehicleBaseDto>> GetRecommendationsForUser(int userId)
@@ -96,13 +96,16 @@ namespace Rentacar.Services.Services
                     foreach (var unratedModel in modelsUserDidNotRate)
                     {
                         if (ratedModel.VehicleTypeId == unratedModel.VehicleTypeId)
+                        {
                             otherReviews = unratedModel.Reviews.ToList();
 
-                        double similarity = ComputeSimilarityPearson(ratedModel.Reviews.ToList(), otherReviews);
+                            double similarity = ComputeSimilarityPearson(ratedModel.Reviews.ToList(), otherReviews);
 
-                        if (similarity > 0.5)
-                        {
-                            modelsToRecommend.Add(unratedModel.ModelId);
+                            if (similarity > 0.5)
+                            {
+                                modelsToRecommend.Add(unratedModel.ModelId);
+                            }
+
                         }
                     }
                 }
@@ -176,16 +179,27 @@ namespace Rentacar.Services.Services
 
         private double ComputeSimilarityPearson(List<Review> model1Reviews, List<Review> model2Reviews)
         {
-            if(model1Reviews.Count != model2Reviews.Count)
+            if (model1Reviews.Count == 0 || model2Reviews.Count == 0)
             {
                 return 0;
+            }
+
+            int number = 1;
+
+            if (model1Reviews.Count <= model2Reviews.Count)
+            {
+                number = model1Reviews.Count;
+            }
+            else
+            {
+                number = model2Reviews.Count;
             }
 
             double modelsProduct = 0;
             double model1DotProduct = 0;
             double model2DotProduct = 0;
 
-            for (int i = 0; i < model1Reviews.Count; i++)
+            for (int i = 0; i < number; i++)
             {
                 modelsProduct += model1Reviews[i].Score * model2Reviews[i].Score;
                 model1DotProduct += model1Reviews[i].Score * model1Reviews[i].Score;
@@ -195,20 +209,20 @@ namespace Rentacar.Services.Services
             model1DotProduct = Math.Sqrt(model1DotProduct);
             model2DotProduct = Math.Sqrt(model2DotProduct);
 
-            if(model1DotProduct * model2DotProduct == 0)
+            if (model1DotProduct * model2DotProduct == 0)
             {
                 return 0;
             }
             else
             {
-                return modelsProduct/(model1DotProduct * model2DotProduct);
+                return modelsProduct / (model1DotProduct * model2DotProduct);
             }
         }
 
         public async Task<ICollection<VehicleBaseDto>> FilterVehiclesForBooking(BookVehiclesRequest bookVehiclesRequest)
         {
             var queriedVehicles = await _vehicleRepository.FilterVehiclesForBooking(bookVehiclesRequest);
-            List<VehicleBaseDto> vehicles =  _mapper.Map<List<VehicleBaseDto>>(queriedVehicles);
+            List<VehicleBaseDto> vehicles = _mapper.Map<List<VehicleBaseDto>>(queriedVehicles);
 
             double numberOfHours = (bookVehiclesRequest.EndDate - bookVehiclesRequest.StartDate).TotalHours;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rentacar/models/booking.dart';
 import 'package:rentacar/screens/payment.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
 
 import '../models/responses/vehicle_base.dart';
@@ -276,7 +277,9 @@ class _BookingDetailsState extends State<BookingDetails> {
       ),
       toolbarHeight: 90,
       leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(SearchDates.tag);
+          },
           icon: const Icon(
             Icons.car_rental_outlined,
             color: Colors.white,

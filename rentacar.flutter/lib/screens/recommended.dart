@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/models/transmission_type.dart';
+import 'package:rentacar/screens/search_dates.dart';
 import 'package:rentacar/services/vehicle_service.dart';
 
 import '../data/sp_helper.dart';
@@ -132,8 +134,11 @@ class _RecommendedState extends State<Recommended> {
                 void Function(void Function()) setState) {
               return Container(
                   padding: EdgeInsets.all(15),
-                  child: Column(
-                    children: _displayReviews(reviews),
+                  child: Container(
+                    height: (MediaQuery.of(context).size.height / 3) + 140,
+                    child: ListView(
+                      children: _displayReviews(reviews),
+                    ),
                   ));
             });
           });
@@ -269,10 +274,12 @@ class _RecommendedState extends State<Recommended> {
                             children: [
                               Icon(Icons.car_rental),
                               Text(
-                                  listOfVehicles[i]
-                                          .transmissionType
-                                          ?.toString() ??
-                                      '',
+                                  TransmissionType
+                                      .values[
+                                          (listOfVehicles[i].transmissionType ??
+                                                  1) -
+                                              1]
+                                      .name,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -338,7 +345,7 @@ class _RecommendedState extends State<Recommended> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,
