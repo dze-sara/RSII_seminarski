@@ -226,10 +226,11 @@ class _VehiclesListState extends State<VehiclesList> {
       return result;
     }
 
+    List<Row> reviewList = [];
     Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
       ReviewService reviewService = ReviewService();
       List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
-
+      reviewList = _displayReviews(reviews);
       await showModalBottomSheet(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -242,7 +243,19 @@ class _VehiclesListState extends State<VehiclesList> {
               return Container(
                   padding: EdgeInsets.all(15),
                   child: Column(
-                    children: _displayReviews(reviews),
+                    children: reviewList.isNotEmpty
+                        ? reviewList
+                        : [
+                            Center(
+                                child: Text(
+                                    'Unfortunately, this vehicle does not have reviews. Be the first to add one.',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color.fromARGB(255, 99, 99, 99))))
+                          ],
                   ));
             });
           });
@@ -272,6 +285,7 @@ class _VehiclesListState extends State<VehiclesList> {
       if (vehicles?.length != null && vehicles?.length != 0) {
         listOfVehicles = vehicles ?? [];
       }
+
       for (var i = 0; i < listOfVehicles.length; i++) {
         var listItem = Container(
             margin: EdgeInsets.fromLTRB(5, 25, 5, 25),
@@ -681,6 +695,7 @@ class _VehiclesListState extends State<VehiclesList> {
       ),
     );
 
+    var listItems = _createListItems();
     return Scaffold(
         bottomNavigationBar: Navigation(),
         appBar: appBar,
@@ -705,9 +720,20 @@ class _VehiclesListState extends State<VehiclesList> {
               child: ListView(
                 shrinkWrap: true,
                 padding: EdgeInsets.only(left: 24, right: 24),
-                children: _createListItems(),
+                children: listItems.isNotEmpty
+                    ? listItems
+                    : [
+                        Center(
+                            child: Text(
+                                'Unfortunately, no vehicles found to match the current filter',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 99, 99, 99))))
+                      ],
               ),
-            )
+            ),
           ],
         ));
   }
