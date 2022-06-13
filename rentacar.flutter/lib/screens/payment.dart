@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rentacar/data/sp_helper.dart';
 import 'package:rentacar/screens/booking_details.dart';
 import 'package:rentacar/screens/booking_history.dart';
@@ -33,6 +34,8 @@ class _PaymentState extends State<Payment> {
       keyboardType: TextInputType.number,
       autofocus: false,
       controller: txtCardNumber,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      maxLength: 16,
       decoration: InputDecoration(
         fillColor: Color.fromARGB(39, 99, 99, 99),
         filled: true,
@@ -50,6 +53,9 @@ class _PaymentState extends State<Payment> {
     final ccv = TextFormField(
       autofocus: false,
       controller: txtCVV,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      maxLength: 3,
       obscureText: true,
       decoration: InputDecoration(
           fillColor: Color.fromARGB(39, 99, 99, 99),
@@ -68,6 +74,9 @@ class _PaymentState extends State<Payment> {
     final expiryDateMonth = TextFormField(
       autofocus: false,
       controller: txtExpiryDateMonth,
+      maxLength: 2,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       obscureText: false,
       decoration: InputDecoration(
           fillColor: Color.fromARGB(39, 99, 99, 99),
@@ -86,7 +95,10 @@ class _PaymentState extends State<Payment> {
     final expiryDateYear = TextFormField(
       autofocus: false,
       controller: txtExpiryDateYear,
+      keyboardType: TextInputType.number,
       obscureText: false,
+      maxLength: 2,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: InputDecoration(
           fillColor: Color.fromARGB(39, 99, 99, 99),
           filled: true,
