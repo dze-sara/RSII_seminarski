@@ -521,7 +521,9 @@ class _VehiclesListState extends State<VehiclesList> {
         ),
         toolbarHeight: 90,
         leading: IconButton(
-            onPressed: () {Navigator.of(context).pushNamed(SearchDates.tag);},
+            onPressed: () {
+              Navigator.of(context).pushNamed(SearchDates.tag);
+            },
             icon: const Icon(
               Icons.car_rental_outlined,
               color: Colors.white,
@@ -728,11 +730,6 @@ class _VehiclesListState extends State<VehiclesList> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     filterButtonSizedBox,
-                    SizedBox(
-                      height: 0,
-                      width: 20,
-                    ),
-                    sortDropdownSizedBox
                   ]),
             ),
             Expanded(
