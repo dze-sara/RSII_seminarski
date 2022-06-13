@@ -229,7 +229,7 @@ class _VehiclesListState extends State<VehiclesList> {
     List<Row> reviewList = [];
     Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
       ReviewService reviewService = ReviewService();
-      List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
+      List<Review>? reviews = await reviewService.getReview(modelId ?? 0);
       reviewList = _displayReviews(reviews);
       await showModalBottomSheet(
           shape:

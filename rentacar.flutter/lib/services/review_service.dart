@@ -16,7 +16,7 @@ class ReviewService {
     helper.init();
   }
 
-  Future<List<Review>?> GetReview(int modelId) async {
+  Future<List<Review>?> getReview(int modelId) async {
     String path = '${Configuration().apiUrl}/api/Reviews/${modelId}';
     try {
       http.Response result = await httpHelper.get(path);
@@ -25,6 +25,20 @@ class ReviewService {
 
       List<Review> reviews =
           List<Review>.from(decoded.map((model) => Review.fromJson(model)));
+      return reviews;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<Review?> addReview(Review review) async {
+    String path = '${Configuration().apiUrl}/api/Reviews';
+    try {
+      http.Response result = await httpHelper.post(path, review);
+
+      var decoded = json.decode(result.body);
+
+      Review reviews = Review.fromJson(decoded);
       return reviews;
     } catch (_) {
       return null;

@@ -146,7 +146,7 @@ class _BookingHistoryState extends State<BookingHistory> {
 
     Future<Null> _showReviewsDialog(BuildContext context, int? modelId) async {
       ReviewService reviewService = ReviewService();
-      List<Review>? reviews = await reviewService.GetReview(modelId ?? 0);
+      List<Review>? reviews = await reviewService.getReview(modelId ?? 0);
 
       await showModalBottomSheet(
           shape:
