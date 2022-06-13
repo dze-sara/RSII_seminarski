@@ -133,7 +133,7 @@ class _LoginState extends State<Login> {
 
   onLoginPressed(BuildContext context) async {
     UserService userService = UserService();
-    User? user = await userService.SignIn(txtUsername.text, txtPassword.text);
+    User? user = await userService.signIn(txtUsername.text, txtPassword.text);
     if (user != null) {
       Navigator.of(context).pushNamed(SearchDates.tag);
     } else {

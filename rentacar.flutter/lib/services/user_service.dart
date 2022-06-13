@@ -14,7 +14,7 @@ class UserService {
     helper.init();
   }
 
-  Future<User?> Register(User user) async {
+  Future<User?> register(User user) async {
     String path = '${Configuration().apiUrl}/api/Users/register';
     try {
       http.Response result = await httpHelper.post(path, user);
@@ -33,7 +33,7 @@ class UserService {
     }
   }
 
-  Future<User?> SignIn(String username, String password) async {
+  Future<User?> signIn(String username, String password) async {
     String path = '${Configuration().apiUrl}/api/Users/login';
     try {
       http.Response result = await httpHelper
@@ -45,6 +45,25 @@ class UserService {
         helper.writeUser(signedUser);
         httpHelper.saveToken(signedUser.token ?? '');
         return signedUser;
+      } else {
+        return null;
+      }
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<User?> update(User user) async {
+    String path = '${Configuration().apiUrl}/api/Users/update';
+    try {
+      http.Response result = await httpHelper.post(path, user);
+
+      User updatedUser = User.fromJson(json.decode(result.body));
+
+      if (updatedUser != null && updatedUser.userId != 0) {
+        helper.writeUser(updatedUser);
+        httpHelper.saveToken(updatedUser.token ?? '');
+        return updatedUser;
       } else {
         return null;
       }

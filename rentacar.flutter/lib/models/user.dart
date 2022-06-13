@@ -34,8 +34,8 @@ class User {
       'firstName': firstName,
       'lastName': lastName,
       'password': password,
-      'dateCreated': dateCreated?.toString(),
-      'dateUpdated': dateUpdated?.toString(),
+      'dateCreated': dateCreated?.toIso8601String(),
+      'dateUpdated': dateUpdated?.toIso8601String(),
       'token': token
     };
   }

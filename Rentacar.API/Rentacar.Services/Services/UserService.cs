@@ -101,7 +101,13 @@ namespace Rentacar.Services.Services
 
         public async Task<UserDto> UpdateUser(UserDto userDto)
         {
-            return _mapper.Map<UserDto>(await _userRepository.UpdateUser(_mapper.Map<User>(userDto)));
+            var updatedUser = await _userRepository.UpdateUser(_mapper.Map<User>(userDto));
+
+            var mappedUpdatedUser = _mapper.Map<UserDto>(updatedUser);
+            mappedUpdatedUser.Token = IssueToken(mappedUpdatedUser.Username);
+            await SaveIssuedToken(mappedUpdatedUser.Token, updatedUser.UserId);
+
+            return mappedUpdatedUser;
         }
 
         private string IssueToken(string username)

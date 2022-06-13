@@ -176,7 +176,7 @@ class _RegisterState extends State<Register> {
     UserService userService = UserService();
     User newUserData = User(0, txtUsername.text, txtFirstName.text,
         txtLastName.text, txtPassword.text, null, null, 0, null);
-    User? user = await userService.Register(newUserData);
+    User? user = await userService.register(newUserData);
     if (user != null) {
       Navigator.of(context).pushNamed(SearchDates.tag);
     } else {

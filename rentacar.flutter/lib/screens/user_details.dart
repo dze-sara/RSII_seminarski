@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rentacar/data/sp_helper.dart';
+import 'package:rentacar/services/user_service.dart';
 
+import '../models/user.dart';
 import '../shared/navigation.dart';
 
 class UserDetails extends StatefulWidget {
@@ -12,12 +15,25 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
+  User? currentUser;
+  SPHelper spHelper = SPHelper();
+  TextEditingController txtFirstName = TextEditingController();
+  TextEditingController txtLastName = TextEditingController();
+  TextEditingController txtUsername = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    currentUser = spHelper.getUser();
+    txtFirstName.text = currentUser?.firstName ?? '';
+    txtLastName.text = currentUser?.lastName ?? '';
+    txtUsername.text = currentUser?.username ?? '';
+    txtPassword.text = currentUser?.password ?? '';
+
     final firstName = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: '',
+      controller: txtFirstName,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -35,7 +51,7 @@ class _UserDetailsState extends State<UserDetails> {
     final lastName = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: '',
+      controller: txtLastName,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -53,7 +69,7 @@ class _UserDetailsState extends State<UserDetails> {
     final username = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: '',
+      controller: txtUsername,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -70,7 +86,7 @@ class _UserDetailsState extends State<UserDetails> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: '',
+      controller: txtPassword,
       obscureText: true,
       decoration: InputDecoration(
           fillColor: Colors.white,
@@ -93,7 +109,7 @@ class _UserDetailsState extends State<UserDetails> {
             width: 20,
             child: FloatingActionButton(
               onPressed: () {
-                // Navigator.of(context).pushNamed(SearchDates.tag);
+                onSavePressed(context);
               },
               heroTag: 'btnSave',
               backgroundColor: const Color.fromARGB(255, 216, 113, 29),
@@ -122,8 +138,8 @@ class _UserDetailsState extends State<UserDetails> {
             )),
         backgroundColor: const Color.fromARGB(255, 4, 28, 48));
 
-        final greetingMessage = const Text(
-      'Hi, Sara!\nModify your profile details here.',
+    final greetingMessage = Text(
+      'Hi, ${currentUser?.firstName}\nModify your profile details here.',
       style: TextStyle(
           fontSize: 25,
           color: Color.fromARGB(255, 216, 113, 29),
@@ -153,6 +169,72 @@ class _UserDetailsState extends State<UserDetails> {
           ],
         ),
       ),
+    );
+  }
+
+  onSavePressed(BuildContext context) async {
+    if (isInvalidData()) {
+      showAlert(context, 'Data can not be empty',
+          'Please check all the values and try again');
+      return;
+    }
+    currentUser?.firstName = txtFirstName.text;
+    currentUser?.lastName = txtLastName.text;
+    currentUser?.username = txtUsername.text;
+    currentUser?.password = txtPassword.text;
+
+    UserService userService = UserService();
+    User? updatedUser = await userService.update(currentUser!);
+    if (updatedUser != null) {
+      setState(() {
+        currentUser = updatedUser;
+      });
+      showSuccesDialog(context);
+    } else {
+      showErrorDialog(context);
+    }
+  }
+
+  bool isInvalidData() {
+    return txtFirstName.text.isEmpty ||
+        txtLastName.text.isEmpty ||
+        txtUsername.text.isEmpty ||
+        txtPassword.text.isEmpty;
+  }
+
+  showSuccesDialog(BuildContext context) {
+    showAlert(context, 'Data updated', 'User data was updated succesfully');
+  }
+
+  showErrorDialog(BuildContext context) {
+    showAlert(
+        context, 'Something went wrong', 'Please check the data and try again');
+  }
+
+  showAlert(BuildContext context, String title, String content) {
+// set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
