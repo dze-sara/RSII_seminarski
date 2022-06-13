@@ -4,9 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:rentacar/screens/vehicles_list.dart';
 import 'package:rentacar/services/booking_service.dart';
 
+import '../data/sp_helper.dart';
 import '../models/booking.dart';
 import '../models/responses/vehicle_base.dart';
 import '../models/review.dart';
+import '../models/user.dart';
 import '../services/review_service.dart';
 import '../services/vehicle_service.dart';
 import '../shared/navigation.dart';
@@ -23,16 +25,20 @@ class BookingHistory extends StatefulWidget {
 class _BookingHistoryState extends State<BookingHistory> {
   List<Booking>? bookings;
   List<VehicleBooking>? vehicleBookings;
+  SPHelper spHelper = SPHelper();
+  User? currentUser;
 
   @override
   void initState() {
     super.initState();
-    _getBookinghistory(2);
+    currentUser = spHelper.getUser();
+    _getBookinghistory(currentUser?.userId);
   }
 
   _getBookinghistory(userId) async {
     BookingService bookingService = BookingService();
-    var result = await bookingService.GetBookingHistory(2);
+    var result =
+        await bookingService.GetBookingHistory(currentUser?.userId ?? 2);
     setState(() {
       bookings = result;
       _getVehicleBookings(bookings);
@@ -383,7 +389,7 @@ class _BookingHistoryState extends State<BookingHistory> {
                                       Text(
                                           '${listOfVehicles[i].totalPrice?.toString() ?? ''}€',
                                           style: TextStyle(
-                                              fontSize: 25,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Color.fromARGB(
                                                   255, 99, 99, 99)))
@@ -416,8 +422,8 @@ class _BookingHistoryState extends State<BookingHistory> {
             )),
         backgroundColor: const Color.fromARGB(255, 4, 28, 48));
 
-    final greetingMessage = const Text(
-      'Hi, Sara!\nThis is your car rental history.',
+    final greetingMessage = Text(
+      'Hi, ${currentUser?.firstName}!\nThis is your car rental history.',
       style: TextStyle(
           fontSize: 25,
           color: Color.fromARGB(255, 216, 113, 29),
