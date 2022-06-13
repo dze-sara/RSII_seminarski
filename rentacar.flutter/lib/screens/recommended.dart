@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rentacar/services/vehicle_service.dart';
 
+import '../data/sp_helper.dart';
 import '../models/booking.dart';
 import '../models/responses/vehicle_base.dart';
 import '../models/review.dart';
+import '../models/user.dart';
 import '../services/review_service.dart';
 import '../shared/navigation.dart';
 import 'booking_details.dart';
@@ -21,13 +23,15 @@ class _RecommendedState extends State<Recommended> {
   List<VehicleBase>? vehicles;
   @override
   void initState() {
+    SPHelper spHelper = SPHelper();
+    User user = spHelper.getUser();
     super.initState();
-    _getRecommendedVehicles(2);
+    _getRecommendedVehicles(user.userId);
   }
 
   _getRecommendedVehicles(userId) async {
     VehicleService vehicleService = VehicleService();
-    var result = await vehicleService.Recommended(2);
+    var result = await vehicleService.Recommended(userId);
     setState(() {
       vehicles = result;
     });
