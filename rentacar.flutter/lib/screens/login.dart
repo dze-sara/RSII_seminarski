@@ -132,6 +132,11 @@ class _LoginState extends State<Login> {
   }
 
   onLoginPressed(BuildContext context) async {
+    if (txtUsername.text.isEmpty || txtPassword.text.isEmpty) {
+      showAlertDialog(context, 'Username and password cant be empty',
+          'Please correct the data and try again');
+      return;
+    }
     UserService userService = UserService();
     User? user = await userService.signIn(txtUsername.text, txtPassword.text);
     if (user != null) {
@@ -141,7 +146,7 @@ class _LoginState extends State<Login> {
     }
   }
 
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context, [String? title, String? content]) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
@@ -152,8 +157,8 @@ class _LoginState extends State<Login> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Incorrect credentials"),
-      content: Text("Please try again."),
+      title: Text(title ?? "Incorrect credentials"),
+      content: Text(content ?? "Please try again."),
       actions: [
         okButton,
       ],

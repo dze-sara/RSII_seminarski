@@ -173,6 +173,14 @@ class _RegisterState extends State<Register> {
   }
 
   onRegisterPressed() async {
+    if (txtFirstName.text.isEmpty ||
+        txtLastName.text.isEmpty ||
+        txtUsername.text.isEmpty ||
+        txtPassword.text.isEmpty) {
+      showAlertDialog(context, 'Input data cant be empty',
+          'Please correct the data and try again');
+      return;
+    }
     UserService userService = UserService();
     User newUserData = User(0, txtUsername.text, txtFirstName.text,
         txtLastName.text, txtPassword.text, null, null, 0, null);
@@ -184,7 +192,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context, [String? title, String? content]) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
@@ -195,8 +203,8 @@ class _RegisterState extends State<Register> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Invalid data provided"),
-      content: Text("Please check the input and try again."),
+      title: Text(title ?? "Invalid data provided"),
+      content: Text(content ?? "Please check the input and try again."),
       actions: [
         okButton,
       ],
