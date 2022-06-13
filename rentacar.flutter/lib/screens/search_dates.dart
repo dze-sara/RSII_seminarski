@@ -48,6 +48,10 @@ class _SearchDatesState extends State<SearchDates> {
           selectedPickUpDate = picked;
           _datePickUpController.text =
               DateFormat.yMd().format(selectedPickUpDate);
+
+          if (selectedReturnDate.isBefore(selectedPickUpDate)) {
+            selectedReturnDate = selectedPickUpDate;
+          }
         });
       }
     }
